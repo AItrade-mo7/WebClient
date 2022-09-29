@@ -33,7 +33,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       <RouterLink to="/StockServe">
         <n-button type="primary" ghost color="#f00">
           <template #icon>
-            <XIcon name="ZTSLogo" />
+            <XIcon name="StockOutlined" />
           </template>
           股票交易 StockAI ->
         </n-button>

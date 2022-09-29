@@ -45,8 +45,6 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@/lib/LogoView.vue'));
     case 'OkxLogo':
       return defineAsyncComponent(() => import('@/lib/OkxLogo.vue'));
-    case 'ZTSLogo':
-      return defineAsyncComponent(() => import('@/lib/ZTSLogo.vue'));
     case 'QuestionCircleOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/QuestionCircleOutlined'));
     case 'FileDoneOutlined':
@@ -59,6 +57,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/BarChartOutlined'));
     case 'ArrowUpOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/ArrowUpOutlined'));
+    case 'StockOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/StockOutlined'));
 
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));
