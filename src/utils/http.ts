@@ -5,10 +5,6 @@ import { LoadingStore } from '@/store';
 
 const service = axios.create();
 
-const origin = window.location.origin;
-
-console.log();
-
 let axios_baseURL = null;
 if (window.ViteConst.RunMod == 0) {
   axios_baseURL = '//trade-api.mo7.cc';
