@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "pnpm i && run-p vue:check vue:build && ./_shell/build.sh",
-    "serve": "./_shell/serve_start.sh",
+    "build": "pnpm i && run-p vue:check vue:build",
     "vue:build": "vite build",
     "vue:check": "vue-tsc --noEmit",
     "git": "./_shell/git_set.sh",
