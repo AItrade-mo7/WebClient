@@ -46,30 +46,31 @@ export const UserInfoStore = reactive({
 // ===================== PingData ============================
 
 export interface AppInfo {
-  Port: number;
   name: string;
   version: string;
 }
 
 export interface PingDataType {
-  AppInfo: AppInfo;
-  ContentType: string;
-  FullPath: string;
+  ApiInfo: AppInfo;
+  ClientInfo: AppInfo;
   Method: 'POST' | 'GET' | '';
+  Path: string;
   ResParam: any;
   Token: string;
   UserAgent: string;
 }
 
 const PingData: PingDataType = {
-  AppInfo: {
-    Port: 0,
+  ApiInfo: {
     name: '',
     version: '',
   },
-  ContentType: '',
-  FullPath: '',
+  ClientInfo: {
+    name: '',
+    version: '',
+  },
   Method: '',
+  Path: '',
   ResParam: {},
   Token: '',
   UserAgent: '',

@@ -57,6 +57,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/CodeTwotone'));
     case 'BarChartOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/BarChartOutlined'));
+    case 'ArrowUpOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/ArrowUpOutlined'));
 
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));

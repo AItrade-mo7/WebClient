@@ -14,6 +14,9 @@ const closeDrawer = () => {
 const showDrawer = () => {
   TopBarStore.open();
 };
+
+console.log(PingDataStore);
+console.log(ViteConst);
 </script>
 
 <template>
@@ -141,12 +144,15 @@ const showDrawer = () => {
                 <XIcon name="MenuUnfoldOutlined" />
               </template>
             </n-button>
-            <div class="TopBar__version">
-              <span> 当前版本: {{ ViteConst.AppVersion }} </span>
-              <span v-if="ViteConst.AppVersion !== PingDataStore.value.AppInfo.version">
-                最新版本: {{ PingDataStore.value.AppInfo.version }}
+            <RouterLink to="/About/ReleaseNotes" class="TopBar__version">
+              <span> API 版本: {{ PingDataStore.value.ApiInfo.version }} </span>
+              <span v-if="PingDataStore.value.ClientInfo.version != ViteConst.AppVersion" class="red">
+                客户端版本: {{ ViteConst.AppVersion }} <XIcon name="ArrowUpOutlined" />
               </span>
-            </div>
+              <span v-if="PingDataStore.value.ClientInfo.version == ViteConst.AppVersion" class="red">
+                客户端版本: {{ ViteConst.AppVersion }}
+              </span>
+            </RouterLink>
           </div>
         </template>
       </n-drawer-content>
@@ -171,6 +177,10 @@ const showDrawer = () => {
 
 <style lang="less">
 @import '@/config/constant.less';
+
+.red {
+  color: @redColor;
+}
 
 .TopBarDrawer {
   .n-drawer-header__main {
@@ -203,8 +213,11 @@ const showDrawer = () => {
     color: #d9d9d9;
     font-size: 12px;
     cursor: pointer;
+    text-align: right;
     span {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
   }
 
