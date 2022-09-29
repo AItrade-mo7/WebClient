@@ -34,9 +34,7 @@ const PwaConfig: any = {
 
 import AppPackage from './package.json';
 
-// const ProxyUrl = 'https://file.mo7.cc';
 const ProxyUrl = `http://127.0.0.1:8999`;
-const CoinAIHost = '';
 
 // https://vitejs.dev/config/
 const pathSrc = path.resolve(__dirname, 'src');
