@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
+import YAML from 'yamljs';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
+import AppPackage from './package.json';
 
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
-
+// ========= PWA 配置  =========
 const PwaConfig: any = {
   injectRegister: 'script',
   registerType: 'autoUpdate',
@@ -32,14 +34,24 @@ const PwaConfig: any = {
   },
 };
 
-import AppPackage from './package.json';
-import Env from './env.json';
+// ========= 处理 sys_env.yaml 文件 =========
+let SysEnv = { RunMod: 0 };
+try {
+  SysEnv = YAML.load('sys_env.yaml');
+} catch {}
+let RunMod = 0;
+if (SysEnv) {
+  RunMod = SysEnv.RunMod;
+}
 
-console.log(Env);
+// ========= 处理 proxy.json 文件 =========
+import ProxyFile from './proxy.json';
+let ProxyConfig: any = ProxyFile;
+if (RunMod == 0) {
+  ProxyConfig = null;
+}
 
-const ProxyUrl = `https://127.0.0.1:8999`;
-
-// https://vitejs.dev/config/
+// =========  https://vitejs.dev/config/  =========
 const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig({
   resolve: {
@@ -61,12 +73,13 @@ export default defineConfig({
     ViteConst: JSON.stringify({
       AppVersion: AppPackage.version,
       AppName: AppPackage.name,
-      ProxyUrl,
+      RunMod,
     }),
   },
   server: {
     host: true,
     port: 9000,
     strictPort: true, // 端口已被占用则会直接退出
+    proxy: ProxyConfig,
   },
 });

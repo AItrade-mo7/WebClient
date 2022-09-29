@@ -7,6 +7,6 @@ AITrade 的客户端
 sys_env.yaml
 
 ```yaml
-# 运行模式
-RunMod: 1
+# 运行模式  0 为 remote  ； 1 为 local
+RunMod: 0
 ```
