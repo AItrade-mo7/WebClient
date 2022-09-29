@@ -10,3 +10,4 @@ echo "开始打包" &&
 echo "移动文件到 ProdProject 目录"
 rm -rf ${deployPath}
 cp -r ${outPutPath}"/." ${deployPath}"/"
+cp -r ${path}"/package.json" ${deployPath}
