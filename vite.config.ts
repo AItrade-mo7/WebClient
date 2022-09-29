@@ -33,8 +33,11 @@ const PwaConfig: any = {
 };
 
 import AppPackage from './package.json';
+import Env from './env.json';
 
-const ProxyUrl = `http://127.0.0.1:8999`;
+console.log(Env);
+
+const ProxyUrl = `https://127.0.0.1:8999`;
 
 // https://vitejs.dev/config/
 const pathSrc = path.resolve(__dirname, 'src');
@@ -65,29 +68,5 @@ export default defineConfig({
     host: true,
     port: 9000,
     strictPort: true, // 端口已被占用则会直接退出
-    proxy: {
-      '/api': {
-        target: ProxyUrl,
-        changeOrigin: true, // 允许跨域
-      },
-      '/CoinAI': {
-        target: ProxyUrl,
-        changeOrigin: true, // 允许跨域
-      },
-      '/StockAI': {
-        target: ProxyUrl,
-        changeOrigin: true, // 允许跨域
-      },
-      '/CoinMarket': {
-        // target: 'https://trade.mo7.cc',
-        target: 'http://127.0.0.1:8998',
-        changeOrigin: true, // 允许跨域
-      },
-      '/StockMarket': {
-        target: 'https://trade.mo7.cc',
-        // target: 'http://127.0.0.1:8997',
-        changeOrigin: true, // 允许跨域
-      },
-    },
   },
 });
