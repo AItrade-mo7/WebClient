@@ -96,7 +96,7 @@ console.log(ViteConst);
             <RouterLink to="/StockServe" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
-                  <XIcon name="ZTSLogo" />
+                  <XIcon name="StockOutlined" />
                 </template>
                 StockServe
               </n-button>
@@ -107,7 +107,7 @@ console.log(ViteConst);
             <RouterLink to="/Market" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
-                  <XIcon name="BarChartOutlined" />
+                  <XIcon name="AreaChartOutlined" />
                 </template>
                 Market
               </n-button>

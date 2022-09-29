@@ -59,6 +59,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/ArrowUpOutlined'));
     case 'StockOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/StockOutlined'));
+    case 'AreaChartOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/AreaChartOutlined'));
 
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));

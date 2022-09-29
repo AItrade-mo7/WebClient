@@ -44,7 +44,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       <RouterLink to="/Market">
         <n-button strong secondary type="error">
           <template #icon>
-            <XIcon name="BarChartOutlined" />
+            <XIcon name="AreaChartOutlined" />
           </template>
           查看行情
         </n-button>
