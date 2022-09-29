@@ -14,8 +14,6 @@ if (ViteConst) {
   };
 }
 
-console.log(window.ViteConst);
-
 import { createApp } from 'vue';
 
 import App from '@/lib/router/App.vue';

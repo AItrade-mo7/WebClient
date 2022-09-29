@@ -26,6 +26,7 @@ declare global {
       AppName: string;
       ProxyUrl: string;
       rmAgin: string;
+      RunMod: number;
     };
   }
 }

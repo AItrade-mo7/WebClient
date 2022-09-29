@@ -7,13 +7,11 @@ const service = axios.create();
 
 const origin = window.location.origin;
 
-const axios_baseURL = null;
-if (origin.includes('localhost')) {
-  // axios_baseURL = '//localhost:9004/';
-} else if (origin.includes('xxxx')) {
-  // baseUrl = '';
-} else {
-  // baseUrl = '';
+console.log();
+
+let axios_baseURL = null;
+if (window.ViteConst.RunMod == 0) {
+  axios_baseURL = '//trade-api.mo7.cc';
 }
 
 (() => {
