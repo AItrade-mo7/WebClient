@@ -35,7 +35,7 @@ const PwaConfig: any = {
 import AppPackage from './package.json';
 
 // const ProxyUrl = 'https://file.mo7.cc';
-const ProxyUrl = `http://127.0.0.1:${AppPackage.Port}`;
+const ProxyUrl = `http://127.0.0.1:8999`;
 const CoinAIHost = '';
 
 // https://vitejs.dev/config/
@@ -65,7 +65,7 @@ export default defineConfig({
   },
   server: {
     host: true,
-    port: AppPackage.Port + 1,
+    port: 9000,
     strictPort: true, // 端口已被占用则会直接退出
     proxy: {
       '/api': {
