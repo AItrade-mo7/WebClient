@@ -1,0 +1,43 @@
+# Logs
+logs
+jsonData
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+cache
+
+package-lock.json
+pnpm-lock.yaml
+
+# Editor directories and files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+## go
+*.sum
+*.work
+sys_env.yaml
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+www
+
+auto-imports.d.ts
+components.d.ts
