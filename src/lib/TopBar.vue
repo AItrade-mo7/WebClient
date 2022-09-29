@@ -126,6 +126,12 @@ console.log(ViteConst);
           </div>
         </div>
 
+        <div className="TopBar__content">
+          备案状态 <br />
+          求打赏 <br />
+          相关说明等 <br />
+        </div>
+
         <template #footer>
           <div class="TopBar__pendant">
             <PWAInstall className="TopBar__instPWA">
@@ -145,7 +151,6 @@ console.log(ViteConst);
               </template>
             </n-button>
             <RouterLink to="/About/ReleaseNotes" class="TopBar__version">
-              <span> API 版本: {{ PingDataStore.value.ApiInfo.version }} </span>
               <span v-if="PingDataStore.value.ClientInfo.version != ViteConst.AppVersion" class="red">
                 客户端版本: {{ ViteConst.AppVersion }} <XIcon name="ArrowUpOutlined" />
               </span>
@@ -172,6 +177,12 @@ console.log(ViteConst);
   cursor: pointer;
   display: block;
   animation: Rotate infinite 7s linear;
+}
+
+.TopBar__content {
+  border-top: 1px solid #efeff5;
+  margin-top: 8px;
+  padding-top: 8px;
 }
 </style>
 
