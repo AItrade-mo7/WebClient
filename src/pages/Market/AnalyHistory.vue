@@ -2,6 +2,8 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
+import { RouterLink } from 'vue-router';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
 
@@ -95,7 +97,13 @@ const CountUR = (ur: any) => {
 <template>
   <PageTitle> AnalyHistory </PageTitle>
   <div class="AnalyHistory">
-    <h4>最近72小时程序大盘预测结果</h4>
+    <h4>
+      最近72小时程序大盘预测结果
+
+      <RouterLink to="/About/ReleaseNotes" class="TopBar__version">
+        <n-button type="primary" size="tiny"> 查看对比图 </n-button>
+      </RouterLink>
+    </h4>
     <n-pagination
       v-model:page="Current"
       size="small"

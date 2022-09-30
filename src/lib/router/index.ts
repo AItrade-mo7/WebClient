@@ -28,6 +28,11 @@ const routes: any = [
         description: 'AnalyHistory',
         component: () => import('@/pages/Market/AnalyHistory.vue'),
       },
+      {
+        path: 'AnalyChart',
+        description: 'AnalyChart',
+        component: () => import('@/pages/Market/AnalyChart.vue'),
+      },
     ],
   },
   {
