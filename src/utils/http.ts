@@ -7,6 +7,7 @@ const service = axios.create();
 
 (() => {
   // 需要初始化
+  console.log('11111', window.ViteConst);
   let axios_baseURL = null;
   if (window.ViteConst.RunMod == 0) {
     axios_baseURL = '//trade-api.mo7.cc';
