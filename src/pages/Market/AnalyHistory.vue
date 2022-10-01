@@ -100,7 +100,7 @@ const CountUR = (ur: any) => {
     <h4>
       最近72小时程序大盘预测结果
 
-      <RouterLink to="/About/ReleaseNotes" class="TopBar__version">
+      <RouterLink to="/Market/AnalyChart" class="TopBar__version">
         <n-button type="primary" size="tiny"> 查看对比图 </n-button>
       </RouterLink>
     </h4>
