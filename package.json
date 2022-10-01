@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "pnpm i && run-p vue:check vue:build",
+    "build": "pnpm install && run-p vue:check vue:build",
+    "preview": "vite preview",
     "vue:build": "vite build",
     "vue:check": "vue-tsc --noEmit",
     "git": "./_shell/git_set.sh",

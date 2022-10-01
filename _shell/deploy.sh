@@ -3,9 +3,7 @@
 source "./_shell/init.sh"
 #############
 
-pnpm install
-echo "开始打包" &&
-  pnpm run build
+pnpm run build
 
 echo "移动文件到 ProdProject 目录"
 rm -rf ${deployPath}
