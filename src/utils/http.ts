@@ -5,16 +5,15 @@ import { LoadingStore } from '@/store';
 
 const service = axios.create();
 
-(() => {
-  // 需要初始化
-  console.log('11111', window.ViteConst);
+function set_axios_config() {
+  console.info('初始化 axios 配置', window.ViteConst);
   let axios_baseURL = null;
   if (window.ViteConst.RunMod == 0) {
     axios_baseURL = '//trade-api.mo7.cc';
   }
 
   service.defaults.baseURL = axios_baseURL; // 默认请求的 baseUrl
-  service.defaults.timeout = 20000; // 超时 20 秒
+  service.defaults.timeout = 30000; // 超时 30 秒
   // 请求拦截
   service.interceptors.request.use(
     (config) => {
@@ -40,9 +39,10 @@ const service = axios.create();
       return Promise.reject(error);
     },
   );
-})();
+}
 
 import type { axiosParam, resDataType } from './utils.d';
+
 const ajax_json = (param: axiosParam): Promise<resDataType> => {
   const config: axiosParam = {
     headers: {
@@ -65,4 +65,4 @@ const ajax_json = (param: axiosParam): Promise<resDataType> => {
   return service(config) as any;
 };
 
-export { ajax_json, axios };
+export { ajax_json, axios, set_axios_config };

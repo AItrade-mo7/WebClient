@@ -1,26 +1,24 @@
+import { createApp } from 'vue';
+import { registerSW } from 'virtual:pwa-register';
+registerSW({
+  onOfflineReady() {},
+});
+import App from '@/lib/router/App.vue';
+import { router } from '@/lib/router';
+
 import '@/assets/js/AITrade.net';
 import 'normalize.css';
 import '@/assets/css/global.less';
 
-console.log('222222222', window.ViteConst);
-
+// 初始化 axios 配置
+import { set_axios_config } from '@/utils/http';
 if (ViteConst) {
   window.ViteConst = {
     ...ViteConst,
     rmAgin: 'mo777',
   };
+  set_axios_config();
 }
-console.log('333333', window.ViteConst);
-
-import { registerSW } from 'virtual:pwa-register';
-registerSW({
-  onOfflineReady() {},
-});
-
-import { createApp } from 'vue';
-
-import App from '@/lib/router/App.vue';
-import { router } from '@/lib/router';
 
 const app = createApp(App);
 
