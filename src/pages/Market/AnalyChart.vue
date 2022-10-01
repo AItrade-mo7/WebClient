@@ -10,16 +10,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <PageTitle> AnalyChart </PageTitle>
+  <!-- <PageTitle> AnalyChart </PageTitle> -->
   <div class="AnalyChart">
-    <div id="EchartsCanvas"></div>
+    <div id="EchartsCanvas">asda</div>
   </div>
 </template>
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+
+.AnalyChart {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 #EchartsCanvas {
   width: 100%;
-  height: 800px;
+  height: 100%;
 }
 </style>

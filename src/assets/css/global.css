@@ -20,6 +20,7 @@ a {
   padding: 10px;
   margin: 0;
   text-align: left;
+  z-index: 9;
 }
 .PageWrapper {
   padding: 48px 16px 16px;
