@@ -14,9 +14,6 @@ const closeDrawer = () => {
 const showDrawer = () => {
   TopBarStore.open();
 };
-
-console.log(PingDataStore);
-console.log(ViteConst);
 </script>
 
 <template>
