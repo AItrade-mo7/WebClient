@@ -5,13 +5,13 @@ import { LoadingStore } from '@/store';
 
 const service = axios.create();
 
-let axios_baseURL = null;
-if (window.ViteConst.RunMod == 0) {
-  axios_baseURL = '//trade-api.mo7.cc';
-}
-
 (() => {
   // 需要初始化
+  let axios_baseURL = null;
+  if (window.ViteConst.RunMod == 0) {
+    axios_baseURL = '//trade-api.mo7.cc';
+  }
+
   service.defaults.baseURL = axios_baseURL; // 默认请求的 baseUrl
   service.defaults.timeout = 20000; // 超时 20 秒
   // 请求拦截
