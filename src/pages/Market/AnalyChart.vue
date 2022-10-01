@@ -1,16 +1,37 @@
 <script setup lang="ts">
 import { onMounted, defineAsyncComponent } from 'vue';
 import { EchartsRender } from './EchartsRender';
+import { GetAnalyList } from '@/api/CoinMarket';
 
-const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
+let HistoryList = $ref([]);
+let Current = $ref(0);
+let Total = $ref(0);
+let Size = $ref(300);
+const GetHistoryList = (page: number) => {
+  Current = page;
+  GetAnalyList({
+    Size: Size,
+    Current: Current - 1,
+    Sort: {
+      TimeUnix: -1,
+    },
+  }).then((res) => {
+    if (res.Code > 0) {
+      HistoryList = res.Data.List;
+      Total = res.Data.Total;
+      Current = res.Data.Current + 1;
+      Size = res.Data.Size;
+    }
+  });
+};
 
 onMounted(() => {
+  GetHistoryList(1);
   EchartsRender();
 });
 </script>
 
 <template>
-  <!-- <PageTitle> AnalyChart </PageTitle> -->
   <div class="AnalyChart">
     <div id="EchartsCanvas">asda</div>
   </div>
