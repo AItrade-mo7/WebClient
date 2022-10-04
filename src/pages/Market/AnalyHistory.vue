@@ -97,20 +97,22 @@ const CountUR = (ur: any) => {
 <template>
   <PageTitle> AnalyHistory </PageTitle>
   <div class="AnalyHistory">
-    <h4>
-      最近72小时程序大盘预测结果
+    <div>
+      <h4>
+        72小时大盘预测结果
+        <RouterLink to="/Market/AnalyChart" class="TopBar__version">
+          <n-button type="primary" size="tiny"> 查看对比图 </n-button>
+        </RouterLink>
+      </h4>
+      <n-pagination
+        v-model:page="Current"
+        size="small"
+        :item-count="Total"
+        :page-size="Size"
+        :on-update:page="GetHistoryList"
+      />
+    </div>
 
-      <RouterLink to="/Market/AnalyChart" class="TopBar__version">
-        <n-button type="primary" size="tiny"> 查看对比图 </n-button>
-      </RouterLink>
-    </h4>
-    <n-pagination
-      v-model:page="Current"
-      size="small"
-      :item-count="Total"
-      :page-size="Size"
-      :on-update:page="GetHistoryList"
-    />
     <div>
       <div v-for="item in HistoryList" class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
         <n-space>
