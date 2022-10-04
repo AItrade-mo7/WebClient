@@ -2,7 +2,6 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
-import { RouterLink } from 'vue-router';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
@@ -29,6 +28,8 @@ const GetHistoryList = (page: number) => {
     }
   });
 };
+
+let IsChartView = $ref(false);
 
 onMounted(() => {
   GetHistoryList(1);
@@ -95,15 +96,14 @@ const CountUR = (ur: any) => {
 </script>
 
 <template>
-  <PageTitle> AnalyHistory </PageTitle>
+  <PageTitle>
+    72小时算法预测结果
+    <n-button @click="IsChartView = !IsChartView" type="primary" size="tiny" class="TopBar__version">
+      查看{{ IsChartView ? '列表' : '折线图' }}
+    </n-button>
+  </PageTitle>
   <div class="AnalyHistory">
     <div>
-      <h4>
-        72小时大盘预测结果
-        <RouterLink to="/Market/AnalyChart" class="TopBar__version">
-          <n-button type="primary" size="tiny"> 查看对比图 </n-button>
-        </RouterLink>
-      </h4>
       <n-pagination
         v-model:page="Current"
         size="small"
@@ -113,7 +113,7 @@ const CountUR = (ur: any) => {
       />
     </div>
 
-    <div>
+    <div v-if="!IsChartView">
       <div v-for="item in HistoryList" class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
         <n-space>
           <div class="time"><n-time :time="item.TimeUnix" /></div>
@@ -127,6 +127,8 @@ const CountUR = (ur: any) => {
         <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item)">查看</n-button>
       </div>
     </div>
+
+    <div v-if="IsChartView">折线图</div>
 
     <n-drawer
       display-directive="show"
@@ -172,6 +174,10 @@ const CountUR = (ur: any) => {
   &:hover .CheckBtn {
     display: block;
   }
+}
+
+.TopBar__version {
+  margin-left: 8px;
 }
 
 .green {
