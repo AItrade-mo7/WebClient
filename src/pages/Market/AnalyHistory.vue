@@ -12,6 +12,7 @@ let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
 let IsChartView = $ref(false);
+IsChartView = true;
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -28,7 +29,7 @@ const GetHistoryList = (page: number) => {
       Current = res.Data.Current + 1;
       Size = res.Data.Size;
       if (IsChartView) {
-        EchartsRender();
+        EchartsRender(cloneDeep(HistoryList));
       }
     }
   });
