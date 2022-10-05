@@ -28,7 +28,7 @@ function splitData(rawData) {
 }
 
 export const EchartsRender = (AnalyList) => {
-  console.log(List);
+  console.log(AnalyList);
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
   const option = {
     tooltip: {

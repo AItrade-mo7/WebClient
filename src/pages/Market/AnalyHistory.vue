@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, defineAsyncComponent } from 'vue';
-import { GetAnalyList } from '@/api/CoinMarket';
+import { GetAnalyList, GetKdataPage } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
 import { EchartsRender } from './EchartsRender';
 
@@ -13,6 +13,7 @@ let Total = $ref(0);
 let Size = $ref(300);
 let IsChartView = $ref(false);
 IsChartView = true;
+let CurrentCoin = $ref('BTC-USDT');
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -104,12 +105,21 @@ const SwitchChart = () => {
   IsChartView = !IsChartView;
   GetHistoryList(1);
 };
+const SwitchCoin = (Coin) => {
+  CurrentCoin = Coin;
+  GetKdataPage({
+    InstID: CurrentCoin + '-USDT',
+    Current,
+  }).then((res) => {
+    console.log(res);
+  });
+};
 </script>
 
 <template>
   <PageTitle>
     72小时算法预测结果
-    <n-button @click="SwitchChart" type="primary" size="tiny" class="TopBar__version">
+    <n-button @click="SwitchChart" type="primary" size="tiny" class="SwitchBtn">
       查看{{ IsChartView ? '列表' : '折线图' }} {{ IsChartView }}
     </n-button>
   </PageTitle>
@@ -140,7 +150,27 @@ const SwitchChart = () => {
     </div>
 
     <div class="ChartWrapper" v-if="IsChartView">
-      <div id="EchartsCanvas">asda</div>
+      <div class="SwitchCoinWrapper">
+        <n-button
+          @click="SwitchCoin('BTC')"
+          type="primary"
+          size="tiny"
+          class="SwitchCoinBtn"
+          :disabled="CurrentCoin === 'BTC'"
+        >
+          BTC
+        </n-button>
+        <n-button
+          @click="SwitchCoin('ETH')"
+          type="primary"
+          size="tiny"
+          class="SwitchCoinBtn"
+          :disabled="CurrentCoin === 'ETH'"
+        >
+          ETH
+        </n-button>
+      </div>
+      <div id="EchartsCanvas">图表加载中。。。。</div>
     </div>
 
     <n-drawer
@@ -189,7 +219,7 @@ const SwitchChart = () => {
   }
 }
 
-.TopBar__version {
+.SwitchBtn {
   margin-left: 8px;
 }
 
@@ -207,6 +237,21 @@ const SwitchChart = () => {
 #EchartsCanvas {
   width: 100%;
   height: 100%;
+}
+
+.SwitchCoinWrapper {
+  text-align: center;
+  position: absolute;
+  width: 200px;
+  left: 50%;
+  top: 10px;
+  margin-left: -100px;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .SwitchCoinBtn {
+  }
 }
 
 .green {

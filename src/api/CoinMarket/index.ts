@@ -12,6 +12,19 @@ export const GetTickerList = (data: TickerParam) => {
   });
 };
 
+export interface GetKdataPageParam {
+  InstID: string;
+  Current: number;
+}
+
+export const GetKdataPage = (data: GetKdataPageParam) => {
+  return ajax_json({
+    url: '/CoinMarket/public/GetKdataPage',
+    data,
+    method: 'post',
+  });
+};
+
 export interface InstParam {
   InstType: 'SPOT' | 'SWAP';
 }

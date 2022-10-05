@@ -10,6 +10,7 @@
     "gofiber",
     "hoverable",
     "jsoniter",
+    "Kdata",
     "okxkey",
     "pinia",
     "pnpm",
