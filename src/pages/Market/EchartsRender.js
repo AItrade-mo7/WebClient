@@ -55,6 +55,7 @@ function splitData(rawData) {
 
 export const EchartsRender = () => {
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
+  console.log('展开', document.getElementById('EchartsCanvas'), myChart);
   const option = {
     tooltip: {
       trigger: 'axis',

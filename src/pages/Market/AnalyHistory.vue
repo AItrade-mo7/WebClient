@@ -2,6 +2,7 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
+import { EchartsRender } from './EchartsRender';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
@@ -10,6 +11,7 @@ let HistoryList = $ref([]);
 let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
+let IsChartView = $ref(false);
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -25,11 +27,12 @@ const GetHistoryList = (page: number) => {
       Total = res.Data.Total;
       Current = res.Data.Current + 1;
       Size = res.Data.Size;
+      if (IsChartView) {
+        EchartsRender();
+      }
     }
   });
 };
-
-let IsChartView = $ref(false);
 
 onMounted(() => {
   GetHistoryList(1);
@@ -93,13 +96,20 @@ const CountUR = (ur: any) => {
     return 'red';
   }
 };
+
+// 图标和列表切换
+
+const SwitchChart = () => {
+  IsChartView = !IsChartView;
+  GetHistoryList(1);
+};
 </script>
 
 <template>
   <PageTitle>
     72小时算法预测结果
-    <n-button @click="IsChartView = !IsChartView" type="primary" size="tiny" class="TopBar__version">
-      查看{{ IsChartView ? '列表' : '折线图' }}
+    <n-button @click="SwitchChart" type="primary" size="tiny" class="TopBar__version">
+      查看{{ IsChartView ? '列表' : '折线图' }} {{ IsChartView }}
     </n-button>
   </PageTitle>
   <div class="AnalyHistory">
@@ -128,7 +138,9 @@ const CountUR = (ur: any) => {
       </div>
     </div>
 
-    <div class="ChartWrapper" v-if="IsChartView">折线图</div>
+    <div class="ChartWrapper" v-if="IsChartView">
+      <div id="EchartsCanvas">asda</div>
+    </div>
 
     <n-drawer
       display-directive="show"
@@ -190,7 +202,10 @@ const CountUR = (ur: any) => {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: red;
+}
+#EchartsCanvas {
+  width: 100%;
+  height: 100%;
 }
 
 .green {
