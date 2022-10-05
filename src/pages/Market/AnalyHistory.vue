@@ -103,7 +103,7 @@ const CountUR = (ur: any) => {
     </n-button>
   </PageTitle>
   <div class="AnalyHistory">
-    <div>
+    <div class="PaginAtion">
       <n-pagination
         v-model:page="Current"
         size="small"
@@ -128,7 +128,7 @@ const CountUR = (ur: any) => {
       </div>
     </div>
 
-    <div v-if="IsChartView">折线图</div>
+    <div class="ChartWrapper" v-if="IsChartView">折线图</div>
 
     <n-drawer
       display-directive="show"
@@ -178,6 +178,19 @@ const CountUR = (ur: any) => {
 
 .TopBar__version {
   margin-left: 8px;
+}
+
+.PaginAtion {
+  position: relative;
+  z-index: 9;
+}
+.ChartWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
 }
 
 .green {
