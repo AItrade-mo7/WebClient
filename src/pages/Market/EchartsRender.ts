@@ -1,9 +1,7 @@
 import * as echarts from 'echarts';
+import { ChartFormat } from '@/utils/filters';
 
 const data0 = splitData([
-  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
-  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
-  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
   ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
   ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
 ]);
@@ -27,8 +25,17 @@ function splitData(rawData) {
   };
 }
 
+function FormateKdata(list) {
+  for (let i = list.length - 1; i >= 0; i--) {
+    const el = list[i];
+    const Time = ChartFormat(el.TimeUnix);
+    console.log(Time);
+  }
+}
+
 export const EchartsRender = (AnalyList, KdataList) => {
-  console.log(AnalyList);
+  FormateKdata(KdataList);
+
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
   const option = {
     tooltip: {

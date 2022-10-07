@@ -29,20 +29,54 @@ export const VolumeFormat = (val: string): string => {
   return param.value + param.unit;
 };
 
+export const TwoDigits = (val: string | number): string => {
+  const num = Number(val) - 0;
+  let returnVal = '';
+  if (num < 10) {
+    returnVal = `0${num}`;
+  } else {
+    returnVal = `${num}`;
+  }
+
+  return returnVal;
+};
+
 export const DateFormat = (val: string, isMill = false): string => {
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
-  const mon = dayJsVal.month();
-  const day = dayJsVal.date();
-  const h = dayJsVal.hour();
-  const m = dayJsVal.minute();
-  const s = dayJsVal.second();
+  const mon = TwoDigits(dayJsVal.month());
+  const day = TwoDigits(dayJsVal.date());
+  const h = TwoDigits(dayJsVal.hour());
+  const m = TwoDigits(dayJsVal.minute());
+  const s = TwoDigits(dayJsVal.second());
   const mill = dayJsVal.millisecond();
   if (isMill) {
     return `${year}-${mon}-${day} ${h}:${m}:${s} ${mill}`;
   } else {
     return `${year}-${mon}-${day} ${h}:${m}:${s}`;
+  }
+};
+
+export const ChartFormat = (val: string): string => {
+  const time = new Date(Number(val));
+  const dayJsVal = dayjs(time);
+  const year = dayJsVal.year();
+  const mon = TwoDigits(dayJsVal.month());
+  const day = TwoDigits(dayJsVal.date());
+  const h = TwoDigits(dayJsVal.hour());
+  const m = TwoDigits(dayJsVal.minute());
+  const s = TwoDigits(dayJsVal.second());
+  const mill = dayJsVal.millisecond();
+
+  const nowTime = new Date();
+  const nowDayJsVal = dayjs(nowTime);
+  const nowYear = nowDayJsVal.year();
+  console.log(nowYear);
+  if (nowYear - year == 0) {
+    return `${mon}-${day} ${h}:${m}`;
+  } else {
+    return `${year}-${mon}-${day} ${h}:${m}`;
   }
 };
 
