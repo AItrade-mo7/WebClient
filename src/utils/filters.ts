@@ -58,7 +58,7 @@ export const DateFormat = (val: string, isMill = false): string => {
   }
 };
 
-export const ChartFormat = (val: string): string => {
+export const ChartFormatDate = (val: string): string => {
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
@@ -72,7 +72,6 @@ export const ChartFormat = (val: string): string => {
   const nowTime = new Date();
   const nowDayJsVal = dayjs(nowTime);
   const nowYear = nowDayJsVal.year();
-  console.log(nowYear);
   if (nowYear - year == 0) {
     return `${mon}-${day} ${h}:${m}`;
   } else {
