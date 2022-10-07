@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { onMounted, defineAsyncComponent } from 'vue';
-import { GetAnalyList, GetKdataPage } from '@/api/CoinMarket';
+import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
 import { EchartsRender } from './EchartsRender';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
 
+let CoinKdataList = $ref([]);
 let HistoryList = $ref([]);
 let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
 let IsChartView = $ref(false);
 IsChartView = true;
-let CurrentCoin = $ref('BTC-USDT');
+let CurrentCoin = $ref('BTC');
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -29,9 +30,24 @@ const GetHistoryList = (page: number) => {
       Total = res.Data.Total;
       Current = res.Data.Current + 1;
       Size = res.Data.Size;
-      if (IsChartView) {
-        EchartsRender(cloneDeep(HistoryList));
-      }
+      SwitchCoin(CurrentCoin);
+    }
+  });
+};
+
+const SwitchCoin = (Coin) => {
+  CurrentCoin = Coin;
+  GetCoinHistory({
+    InstID: CurrentCoin,
+    Size: Size,
+    Current: Current - 1,
+    Sort: {
+      TimeUnix: -1,
+    },
+  }).then((res) => {
+    CoinKdataList = res.Data.List;
+    if (IsChartView) {
+      EchartsRender(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
     }
   });
 };
@@ -105,15 +121,6 @@ const SwitchChart = () => {
   IsChartView = !IsChartView;
   GetHistoryList(1);
 };
-const SwitchCoin = (Coin) => {
-  CurrentCoin = Coin;
-  GetKdataPage({
-    InstID: CurrentCoin + '-USDT',
-    Current,
-  }).then((res) => {
-    console.log(res);
-  });
-};
 </script>
 
 <template>
@@ -146,6 +153,12 @@ const SwitchCoin = (Coin) => {
           </div>
         </n-space>
         <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item)">查看</n-button>
+      </div>
+
+      <div v-for="(item, index) in CoinKdataList" class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
+        <n-space>
+          <div class="time"><n-time :time="item.TimeUnix" /></div>
+        </n-space>
       </div>
     </div>
 

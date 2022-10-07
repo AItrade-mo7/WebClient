@@ -12,14 +12,18 @@ export const GetTickerList = (data: TickerParam) => {
   });
 };
 
-export interface GetKdataPageParam {
+export interface CoinHistoryParam {
   InstID: string;
+  Size: number;
   Current: number;
+  Sort: {
+    [key: string]: 1 | -1;
+  };
 }
 
-export const GetKdataPage = (data: GetKdataPageParam) => {
+export const GetCoinHistory = (data: CoinHistoryParam) => {
   return ajax_json({
-    url: '/CoinMarket/public/GetKdataPage',
+    url: '/CoinMarket/public/GetCoinHistory',
     data,
     method: 'post',
   });

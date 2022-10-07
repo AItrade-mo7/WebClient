@@ -27,7 +27,7 @@ function splitData(rawData) {
   };
 }
 
-export const EchartsRender = (AnalyList) => {
+export const EchartsRender = (AnalyList, KdataList) => {
   console.log(AnalyList);
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
   const option = {
