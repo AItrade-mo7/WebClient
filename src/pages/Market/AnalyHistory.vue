@@ -259,8 +259,6 @@ const SwitchChart = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .SwitchCoinBtn {
-  }
 }
 
 .green {

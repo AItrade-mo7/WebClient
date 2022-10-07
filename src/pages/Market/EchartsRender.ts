@@ -1,10 +1,10 @@
 import * as echarts from 'echarts';
 import { ChartFormatDate } from '@/utils/filters';
 
-const data0 = splitData([
-  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
-  ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
-]);
+// const data0 = splitData([
+//   ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
+//   ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38],
+// ]);
 // [时间 o c l h ]
 
 const upColor = '#ec0000';
@@ -26,15 +26,26 @@ function splitData(rawData) {
 }
 
 function FormateKdata(list) {
+  var DataList = [];
   for (let i = list.length - 1; i >= 0; i--) {
     const el = list[i];
     const Time = ChartFormatDate(el.TimeUnix);
-    console.log(Time);
+    const itemArr = [];
+
+    itemArr.push(Time);
+    itemArr.push(el.O - 0);
+    itemArr.push(el.C - 0);
+    itemArr.push(el.L - 0);
+    itemArr.push(el.H - 0);
+
+    DataList.push(itemArr);
   }
+  return DataList;
 }
 
 export const EchartsRender = (AnalyList, KdataList) => {
-  FormateKdata(KdataList);
+  const dataList = FormateKdata(KdataList);
+  const data0 = splitData(dataList);
 
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
   const option = {
