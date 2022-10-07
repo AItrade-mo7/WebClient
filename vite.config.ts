@@ -45,7 +45,7 @@ if (SysEnv) {
 }
 
 // ========= 处理 proxy.json 文件 =========
-import ProxyFile from './proxy.json';
+import ProxyFile from './proxy.js';
 let ProxyConfig: any = ProxyFile;
 if (RunMod == 0) {
   ProxyConfig = null;
