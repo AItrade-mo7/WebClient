@@ -142,24 +142,20 @@ const SwitchChart = () => {
     </div>
 
     <div v-if="!IsChartView">
-      <div v-for="item in HistoryList" class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
-        <n-space>
-          <div class="time"><n-time :time="item.TimeUnix" /></div>
-          <div class="dirText">{{ WholeDirFormat(item.WholeDir).text }}</div>
-          <div class="CoinUR" :class="CountUR(item.MaxUP_RosePer)">{{ item.MaxUP }} {{ item.MaxUP_RosePer }}%</div>
+      <template v-for="(item, index) in HistoryList">
+        <div class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
+          <n-space>
+            <div class="time"><n-time :time="item.TimeUnix" /></div>
+            <div class="dirText">{{ WholeDirFormat(item.WholeDir).text }}</div>
+            <div class="CoinUR" :class="CountUR(item.MaxUP_RosePer)">{{ item.MaxUP }} {{ item.MaxUP_RosePer }}%</div>
 
-          <div class="CoinUR" :class="CountUR(item.MaxDown_RosePer)">
-            {{ item.MaxDown }} {{ item.MaxDown_RosePer }}%
-          </div>
-        </n-space>
-        <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item)">查看</n-button>
-      </div>
-
-      <div v-for="(item, index) in CoinKdataList" class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
-        <n-space>
-          <div class="time"><n-time :time="item.TimeUnix" /></div>
-        </n-space>
-      </div>
+            <div class="CoinUR" :class="CountUR(item.MaxDown_RosePer)">
+              {{ item.MaxDown }} {{ item.MaxDown_RosePer }}%
+            </div>
+          </n-space>
+          <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item)">查看</n-button>
+        </div>
+      </template>
     </div>
 
     <div class="ChartWrapper" v-if="IsChartView">
