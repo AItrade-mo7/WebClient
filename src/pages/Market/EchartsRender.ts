@@ -132,6 +132,7 @@ export const EchartsRender = (AKList) => {
   const option = {
     tooltip: {
       trigger: 'axis',
+      className: 'EchartsTooltip',
       axisPointer: {
         type: 'cross',
       },

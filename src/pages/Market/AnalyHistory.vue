@@ -147,8 +147,8 @@ const OperationSwitch = () => {
     </template>
   </PageTitle>
   <div class="AnalyHistory">
-    <Transition>
-      <div class="OperationWrapper" v-if="OperationStatus">
+    <n-modal v-model:show="OperationStatus" :block-scroll="false">
+      <div class="OperationWrapper">
         <n-pagination
           v-model:page="Current"
           size="small"
@@ -159,31 +159,33 @@ const OperationSwitch = () => {
         />
         <div class="OperationWrapper_btnWrapper">
           <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
-            当前: {{ IsChartView ? '图表模式' : '数列模式' }}
+            当前: {{ IsChartView ? '图表展示' : '数列展示' }}
           </n-button>
-          <n-button
-            v-if="CurrentCoin === 'ETH'"
-            @click="SwitchCoin('BTC')"
-            type="info"
-            size="tiny"
-            class="SwitchCoinBtn"
-            :disabled="CurrentCoin === 'BTC'"
-          >
-            当前:ETH走势
-          </n-button>
-          <n-button
-            v-if="CurrentCoin === 'BTC'"
-            @click="SwitchCoin('ETH')"
-            type="info"
-            size="tiny"
-            class="SwitchCoinBtn"
-            :disabled="CurrentCoin === 'ETH'"
-          >
-            当前:BTC走势
-          </n-button>
+          <template v-if="IsChartView">
+            <n-button
+              v-if="CurrentCoin === 'ETH'"
+              @click="SwitchCoin('BTC')"
+              type="info"
+              size="tiny"
+              class="SwitchCoinBtn"
+              :disabled="CurrentCoin === 'BTC'"
+            >
+              当前:ETH走势
+            </n-button>
+            <n-button
+              v-if="CurrentCoin === 'BTC'"
+              @click="SwitchCoin('ETH')"
+              type="info"
+              size="tiny"
+              class="SwitchCoinBtn"
+              :disabled="CurrentCoin === 'ETH'"
+            >
+              当前:BTC走势
+            </n-button>
+          </template>
         </div>
       </div>
-    </Transition>
+    </n-modal>
 
     <div v-if="!IsChartView">
       <template v-for="item in AnalyKdataList">
