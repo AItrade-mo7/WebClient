@@ -124,21 +124,40 @@ const SwitchChart = () => {
 </script>
 
 <template>
-  <PageTitle>
-    72小时算法预测结果
-    <n-button @click="SwitchChart" type="primary" size="tiny" class="SwitchBtn">
-      查看{{ IsChartView ? '列表' : '折线图' }} {{ IsChartView }}
-    </n-button>
-  </PageTitle>
+  <PageTitle> 程序预测结果 </PageTitle>
   <div class="AnalyHistory">
-    <div class="PaginAtion">
+    <div class="OperationWrapper">
       <n-pagination
         v-model:page="Current"
         size="small"
         :item-count="Total"
         :page-size="Size"
         :on-update:page="GetHistoryList"
+        :page-slot="6"
       />
+      <div class="OperationWrapper_btnWrapper">
+        <n-button @click="SwitchChart" type="primary" size="tiny" class="SwitchBtn">
+          查看{{ IsChartView ? '列表' : '折线图' }} {{ IsChartView }}
+        </n-button>
+        <n-button
+          @click="SwitchCoin('BTC')"
+          type="primary"
+          size="tiny"
+          class="SwitchCoinBtn"
+          :disabled="CurrentCoin === 'BTC'"
+        >
+          BTC
+        </n-button>
+        <n-button
+          @click="SwitchCoin('ETH')"
+          type="primary"
+          size="tiny"
+          class="SwitchCoinBtn"
+          :disabled="CurrentCoin === 'ETH'"
+        >
+          ETH
+        </n-button>
+      </div>
     </div>
 
     <div v-if="!IsChartView">
@@ -159,27 +178,9 @@ const SwitchChart = () => {
     </div>
 
     <div class="ChartWrapper" v-if="IsChartView">
-      <div class="SwitchCoinWrapper">
-        <n-button
-          @click="SwitchCoin('BTC')"
-          type="primary"
-          size="tiny"
-          class="SwitchCoinBtn"
-          :disabled="CurrentCoin === 'BTC'"
-        >
-          BTC
-        </n-button>
-        <n-button
-          @click="SwitchCoin('ETH')"
-          type="primary"
-          size="tiny"
-          class="SwitchCoinBtn"
-          :disabled="CurrentCoin === 'ETH'"
-        >
-          ETH
-        </n-button>
+      <div id="EchartsCanvas">
+        <div style="text-align: center">图表加载中。。。。</div>
       </div>
-      <div id="EchartsCanvas">图表加载中。。。。</div>
     </div>
 
     <n-drawer
@@ -232,9 +233,21 @@ const SwitchChart = () => {
   margin-left: 8px;
 }
 
-.PaginAtion {
-  position: relative;
+.OperationWrapper {
+  position: absolute;
+  left: 10px;
+  top: 46px;
   z-index: 9;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  .OperationWrapper_btnWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 14px;
+  }
 }
 .ChartWrapper {
   position: absolute;
@@ -246,19 +259,6 @@ const SwitchChart = () => {
 #EchartsCanvas {
   width: 100%;
   height: 100%;
-}
-
-.SwitchCoinWrapper {
-  text-align: center;
-  position: absolute;
-  width: 200px;
-  left: 50%;
-  top: 10px;
-  margin-left: -100px;
-  z-index: 8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .green {
