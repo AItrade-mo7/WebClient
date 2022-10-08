@@ -139,7 +139,7 @@ const OperationSwitch = () => {
 
 <template>
   <PageTitle>
-    算法预测结果
+    72h系统测算结果
     <template #after>
       <n-button size="tiny" quaternary @click="OperationSwitch">
         <template #icon>
@@ -151,6 +151,7 @@ const OperationSwitch = () => {
   <div class="AnalyHistory">
     <n-modal v-model:show="OperationStatus" :block-scroll="false">
       <div class="OperationWrapper">
+        <div class="OperationWrapper_title">系统历史预测结果</div>
         <n-pagination
           v-model:page="Current"
           size="small"
@@ -295,6 +296,10 @@ const OperationSwitch = () => {
   }
   .n-pagination {
     justify-content: center;
+  }
+  .OperationWrapper_title {
+    font-size: 14px;
+    margin-bottom: 4px;
   }
 }
 

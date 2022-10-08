@@ -41,7 +41,7 @@ export const TwoDigits = (val: string | number): string => {
   return returnVal;
 };
 
-export const DateFormat = (val: string | number, isSecond = false, isMill = false): string => {
+export const DateFormat = (val: string | number, isSecond = false, isMill = false, isFullYear = true): string => {
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
@@ -60,6 +60,9 @@ export const DateFormat = (val: string | number, isSecond = false, isMill = fals
 
   if (nowYear - year == 0) {
     returnTime = `${mon}-${day}T${h}:${m}`;
+    if (isFullYear) {
+      returnTime = `${year}-${mon}-${day}T${h}:${m}`;
+    }
   } else {
     returnTime = `${year}-${mon}-${day}T${h}:${m}`;
   }

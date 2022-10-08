@@ -218,7 +218,7 @@ const WholeDirFormat = (n: any) => {
         </div>
         <div>榜单时间: {{ DateFormat(CoinTickerList[0].Ts, true) }}</div>
         <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="!props.AnalyInfo.Unit">
-          <n-button size="tiny" type="primary"> 查看分析历史 </n-button>
+          <n-button size="tiny" type="primary"> 查看测算历史 </n-button>
         </RouterLink>
       </n-space>
     </div>
