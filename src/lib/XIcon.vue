@@ -63,6 +63,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/StockOutlined'));
     case 'AreaChartOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/AreaChartOutlined'));
+    case 'DollarCircleTwotone':
+      return defineAsyncComponent(() => import('@vicons/antd/DollarCircleTwotone'));
 
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));

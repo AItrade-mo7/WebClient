@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
 import { WholeDirFormat } from '@/utils/filters';
+const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
 const IndexInfo = [
   {
@@ -52,6 +54,22 @@ const IndexInfo = [
         期间经过多次重构和改动，目前数据库最早的分析结果记录为"2022-09-06T12:43:19"。
         因为算法需要庞大的实时成交数据做支撑，所以很难进行历史回测。因该指标与价格和历史无关，可以有效抗住假信号和震荡。
       </span>
+    </div>
+    <div class="descWrapper">
+      <span class="name">
+        <b>注</b>
+      </span>
+      <span class="desc"> 该指标并非该系统最终交易指标，但是它依然可以当做交易参考， </span>
+    </div>
+    <div style="text-align: center">
+      <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn">
+        <n-button type="primary" size="small">
+          <template #icon>
+            <XIcon name="DollarCircleTwotone" />
+          </template>
+          指标收益计算器
+        </n-button>
+      </RouterLink>
     </div>
   </div>
 </template>

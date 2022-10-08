@@ -8,7 +8,7 @@ import { WholeDirFormat } from '@/utils/filters';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
-const EarnCount = defineAsyncComponent(() => import('@/lib/EarnCount.vue'));
+const CoinRTS = defineAsyncComponent(() => import('@/lib/CoinRTS.vue'));
 
 let CoinKdataList = $ref([]);
 let HistoryList = $ref([]);
@@ -19,7 +19,7 @@ let Size = $ref(300);
 let IsChartView = $ref(false);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
-let ShowEarnCount = $ref(true);
+let ShowCoinRTS = $ref(false);
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -154,24 +154,18 @@ const OperationSwitch = () => {
             </n-button>
           </template>
         </div>
-        <div v-if="ShowEarnCount">
-          <EarnCount></EarnCount>
+        <div v-if="ShowCoinRTS">
+          <CoinRTS></CoinRTS>
         </div>
 
-        <n-button
-          @click="ShowEarnCount = !ShowEarnCount"
-          type="warning"
-          strong
-          secondary
-          circle
-          size="tiny"
-          class="EarnCountShowBtn"
-        >
-          <template #icon>
-            <XIcon v-if="ShowEarnCount" name="ArrowUpOutlined" />
-            <XIcon v-else name="ArrowDownOutlined" />
-          </template>
-        </n-button>
+        <div class="EarnCountShowBtn">
+          <n-button @click="ShowCoinRTS = !ShowCoinRTS" type="warning" strong secondary circle size="tiny">
+            <template #icon>
+              <XIcon v-if="ShowCoinRTS" name="ArrowUpOutlined" />
+              <XIcon v-else name="ArrowDownOutlined" />
+            </template>
+          </n-button>
+        </div>
       </div>
     </n-modal>
 
@@ -262,6 +256,7 @@ const OperationSwitch = () => {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   overflow: hidden;
   overflow-y: scroll;
+
   .OperationWrapper_btnWrapper {
     margin-top: 14px;
   }
@@ -283,10 +278,14 @@ const OperationSwitch = () => {
 }
 
 .EarnCountShowBtn {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  z-index: 5;
+  float: right;
+  height: 0px;
+  position: relative;
+  .n-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .green {
