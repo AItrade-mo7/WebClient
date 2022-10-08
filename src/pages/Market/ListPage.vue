@@ -207,7 +207,7 @@ const WholeDirFormat = (n: any) => {
   <div class="ListWrapper">
     <div v-if="CoinTickerList.length" class="Describe">
       <n-space class="data-wrapper">
-        <div>OKX、Binance 综合交易量排名前 {{ CoinTickerList.length }} 的币种 ;</div>
+        <div>综合交易量排名前 {{ CoinTickerList.length }} 的币种 ;</div>
         <div>锚定货币: {{ Unit }} ;</div>
         <div>
           交易趋势:

@@ -3,6 +3,8 @@ import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
 import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
+import { WholeDirFormat } from '@/utils/filters';
+
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
@@ -17,7 +19,7 @@ let Size = $ref(300);
 let IsChartView = $ref(false);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
-let ShowEarnCount = $ref(false);
+let ShowEarnCount = $ref(true);
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -65,40 +67,6 @@ const SwitchCoin = (Coin) => {
 onMounted(() => {
   GetHistoryList(1);
 });
-
-const WholeDirFormat = (n: any) => {
-  var ReturnObj = {
-    text: '空仓观望',
-    class: 'gray',
-  };
-
-  var Type = n - 0;
-
-  switch (Type) {
-    case 1:
-      ReturnObj.text = '看涨';
-      ReturnObj.class = 'green';
-      break;
-    case 2:
-      ReturnObj.text = '震荡上涨';
-      ReturnObj.class = 'green';
-      break;
-    case -1:
-      ReturnObj.text = '看跌';
-      ReturnObj.class = 'red';
-      break;
-    case -2:
-      ReturnObj.text = '震荡下跌';
-      ReturnObj.class = 'red';
-      break;
-    default:
-      ReturnObj.text = '空仓观望';
-      ReturnObj.class = 'gray';
-      break;
-  }
-
-  return ReturnObj;
-};
 
 // 详情展示
 
@@ -151,7 +119,6 @@ const OperationSwitch = () => {
   <div class="AnalyHistory">
     <n-modal v-model:show="OperationStatus" :block-scroll="false">
       <div class="OperationWrapper">
-        <div class="OperationWrapper_title">系统历史预测结果</div>
         <n-pagination
           v-model:page="Current"
           size="small"
@@ -279,27 +246,27 @@ const OperationSwitch = () => {
 
 .SwitchBtn {
   margin-right: 8px;
+  margin-left: 12px;
 }
 
 .OperationWrapper {
   position: absolute;
-  max-width: 90%;
-  right: 2%;
-  top: 50px;
+  max-width: 90vw;
+  max-height: 90vh;
+  right: 2vw;
+  top: 2vh;
   z-index: 9;
   padding: 10px;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: hidden;
+  overflow-y: scroll;
   .OperationWrapper_btnWrapper {
     margin-top: 14px;
   }
   .n-pagination {
     justify-content: center;
-  }
-  .OperationWrapper_title {
-    font-size: 14px;
-    margin-bottom: 4px;
   }
 }
 

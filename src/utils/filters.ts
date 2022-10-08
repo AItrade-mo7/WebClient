@@ -41,7 +41,7 @@ export const TwoDigits = (val: string | number): string => {
   return returnVal;
 };
 
-export const DateFormat = (val: string | number, isSecond = false, isMill = false, isFullYear = true): string => {
+export const DateFormat = (val: string | number, isSecond = false, isMill = false, isFullYear = false): string => {
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
@@ -94,4 +94,38 @@ export const ChartToStr = (val: string): string => {
       break;
   }
   return txt;
+};
+
+export const WholeDirFormat = (n: any) => {
+  var ReturnObj = {
+    text: '空仓观望',
+    class: 'gray',
+  };
+
+  var Type = n - 0;
+
+  switch (Type) {
+    case 1:
+      ReturnObj.text = '上涨';
+      ReturnObj.class = 'green';
+      break;
+    case 2:
+      ReturnObj.text = '震动上涨';
+      ReturnObj.class = 'green';
+      break;
+    case -1:
+      ReturnObj.text = '下跌';
+      ReturnObj.class = 'red';
+      break;
+    case -2:
+      ReturnObj.text = '震动下跌';
+      ReturnObj.class = 'red';
+      break;
+    default:
+      ReturnObj.text = '空仓';
+      ReturnObj.class = 'gray';
+      break;
+  }
+
+  return ReturnObj;
 };
