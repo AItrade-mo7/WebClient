@@ -59,7 +59,7 @@ export const DateFormat = (val: string, isMill = false): string => {
 };
 
 export const ChartFormatDate = (val: string): string => {
-  const time = new Date(Number(val));
+  const time = new Date(Number(val) + 1000);
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
   const mon = TwoDigits(dayJsVal.month() + 1);
