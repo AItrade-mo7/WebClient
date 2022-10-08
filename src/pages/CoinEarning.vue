@@ -6,7 +6,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
 
 <template>
-  <PageTitle></PageTitle>
+  <PageTitle>Coin-RTS 收益模拟器</PageTitle>
   <div class="PageWrapper"></div>
 </template>
 

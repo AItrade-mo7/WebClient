@@ -62,7 +62,7 @@ const IndexInfo = [
       <span class="desc"> 该指标并非该系统最终交易指标，但是它依然可以当做交易参考， </span>
     </div>
     <div style="text-align: center">
-      <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn">
+      <RouterLink to="/CoinEarning" class="RouterLinkBtn">
         <n-button type="primary" size="small">
           <template #icon>
             <XIcon name="DollarCircleTwotone" />
