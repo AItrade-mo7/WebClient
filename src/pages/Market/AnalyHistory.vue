@@ -2,18 +2,18 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
-import { EchartsRender } from './EchartsRender';
+import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
 
 let CoinKdataList = $ref([]);
 let HistoryList = $ref([]);
+let AnalyKdataList = $ref([]);
 let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
 let IsChartView = $ref(false);
-IsChartView = true;
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
 
@@ -47,9 +47,12 @@ const SwitchCoin = (Coin) => {
     },
   }).then((res) => {
     CoinKdataList = res.Data.List;
+    AnalyKdataList = MergeAnalyKdata(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
+
     if (IsChartView) {
-      EchartsRender(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
+      EchartsRender(cloneDeep(AnalyKdataList));
     }
+
     OperationStatus = true;
   });
 };
@@ -180,18 +183,20 @@ const OperationSwitch = () => {
     </Transition>
 
     <div v-if="!IsChartView">
-      <template v-for="(item, index) in HistoryList">
-        <div class="DataBox" :class="WholeDirFormat(item.WholeDir).class">
+      <template v-for="item in AnalyKdataList">
+        <div class="DataBox" :class="WholeDirFormat(item.Analy.WholeDir).class">
           <n-space>
-            <div class="time"><n-time :time="item.TimeUnix" /></div>
-            <div class="dirText">{{ WholeDirFormat(item.WholeDir).text }}</div>
-            <div class="CoinUR" :class="CountUR(item.MaxUP_RosePer)">{{ item.MaxUP }} {{ item.MaxUP_RosePer }}%</div>
+            <div class="time">{{ item.TimeDate }}</div>
+            <div class="dirText">{{ WholeDirFormat(item.Analy.WholeDir).text }}</div>
+            <div class="CoinUR" :class="CountUR(item.Analy.MaxUP_RosePer)">
+              {{ item.Analy.MaxUP }} {{ item.Analy.MaxUP_RosePer }}%
+            </div>
 
-            <div class="CoinUR" :class="CountUR(item.MaxDown_RosePer)">
-              {{ item.MaxDown }} {{ item.MaxDown_RosePer }}%
+            <div class="CoinUR" :class="CountUR(item.Analy.MaxDown_RosePer)">
+              {{ item.Analy.MaxDown }} {{ item.Analy.MaxDown_RosePer }}%
             </div>
           </n-space>
-          <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item)">查看</n-button>
+          <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item.Analy)">查看</n-button>
         </div>
       </template>
     </div>

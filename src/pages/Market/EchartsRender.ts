@@ -7,7 +7,7 @@ const downBorderColor = '#8A0000';
 const upColor = '#00da3c';
 const upBorderColor = '#008F28';
 
-function SplitData(KdataList, AnalyList) {
+function SplitData(AKList) {
   const categoryData = []; // 只要日期
   const values = []; // 只要 o c l h
   const pointData = [];
@@ -22,26 +22,20 @@ function SplitData(KdataList, AnalyList) {
     },
   */
 
-  for (let i = KdataList.length - 1; i >= 0; i--) {
-    const KdataEl = KdataList[i];
-    const KdataTime = ChartFormatDate(KdataEl.TimeUnix);
+  for (let i = AKList.length - 1; i >= 0; i--) {
+    const AKEl = AKList[i];
+    const KdataTime = ChartFormatDate(AKEl.TimeUnix);
     const KdataVal = [];
-    KdataVal.push(KdataEl.O - 0);
-    KdataVal.push(KdataEl.C - 0);
-    KdataVal.push(KdataEl.L - 0);
-    KdataVal.push(KdataEl.H - 0);
+    KdataVal.push(AKEl.O - 0);
+    KdataVal.push(AKEl.C - 0);
+    KdataVal.push(AKEl.L - 0);
+    KdataVal.push(AKEl.H - 0);
 
     values.push(KdataVal);
     categoryData.push(KdataTime);
 
-    for (var j = AnalyList.length - 1; j >= 0; j--) {
-      const AnyEl = AnalyList[j];
-      const AnyTime = ChartFormatDate(AnyEl.TimeUnix);
-      if (AnyTime == KdataTime) {
-        const point = CreatePointData(AnyEl, KdataEl);
-        pointData.push(point);
-      }
-    }
+    const point = CreatePointData(AKEl);
+    pointData.push(point);
   }
 
   return {
@@ -51,45 +45,46 @@ function SplitData(KdataList, AnalyList) {
   };
 }
 
-function CreatePointData(Analy, Kdata) {
-  const AnyTime = ChartFormatDate(Analy.TimeUnix);
+function CreatePointData(AKData) {
+  const AnyTime = ChartFormatDate(AKData.TimeUnix);
   let text = '';
   let color = '';
-  let yAxis = Kdata.C;
+  let yAxis = AKData.C;
   let textOffset = 0;
-  switch (Analy.WholeDir) {
+
+  switch (AKData.Analy.WholeDir) {
     case 1:
       text = '涨';
       color = '#1D8348';
-      yAxis = Kdata.L;
+      yAxis = AKData.L;
       textOffset = 10;
       break;
     case 2:
       text = '震';
       color = '#82E0AA';
-      yAxis = Kdata.L;
+      yAxis = AKData.L;
       textOffset = 10;
       break;
     case -1:
       text = '跌';
       color = '#E74C3C';
-      yAxis = Kdata.H;
+      yAxis = AKData.H;
       break;
     case -2:
       text = '震';
       color = '#F1948A';
-      yAxis = Kdata.H;
+      yAxis = AKData.H;
       break;
     default:
       text = '空';
       color = '#808B96';
-      yAxis = Kdata.C;
+      yAxis = AKData.C;
       break;
   }
   return {
     coord: [AnyTime, yAxis],
     value: text,
-    WholeDir: Analy.WholeDir,
+    WholeDir: AKData.Analy.WholeDir,
     label: {
       show: true,
       color: '#fff',
@@ -105,8 +100,31 @@ function CreatePointData(Analy, Kdata) {
   };
 }
 
-export const EchartsRender = (AnalyList, KdataList) => {
-  const data0 = SplitData(KdataList, AnalyList);
+export const MergeAnalyKdata = (AnalyList, KdataList) => {
+  const List = [];
+  for (let i = KdataList.length - 1; i >= 0; i--) {
+    const KdataEl = KdataList[i];
+    const KdataTime = ChartFormatDate(KdataEl.TimeUnix);
+    const KdataObj = {
+      ...KdataEl,
+      TimeDate: KdataTime,
+      Analy: {},
+    };
+    for (var j = AnalyList.length - 1; j >= 0; j--) {
+      const AnyEl = AnalyList[j];
+      const AnyTime = ChartFormatDate(AnyEl.TimeUnix);
+      if (AnyTime == KdataTime) {
+        KdataObj.Analy = AnyEl;
+      }
+    }
+    List.push(KdataObj);
+  }
+
+  return List;
+};
+
+export const EchartsRender = (AKList) => {
+  const data0 = SplitData(AKList);
 
   const myChart = echarts.init(document.getElementById('EchartsCanvas'));
   const option = {

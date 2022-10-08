@@ -49,6 +49,8 @@ const GetCoinTickerList = async (DetailID?: number) => {
 
 let timer: any = null;
 onMounted(() => {
+  console.log(props.AnalyInfo);
+
   if (props.AnalyInfo.Unit) {
     GetCoinTickerList(props.AnalyInfo.CreateTimeUnix);
     return;
