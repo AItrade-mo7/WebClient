@@ -57,6 +57,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/BarChartOutlined'));
     case 'ArrowUpOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/ArrowUpOutlined'));
+    case 'ArrowDownOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/ArrowDownOutlined'));
     case 'StockOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/StockOutlined'));
     case 'AreaChartOutlined':

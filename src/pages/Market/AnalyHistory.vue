@@ -6,6 +6,7 @@ import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
+const EarnCount = defineAsyncComponent(() => import('@/lib/EarnCount.vue'));
 
 let CoinKdataList = $ref([]);
 let HistoryList = $ref([]);
@@ -16,6 +17,7 @@ let Size = $ref(300);
 let IsChartView = $ref(false);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
+let ShowEarnCount = $ref(false);
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -184,6 +186,24 @@ const OperationSwitch = () => {
             </n-button>
           </template>
         </div>
+        <div v-if="ShowEarnCount">
+          <EarnCount></EarnCount>
+        </div>
+
+        <n-button
+          @click="ShowEarnCount = !ShowEarnCount"
+          type="warning"
+          strong
+          secondary
+          circle
+          size="tiny"
+          class="EarnCountShowBtn"
+        >
+          <template #icon>
+            <XIcon v-if="ShowEarnCount" name="ArrowUpOutlined" />
+            <XIcon v-else name="ArrowDownOutlined" />
+          </template>
+        </n-button>
       </div>
     </n-modal>
 
@@ -257,7 +277,7 @@ const OperationSwitch = () => {
 }
 
 .SwitchBtn {
-  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .OperationWrapper {
@@ -271,9 +291,6 @@ const OperationSwitch = () => {
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   .OperationWrapper_btnWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     margin-top: 14px;
   }
   .n-pagination {
@@ -291,6 +308,13 @@ const OperationSwitch = () => {
 #EchartsCanvas {
   width: 100%;
   height: 100%;
+}
+
+.EarnCountShowBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 5;
 }
 
 .green {
