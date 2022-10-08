@@ -13,7 +13,7 @@ let AnalyKdataList = $ref([]);
 let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
-let IsChartView = $ref(false);
+let IsChartView = $ref(true);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
 
@@ -50,7 +50,10 @@ const SwitchCoin = (Coin) => {
     AnalyKdataList = MergeAnalyKdata(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
 
     if (IsChartView) {
-      EchartsRender(cloneDeep(AnalyKdataList));
+      const myChart = EchartsRender(cloneDeep(AnalyKdataList));
+      myChart.on('click', function (params: any) {
+        CheckItemFunc(params.data.AKData.Analy);
+      });
     }
 
     OperationStatus = true;

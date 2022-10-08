@@ -85,6 +85,7 @@ function CreatePointData(AKData) {
     coord: [AnyTime, yAxis],
     value: text,
     WholeDir: AKData.Analy.WholeDir,
+    AKData,
     label: {
       show: true,
       color: '#fff',
@@ -199,4 +200,6 @@ export const EchartsRender = (AKList) => {
   };
 
   option && myChart.setOption(option);
+
+  return myChart;
 };
