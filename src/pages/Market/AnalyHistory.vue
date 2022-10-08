@@ -155,7 +155,7 @@ const OperationSwitch = () => {
           </template>
         </div>
         <div v-if="ShowCoinRTS">
-          <CoinRTS></CoinRTS>
+          <CoinRTS type="Earning"></CoinRTS>
         </div>
 
         <div class="EarnCountShowBtn">

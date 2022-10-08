@@ -3,6 +3,10 @@ import { defineAsyncComponent } from 'vue';
 import { WholeDirFormat } from '@/utils/filters';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
+const props = defineProps({
+  type: String,
+});
+
 const IndexInfo = [
   {
     Value: 1,
@@ -62,12 +66,21 @@ const IndexInfo = [
       <span class="desc"> 该指标并非该系统最终交易指标，但是它依然可以当做交易参考， </span>
     </div>
     <div style="text-align: center">
-      <RouterLink to="/CoinEarning" class="RouterLinkBtn">
+      <RouterLink to="/CoinEarning" class="RouterLinkBtn" v-if="props.type == 'Earning'">
         <n-button type="primary" size="small">
           <template #icon>
             <XIcon name="DollarCircleTwotone" />
           </template>
           指标收益计算器
+        </n-button>
+      </RouterLink>
+
+      <RouterLink to="/CoinEarning" class="RouterLinkBtn" v-if="props.type == 'Market'">
+        <n-button strong secondary type="error">
+          <template #icon>
+            <XIcon name="AreaChartOutlined" />
+          </template>
+          查看指标历史
         </n-button>
       </RouterLink>
     </div>
