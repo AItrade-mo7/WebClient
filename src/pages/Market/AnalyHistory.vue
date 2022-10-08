@@ -260,9 +260,10 @@ const OperationSwitch = () => {
 
 .OperationWrapper {
   position: absolute;
-  width: 256px;
-  margin-left: -128px;
-  left: 50%;
+  // width: 260px;
+  // margin-left: -128px;
+  // right: 10px;
+  // left: 50%;
   top: 46px;
   z-index: 9;
   padding: 10px;
@@ -279,6 +280,14 @@ const OperationSwitch = () => {
     justify-content: center;
   }
 }
+
+@media screen and (max-width: 300px) {
+  .OperationWrapper {
+    // right: auto;
+    // left: 50%;
+  }
+}
+
 .ChartWrapper {
   position: absolute;
   left: 0;
