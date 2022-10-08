@@ -3,7 +3,7 @@ import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep } from '@/utils/tools';
 import { EchartsRender } from './EchartsRender';
-
+const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
 
@@ -15,6 +15,7 @@ let Size = $ref(300);
 let IsChartView = $ref(false);
 IsChartView = true;
 let CurrentCoin = $ref('BTC');
+let OperationStatus = $ref(false);
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -49,6 +50,7 @@ const SwitchCoin = (Coin) => {
     if (IsChartView) {
       EchartsRender(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
     }
+    OperationStatus = true;
   });
 };
 
@@ -121,44 +123,61 @@ const SwitchChart = () => {
   IsChartView = !IsChartView;
   GetHistoryList(1);
 };
+
+const OperationSwitch = () => {
+  OperationStatus = !OperationStatus;
+};
 </script>
 
 <template>
-  <PageTitle> 程序预测结果 </PageTitle>
+  <PageTitle>
+    算法预测结果
+    <template #after>
+      <n-button size="tiny" quaternary @click="OperationSwitch">
+        <template #icon>
+          <XIcon spin name="SettingOutlined" />
+        </template>
+      </n-button>
+    </template>
+  </PageTitle>
   <div class="AnalyHistory">
-    <div class="OperationWrapper">
-      <n-pagination
-        v-model:page="Current"
-        size="small"
-        :item-count="Total"
-        :page-size="Size"
-        :on-update:page="GetHistoryList"
-        :page-slot="6"
-      />
-      <div class="OperationWrapper_btnWrapper">
-        <n-button @click="SwitchChart" type="primary" size="tiny" class="SwitchBtn">
-          查看{{ IsChartView ? '列表' : '折线图' }} {{ IsChartView }}
-        </n-button>
-        <n-button
-          @click="SwitchCoin('BTC')"
-          type="primary"
-          size="tiny"
-          class="SwitchCoinBtn"
-          :disabled="CurrentCoin === 'BTC'"
-        >
-          BTC
-        </n-button>
-        <n-button
-          @click="SwitchCoin('ETH')"
-          type="primary"
-          size="tiny"
-          class="SwitchCoinBtn"
-          :disabled="CurrentCoin === 'ETH'"
-        >
-          ETH
-        </n-button>
+    <Transition>
+      <div class="OperationWrapper" v-if="OperationStatus">
+        <n-pagination
+          v-model:page="Current"
+          size="small"
+          :item-count="Total"
+          :page-size="Size"
+          :on-update:page="GetHistoryList"
+          :page-slot="6"
+        />
+        <div class="OperationWrapper_btnWrapper">
+          <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
+            当前: {{ IsChartView ? '图表模式' : '数列模式' }}
+          </n-button>
+          <n-button
+            v-if="CurrentCoin === 'ETH'"
+            @click="SwitchCoin('BTC')"
+            type="info"
+            size="tiny"
+            class="SwitchCoinBtn"
+            :disabled="CurrentCoin === 'BTC'"
+          >
+            当前:ETH走势
+          </n-button>
+          <n-button
+            v-if="CurrentCoin === 'BTC'"
+            @click="SwitchCoin('ETH')"
+            type="info"
+            size="tiny"
+            class="SwitchCoinBtn"
+            :disabled="CurrentCoin === 'ETH'"
+          >
+            当前:BTC走势
+          </n-button>
+        </div>
       </div>
-    </div>
+    </Transition>
 
     <div v-if="!IsChartView">
       <template v-for="(item, index) in HistoryList">
@@ -235,7 +254,9 @@ const SwitchChart = () => {
 
 .OperationWrapper {
   position: absolute;
-  left: 10px;
+  width: 256px;
+  margin-left: -128px;
+  left: 50%;
   top: 46px;
   z-index: 9;
   padding: 10px;
@@ -247,6 +268,9 @@ const SwitchChart = () => {
     align-items: center;
     justify-content: space-around;
     margin-top: 14px;
+  }
+  .n-pagination {
+    justify-content: center;
   }
 }
 .ChartWrapper {
