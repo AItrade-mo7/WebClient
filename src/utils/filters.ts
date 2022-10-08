@@ -64,6 +64,10 @@ export const DateFormat = (val: string | number, isSecond = false, isMill = fals
     returnTime = `${year}-${mon}-${day}T${h}:${m}`;
   }
 
+  if (isSecond) {
+    returnTime += `:${s}`;
+  }
+
   if (isMill) {
     return `${returnTime} ${mill}`;
   } else {
