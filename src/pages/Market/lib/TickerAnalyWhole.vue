@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { DateFormat } from '@/utils/filters';
+
 const props = defineProps({
   Analy: Object,
 });
@@ -89,9 +91,9 @@ const CountUR = (ur: any) => {
       <div class="block">
         <span class="label">数据时间</span>
         <span class="value timeRange">
-          【<n-time :time="props.Analy.StartTimeUnix" />
-          至
-          <n-time :time="props.Analy.EndTimeUnix" />】
+          {{ DateFormat(props.Analy.StartTimeUnix) }}
+          ~
+          {{ DateFormat(props.Analy.EndTimeUnix) }}
         </span>
       </div>
     </n-space>

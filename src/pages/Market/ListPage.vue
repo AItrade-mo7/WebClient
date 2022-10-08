@@ -3,6 +3,8 @@ import { h, onMounted, onUnmounted } from 'vue';
 import { GetTickerList, GetAnalyDetail } from '@/api/CoinMarket';
 import type { TickerParam } from '@/api/CoinMarket';
 import { defineAsyncComponent } from 'vue';
+import { DateFormat } from '@/utils/filters';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const PriceView = defineAsyncComponent(() => import('./lib/PriceView.vue'));
 const VolumeView = defineAsyncComponent(() => import('./lib/VolumeView.vue'));
@@ -214,7 +216,10 @@ const WholeDirFormat = (n: any) => {
           </span>
           ;
         </div>
-        <div>榜单时间: <n-time :time="CoinTickerList[0].Ts" /></div>
+        <div>榜单时间: {{ DateFormat(CoinTickerList[0].Ts) }}</div>
+        <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="!props.AnalyInfo.Unit">
+          <n-button size="tiny" type="primary"> 查看分析历史 </n-button>
+        </RouterLink>
       </n-space>
     </div>
     <div class="TableWrapper">
@@ -233,9 +238,6 @@ const WholeDirFormat = (n: any) => {
     <div v-for="item in AnalyWhole">
       <TickerAnalyWhole :Analy="item" />
     </div>
-    <RouterLink to="/Market/AnalyHistory" v-if="!props.AnalyInfo.Unit">
-      <n-button type="primary"> 查看分析历史 </n-button>
-    </RouterLink>
   </div>
 </template>
 
@@ -273,6 +275,13 @@ const WholeDirFormat = (n: any) => {
   }
   .Volume {
     color: #000;
+  }
+}
+
+.RouterLinkBtn {
+  display: block;
+  .n-button {
+    display: block;
   }
 }
 

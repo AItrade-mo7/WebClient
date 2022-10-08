@@ -41,7 +41,7 @@ export const TwoDigits = (val: string | number): string => {
   return returnVal;
 };
 
-export const DateFormat = (val: string, isMill = false): string => {
+export const DateFormat = (val: string | number, isSecond = false, isMill = false): string => {
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
@@ -51,30 +51,23 @@ export const DateFormat = (val: string, isMill = false): string => {
   const m = TwoDigits(dayJsVal.minute());
   const s = TwoDigits(dayJsVal.second());
   const mill = dayJsVal.millisecond();
-  if (isMill) {
-    return `${year}-${mon}-${day} ${h}:${m}:${s} ${mill}`;
-  } else {
-    return `${year}-${mon}-${day} ${h}:${m}:${s}`;
-  }
-};
-
-export const ChartFormatDate = (val: string): string => {
-  const time = new Date(Number(val) + 1000);
-  const dayJsVal = dayjs(time);
-  const year = dayJsVal.year();
-  const mon = TwoDigits(dayJsVal.month() + 1);
-  const day = TwoDigits(dayJsVal.date());
-  const h = TwoDigits(dayJsVal.hour());
-  const m = TwoDigits(dayJsVal.minute());
 
   const nowTime = new Date();
   const nowDayJsVal = dayjs(nowTime);
   const nowYear = nowDayJsVal.year();
 
+  let returnTime = '';
+
   if (nowYear - year == 0) {
-    return `${mon}-${day} ${h}:${m}`;
+    returnTime = `${mon}-${day}T${h}:${m}`;
   } else {
-    return `${year}-${mon}-${day} ${h}:${m}`;
+    returnTime = `${year}-${mon}-${day}T${h}:${m}`;
+  }
+
+  if (isMill) {
+    return `${returnTime} ${mill}`;
+  } else {
+    return `${returnTime}`;
   }
 };
 

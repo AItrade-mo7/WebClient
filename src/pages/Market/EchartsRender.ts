@@ -1,5 +1,5 @@
 import * as echarts from 'echarts';
-import { ChartFormatDate } from '@/utils/filters';
+import { DateFormat } from '@/utils/filters';
 
 const downColor = '#ec0000';
 const downBorderColor = '#8A0000';
@@ -24,7 +24,7 @@ function SplitData(AKList) {
 
   for (let i = AKList.length - 1; i >= 0; i--) {
     const AKEl = AKList[i];
-    const KdataTime = ChartFormatDate(AKEl.TimeUnix);
+    const KdataTime = DateFormat(AKEl.TimeUnix);
     const KdataVal = [];
     KdataVal.push(AKEl.O - 0);
     KdataVal.push(AKEl.C - 0);
@@ -46,7 +46,7 @@ function SplitData(AKList) {
 }
 
 function CreatePointData(AKData) {
-  const AnyTime = ChartFormatDate(AKData.TimeUnix);
+  const AnyTime = DateFormat(AKData.TimeUnix);
   let text = '';
   let color = '';
   let yAxis = AKData.C;
@@ -106,7 +106,7 @@ export const MergeAnalyKdata = (AnalyList, KdataList) => {
 
   for (let i = 0; i < KdataList.length; i++) {
     const KdataEl = KdataList[i];
-    const KdataTime = ChartFormatDate(KdataEl.TimeUnix);
+    const KdataTime = DateFormat(KdataEl.TimeUnix);
     const KdataObj = {
       ...KdataEl,
       TimeDate: KdataTime,
@@ -114,7 +114,7 @@ export const MergeAnalyKdata = (AnalyList, KdataList) => {
     };
     for (var j = AnalyList.length - 1; j >= 0; j--) {
       const AnyEl = AnalyList[j];
-      const AnyTime = ChartFormatDate(AnyEl.TimeUnix);
+      const AnyTime = DateFormat(AnyEl.TimeUnix);
       if (AnyTime == KdataTime) {
         KdataObj.Analy = AnyEl;
       }

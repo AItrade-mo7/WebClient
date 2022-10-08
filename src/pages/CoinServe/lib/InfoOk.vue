@@ -4,6 +4,8 @@ import { onMounted, onUnmounted } from 'vue';
 import type { WssDataType } from '@/api/CoinAI/WssType.d';
 import type { resDataType } from '@/utils/utils.d';
 import { defineAsyncComponent } from 'vue';
+import { DateFormat } from '@/utils/filters';
+
 const TradeBtn = defineAsyncComponent(() => import('./TradeBtn.vue'));
 
 const props = defineProps({
@@ -44,7 +46,7 @@ onUnmounted(() => {
       </div>
       <div class="block">
         <span class="label">系统时间</span>
-        <span class="value"><n-time :time="WssData.SysTime" /></span>
+        <span class="value"> {{ DateFormat(WssData.SysTime) }} </span>
       </div>
     </n-space>
   </div>
