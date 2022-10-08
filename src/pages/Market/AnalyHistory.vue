@@ -260,11 +260,9 @@ const OperationSwitch = () => {
 
 .OperationWrapper {
   position: absolute;
-  // width: 260px;
-  // margin-left: -128px;
-  // right: 10px;
-  // left: 50%;
-  top: 46px;
+  max-width: 90%;
+  right: 2%;
+  top: 50px;
   z-index: 9;
   padding: 10px;
   border-radius: 6px;
@@ -278,13 +276,6 @@ const OperationSwitch = () => {
   }
   .n-pagination {
     justify-content: center;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .OperationWrapper {
-    // right: auto;
-    // left: 50%;
   }
 }
 
