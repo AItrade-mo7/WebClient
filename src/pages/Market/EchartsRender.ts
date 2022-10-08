@@ -102,7 +102,8 @@ function CreatePointData(AKData) {
 
 export const MergeAnalyKdata = (AnalyList, KdataList) => {
   const List = [];
-  for (let i = KdataList.length - 1; i >= 0; i--) {
+
+  for (let i = 0; i < KdataList.length; i++) {
     const KdataEl = KdataList[i];
     const KdataTime = ChartFormatDate(KdataEl.TimeUnix);
     const KdataObj = {
