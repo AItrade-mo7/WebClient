@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
 import { TopBarStore } from '@/store';
 import { Logo } from '@/config/constant';
-import { defineAsyncComponent } from 'vue';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));

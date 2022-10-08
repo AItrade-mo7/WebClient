@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { getToken } from '@/utils/tools';
-
 const routes: any = [
   {
     path: '/',
@@ -13,6 +12,10 @@ const routes: any = [
   {
     path: '/Register',
     component: () => import('@/pages/RegisterPage.vue'),
+  },
+  {
+    path: '/CoinEarning',
+    component: () => import('@/pages/CoinEarning.vue'),
   },
   {
     path: '/Market',
