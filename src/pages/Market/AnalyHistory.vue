@@ -13,7 +13,7 @@ let AnalyKdataList = $ref([]);
 let Current = $ref(0);
 let Total = $ref(0);
 let Size = $ref(300);
-let IsChartView = $ref(true);
+let IsChartView = $ref(false);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
 
@@ -205,9 +205,7 @@ const OperationSwitch = () => {
     </div>
 
     <div class="ChartWrapper" v-if="IsChartView">
-      <div id="EchartsCanvas">
-        <div style="text-align: center">图表加载中。。。。</div>
-      </div>
+      <div id="EchartsCanvas"></div>
     </div>
 
     <n-drawer
