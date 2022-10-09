@@ -246,7 +246,7 @@ const OperationSwitch = () => {
 .OperationWrapper {
   position: absolute;
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 80vh;
   right: 2vw;
   top: 2vh;
   z-index: 9;

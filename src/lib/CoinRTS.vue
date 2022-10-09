@@ -75,7 +75,7 @@ const IndexInfo = [
         </n-button>
       </RouterLink>
 
-      <RouterLink to="/CoinEarning" class="RouterLinkBtn" v-if="props.type == 'Market'">
+      <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="props.type == 'Market'">
         <n-button strong secondary type="error">
           <template #icon>
             <XIcon name="AreaChartOutlined" />
