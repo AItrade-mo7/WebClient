@@ -117,7 +117,7 @@ const OperationSwitch = () => {
     </template>
   </PageTitle>
   <div class="AnalyHistory">
-    <n-modal v-model:show="OperationStatus" :block-scroll="false">
+    <n-modal v-model:show="OperationStatus">
       <div class="OperationWrapper">
         <n-pagination
           v-model:page="Current"

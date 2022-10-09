@@ -255,10 +255,6 @@ const WholeDirFormat = (n: any) => {
     color: #999;
   }
 }
-</style>
-
-<style lang="less">
-@import '@/config/constant.less';
 
 .Describe {
   font-size: 16px;
@@ -281,9 +277,13 @@ const WholeDirFormat = (n: any) => {
 .RouterLinkBtn {
   display: block;
   .n-button {
-    display: block;
+    width: 100%;
   }
 }
+</style>
+
+<style lang="less">
+@import '@/config/constant.less';
 
 .n-data-table-tbody .n-data-table-tr {
   &.MaxUP {

@@ -12,25 +12,25 @@ const IndexInfo = [
     Value: 1,
     Text: WholeDirFormat(1).text,
     Style: WholeDirFormat(1).class,
-    Desc: '表示当前市场买入情绪高涨，大部分币种在近3小时内价格都存在不同程度的上涨，当前市场一片欣欣向荣，并且在未来的一段时间内还会继续上涨。',
+    Desc: '表示当前市场买入情绪高涨，大部分币种在近3小时内价格都存在不同程度的上涨，当前市场一片欣欣向荣，并且在未来的一段时间内很难出现大幅度下跌。',
   },
   {
     Value: -1,
     Text: WholeDirFormat(-1).text,
     Style: WholeDirFormat(-1).class,
-    Desc: '表示当前大部分币种在近3小时内价格都存在不同程度的下跌，当前市场存在浓浓的下跌情绪中，并且在未来的一段时间内很难出现转机。',
+    Desc: '表示当前大部分币种在近3小时内价格都存在不同程度的下跌，当前市场存在浓浓的下跌情绪中，并且在未来的一段时间内很难出现大幅度上涨。',
   },
   {
     Value: 2,
     Text: WholeDirFormat(2).text,
     Style: WholeDirFormat(2).class,
-    Desc: '表示上涨情绪受阻，市场出现多级分化的情况，交易量靠前的主流币种价格在上涨，但是其它币种却存在下跌的情况，一段时间后，市场有概率转跌。',
+    Desc: '表示存在些微的上涨情绪，但并不那么强烈，市场投资情绪属于多级分化状态，此时应该关注近3-5小时的切片做进一步分析。',
   },
   {
     Value: -2,
     Text: WholeDirFormat(-2).text,
     Style: WholeDirFormat(-2).class,
-    Desc: '主流币种下跌的过程中其它币种开始出现价位回暖的情况，一段时间后，主流币种将会停止下跌。',
+    Desc: '表示市场存在些微下跌情绪，依然不那么明显，此时需要关注近3-5小时切片做进一步分析。',
   },
   {
     Value: 0,
@@ -49,6 +49,14 @@ const IndexInfo = [
       <span class="desc">{{ item.Desc }} </span>
     </div>
     <div class="descWrapper">
+      <span class="name">上涨指数</span>
+      <span class="desc">综合交易量靠前币种，在时间切片内的价格波动为正向的数量，大于50%则表示市场情绪为正。</span>
+    </div>
+    <div class="descWrapper">
+      <span class="name">涨幅均值</span>
+      <span class="desc">在时间切片内根据各个币种的涨跌计算得出综合的结果，为正则表示上涨，为负则表示下跌。</span>
+    </div>
+    <div class="descWrapper">
       <span class="name">
         <b>指标讲解</b>
       </span>
@@ -60,9 +68,7 @@ const IndexInfo = [
       </span>
     </div>
     <div class="descWrapper">
-      <span class="name">
-        <b>注</b>
-      </span>
+      <span class="name"> 注 </span>
       <span class="desc"> 该指标并非该系统最终交易指标，但是它依然可以当做交易参考， </span>
     </div>
     <div style="text-align: center">
@@ -108,6 +114,7 @@ const IndexInfo = [
 .descWrapper {
   margin-bottom: 8px;
   .name {
+    font-weight: bold;
     font-size: 14px;
     margin-right: 6px;
     &::after {
