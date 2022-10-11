@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { h, onMounted, onUnmounted } from 'vue';
-import { GetTickerList, GetAnalyDetail } from '@/api/CoinMarket';
-import type { TickerParam } from '@/api/CoinMarket';
+import { GetNowTickerAnaly, GetAnalyDetail } from '@/api/CoinMarket';
 import { defineAsyncComponent } from 'vue';
 import { DateFormat } from '@/utils/filters';
 
@@ -20,8 +19,6 @@ const props = defineProps({
   },
 });
 
-const CoinSort: TickerParam['SortType'] = $ref('Amount');
-
 let CoinTickerList = $ref([]);
 let AnalyWhole = $ref([]);
 let AnalySingle = $ref({});
@@ -35,9 +32,7 @@ const GetCoinTickerList = async (DetailID?: number) => {
       CreateTimeUnix: DetailID,
     });
   } else {
-    res = await GetTickerList({
-      SortType: CoinSort,
-    });
+    res = await GetNowTickerAnaly();
   }
 
   if (res.Code > 0) {

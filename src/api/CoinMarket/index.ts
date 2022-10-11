@@ -1,13 +1,9 @@
 import { ajax_json } from '@/utils/http';
 
-export interface TickerParam {
-  SortType: 'U_R24' | 'Amount';
-}
-
-export const GetTickerList = (data: TickerParam) => {
+export const GetNowTickerAnaly = () => {
   return ajax_json({
-    url: '/CoinMarket/public/Tickers',
-    data,
+    url: '/CoinMarket/public/GetNowTickerAnaly',
+    data: null,
     method: 'post',
   });
 };
