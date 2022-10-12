@@ -30,6 +30,8 @@ const GetHistoryList = (page: number) => {
       TimeUnix: -1,
     },
   }).then((res) => {
+    console.log(res);
+
     if (res.Code > 0) {
       HistoryList = res.Data.List;
       Total = res.Data.Total;
@@ -56,7 +58,7 @@ const SwitchCoin = (Coin) => {
     if (IsChartView) {
       const myChart = EchartsRender(cloneDeep(AnalyKdataList));
       myChart.on('click', function (params: any) {
-        CheckItemFunc(params.data.AKData.Analy);
+        CheckItemFunc(params.data.AKData.Analy.TimeID);
       });
     }
 
@@ -71,9 +73,9 @@ onMounted(() => {
 // 详情展示
 
 let DrawerStatus = $ref(false);
-let AnalyInfo = $ref({});
-const CheckItemFunc = (item) => {
-  AnalyInfo = cloneDeep(item);
+let DetailTimeID = $ref({});
+const CheckItemFunc = (TimeId) => {
+  DetailTimeID = TimeId;
   showDrawer();
 };
 
@@ -183,7 +185,7 @@ const OperationSwitch = () => {
               {{ item.Analy.MaxDown }} {{ item.Analy.MaxDown_RosePer }}%
             </div>
           </n-space>
-          <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item.Analy)">查看</n-button>
+          <n-button class="CheckBtn" size="small" @click="CheckItemFunc(item.Analy.TimeID)">查看</n-button>
         </div>
       </template>
     </div>
@@ -201,7 +203,7 @@ const OperationSwitch = () => {
       :on-mask-click="closeDrawer"
     >
       <n-drawer-content>
-        <ListPage v-if="DrawerStatus" :AnalyInfo="AnalyInfo"></ListPage>
+        <ListPage v-if="DrawerStatus" :TimeID="DetailTimeID"></ListPage>
       </n-drawer-content>
     </n-drawer>
   </div>

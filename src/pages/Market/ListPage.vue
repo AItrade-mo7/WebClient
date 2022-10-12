@@ -11,12 +11,7 @@ const TickerAnalyWhole = defineAsyncComponent(() => import('./lib/TickerAnalyWho
 const TickerAnalySingle = defineAsyncComponent(() => import('./lib/TickerAnalySingle.vue'));
 
 const props = defineProps({
-  AnalyInfo: {
-    type: Object,
-    default() {
-      return {};
-    },
-  },
+  TimeID: String,
 });
 
 let CoinTickerList = $ref([]);
@@ -25,11 +20,11 @@ let AnalySingle = $ref({});
 let Unit = $ref('');
 let WholeDir = $ref(0);
 
-const GetCoinTickerList = async (DetailID?: number) => {
+const GetCoinTickerList = async (TimeID?: string) => {
   let res: any = {};
-  if (DetailID) {
+  if (TimeID) {
     res = await GetAnalyDetail({
-      CreateTimeUnix: DetailID,
+      TimeID: TimeID,
     });
   } else {
     res = await GetNowTickerAnaly();
@@ -46,10 +41,10 @@ const GetCoinTickerList = async (DetailID?: number) => {
 
 let timer: any = null;
 onMounted(() => {
-  console.log(props.AnalyInfo);
+  console.log(props.TimeID);
 
-  if (props.AnalyInfo.Unit) {
-    GetCoinTickerList(props.AnalyInfo.CreateTimeUnix);
+  if (props.TimeID) {
+    GetCoinTickerList(props.TimeID);
     return;
   }
 
@@ -198,7 +193,7 @@ const WholeDirFormat = (n: any) => {
 </script>
 
 <template>
-  <PageTitle v-if="!props.AnalyInfo.Unit"> Market </PageTitle>
+  <PageTitle v-if="!props.TimeID"> Market </PageTitle>
   <div class="ListWrapper">
     <div v-if="CoinTickerList.length" class="Describe">
       <n-space class="data-wrapper">
@@ -212,7 +207,7 @@ const WholeDirFormat = (n: any) => {
           ;
         </div>
         <div>榜单时间: {{ DateFormat(CoinTickerList[0].Ts, true) }}</div>
-        <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="!props.AnalyInfo.Unit">
+        <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
           <n-button size="tiny" type="primary"> 查看测算历史 </n-button>
         </RouterLink>
       </n-space>

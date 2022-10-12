@@ -54,7 +54,7 @@ export const GetAnalyList = (data: GetAnalyHistoryParam): Promise<any> => {
 };
 
 interface GetAnalyDetailParam {
-  CreateTimeUnix: number;
+  TimeID: string;
 }
 
 export const GetAnalyDetail = (data: GetAnalyDetailParam): Promise<any> => {
