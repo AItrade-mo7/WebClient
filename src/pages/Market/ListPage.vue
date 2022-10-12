@@ -36,7 +36,7 @@ const GetCoinTickerList = async (DetailID?: number) => {
   }
 
   if (res.Code > 0) {
-    CoinTickerList = res.Data.List;
+    CoinTickerList = res.Data.TickerVol;
     AnalyWhole = res.Data.AnalyWhole;
     AnalySingle = res.Data.AnalySingle;
     Unit = res.Data.Unit;
