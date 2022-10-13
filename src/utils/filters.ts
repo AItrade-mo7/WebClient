@@ -98,7 +98,7 @@ export const ChartToStr = (val: string): string => {
 
 export const WholeDirFormat = (n: any) => {
   var ReturnObj = {
-    text: '空仓观望',
+    text: '空',
     class: 'gray',
   };
 
@@ -106,23 +106,15 @@ export const WholeDirFormat = (n: any) => {
 
   switch (Type) {
     case 1:
-      ReturnObj.text = '上涨';
-      ReturnObj.class = 'green';
-      break;
-    case 2:
-      ReturnObj.text = '震动上涨';
+      ReturnObj.text = '看涨';
       ReturnObj.class = 'green';
       break;
     case -1:
-      ReturnObj.text = '下跌';
-      ReturnObj.class = 'red';
-      break;
-    case -2:
-      ReturnObj.text = '震动下跌';
+      ReturnObj.text = '看跌';
       ReturnObj.class = 'red';
       break;
     default:
-      ReturnObj.text = '空仓';
+      ReturnObj.text = '空';
       ReturnObj.class = 'gray';
       break;
   }

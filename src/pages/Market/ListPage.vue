@@ -3,6 +3,7 @@ import { h, onMounted, onUnmounted } from 'vue';
 import { GetNowTickerAnaly, GetAnalyDetail } from '@/api/CoinMarket';
 import { defineAsyncComponent } from 'vue';
 import { DateFormat } from '@/utils/filters';
+import { WholeDirFormat } from '@/utils/filters';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const PriceView = defineAsyncComponent(() => import('./lib/PriceView.vue'));
@@ -155,40 +156,6 @@ const RowOpen = (keys) => {
 
 const RowKey = (rowData) => {
   return rowData.CcyName;
-};
-
-const WholeDirFormat = (n: any) => {
-  var ReturnObj = {
-    text: '空仓观望',
-    class: 'gray',
-  };
-
-  var Type = n - 0;
-
-  switch (Type) {
-    case 1:
-      ReturnObj.text = '看涨';
-      ReturnObj.class = 'green';
-      break;
-    case 2:
-      ReturnObj.text = '震荡上涨';
-      ReturnObj.class = 'green';
-      break;
-    case -1:
-      ReturnObj.text = '看跌';
-      ReturnObj.class = 'red';
-      break;
-    case -2:
-      ReturnObj.text = '震荡下跌';
-      ReturnObj.class = 'red';
-      break;
-    default:
-      ReturnObj.text = '空仓观望';
-      ReturnObj.class = 'gray';
-      break;
-  }
-
-  return ReturnObj;
 };
 </script>
 

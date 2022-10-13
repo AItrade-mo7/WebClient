@@ -12,25 +12,13 @@ const IndexInfo = [
     Value: 1,
     Text: WholeDirFormat(1).text,
     Style: WholeDirFormat(1).class,
-    Desc: '表示当前市场买入情绪高涨，大部分币种在近3小时内价格都存在不同程度的上涨，当前市场一片欣欣向荣，并且在未来的一段时间内很难出现大幅度下跌。',
+    Desc: '表示当前市场买入情绪高涨，大部分币种在近3小时内价格都存在不同程度的上涨，当前市场一片欣欣向荣，并且在未来的一段时间内很难出现下跌。',
   },
   {
     Value: -1,
     Text: WholeDirFormat(-1).text,
     Style: WholeDirFormat(-1).class,
     Desc: '表示当前大部分币种在近3小时内价格都存在不同程度的下跌，当前市场存在浓浓的下跌情绪中，并且在未来的一段时间内很难出现大幅度上涨。',
-  },
-  {
-    Value: 2,
-    Text: WholeDirFormat(2).text,
-    Style: WholeDirFormat(2).class,
-    Desc: '表示存在些微的上涨情绪，但并不那么强烈，市场投资情绪属于多级分化状态，此时应该关注近3-5小时的切片做进一步分析。',
-  },
-  {
-    Value: -2,
-    Text: WholeDirFormat(-2).text,
-    Style: WholeDirFormat(-2).class,
-    Desc: '表示市场存在些微下跌情绪，依然不那么明显，此时需要关注近3-5小时切片做进一步分析。',
   },
   {
     Value: 0,
@@ -64,12 +52,12 @@ const IndexInfo = [
         同时爬取多家交易所成交数据，通过自研算法同时对多个币种进行实时分析并得出结果。我将其称之为
         <b>Coin Real-time Trading Sentiment Analysis</b>简称<b>(RTS)</b>。
         期间经过多次重构和改动，目前数据库最早的分析结果记录为"2022-09-06T12:43:19"。
-        因为算法需要庞大的实时成交数据做支撑，所以很难进行历史回测。因该指标与价格和历史无关，可以有效抗住假信号和震荡。
+        因为算法需要庞大的实时成交数据做支撑，所以很难进行历史回测。 该指标与价格和历史无关，可以有效抗住假信号和震荡。
       </span>
     </div>
     <div class="descWrapper">
       <span class="name"> 注 </span>
-      <span class="desc"> 该指标并非该系统最终交易指标，但是它依然可以当做交易参考， </span>
+      <span class="desc"> 该指标并非最终交易指标，仅可当做交易参考， </span>
     </div>
     <div style="text-align: center">
       <RouterLink to="/CoinEarning" class="RouterLinkBtn" v-if="props.type == 'Earning'">
