@@ -125,7 +125,7 @@ const showDrawer = () => {
 
         <div className="TopBar__content">
           备案状态 <br />
-          求打赏 <br />
+          二维码 <br />
           相关说明等 <br />
         </div>
 
