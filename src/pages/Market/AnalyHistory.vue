@@ -275,8 +275,9 @@ const OperationSwitch = () => {
   height: 100vh;
 }
 #EchartsCanvas {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  max-height: 100vw;
+  height: 100vh;
 }
 
 .EarnCountShowBtn {
