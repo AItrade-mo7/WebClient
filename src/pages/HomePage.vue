@@ -30,17 +30,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </div>
     <br />
     <div class="HomeBtnItem">
-      <RouterLink to="/StockServe">
-        <n-button type="primary" ghost color="#f00">
-          <template #icon>
-            <XIcon name="StockOutlined" />
-          </template>
-          股票交易 StockAI
-        </n-button>
-      </RouterLink>
-    </div>
-    <br />
-    <div class="HomeBtnItem">
       <RouterLink to="/Market">
         <n-button strong secondary type="error">
           <template #icon>
@@ -51,6 +40,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       </RouterLink>
     </div>
     <br />
+
     <div class="HomeBtnItem">
       <RouterLink to="/CoinEarning">
         <n-button type="primary">
@@ -70,6 +60,18 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
         开始
       </n-button>
     </div>
+    <br />
+    <div class="HomeBtnItem">
+      <RouterLink to="/StockServe">
+        <n-button type="primary" ghost color="#f00">
+          <template #icon>
+            <XIcon name="StockOutlined" />
+          </template>
+          股票交易 StockAI
+        </n-button>
+      </RouterLink>
+    </div>
+    <br />
   </div>
 </template>
 
