@@ -31,11 +31,11 @@ const routes: any = [
   },
   {
     path: '/CoinServe',
-    isLogin: true,
     component: () => import('@/pages/CoinServe/IndexPage.vue'),
     children: [
       {
         path: '',
+        isLogin: true,
         description: 'ServerList',
         component: () => import('@/pages/CoinServe/ServerList.vue'),
       },
@@ -129,9 +129,7 @@ router.beforeEach((to) => {
   var isToLogin = false;
   if (!Token) {
     TraverseRouter((path, isLogin) => {
-      console.log(path, isLogin);
-
-      if (to.path.indexOf(path) > -1) {
+      if (to.path == path) {
         if (isLogin) {
           isToLogin = true;
         }
@@ -149,7 +147,10 @@ function TraverseRouter(callBack) {
     var path = route.path;
     if (route.children?.length > 0) {
       for (const children of route.children) {
-        var NewPath = path + '/' + children.path;
+        var NewPath = path;
+        if (children.path) {
+          NewPath = path + '/' + children.path;
+        }
         callBack(NewPath, children.isLogin);
       }
     } else {
