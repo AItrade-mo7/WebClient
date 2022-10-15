@@ -30,29 +30,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </div>
     <br />
     <div class="HomeBtnItem">
-      <RouterLink to="/Market">
-        <n-button strong secondary type="error">
-          <template #icon>
-            <XIcon name="AreaChartOutlined" />
-          </template>
-          查看数字货币行情
-        </n-button>
-      </RouterLink>
-    </div>
-    <br />
-
-    <div class="HomeBtnItem">
-      <RouterLink to="/CoinEarning">
-        <n-button type="primary">
-          <template #icon>
-            <XIcon name="DollarCircleTwotone" />
-          </template>
-          Coin-RTS 收益模拟器
-        </n-button>
-      </RouterLink>
-    </div>
-    <br />
-    <div class="HomeBtnItem">
       <n-button type="info" @click="TopBarStore.open()">
         <template #icon>
           <XIcon name="MenuFoldOutlined" />
@@ -65,7 +42,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       <RouterLink to="/StockServe">
         <n-button type="primary" ghost color="#f00">
           <template #icon>
-            <XIcon name="StockOutlined" />
+            <XIcon name="ZTSLogo" />
           </template>
           股票交易 StockAI
         </n-button>

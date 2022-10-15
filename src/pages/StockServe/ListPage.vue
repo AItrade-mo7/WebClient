@@ -6,11 +6,9 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 <template>
   <PageTitle>StockServe</PageTitle>
   <div class="PageWrapper">
-    股市交易相关功能尚未完成。
+    股票 市场分析 相关功能尚在规划当中。
     <br />
-    该程序当前为免费服务
-    <br />
-    请开发者喝杯茶:
+    您的打赏将是开发者的动力
     <img class="wx_proceeds" src="//file.mo7.cc/static/img/wx_proceeds.jpg" alt="" />
     <br />
     <br />
@@ -20,11 +18,15 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     <a class="lineHeight" href="https://mo7.cc/" target="_blank">开发者 个人 主页</a>
     <br />
     <br />
-    <a class="lineHeight" href="https://github.com/AITrade-mo7" target="_blank">项目仓库(目前为闭源状态)</a>
+    <a class="lineHeight" href="https://github.com/AITrade-mo7" target="_blank"> 项目仓库地址(目前为非开源) </a>
     <br />
     <br />
-    <a class="lineHeight" href="https://meichangliang.feishu.cn/docs/doccnWBXTCgLrw3Ez40PuVw8FYd" target="_blank">
-      程序架构图
+    <a
+      class="lineHeight"
+      href="https://meichangliang.feishu.cn/drive/folder/fldcnEQrOpCo14xK0EVeViEZByh"
+      target="_blank"
+    >
+      程序架构设计原稿
     </a>
   </div>
 </template>

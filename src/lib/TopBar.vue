@@ -68,23 +68,12 @@ const showDrawer = () => {
           </div>
 
           <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
-            <RouterLink to="/OkxKey" class="item_btn">
-              <n-button text size="tiny">
-                <template #icon>
-                  <XIcon name="OkxLogo" />
-                </template>
-                OkxKey
-              </n-button>
-            </RouterLink>
-          </div>
-
-          <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
             <RouterLink to="/CoinServe" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
                   <XIcon name="AITradeLogo" />
                 </template>
-                CoinServe
+                CoinAI
               </n-button>
             </RouterLink>
           </div>
@@ -93,20 +82,9 @@ const showDrawer = () => {
             <RouterLink to="/StockServe" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
-                  <XIcon name="StockOutlined" />
+                  <XIcon name="ZTSLogo" />
                 </template>
-                StockServe
-              </n-button>
-            </RouterLink>
-          </div>
-
-          <div className="TopBar__item">
-            <RouterLink to="/Market" class="item_btn">
-              <n-button text size="tiny">
-                <template #icon>
-                  <XIcon name="AreaChartOutlined" />
-                </template>
-                Market
+                StockAI
               </n-button>
             </RouterLink>
           </div>
@@ -123,11 +101,7 @@ const showDrawer = () => {
           </div>
         </div>
 
-        <div className="TopBar__content">
-          备案状态 <br />
-          二维码 <br />
-          相关说明等 <br />
-        </div>
+        <div className="TopBar__content"></div>
 
         <template #footer>
           <div class="TopBar__pendant">
