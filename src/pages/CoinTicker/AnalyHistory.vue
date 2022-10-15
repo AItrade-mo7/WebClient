@@ -7,7 +7,7 @@ import { WholeDirFormat } from '@/utils/filters';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
-const ListPage = defineAsyncComponent(() => import('./ListPage.vue'));
+const ListPage = defineAsyncComponent(() => import('./TickerView.vue'));
 const CoinRTS = defineAsyncComponent(() => import('@/lib/CoinRTS.vue'));
 
 let CoinKdataList = $ref([]);

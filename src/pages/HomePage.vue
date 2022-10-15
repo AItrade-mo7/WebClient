@@ -19,12 +19,12 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
     <br />
     <div class="HomeBtnItem">
-      <RouterLink to="/CoinServe">
+      <RouterLink to="/CoinTicker">
         <n-button type="primary">
           <template #icon>
             <XIcon name="OkxLogo" />
           </template>
-          数字货币 CoinAI
+          数字货币 CoinTicker
         </n-button>
       </RouterLink>
     </div>
@@ -39,12 +39,12 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </div>
     <br />
     <div class="HomeBtnItem">
-      <RouterLink to="/StockServe">
+      <RouterLink to="/StockTicker">
         <n-button type="primary" ghost color="#f00">
           <template #icon>
             <XIcon name="ZTSLogo" />
           </template>
-          股票交易 StockAI
+          股票交易 StockTicker
         </n-button>
       </RouterLink>
     </div>

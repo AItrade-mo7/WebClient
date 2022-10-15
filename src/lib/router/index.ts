@@ -14,22 +14,18 @@ const routes: any = [
     component: () => import('@/pages/RegisterPage.vue'),
   },
   {
-    path: '/CoinEarning',
-    component: () => import('@/pages/CoinEarning.vue'),
-  },
-  {
-    path: '/Market',
-    component: () => import('@/pages/Market/IndexPage.vue'),
+    path: '/CoinTicker',
+    component: () => import('@/pages/CoinTicker/IndexPage.vue'),
     children: [
       {
         path: '',
-        description: 'list',
-        component: () => import('@/pages/Market/ListPage.vue'),
+        description: 'Ticker',
+        component: () => import('@/pages/CoinTicker/TickerView.vue'),
       },
       {
         path: 'AnalyHistory',
         description: 'AnalyHistory',
-        component: () => import('@/pages/Market/AnalyHistory.vue'),
+        component: () => import('@/pages/CoinTicker/AnalyHistory.vue'),
       },
     ],
   },
@@ -45,6 +41,7 @@ const routes: any = [
 
       {
         path: 'PWA',
+        isLogin: true,
         description: 'PWA应用安装指南',
         component: () => import('@/pages/About/PWA.vue'),
       },
@@ -76,53 +73,13 @@ const routes: any = [
     ],
   },
   {
-    path: '/OkxKey',
-    isLogin: true,
-    component: () => import('@/pages/OkxKey/IndexPage.vue'),
-    children: [
-      {
-        path: '',
-        description: 'list',
-        component: () => import('@/pages/OkxKey/ListPage.vue'),
-      },
-      {
-        path: 'Add',
-        description: '新增 密钥',
-        component: () => import('@/pages/OkxKey/AddPage.vue'),
-      },
-    ],
-  },
-  {
-    path: '/CoinServe',
-    isLogin: true,
-    component: () => import('@/pages/CoinServe/IndexPage.vue'),
+    path: '/StockTicker',
+    component: () => import('@/pages/StockTicker/IndexPage.vue'),
     children: [
       {
         path: '',
         description: 'List',
-        component: () => import('@/pages/CoinServe/ListPage.vue'),
-      },
-      {
-        path: 'Add',
-        description: '新增 服务',
-        component: () => import('@/pages/CoinServe/AddPage.vue'),
-      },
-      {
-        path: 'Info',
-        description: '查看详情',
-        component: () => import('@/pages/CoinServe/InfoPage.vue'),
-      },
-    ],
-  },
-  {
-    path: '/StockServe',
-    isLogin: true,
-    component: () => import('@/pages/StockServe/IndexPage.vue'),
-    children: [
-      {
-        path: '',
-        description: 'List',
-        component: () => import('@/pages/StockServe/ListPage.vue'),
+        component: () => import('@/pages/StockTicker/TickerView.vue'),
       },
     ],
   },
@@ -153,15 +110,30 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const Token = getToken();
+
   if (!Token) {
-    for (const route of routes) {
-      if (to.path.indexOf(route.path) > -1) {
-        if (route.isLogin) {
+    TraverseRouter((path, isLogin) => {
+      if (to.path.indexOf(path) > -1) {
+        if (isLogin) {
           return { path: '/Login' };
         }
       }
-    }
+    });
   }
 });
+
+function TraverseRouter(callBack) {
+  for (const route of routes) {
+    var path = route.path;
+    if (route.children?.length > 0) {
+      for (const children of route.children) {
+        var NewPath = path + '/' + children.path;
+        callBack(NewPath, children.isLogin);
+      }
+    } else {
+      callBack(path, route.isLogin);
+    }
+  }
+}
 
 export { router, routes };
