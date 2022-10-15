@@ -5,3 +5,9 @@ import { OkxLogo } from '@/config/constant';
 <template>
   <img class="logo" :src="OkxLogo" alt="" srcset="" />
 </template>
+<style lang="less" scoped>
+.logo {
+  width: 100%;
+  height: 100%;
+}
+</style>

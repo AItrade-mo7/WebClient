@@ -77,14 +77,9 @@ const routes: any = [
         component: () => import('@/pages/About/OkxKey.vue'),
       },
       {
-        path: 'AIServe',
-        description: 'AIServe 说明',
-        component: () => import('@/pages/About/AIServe.vue'),
-      },
-      {
         path: 'CoinServe',
         description: 'CoinServe 使用说明',
-        component: () => import('@/pages/About/AIServe.vue'),
+        component: () => import('@/pages/About/CoinServe.vue'),
       },
     ],
   },
