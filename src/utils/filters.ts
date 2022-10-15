@@ -106,11 +106,11 @@ export const WholeDirFormat = (n: any) => {
 
   switch (Type) {
     case 1:
-      ReturnObj.text = '看涨';
+      ReturnObj.text = '涨';
       ReturnObj.class = 'green';
       break;
     case -1:
-      ReturnObj.text = '看跌';
+      ReturnObj.text = '跌';
       ReturnObj.class = 'red';
       break;
     default:

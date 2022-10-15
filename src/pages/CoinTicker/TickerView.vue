@@ -5,11 +5,13 @@ import { defineAsyncComponent } from 'vue';
 import { DateFormat } from '@/utils/filters';
 import { WholeDirFormat } from '@/utils/filters';
 
+const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const PriceView = defineAsyncComponent(() => import('./lib/PriceView.vue'));
 const VolumeView = defineAsyncComponent(() => import('./lib/VolumeView.vue'));
 const TickerAnalyWhole = defineAsyncComponent(() => import('./lib/TickerAnalyWhole.vue'));
 const TickerAnalySingle = defineAsyncComponent(() => import('./lib/TickerAnalySingle.vue'));
+const CoinRTS = defineAsyncComponent(() => import('@/lib/CoinRTS.vue'));
 
 const props = defineProps({
   TimeID: String,
@@ -20,6 +22,7 @@ let AnalyWhole = $ref([]);
 let AnalySingle = $ref({});
 let Unit = $ref('');
 let WholeDir = $ref(0);
+let OperationStatus = $ref(false);
 
 const GetCoinTickerList = async (TimeID?: string) => {
   let res: any = {};
@@ -157,24 +160,28 @@ const RowOpen = (keys) => {
 const RowKey = (rowData) => {
   return rowData.CcyName;
 };
+
+const OperationSwitch = () => {
+  OperationStatus = !OperationStatus;
+};
 </script>
 
 <template>
   <PageTitle v-if="!props.TimeID"> Market </PageTitle>
   <div class="ListWrapper">
     <div v-if="CoinTickerList.length" class="Describe">
-      <n-space class="data-wrapper">
-        <div>综合交易量排名前 {{ CoinTickerList.length }} 的币种 ;</div>
+      <n-space class="data-title">
         <div>锚定货币: {{ Unit }} ;</div>
-        <div>
-          交易趋势:
+        <div class="RTSWrapper" @click="OperationSwitch">
+          <span class="RTS">Coin-RTS</span>:
           <span class="value" :class="WholeDirFormat(WholeDir).class">
             {{ WholeDirFormat(WholeDir).text }}
           </span>
+          <XIcon class="RTS-icon" name="QuestionCircleTwotone" />
           ;
         </div>
-        <div>榜单时间: {{ DateFormat(CoinTickerList[0].Ts, true) }}</div>
-        <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
+        <div>测算时间: {{ DateFormat(CoinTickerList[0].Ts, true) }} ;</div>
+        <RouterLink to="/CoinTicker/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
           <n-button size="tiny" type="primary"> 查看测算历史 </n-button>
         </RouterLink>
       </n-space>
@@ -195,6 +202,12 @@ const RowKey = (rowData) => {
     <div v-for="item in AnalyWhole">
       <TickerAnalyWhole :Analy="item" />
     </div>
+
+    <n-modal v-model:show="OperationStatus">
+      <div class="OperationWrapper">
+        <CoinRTS type="Earning"></CoinRTS>
+      </div>
+    </n-modal>
   </div>
 </template>
 
@@ -219,6 +232,18 @@ const RowKey = (rowData) => {
   margin-bottom: 12px;
 }
 
+.RTSWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #f0b90b;
+}
+
+.RTS-icon {
+  color: #000;
+  margin-left: 4px;
+}
+
 .TableWrapper {
   .OKX {
     color: #999;
@@ -232,10 +257,27 @@ const RowKey = (rowData) => {
 }
 
 .RouterLinkBtn {
-  display: block;
+  display: flex;
+  align-items: center;
+  height: 100%;
   .n-button {
     width: 100%;
   }
+}
+
+.OperationWrapper {
+  position: absolute;
+  max-width: 90vw;
+  max-height: 80vh;
+  right: 2vw;
+  top: 2vh;
+  z-index: 9;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 </style>
 

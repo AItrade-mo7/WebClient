@@ -11,6 +11,8 @@ const MyIconLoad = () => {
   switch (props.name) {
     case 'HomeOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/HomeOutlined'));
+    case 'QuestionCircleTwotone':
+      return defineAsyncComponent(() => import('@vicons/antd/QuestionCircleTwotone'));
     case 'LoginOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/LoginOutlined'));
     case 'InfoCircleOutlined':

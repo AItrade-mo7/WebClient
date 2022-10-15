@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
 import { WholeDirFormat } from '@/utils/filters';
-const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
-
-const props = defineProps({
-  type: String,
-});
 
 const IndexInfo = [
   {
@@ -31,14 +25,14 @@ const IndexInfo = [
 
 <template>
   <div class="EarnCount">
-    <div class="title">数字货币实时交易情绪分析<b>(Coin-RTS)</b></div>
+    <div class="title">数字货币交易情绪<b>(Coin-RTS)</b></div>
     <div v-for="item in IndexInfo" class="descWrapper">
       <span class="name" :class="item.Style">{{ item.Text }}</span>
       <span class="desc">{{ item.Desc }} </span>
     </div>
     <div class="descWrapper">
       <span class="name">上涨指数</span>
-      <span class="desc">综合交易量靠前币种，在时间切片内的价格波动为正向的数量，大于50%则表示市场情绪为正。</span>
+      <span class="desc">综合交易量靠前币种，在时间切片内的价格波动为正向的比例，表明了市场上涨情绪的强度。</span>
     </div>
     <div class="descWrapper">
       <span class="name">涨幅均值</span>
@@ -49,34 +43,15 @@ const IndexInfo = [
         <b>指标讲解</b>
       </span>
       <span class="desc">
-        同时爬取多家交易所成交数据，通过自研算法同时对多个币种进行实时分析并得出结果。我将其称之为
+        同时爬取多家交易所成交数据，通过自研算法同时对多个币种进行实时分析并得出结果。将其称之为
         <b>Coin Real-time Trading Sentiment Analysis</b>简称<b>(RTS)</b>。
         期间经过多次重构和改动，目前数据库最早的分析结果记录为"2022-09-06T12:43:19"。
         因为算法需要庞大的实时成交数据做支撑，所以很难进行历史回测。 该指标与价格和历史无关，可以有效抗住假信号和震荡。
       </span>
     </div>
     <div class="descWrapper">
-      <span class="name"> 注 </span>
-      <span class="desc"> 该指标并非最终交易指标，仅可当做交易参考， </span>
-    </div>
-    <div style="text-align: center">
-      <RouterLink to="/CoinEarning" class="RouterLinkBtn" v-if="props.type == 'Earning'">
-        <n-button type="primary" size="small">
-          <template #icon>
-            <XIcon name="DollarCircleTwotone" />
-          </template>
-          指标收益计算器
-        </n-button>
-      </RouterLink>
-
-      <RouterLink to="/Market/AnalyHistory" class="RouterLinkBtn" v-if="props.type == 'Market'">
-        <n-button strong secondary type="error">
-          <template #icon>
-            <XIcon name="AreaChartOutlined" />
-          </template>
-          查看指标历史
-        </n-button>
-      </RouterLink>
+      <span class="name">注</span>
+      <span class="desc">本网站所有数据解释权归开发者本人所有。</span>
     </div>
   </div>
 </template>
@@ -114,13 +89,3 @@ const IndexInfo = [
   }
 }
 </style>
-
-<!-- 
-
-收益计算器
-开始时间某日0:00 至 当前
-
-选择币种,币种目前就两种 BTC 和 ETH 
-选择策略 1 种 为 粗狂策略
-
--->
