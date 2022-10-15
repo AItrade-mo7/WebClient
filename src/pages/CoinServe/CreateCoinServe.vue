@@ -60,7 +60,7 @@ const copyFun = () => {
         <br />
         <span class="desc">
           <span class="label">注：</span> 同一台云主机可以采用不同端口部署不超过
-          <span class="lineHight">4</span> 个服务。
+          <span class="lineHight">4</span> 个服务。运行服务越多，对服务器硬件配置要求越高。可以多个账户共用一台云主机。
           <span class="hint">
             若此步骤过于专业，可求助您身边的
             <span class="lineHight">程序员</span>
