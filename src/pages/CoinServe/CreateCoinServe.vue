@@ -20,7 +20,7 @@ const copyFun = () => {
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
     </div>
     <br />
-    <div class="title">第二步：生成部署指令</div>
+    <div class="title">第二步：生成自助部署指令</div>
     <div class="content">
       <n-button class="submitBtn" type="primary"> 指令生成 </n-button>
     </div>
@@ -43,8 +43,7 @@ const copyFun = () => {
         <span class="label">系统要求：</span>
         <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
         <span class="lineHight">Ubuntu 20.04</span> 及以上版本
-        <br />
-        <span class="label">系统时区：</span> 最好为 <span class="lineHight">Ubuntu 20.04</span> 或以上版本
+
         <br />
         <span class="label">硬件配置：</span> 最低 <span class="lineHight"> 1GB </span> 内存
         <span class="lineHight">20GB</span> 存储。
@@ -54,19 +53,24 @@ const copyFun = () => {
         <span class="lineHight">日本</span> 或 <span class="lineHight">香港</span> 等地的 海外 主机。
         <span class="hint"><span class="lineHight">墙</span>内无法通过交易所执行下单指令</span>
         <br />
+        <span class="label">系统时区：</span> 请务必设置为 <span class="lineHight">中国时区</span>。
+        <span class="hint">时区必须统一，否则会出现计算结果错误</span>
+        <br />
+        <span class="label">脚本执行：</span> 当以上工作就绪，最好使用 root 权限执行当前脚本
+        <br />
         <span class="desc">
           <span class="label">注：</span> 同一台云主机可以采用不同端口部署不超过
           <span class="lineHight">4</span> 个服务。
           <span class="hint">
             若此步骤过于专业，可求助您身边的
             <span class="lineHight">程序员</span>
-            好友
+            好友。本页面可刷新并无限次重新生成脚本。
           </span>
         </span>
       </div>
     </div>
     <br />
-    <div class="title">第五步：返回服务列表并刷新</div>
+    <div class="title">第五步：返回 CoinServe 列表并刷新</div>
     <div class="content">
       <RouterLink to="/CoinServe">
         <n-button type="warning" class="submitBtn">
@@ -100,7 +104,6 @@ const copyFun = () => {
 }
 
 .ShellAbout_desc {
-  font-weight: bold;
   font-size: 14px;
   line-height: 28px;
   color: #333;
