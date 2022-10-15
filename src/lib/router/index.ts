@@ -41,7 +41,6 @@ const routes: any = [
 
       {
         path: 'PWA',
-        isLogin: true,
         description: 'PWA应用安装指南',
         component: () => import('@/pages/About/PWA.vue'),
       },
@@ -110,15 +109,19 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const Token = getToken();
-
+  var isToLogin = false;
   if (!Token) {
     TraverseRouter((path, isLogin) => {
       if (to.path.indexOf(path) > -1) {
         if (isLogin) {
-          return { path: '/Login' };
+          isToLogin = true;
         }
       }
     });
+  }
+
+  if (isToLogin) {
+    return { path: '/Login' };
   }
 });
 
