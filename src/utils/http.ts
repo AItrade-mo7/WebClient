@@ -6,7 +6,7 @@ import { LoadingStore } from '@/store';
 const service = axios.create();
 
 function set_axios_config() {
-  console.info('初始化 axios 配置', window.ViteConst);
+  console.info(window.ViteConst);
   let axios_baseURL = null;
   if (window.ViteConst.RunMod == 0) {
     axios_baseURL = '//trade-api.mo7.cc';
