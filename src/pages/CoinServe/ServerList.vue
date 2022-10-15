@@ -3,8 +3,6 @@ import { useRouter } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
-const CreateCoinServe = defineAsyncComponent(() => import('./lib/CreateCoinServe.vue'));
-let CreateViewStatus = $ref(true);
 </script>
 
 <template>
@@ -21,11 +19,14 @@ let CreateViewStatus = $ref(true);
   <div class="PageWrapper">
     <div>ServerList</div>
     <div>
-      <n-button type="info" @click="CreateViewStatus = true"> 创建一个 CoinServe </n-button>
-    </div>
-
-    <div v-if="CreateViewStatus">
-      <CreateCoinServe />
+      <RouterLink to="/CoinServe/CreateCoinServe">
+        <n-button type="primary">
+          <template #icon>
+            <XIcon name="OkxLogo" />
+          </template>
+          创建一个 CoinAI.net 服务
+        </n-button>
+      </RouterLink>
     </div>
   </div>
 </template>
