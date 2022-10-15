@@ -40,18 +40,18 @@ const copyFun = () => {
         <span class="lineHight">{{ Port ? Port : 'xxxx' }}</span>
         端口 ！
         <br />
-        <span class="label">系统要求：</span>
-        <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
-        <span class="lineHight">Ubuntu 20.04</span> 及以上版本
-
+        <span class="label">位置要求：</span> 优先推荐 AWS <span class="lineHight">美国</span>、
+        <span class="lineHight">日本</span> 或 <span class="lineHight">香港</span> 等地的 海外 主机。
+        <span class="hint"><span class="lineHight">墙内</span>无法通过交易所执行下单指令</span>
         <br />
         <span class="label">硬件配置：</span> 最低 <span class="lineHight"> 1GB </span> 内存
         <span class="lineHight">20GB</span> 存储。
         <span class="desc"> 程序采用 Go 语言编写, 会定时执行超高频计算, 运行峰值内存消耗为 50M~80M 。</span>
         <br />
-        <span class="label">位置要求：</span> 优先推荐 AWS <span class="lineHight">美国</span>、
-        <span class="lineHight">日本</span> 或 <span class="lineHight">香港</span> 等地的 海外 主机。
-        <span class="hint"><span class="lineHight">墙</span>内无法通过交易所执行下单指令</span>
+        <span class="label">系统要求：</span>
+        <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
+        <span class="lineHight">Ubuntu 20.04</span> 及以上版本
+
         <br />
         <span class="label">系统时区：</span> 请务必设置为 <span class="lineHight">中国时区</span>。
         <span class="hint">时区必须统一，否则会出现计算结果错误</span>
@@ -67,6 +67,22 @@ const copyFun = () => {
             好友。本页面可刷新并无限次重新生成脚本。
           </span>
         </span>
+        <br />
+        <div>
+          当然，您也可以热爱学习：
+          <a href="https://meichangliang.feishu.cn/docx/doxcnZgnULZK8l5t2safbcnTtcf" target="_blank">
+            <n-button secondary type="success" class="linkHref"> AWS云服务器购买教程 </n-button>
+          </a>
+          <a href="https://meichangliang.feishu.cn/docx/doxcnszFe2G6ReLP4rcqzW4O4Be" target="_blank">
+            <n-button secondary type="success" class="linkHref"> CoinAI 部署指南 </n-button>
+          </a>
+        </div>
+        <div>
+          或者联系开发者本人：
+          <a href="mailto:mo7@mo7.cc" target="_blank">
+            <n-button text type="warning" class="linkHref">e-mail: mo7@mo7.cc </n-button>
+          </a>
+        </div>
       </div>
     </div>
     <br />
@@ -117,6 +133,9 @@ const copyFun = () => {
   color: #999;
 }
 
+.linkHref {
+  margin-right: 20px;
+}
 .ShellAbout__urlBox {
   color: #24292f;
   background-color: #f6f8fa;
