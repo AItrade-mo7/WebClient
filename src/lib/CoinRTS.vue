@@ -44,7 +44,7 @@ const IndexInfo = [
       </span>
       <span class="desc">
         同时爬取多家交易所成交数据，通过自研算法同时对多个币种进行实时分析并得出结果。将其称之为
-        <b>Coin Real-time Trading Sentiment Analysis</b>简称<b>(RTS)</b>。
+        <b>Coin Real-time Trading Sentiment Analysis</b> 简称 <b>(RTS)</b>。
         期间经过多次重构和改动，目前数据库最早的分析结果记录为"2022-09-06T12:43:19"。
         因为算法需要庞大的实时成交数据做支撑，所以很难进行历史回测。 该指标与价格和历史无关，可以有效抗住假信号和震荡。
       </span>
@@ -78,14 +78,14 @@ const IndexInfo = [
   margin-bottom: 8px;
   .name {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     margin-right: 6px;
     &::after {
       content: ':';
     }
   }
   .desc {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 </style>

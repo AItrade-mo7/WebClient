@@ -19,13 +19,30 @@ const routes: any = [
     children: [
       {
         path: '',
-        description: 'Ticker',
+        description: 'TickerView',
         component: () => import('@/pages/CoinTicker/TickerView.vue'),
       },
       {
         path: 'AnalyHistory',
         description: 'AnalyHistory',
         component: () => import('@/pages/CoinTicker/AnalyHistory.vue'),
+      },
+    ],
+  },
+  {
+    path: '/CoinServe',
+    isLogin: true,
+    component: () => import('@/pages/CoinServe/IndexPage.vue'),
+    children: [
+      {
+        path: '',
+        description: 'ServerList',
+        component: () => import('@/pages/CoinServe/ServerList.vue'),
+      },
+      {
+        path: 'ServerInfo',
+        description: 'AnalyHistory',
+        component: () => import('@/pages/CoinServe/InfoPage.vue'),
       },
     ],
   },
@@ -112,6 +129,8 @@ router.beforeEach((to) => {
   var isToLogin = false;
   if (!Token) {
     TraverseRouter((path, isLogin) => {
+      console.log(path, isLogin);
+
       if (to.path.indexOf(path) > -1) {
         if (isLogin) {
           isToLogin = true;

@@ -167,11 +167,11 @@ const OperationSwitch = () => {
 </script>
 
 <template>
-  <PageTitle v-if="!props.TimeID"> Market </PageTitle>
+  <PageTitle v-if="!props.TimeID"> CoinTicker </PageTitle>
   <div class="ListWrapper">
     <div v-if="CoinTickerList.length" class="Describe">
       <n-space class="data-title">
-        <div>锚定货币: {{ Unit }} ;</div>
+        <div class="data-item">锚定货币: {{ Unit }} ;</div>
         <div class="RTSWrapper" @click="OperationSwitch">
           <span class="RTS">Coin-RTS</span>:
           <span class="value" :class="WholeDirFormat(WholeDir).class">
@@ -180,9 +180,17 @@ const OperationSwitch = () => {
           <XIcon class="RTS-icon" name="QuestionCircleTwotone" />
           ;
         </div>
-        <div>测算时间: {{ DateFormat(CoinTickerList[0].Ts, true) }} ;</div>
+        <div class="data-item">测算时间: {{ DateFormat(CoinTickerList[0].Ts, true) }} ;</div>
         <RouterLink to="/CoinTicker/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
-          <n-button size="tiny" type="primary"> 查看测算历史 </n-button>
+          <n-button size="small" type="success" secondary> 查看测算历史 </n-button>
+        </RouterLink>
+        <RouterLink to="/CoinServe" class="RouterLinkBtn">
+          <n-button type="warning">
+            <template #icon>
+              <XIcon name="ClusterOutlined" />
+            </template>
+            绑定账户开启程序化交易
+          </n-button>
         </RouterLink>
       </n-space>
     </div>
@@ -232,6 +240,10 @@ const OperationSwitch = () => {
   margin-bottom: 12px;
 }
 
+.data-title {
+  align-items: center;
+}
+
 .RTSWrapper {
   display: flex;
   align-items: center;
@@ -244,6 +256,15 @@ const OperationSwitch = () => {
   margin-left: 4px;
 }
 
+.RouterLinkBtn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  .n-button {
+    width: 100%;
+  }
+}
+
 .TableWrapper {
   .OKX {
     color: #999;
@@ -253,15 +274,6 @@ const OperationSwitch = () => {
   }
   .Volume {
     color: #000;
-  }
-}
-
-.RouterLinkBtn {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  .n-button {
-    width: 100%;
   }
 }
 
