@@ -12,7 +12,7 @@ let wgetSh = $ref('null');
 
 const GenerateShell = () => {
   var BaseUrl = service.defaults.baseURL;
-  var Url = `${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
+  var Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
   var shPoint = `sudo wget -qO- "${Url}" | sudo bash`;
   wgetSh = shPoint;
 };
