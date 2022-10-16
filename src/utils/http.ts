@@ -6,14 +6,17 @@ import { LoadingStore } from '@/store';
 const service = axios.create();
 
 function set_axios_config() {
-  console.info(window.ViteConst);
   let axios_baseURL = null;
+  if (window.ViteConst.RunMod == 1) {
+    axios_baseURL = window.ViteConst.ProxyConfig['/api'].target;
+  }
   if (window.ViteConst.RunMod == 0) {
     axios_baseURL = '//trade-api.mo7.cc';
   }
 
   service.defaults.baseURL = axios_baseURL; // 默认请求的 baseUrl
   service.defaults.timeout = 30000; // 超时 30 秒
+
   // 请求拦截
   service.interceptors.request.use(
     (config) => {
@@ -65,4 +68,4 @@ const ajax_json = (param: axiosParam): Promise<resDataType> => {
   return service(config) as any;
 };
 
-export { ajax_json, axios, set_axios_config };
+export { ajax_json, axios, set_axios_config, service };

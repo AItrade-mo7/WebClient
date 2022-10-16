@@ -1,22 +1,20 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
 import { CopyText } from '@/utils/tools';
-import { CreateCoinShell } from '@/api/CreateCoinShell';
-import { TopBarStore, UserInfoStore, PingDataStore } from '@/store';
+import { UserInfoStore } from '@/store';
+import { service } from '@/utils/http';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 let Port = $ref('');
 
-let wgetSh = `sudo wget -qO- asdaasdasdsdasdasasas | sudo bash`;
+let wgetSh = $ref('null');
 
 const GenerateShell = () => {
-  CreateCoinShell({
-    Port,
-    UserID: UserInfoStore.value.UserID,
-  }).then((res) => {
-    console.log(res);
-  });
+  var BaseUrl = service.defaults.baseURL;
+  var Url = `${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
+  var shPoint = `sudo wget -qO- "${Url}" | sudo bash`;
+  wgetSh = shPoint;
 };
 
 const copyFun = () => {

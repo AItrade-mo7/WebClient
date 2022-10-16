@@ -17,6 +17,7 @@ if (ViteConst) {
     ...ViteConst,
     rmAgin: 'mo777',
   };
+
   set_axios_config();
 }
 

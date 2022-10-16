@@ -51,6 +51,8 @@ if (RunMod == 0) {
   ProxyConfig = null;
 }
 
+console.log(ProxyConfig);
+
 // =========  https://vitejs.dev/config/  =========
 const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig({
@@ -74,6 +76,7 @@ export default defineConfig({
       AppVersion: AppPackage.version,
       AppName: AppPackage.name,
       RunMod,
+      ProxyConfig,
     }),
   },
   server: {
