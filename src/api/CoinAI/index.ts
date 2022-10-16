@@ -4,10 +4,17 @@ interface AITradeNetParam {
   CoinServeID: string;
 }
 
-export const GetCoinFundConfig = (data: AITradeNetParam): Promise<any> => {
+export const GetCoinAIConfig = (data: AITradeNetParam): Promise<any> => {
   return ajax_json({
     url: '/CoinAI/config',
     data,
     method: 'get',
+  });
+};
+export const SetKey = (data: AITradeNetParam): Promise<any> => {
+  return ajax_json({
+    url: '/CoinAI/SetKey',
+    data,
+    method: 'post',
   });
 };
