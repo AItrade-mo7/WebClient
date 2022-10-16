@@ -68,6 +68,7 @@ export const setToken = async (tokenStr: string) => {
 
 export const CopyText = (text: string) => {
   copy(text);
+  window.$message.success('复制成功');
 };
 
 export const Md5 = (message: string): string => {

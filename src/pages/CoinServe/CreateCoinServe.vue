@@ -16,7 +16,11 @@ const GenerateShell = () => {
 };
 
 const copyFun = () => {
-  CopyText(GenerateShell());
+  if (Port) {
+    CopyText(GenerateShell());
+  } else {
+    window.$message.warning('请输入正确的端口号');
+  }
 };
 </script>
 
@@ -26,7 +30,7 @@ const copyFun = () => {
     <div class="title">第一步：填写端口号</div>
     <div class="content">
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
-      <span class="hint">建议选择非常用端口号</span>
+      <span class="hint">建议选择非常用端口号,该端口号用于启动监听服务。</span>
     </div>
     <br />
     <div class="title">第二步：复制指令</div>
@@ -41,7 +45,7 @@ const copyFun = () => {
     <div class="content">
       <div class="ShellAbout_desc">
         <span class="label">注：</span>务必在 <span class="lineHight">策略组</span> 中开放云主机的
-        <span class="lineHight">{{ Port ? Port : 'xxxx' }}</span>
+        <span class="lineHight">{{ Port ? Port : 'x' }}</span>
         端口 ！
         <br />
         <span class="label">位置要求：</span> 优先推荐 AWS <span class="lineHight">美国</span>、
