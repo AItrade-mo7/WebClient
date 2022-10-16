@@ -40,11 +40,6 @@ const routes: any = [
         component: () => import('@/pages/CoinServe/ServerList.vue'),
       },
       {
-        path: 'ServerInfo',
-        description: 'ServerInfo',
-        component: () => import('@/pages/CoinServe/InfoPage.vue'),
-      },
-      {
         path: 'CreateCoinServe',
         description: 'CreateCoinServe',
         component: () => import('@/pages/CoinServe/CreateCoinServe.vue'),
