@@ -27,9 +27,7 @@ declare global {
       ProxyUrl: string;
       rmAgin: string;
       RunMod: number;
-      ProxyConfig: {
-        [string]: any;
-      };
+      BaseUrl: string;
     };
   }
 }

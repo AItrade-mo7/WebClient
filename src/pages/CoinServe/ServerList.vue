@@ -1,8 +1,22 @@
 <script setup lang="ts">
+import { h, onMounted, onUnmounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
+import { GetCoinAILIst } from '@/api/CoinAI/GetList';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
+
+const GetCoinAILIstFun = () => {
+  GetCoinAILIst().then((res) => {
+    if (res.Code > 0) {
+      console.log(res.Data);
+    }
+  });
+};
+
+onMounted(() => {
+  GetCoinAILIstFun();
+});
 </script>
 
 <template>

@@ -51,6 +51,16 @@ if (RunMod == 0) {
   ProxyConfig = null;
 }
 
+// ========= 处理 BaseUrl 文件 =========
+
+let BaseUrl = '';
+if (RunMod == 1) {
+  BaseUrl = ProxyConfig['/api'].target;
+}
+if (RunMod == 0) {
+  BaseUrl = '//trade-api.mo7.cc';
+}
+
 // =========  https://vitejs.dev/config/  =========
 const pathSrc = path.resolve(__dirname, 'src');
 export default defineConfig({
@@ -74,7 +84,7 @@ export default defineConfig({
       AppVersion: AppPackage.version,
       AppName: AppPackage.name,
       RunMod,
-      ProxyConfig,
+      BaseUrl,
     }),
   },
   server: {
