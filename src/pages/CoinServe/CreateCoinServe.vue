@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
 import { CopyText } from '@/utils/tools';
+import { CreateCoinShell } from '@/api/CreateCoinShell';
+import { TopBarStore, UserInfoStore, PingDataStore } from '@/store';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 let Port = $ref('');
 
 let wgetSh = `sudo wget -qO- asdaasdasdsdasdasasas | sudo bash`;
+
+const GenerateShell = () => {
+  CreateCoinShell({
+    Port,
+    UserID: UserInfoStore.value.UserID,
+  }).then((res) => {
+    console.log(res);
+  });
+};
 
 const copyFun = () => {
   CopyText(wgetSh);
@@ -22,13 +34,13 @@ const copyFun = () => {
     <br />
     <div class="title">第二步：生成自助部署指令</div>
     <div class="content">
-      <n-button class="submitBtn" type="primary"> 指令生成 </n-button>
+      <n-button class="submitBtn" type="primary" @click="GenerateShell"> 指令生成 </n-button>
     </div>
     <br />
     <div class="title">第三步：复制指令</div>
     <div class="content">
       <div class="ShellAbout__urlBox">
-        <n-code :code="wgetSh" word-wrap> </n-code>
+        <div class="codeView">{{ wgetSh }}</div>
         <n-button size="tiny" type="primary" @click="copyFun"> 复制 </n-button>
       </div>
     </div>
@@ -123,6 +135,10 @@ const copyFun = () => {
   font-size: 14px;
   line-height: 28px;
   color: #333;
+}
+.codeView {
+  color: #999;
+  font-size: 14px;
 }
 .label {
   font-weight: bold;

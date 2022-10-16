@@ -1,8 +1,12 @@
 import { ajax_json } from '@/utils/http';
 
-export const GetCoinHistory = (data) => {
+interface CreateCoinShellParam {
+  Port: string;
+  UserID?: string;
+}
+export const CreateCoinShell = (data: CreateCoinShellParam) => {
   return ajax_json({
-    url: '/CoinMarket/public/GetCoinHistory',
+    url: '/api/private/CreateCoinShell',
     data,
     method: 'post',
   });
