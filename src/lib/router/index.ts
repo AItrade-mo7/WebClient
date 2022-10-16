@@ -44,6 +44,11 @@ const routes: any = [
         description: 'CreateCoinServe',
         component: () => import('@/pages/CoinServe/CreateCoinServe.vue'),
       },
+      {
+        path: 'CoinAI',
+        description: 'CoinAI',
+        component: () => import('@/pages/CoinServe/CoinAI.vue'),
+      },
     ],
   },
   {

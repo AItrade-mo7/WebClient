@@ -71,7 +71,9 @@ onMounted(() => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <n-button size="small" v-if="item.Status" type="success"> 进入 </n-button>
+            <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status">
+              <n-button size="small" type="success"> 进入 </n-button>
+            </RouterLink>
             <n-button size="small" v-else type="error"> 删除 </n-button>
           </div>
         </template>
