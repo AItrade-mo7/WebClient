@@ -8,17 +8,15 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 let Port = $ref('');
 
-let wgetSh = $ref('null');
-
 const GenerateShell = () => {
   var BaseUrl = service.defaults.baseURL;
   var Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
   var shPoint = `sudo wget -qO- "${Url}" | sudo bash`;
-  wgetSh = shPoint;
+  return shPoint;
 };
 
 const copyFun = () => {
-  CopyText(wgetSh);
+  CopyText(GenerateShell());
 };
 </script>
 
@@ -28,22 +26,18 @@ const copyFun = () => {
     <div class="title">第一步：填写端口号</div>
     <div class="content">
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
+      <span class="hint">建议选择非常用端口号</span>
     </div>
     <br />
-    <div class="title">第二步：生成自助部署指令</div>
-    <div class="content">
-      <n-button class="submitBtn" type="primary" @click="GenerateShell"> 指令生成 </n-button>
-    </div>
-    <br />
-    <div class="title">第三步：复制指令</div>
+    <div class="title">第二步：复制指令</div>
     <div class="content">
       <div class="ShellAbout__urlBox">
-        <div class="codeView">{{ wgetSh }}</div>
+        <div class="codeView" v-if="Port">{{ GenerateShell() }}</div>
         <n-button size="tiny" type="primary" @click="copyFun"> 复制 </n-button>
       </div>
     </div>
     <br />
-    <div class="title">第四步：执行指令</div>
+    <div class="title">第三步：执行指令</div>
     <div class="content">
       <div class="ShellAbout_desc">
         <span class="label">注：</span>务必在 <span class="lineHight">策略组</span> 中开放云主机的
@@ -120,6 +114,7 @@ const copyFun = () => {
 
 .cont_input {
   width: 160px;
+  margin-right: 12px;
 }
 
 .submitBtn {

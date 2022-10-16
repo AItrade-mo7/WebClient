@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -22,7 +22,7 @@ const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
       <RouterLink to="/CoinServe/CreateCoinServe">
         <n-button type="primary">
           <template #icon>
-            <XIcon name="OkxLogo" />
+            <XIcon name="AITradeLogo" />
           </template>
           创建一个 CoinAI.net 服务
         </n-button>
