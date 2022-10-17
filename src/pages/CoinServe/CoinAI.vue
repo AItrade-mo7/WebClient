@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { h, onMounted } from 'vue';
+import { h, onMounted, onUnmounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
-import { $lcg } from '@/utils/tools';
+import { NewSocket } from '@/api/CoinAI/CoinAIWss';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
@@ -20,20 +20,39 @@ function GetConfig(ServeID) {
     .then((res) => {
       if (res.Code > 0) {
         Config = res.Data;
-        console.log(Config);
       }
     })
     .catch((err) => {
       window.$message.error('服务尚未启动', {
         onAfterLeave() {
-          window.location.href = '/CoinServe';
+          // window.location.href = '/CoinServe';
         },
       });
     });
 }
+
+let WssObj = null;
+let WssData = $ref({});
+
+function StartWss(ServeID) {
+  WssObj = NewSocket({
+    Host: ServeID,
+    MessageEvent(res) {
+      if (res.Response.Code == 1) {
+        WssData = res.Response.Data;
+      }
+    },
+  });
+}
+
 onMounted(() => {
   const route = useRoute();
   GetConfig(route.query.id);
+  StartWss(route.query.id);
+});
+
+onUnmounted(() => {
+  WssObj.close();
 });
 
 // 控制栏
@@ -63,7 +82,11 @@ const OpenSet = () => {
     </n-drawer-content>
   </n-drawer>
 
-  <div class="PageWrapper">阿斯大苏打阿斯达</div>
+  <div class="PageWrapper">
+    阿斯大苏打阿斯达
+
+    {{ WssData }}
+  </div>
 </template>
 
 <style lang="less" scoped>

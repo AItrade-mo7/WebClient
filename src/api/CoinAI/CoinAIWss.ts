@@ -17,34 +17,28 @@ interface WssType {
 }
 
 export function NewSocket(opt: WssType) {
-  let protocol = 'wss://';
-  let host = 'trade.mo7.cc';
+  let protocol = 'wss:';
+  let host = window.ViteConst.BaseUrl;
   let pathname = '/api/wss';
 
   const location = window.location;
-  const ProxyUrl = window.ViteConst.ProxyUrl;
 
   if (location.protocol === 'http:') {
-    protocol = 'ws://';
-  }
-
-  if (location.origin.indexOf('mo7.cc') > -1) {
-    // 生产环境 ...
-  } else {
-    const urlArr = ProxyUrl.split('://');
-    host = urlArr[1];
+    protocol = 'ws:';
   }
 
   if (opt.Host) {
     pathname = `/CoinAI/wss?host=${opt.Host}`;
   }
 
-  const socketUrl = protocol + host + pathname;
+  let socketUrl = protocol + host + pathname;
 
-  // const socketUrl = 'wss://trade.mo7.cc/wss';
+  // const socketUrl = 'ws://trade-api.mo7.cc/api/wss';
   // const socketUrl = 'ws://trade.mo7.cc/wss';
   // const socketUrl = 'ws://localhost:8999/wss';
-  // socketUrl = `ws://50.18.29.218:9010/AITrade_net/wss?host=${opt.Host}`;
+  // const socketUrl = `ws://50.18.29.218:9210/CoinAI/wss?host=${opt.Host}`;
+  // const socketUrl = `ws://trade-api.mo7.cc:9210/CoinAI/wss?host=${opt.Host}`;
+  // console.log(socketUrl);
 
   const Auth = {
     Token: getToken(),
