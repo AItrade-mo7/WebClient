@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
-import { cloneDeep } from '@/utils/tools';
+import { cloneDeep, mStorage } from '@/utils/tools';
 import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
 import { WholeDirFormat } from '@/utils/filters';
 
@@ -20,6 +20,8 @@ let IsChartView = $ref(true);
 let CurrentCoin = $ref('BTC');
 let OperationStatus = $ref(false);
 let ShowCoinRTS = $ref(false);
+
+let ScreenDir = $ref('');
 
 const GetHistoryList = (page: number) => {
   Current = page;
@@ -68,7 +70,23 @@ const SwitchCoin = (Coin) => {
 
 onMounted(() => {
   GetHistoryList(1);
+  var localScreen = mStorage.get('ScreenDir');
+  if (localScreen == 'mobile') {
+    ScreenDir = 'mobile';
+  } else {
+    ScreenDir = 'pc';
+  }
 });
+
+const SwitchScreen = () => {
+  if (ScreenDir == 'mobile') {
+    ScreenDir = 'pc';
+  } else {
+    ScreenDir = 'mobile';
+  }
+  mStorage.set('ScreenDir', ScreenDir);
+  window.location.reload();
+};
 
 // 详情展示
 
@@ -158,6 +176,9 @@ const OperationSwitch = () => {
             </n-button>
           </template>
         </div>
+        <n-button @click="SwitchScreen" type="warning" size="tiny" class="SwitchScreen">
+          当前:{{ ScreenDir == 'mobile' ? '横屏' : '竖屏' }}
+        </n-button>
         <div v-if="ShowCoinRTS">
           <CoinRTS type="Earning"></CoinRTS>
         </div>
@@ -193,7 +214,7 @@ const OperationSwitch = () => {
     </div>
 
     <div class="ChartWrapper" v-if="IsChartView">
-      <div id="EchartsCanvas"></div>
+      <div id="EchartsCanvas" :class="ScreenDir"></div>
     </div>
 
     <n-drawer
@@ -247,6 +268,10 @@ const OperationSwitch = () => {
   margin-left: 12px;
 }
 
+.SwitchScreen {
+  margin-left: 12px;
+}
+
 .OperationWrapper {
   position: absolute;
   max-width: 90vw;
@@ -275,11 +300,26 @@ const OperationSwitch = () => {
   top: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 #EchartsCanvas {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100vw;
-  max-height: 80vw;
   height: 100vh;
+  max-height: 80vw;
+  max-width: 100vw;
+  &.mobile {
+    width: 100vh;
+    height: 100vw;
+    max-height: 100vw;
+    max-width: 100vh;
+    left: 100vw;
+    top: 0;
+    transform-origin: 0 0 0;
+    transform: rotate(90deg);
+  }
 }
 
 .EarnCountShowBtn {
