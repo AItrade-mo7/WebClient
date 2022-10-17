@@ -4,6 +4,8 @@ import { RouterLink, useRoute } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { NewSocket } from '@/api/CoinAI/CoinAIWss';
+import { DateFormat } from '@/utils/filters';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
@@ -33,11 +35,13 @@ function GetConfig(ServeID) {
 
 let WssObj = null;
 let WssData = $ref({});
+let ResData = $ref({});
 
 function StartWss(ServeID) {
   WssObj = NewSocket({
     Host: ServeID,
     MessageEvent(res) {
+      ResData = res.Response;
       if (res.Response.Code == 1) {
         WssData = res.Response.Data;
       }
@@ -83,14 +87,56 @@ const OpenSet = () => {
   </n-drawer>
 
   <div class="PageWrapper">
-    阿斯大苏打阿斯达
-
-    {{ WssData }}
+    <div class="InfoOk" v-if="WssData.DataSource">
+      <div class="title">系统状态</div>
+      <n-space class="data-wrapper">
+        <div class="block">
+          <span class="label">连接状态</span>
+          <span class="value green">{{ ResData.Msg }}</span>
+        </div>
+        <div class="block">
+          <span class="label">系统时间</span>
+          <span class="value"> {{ DateFormat(WssData.SysTime, true, true) }} </span>
+        </div>
+      </n-space>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+
+.lineHight {
+  color: @mainColor;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.value {
+  color: #333;
+}
+
+.green {
+  color: @greenColor;
+}
+.red {
+  color: @redColor;
+}
+
+.data-wrapper {
+  .block {
+    font-size: 14px;
+    .label {
+      color: #666;
+      font-size: 12px;
+      &::after {
+        content: ' : ';
+      }
+    }
+  }
+}
 </style>
 
 <style lang="less">
