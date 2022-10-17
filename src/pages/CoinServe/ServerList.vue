@@ -2,7 +2,7 @@
 import { h, onMounted, onUnmounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
-import { GetCoinAILIst } from '@/api/CoinAI/GetList';
+import { GetCoinAILIst, RemoveCoinAI } from '@/api/CoinAI/GetList';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { cloneDeep } from '@/utils/tools';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
@@ -16,6 +16,14 @@ const GetCoinAILIstFun = () => {
       ServeList = res.Data;
       GetConfig(res.Data);
     }
+  });
+};
+
+const RemoveCoinAIFun = (ServeID) => {
+  RemoveCoinAI({
+    ServeID,
+  }).then((res) => {
+    GetCoinAILIstFun();
   });
 };
 
@@ -75,7 +83,9 @@ onMounted(() => {
             <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button size="small" v-if="item.Status == -2" type="error"> 删除 </n-button>
+            <n-button size="small" v-if="item.Status == -2" type="error" @click="RemoveCoinAIFun(item.ServeID)">
+              删除
+            </n-button>
           </div>
         </template>
       </n-card>
