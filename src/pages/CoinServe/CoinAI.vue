@@ -9,6 +9,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
 const InfoOk = defineAsyncComponent(() => import('./lib/InfoOk.vue'));
+const TradeBtn = defineAsyncComponent(() => import('./lib/TradeBtn.vue'));
 
 let Config = $ref({
   AppEnv: {},
@@ -84,8 +85,11 @@ const OpenSet = () => {
     </n-drawer-content>
   </n-drawer>
 
+  {{ WssData }}
+
   <div class="PageWrapper">
     <InfoOk :WssData="WssData"></InfoOk>
+    <TradeBtn v-if="WssData.ServeID" :WssData="WssData" />
   </div>
 </template>
 
