@@ -58,7 +58,6 @@ const SwitchCoin = (Coin) => {
     if (IsChartView) {
       const myChart = EchartsRender(cloneDeep(AnalyKdataList));
       myChart.on('click', (params: any) => {
-        console.log(params);
         CheckItemFunc(params.data.AKData.Analy.TimeID);
       });
     }
@@ -279,7 +278,7 @@ const OperationSwitch = () => {
 }
 #EchartsCanvas {
   width: 100vw;
-  max-height: 100vw;
+  max-height: 80vw;
   height: 100vh;
 }
 

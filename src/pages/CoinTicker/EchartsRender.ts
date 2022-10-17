@@ -139,8 +139,8 @@ export const EchartsRender = (AKList) => {
     },
     grid: {
       top: '40',
-      left: '50',
-      right: '50',
+      left: '16',
+      right: '16',
       bottom: '30',
     },
     xAxis: {
