@@ -31,8 +31,6 @@ function GetConfig(list) {
       } else {
         item.Status = false;
       }
-      console.log(i);
-
       ServeList[i] = item;
     });
   }
