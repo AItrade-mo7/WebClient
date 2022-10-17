@@ -35,5 +35,8 @@ const CloseAll = () => {
 <style lang="less" scoped>
 .TradeBtn {
   display: block;
+  .n-button {
+    margin: 20px;
+  }
 }
 </style>
