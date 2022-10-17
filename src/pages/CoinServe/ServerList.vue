@@ -8,7 +8,7 @@ import { cloneDeep } from '@/utils/tools';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
-var ServeList = $ref([]);
+let ServeList = $ref([]);
 
 const GetCoinAILIstFun = () => {
   GetCoinAILIst().then((res) => {
@@ -25,14 +25,17 @@ function GetConfig(list) {
     const item = newList[i];
     GetCoinAIConfig({
       CoinServeID: item.ServeID,
-    }).then((res) => {
-      if (res.Code > 0) {
-        item.Status = true;
-      } else {
-        item.Status = false;
-      }
-      ServeList[i] = item;
-    });
+    })
+      .then((res) => {
+        if (res.Code > 0) {
+          item.Status = 2;
+        }
+        ServeList[i] = item;
+      })
+      .catch(() => {
+        item.Status = -2;
+        ServeList[i] = item;
+      });
   }
 }
 
@@ -69,10 +72,10 @@ onMounted(() => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status">
+            <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button size="small" v-else type="error"> 删除 </n-button>
+            <n-button size="small" v-if="item.Status == -2" type="error"> 删除 </n-button>
           </div>
         </template>
       </n-card>
