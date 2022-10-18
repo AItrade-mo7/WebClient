@@ -27,3 +27,11 @@ export const Close = (data: TradeParam) => {
     method: 'post',
   });
 };
+
+export const BuySPOT = (data: TradeParam) => {
+  return ajax_json({
+    url: '/CoinAI/Order/Close',
+    data,
+    method: 'post',
+  });
+};

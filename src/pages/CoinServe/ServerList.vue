@@ -50,6 +50,10 @@ function GetConfig(list) {
 onMounted(() => {
   GetCoinAILIstFun();
 });
+
+const Reload = () => {
+  window.location.reload();
+};
 </script>
 
 <template>
@@ -61,6 +65,7 @@ onMounted(() => {
           <template #icon> <XIcon name="QuestionCircleOutlined" /> </template>
         </n-button>
       </RouterLink>
+      <n-button strong secondary type="warning" size="tiny" class="reload_btn" @click="Reload"> 刷新 </n-button>
     </template>
   </PageTitle>
   <div class="PageWrapper">
@@ -83,23 +88,20 @@ onMounted(() => {
             <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button size="small" v-if="item.Status == -2" type="error" @click="RemoveCoinAIFun(item.ServeID)">
+            <n-button size="small" v-else-if="item.Status == -2" type="error" @click="RemoveCoinAIFun(item.ServeID)">
               删除
             </n-button>
+            <n-button size="small" v-else type="info" @click="RemoveCoinAIFun(item.ServeID)"> 加载中。。。 </n-button>
           </div>
         </template>
       </n-card>
+      <n-card embedded hoverable size="small">
+        <RouterLink to="/CoinServe/CreateCoinServe" class="addBtn">
+          <XIcon name="PlusOutlined" />
+        </RouterLink>
+      </n-card>
     </div>
-    <div>
-      <RouterLink to="/CoinServe/CreateCoinServe">
-        <n-button type="primary">
-          <template #icon>
-            <XIcon name="AITradeLogo" />
-          </template>
-          创建一个 CoinAI.net 服务
-        </n-button>
-      </RouterLink>
-    </div>
+    <div></div>
   </div>
 </template>
 
@@ -116,6 +118,8 @@ onMounted(() => {
 .ListWrapper {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   .n-card {
     margin: 0 4px;
     margin-bottom: 8px;
@@ -160,5 +164,25 @@ onMounted(() => {
 
 .card_footer {
   text-align: right;
+}
+
+.addBtn {
+  display: block;
+  height: 148px;
+  width: 148px;
+  margin: 0 auto;
+  .xicon {
+    display: block;
+    width: 148px;
+    height: 148px;
+    font-size: 30px;
+    line-height: 148px;
+    text-align: center;
+  }
+}
+
+.reload_btn {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 </style>
