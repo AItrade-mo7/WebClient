@@ -30,7 +30,7 @@ export const Close = (data: TradeParam) => {
 
 export const BuySPOT = (data: TradeParam) => {
   return ajax_json({
-    url: '/CoinAI/Order/Close',
+    url: '/CoinAI/Order/BuySPOT',
     data,
     method: 'post',
   });
