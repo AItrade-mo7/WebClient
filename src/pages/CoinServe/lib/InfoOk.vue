@@ -66,14 +66,7 @@ const HandleKeySubmit = async (type: string) => {
     </div>
     <div class="APIKeyWrapper">
       <template v-if="WssData.ApiKeyList">
-        <n-card
-          v-for="item in WssData.ApiKeyLSubmitist"
-          :key="item.Name"
-          :title="item.Name"
-          embedded
-          hoverable
-          size="small"
-        >
+        <n-card v-for="item in WssData.ApiKeyList" :key="item.Name" :title="item.Name" embedded hoverable size="small">
           <div class="Server__item">
             <span class="Server__label">ApiKey </span>
             <span class="Server__val">
@@ -99,7 +92,7 @@ const HandleKeySubmit = async (type: string) => {
                 v-if="!item.IsTrade"
                 type="success"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit"
+                @click="HandleKeySubmit('embed')"
               >
                 启用
               </n-button>
@@ -108,11 +101,13 @@ const HandleKeySubmit = async (type: string) => {
                 v-if="item.IsTrade"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit"
+                @click="HandleKeySubmit('embed')"
               >
                 禁用
               </n-button>
-              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit"> 删除 </n-button>
+              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del')">
+                删除
+              </n-button>
               <n-button size="small" type="primary"> 查看详情 </n-button>
             </div>
           </template>
