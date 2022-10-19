@@ -18,7 +18,16 @@ const props = defineProps({
       </div>
     </n-space>
 
-    <div class="title">APIKey 管控</div>
+    <div class="title">
+      APIKey 管控
+      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn">
+        <n-button type="primary" size="tiny" circle>
+          <template #icon>
+            <XIcon name="PlusOutlined" />
+          </template>
+        </n-button>
+      </RouterLink>
+    </div>
     <div class="APIKeyWrapper">
       <template v-if="WssData.ApiKeyList">
         <n-card v-for="item in WssData.ApiKeyList" :key="item.Name" :title="item.Name" embedded hoverable size="small">
@@ -40,13 +49,16 @@ const props = defineProps({
               {{ item.Passphrase }}
             </span>
           </div>
+          <template #footer>
+            <div class="card_footer">
+              <n-button size="small" v-if="!item.IsTrade" type="success"> 启用 </n-button>
+              <n-button size="small" v-if="item.IsTrade" type="tertiary"> 禁用 </n-button>
+              <n-button size="small" type="error"> 删除 </n-button>
+              <n-button size="small" type="primary"> 单独交易 </n-button>
+            </div>
+          </template>
         </n-card>
       </template>
-      <n-card embedded hoverable size="small">
-        <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn">
-          <XIcon name="PlusOutlined" />
-        </RouterLink>
-      </n-card>
     </div>
   </div>
 </template>
@@ -55,6 +67,12 @@ const props = defineProps({
 .title {
   font-weight: 700;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  .addBtn {
+    display: block;
+    margin-left: 12px;
+  }
 }
 .data-wrapper {
   .block {
@@ -80,7 +98,7 @@ const props = defineProps({
     margin: 0 4px;
     margin-bottom: 8px;
     display: inline-block;
-    width: 248px;
+    width: 230px;
   }
   .n-card__content {
     padding: 12px;
@@ -109,18 +127,9 @@ const props = defineProps({
   color: #999;
 }
 
-.addBtn {
-  display: block;
-  height: 148px;
-  width: 148px;
-  margin: 0 auto;
-  .xicon {
-    display: block;
-    width: 148px;
-    height: 148px;
-    font-size: 30px;
-    line-height: 148px;
-    text-align: center;
-  }
+.card_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 </style>
