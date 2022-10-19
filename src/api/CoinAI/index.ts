@@ -1,4 +1,5 @@
 import { ajax_json } from '@/utils/http';
+import { Md5 } from '@/utils/tools';
 
 interface AITradeNetParam {
   CoinServeID: string;
@@ -11,10 +12,25 @@ export const GetCoinAIConfig = (data: AITradeNetParam): Promise<any> => {
     method: 'get',
   });
 };
-export const SetKey = (data: AITradeNetParam): Promise<any> => {
+
+interface SetKeyParam {
+  CoinServeID: string;
+  Name: string;
+  ApiKey: string;
+  SecretKey: string;
+  Passphrase: string;
+  Password: string;
+}
+
+export const SetKey = (data: SetKeyParam): Promise<any> => {
+  const param = {
+    ...data,
+    Password: Md5(data.Password),
+  };
+
   return ajax_json({
     url: '/CoinAI/SetKey',
-    data,
+    data: param,
     method: 'post',
   });
 };

@@ -5,7 +5,7 @@ import { cloneDeep, ParseOkxKey } from '@/utils/tools';
 import { CopyText } from '@/utils/tools';
 import AuthModal from '@/lib/AuthModal';
 import { useRouter } from 'vue-router';
-import { GetCoinAIConfig } from '@/api/CoinAI/index';
+import { GetCoinAIConfig, SetKey } from '@/api/CoinAI/index';
 import { defineAsyncComponent } from 'vue';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -23,16 +23,18 @@ let formValue = $ref({
   ApiKey: '',
   SecretKey: '',
   Passphrase: '',
+  Password: '',
 });
 
 const SendForm = async () => {
-  // const res = await CreateOkxKey({
-  //   ...cloneDeep(formValue),
-  // });
-  // if (res.Code > 0) {
-  //   window.$message.success(res.Msg);
-  //   $router.go(-1);
-  // }
+  const res = await SetKey({
+    ...cloneDeep(formValue),
+    CoinServeID: Config.AppEnv.ServeID,
+  });
+  if (res.Code > 0) {
+    window.$message.success(res.Msg);
+    // $router.go(-1);
+  }
 };
 
 const Submit = async () => {
@@ -92,7 +94,7 @@ const copyFun = () => {
 
 <template>
   <PageTitle>
-    新增 okx 密钥组
+    新增 OKX Key 密钥
     <template #after>
       <RouterLink to="/About/OkxKey" className="CreateOkxKey__about">
         <n-button circle quaternary size="tiny" class="About__btn">
