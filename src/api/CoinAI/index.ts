@@ -54,7 +54,12 @@ export const HandleKey = (data: HandleKeyParam): Promise<any> => {
   });
 };
 
-export const GetAccountDetail = (data: AITradeNetParam): Promise<any> => {
+interface AccountDetailParam {
+  CoinServeID: string;
+  Index: number;
+}
+
+export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
   return ajax_json({
     url: '/CoinAI/GetAccountDetail',
     data,

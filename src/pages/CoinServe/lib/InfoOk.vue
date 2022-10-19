@@ -6,22 +6,26 @@ import { cloneDeep, ParseOkxKey } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
+const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
 
 const props = defineProps({
   WssData: Object,
 });
 
 let DrawerStatus = $ref(false);
+let NowIndex = $ref(-1);
+let NowKey = $ref({});
 
 const ShowKeyDetail = (index) => {
   DrawerStatus = true;
-  NowKey = props.WssData.ApiKeyList[index];
+  NowIndex = index;
+  NowKey = props.WssData.ApiKeyList[NowIndex];
 };
 const DrawerClose = () => {
   DrawerStatus = false;
+  NowIndex = -1;
+  NowKey = {};
 };
-
-let NowKey = $ref({});
 
 let HandleKeyStatus: boolean = $ref(false);
 let HandleKeyFormValue = $ref({
@@ -136,9 +140,9 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </template>
     </div>
 
-    <n-drawer v-model:show="DrawerStatus" placement="bottom" :on-after-leave="DrawerClose">
+    <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name">
-        《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。
+        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
       </n-drawer-content>
     </n-drawer>
   </div>

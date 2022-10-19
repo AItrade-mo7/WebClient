@@ -96,7 +96,7 @@ export const ChartToStr = (val: string): string => {
   return txt;
 };
 
-export const WholeDirFormat = (n: any) => {
+export const WholeDirFormat = (n: any, isRatio = false) => {
   var ReturnObj = {
     text: '空',
     class: 'gray',
@@ -119,5 +119,22 @@ export const WholeDirFormat = (n: any) => {
       break;
   }
 
+  if (isRatio) {
+    if (Type < 0) {
+      ReturnObj.class = 'red';
+    }
+    if (Type > 0) {
+      ReturnObj.class = 'green';
+    }
+  }
+
   return ReturnObj;
+};
+
+export const Decimal = (num: string, Per = false) => {
+  var returnNum = Number(num);
+  if (Per) {
+    returnNum = returnNum * 100;
+  }
+  return returnNum.toFixed(3);
 };
