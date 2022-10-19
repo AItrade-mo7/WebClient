@@ -98,21 +98,21 @@ const HandleKeySubmit = async (type: string, Index: number) => {
             <div class="card_footer">
               <n-button
                 size="small"
-                v-if="!item.IsTrade"
+                v-if="item.IsTrade"
                 type="success"
                 :disabled="HandleKeyStatus"
                 @click="HandleKeySubmit('embed', index)"
               >
-                启用
+                已启用
               </n-button>
               <n-button
                 size="small"
-                v-if="item.IsTrade"
+                v-if="!item.IsTrade"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
                 @click="HandleKeySubmit('embed', index)"
               >
-                禁用
+                已禁用
               </n-button>
               <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del', index)">
                 删除
