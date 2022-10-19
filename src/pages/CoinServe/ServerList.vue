@@ -126,6 +126,7 @@ const Reload = () => {
     margin-bottom: 8px;
     display: inline-block;
     width: 248px;
+    height: 184px;
   }
   .n-card__content {
     padding: 12px;

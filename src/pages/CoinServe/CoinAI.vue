@@ -93,11 +93,13 @@ const OpenSet = () => {
     </n-drawer-content>
   </n-drawer>
 
-  {{ WssData }}
-
   <div class="PageWrapper">
     <InfoOk :WssData="WssData"></InfoOk>
     <!-- <TradeBtn v-if="WssData.ServeID" :WssData="WssData" /> -->
+  </div>
+
+  <div>
+    {{ WssData }}
   </div>
 </template>
 
