@@ -2,6 +2,7 @@
 import { h, onMounted } from 'vue';
 import { GetAccountDetail } from '@/api/CoinAI/index';
 import { DateFormat, Decimal, WholeDirFormat } from '@/utils/filters';
+import TradeBtn from './TradeBtn.vue';
 
 const props = defineProps({
   WssData: Object,
@@ -71,11 +72,19 @@ onMounted(() => {
         </span>
       </div>
     </div>
+
+    <div class="TradeBtnWrapper">
+      <TradeBtn></TradeBtn>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+
+.TradeBtnWrapper {
+  margin-top: 12px;
+}
 
 .value {
   &.green {

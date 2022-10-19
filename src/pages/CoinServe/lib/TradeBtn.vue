@@ -3,6 +3,7 @@ import { Buy, Sell, Close, BuySPOT } from '@/api/CoinAI/Trade';
 
 const props = defineProps({
   WssData: Object,
+  NowIndex: Number,
 });
 
 const BuyUp = () => {
@@ -32,18 +33,23 @@ const BuySPOTFun = () => {
 
 <template>
   <div class="TradeBtn">
+    <n-button @click="CloseAll"> 全部清仓</n-button>
     <n-button type="primary" color="#18a058" @click="BuyUp">开多</n-button>
     <n-button type="primary" color="#d03050" @click="SellDown">开空</n-button>
-    <n-button type="primary" @click="CloseAll"> 清空所有持仓兑换成为USDT </n-button>
-    <n-button type="primary" color="#18a058" @click="BuySPOTFun">现货买入</n-button>
+    <n-button type="primary" secondary color="#18a058" @click="BuySPOTFun">买入现货</n-button>
   </div>
 </template>
 
 <style lang="less" scoped>
 .TradeBtn {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+
   .n-button {
-    margin: 20px;
+    width: 180px;
+    margin-bottom: 16px;
   }
 }
 </style>
