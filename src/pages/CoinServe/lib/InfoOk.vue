@@ -1,11 +1,47 @@
 <script setup lang="ts">
 import { DateFormat } from '@/utils/filters';
+import AuthModal from '@/lib/AuthModal';
 import { defineAsyncComponent } from 'vue';
+import { cloneDeep, ParseOkxKey } from '@/utils/tools';
+import { HandleKey } from '@/api/CoinAI/index';
+
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
 const props = defineProps({
   WssData: Object,
 });
+
+let HandleKeyStatus: boolean = $ref(false);
+let HandleKeyFormValue = $ref({
+  ApiKey: '',
+  Password: '',
+  Type: '',
+});
+
+const SendForm = async () => {
+  const res = await HandleKey({
+    ...cloneDeep(HandleKeyFormValue),
+    CoinServeID: props.WssData.ServeID,
+  });
+  if (res.Code > 0) {
+    window.$message.success(res.Msg);
+    // $router.go(-1);
+  }
+};
+
+const HandleKeySubmit = async (type: string) => {
+  HandleKeyStatus = true;
+  AuthModal({
+    IsPassword: true,
+    async OkBack(param) {
+      HandleKeyStatus = false;
+      HandleKeyFormValue.Password = param.Password;
+      HandleKeyFormValue.Type = type;
+      return SendForm();
+    },
+  });
+  HandleKeyStatus = false;
+};
 </script>
 
 <template>
@@ -30,7 +66,14 @@ const props = defineProps({
     </div>
     <div class="APIKeyWrapper">
       <template v-if="WssData.ApiKeyList">
-        <n-card v-for="item in WssData.ApiKeyList" :key="item.Name" :title="item.Name" embedded hoverable size="small">
+        <n-card
+          v-for="item in WssData.ApiKeyLSubmitist"
+          :key="item.Name"
+          :title="item.Name"
+          embedded
+          hoverable
+          size="small"
+        >
           <div class="Server__item">
             <span class="Server__label">ApiKey </span>
             <span class="Server__val">
@@ -51,9 +94,25 @@ const props = defineProps({
           </div>
           <template #footer>
             <div class="card_footer">
-              <n-button size="small" v-if="!item.IsTrade" type="success"> 启用 </n-button>
-              <n-button size="small" v-if="item.IsTrade" type="tertiary"> 禁用 </n-button>
-              <n-button size="small" type="error"> 删除 </n-button>
+              <n-button
+                size="small"
+                v-if="!item.IsTrade"
+                type="success"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit"
+              >
+                启用
+              </n-button>
+              <n-button
+                size="small"
+                v-if="item.IsTrade"
+                type="tertiary"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit"
+              >
+                禁用
+              </n-button>
+              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit"> 删除 </n-button>
               <n-button size="small" type="primary"> 查看详情 </n-button>
             </div>
           </template>

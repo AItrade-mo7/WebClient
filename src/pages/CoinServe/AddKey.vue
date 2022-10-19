@@ -33,7 +33,7 @@ const SendForm = async () => {
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);
-    // $router.go(-1);
+    $router.go(-1);
   }
 };
 
