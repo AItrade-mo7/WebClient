@@ -29,7 +29,8 @@ const SendForm = async () => {
   }
 };
 
-const HandleKeySubmit = async (type: string) => {
+const HandleKeySubmit = async (type: string, ApiKey: string) => {
+  HandleKeyFormValue = {};
   HandleKeyStatus = true;
   AuthModal({
     IsPassword: true,
@@ -37,6 +38,7 @@ const HandleKeySubmit = async (type: string) => {
       HandleKeyStatus = false;
       HandleKeyFormValue.Password = param.Password;
       HandleKeyFormValue.Type = type;
+      HandleKeyFormValue.ApiKey = ApiKey;
       return SendForm();
     },
   });
@@ -92,7 +94,7 @@ const HandleKeySubmit = async (type: string) => {
                 v-if="!item.IsTrade"
                 type="success"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed')"
+                @click="HandleKeySubmit('embed', item.ApiKey)"
               >
                 启用
               </n-button>
@@ -101,11 +103,16 @@ const HandleKeySubmit = async (type: string) => {
                 v-if="item.IsTrade"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed')"
+                @click="HandleKeySubmit('embed', item.ApiKey)"
               >
                 禁用
               </n-button>
-              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del')">
+              <n-button
+                size="small"
+                type="error"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit('del', item.ApiKey)"
+              >
                 删除
               </n-button>
               <n-button size="small" type="primary"> 查看详情 </n-button>
