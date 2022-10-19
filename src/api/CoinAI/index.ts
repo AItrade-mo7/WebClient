@@ -37,7 +37,7 @@ export const SetKey = (data: SetKeyParam): Promise<any> => {
 
 interface HandleKeyParam {
   CoinServeID: string;
-  ApiKey: string;
+  Index: number;
   Password: string;
 }
 

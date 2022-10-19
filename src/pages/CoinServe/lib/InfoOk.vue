@@ -13,7 +13,7 @@ const props = defineProps({
 
 let HandleKeyStatus: boolean = $ref(false);
 let HandleKeyFormValue = $ref({
-  ApiKey: '',
+  Index: -1,
   Password: '',
   Type: '',
 });
@@ -29,7 +29,7 @@ const SendForm = async () => {
   }
 };
 
-const HandleKeySubmit = async (type: string, ApiKey: string) => {
+const HandleKeySubmit = async (type: string, Index: number) => {
   HandleKeyFormValue = {};
   HandleKeyStatus = true;
   AuthModal({
@@ -38,7 +38,7 @@ const HandleKeySubmit = async (type: string, ApiKey: string) => {
       HandleKeyStatus = false;
       HandleKeyFormValue.Password = param.Password;
       HandleKeyFormValue.Type = type;
-      HandleKeyFormValue.ApiKey = ApiKey;
+      HandleKeyFormValue.Index = Index;
       return SendForm();
     },
   });
@@ -68,7 +68,14 @@ const HandleKeySubmit = async (type: string, ApiKey: string) => {
     </div>
     <div class="APIKeyWrapper">
       <template v-if="WssData.ApiKeyList">
-        <n-card v-for="item in WssData.ApiKeyList" :key="item.Name" :title="item.Name" embedded hoverable size="small">
+        <n-card
+          v-for="(item, index) in WssData.ApiKeyList"
+          :key="item.Name"
+          :title="item.Name"
+          embedded
+          hoverable
+          size="small"
+        >
           <div class="Server__item">
             <span class="Server__label">ApiKey </span>
             <span class="Server__val">
@@ -94,7 +101,7 @@ const HandleKeySubmit = async (type: string, ApiKey: string) => {
                 v-if="!item.IsTrade"
                 type="success"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', item.ApiKey)"
+                @click="HandleKeySubmit('embed', index)"
               >
                 启用
               </n-button>
@@ -103,16 +110,11 @@ const HandleKeySubmit = async (type: string, ApiKey: string) => {
                 v-if="item.IsTrade"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', item.ApiKey)"
+                @click="HandleKeySubmit('embed', index)"
               >
                 禁用
               </n-button>
-              <n-button
-                size="small"
-                type="error"
-                :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('del', item.ApiKey)"
-              >
+              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del', index)">
                 删除
               </n-button>
               <n-button size="small" type="primary"> 查看详情 </n-button>
