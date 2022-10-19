@@ -11,6 +11,18 @@ const props = defineProps({
   WssData: Object,
 });
 
+let DrawerStatus = $ref(false);
+
+const ShowKeyDetail = (index) => {
+  DrawerStatus = true;
+  NowKey = props.WssData.ApiKeyList[index];
+};
+const DrawerClose = () => {
+  DrawerStatus = false;
+};
+
+let NowKey = $ref({});
+
 let HandleKeyStatus: boolean = $ref(false);
 let HandleKeyFormValue = $ref({
   Index: -1,
@@ -117,12 +129,18 @@ const HandleKeySubmit = async (type: string, Index: number) => {
               <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del', index)">
                 删除
               </n-button>
-              <n-button size="small" type="primary"> 查看详情 </n-button>
+              <n-button size="small" type="primary" @click="ShowKeyDetail(index)"> 查看详情 </n-button>
             </div>
           </template>
         </n-card>
       </template>
     </div>
+
+    <n-drawer v-model:show="DrawerStatus" placement="bottom" :on-after-leave="DrawerClose">
+      <n-drawer-content :title="NowKey.Name">
+        《斯通纳》是美国作家约翰·威廉姆斯在 1965 年出版的小说。
+      </n-drawer-content>
+    </n-drawer>
   </div>
 </template>
 

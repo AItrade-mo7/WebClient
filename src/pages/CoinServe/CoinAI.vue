@@ -9,7 +9,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
 const InfoOk = defineAsyncComponent(() => import('./lib/InfoOk.vue'));
-const TradeBtn = defineAsyncComponent(() => import('./lib/TradeBtn.vue'));
 
 let Config = $ref({
   AppEnv: {},
