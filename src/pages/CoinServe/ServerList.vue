@@ -120,6 +120,7 @@ const Reload = () => {
   overflow: hidden;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   .n-card {
     margin: 0 4px;
     margin-bottom: 8px;

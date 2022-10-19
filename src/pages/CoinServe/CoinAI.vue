@@ -43,6 +43,14 @@ function StartWss(ServeID) {
     MessageEvent(res) {
       if (res.Response.Code == 1) {
         WssData = res.Response.Data;
+
+        Config.AppEnv.ApiKeyList = WssData.ApiKeyList;
+        Config.AppEnv.IP = WssData.IP;
+        Config.AppEnv.Name = WssData.Name;
+        Config.AppEnv.Port = WssData.Port;
+        Config.AppEnv.ServeID = WssData.ServeID;
+        Config.AppEnv.UserID = WssData.UserID;
+        Config.AppEnv.Version = WssData.Version;
       }
     },
   });
@@ -89,7 +97,7 @@ const OpenSet = () => {
 
   <div class="PageWrapper">
     <InfoOk :WssData="WssData"></InfoOk>
-    <TradeBtn v-if="WssData.ServeID" :WssData="WssData" />
+    <!-- <TradeBtn v-if="WssData.ServeID" :WssData="WssData" /> -->
   </div>
 </template>
 

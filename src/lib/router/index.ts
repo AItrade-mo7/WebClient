@@ -49,6 +49,11 @@ const routes: any = [
         description: 'CoinAI',
         component: () => import('@/pages/CoinServe/CoinAI.vue'),
       },
+      {
+        path: 'AddKey',
+        description: 'AddKey',
+        component: () => import('@/pages/CoinServe/AddKey.vue'),
+      },
     ],
   },
   {
