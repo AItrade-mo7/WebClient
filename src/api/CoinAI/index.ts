@@ -34,3 +34,22 @@ export const SetKey = (data: SetKeyParam): Promise<any> => {
     method: 'post',
   });
 };
+
+interface HandleKeyParam {
+  CoinServeID: string;
+  ApiKey: string;
+  Password: string;
+}
+
+export const HandleKey = (data: HandleKeyParam): Promise<any> => {
+  const param = {
+    ...data,
+    Password: Md5(data.Password),
+  };
+
+  return ajax_json({
+    url: '/CoinAI/HandleKey',
+    data: param,
+    method: 'post',
+  });
+};

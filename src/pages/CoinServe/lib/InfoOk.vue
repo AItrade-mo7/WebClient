@@ -19,7 +19,7 @@ const props = defineProps({
     </n-space>
 
     <div class="title">
-      APIKey 管控
+      APIKey 管理
       <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn">
         <n-button type="primary" size="tiny" circle>
           <template #icon>
@@ -54,7 +54,7 @@ const props = defineProps({
               <n-button size="small" v-if="!item.IsTrade" type="success"> 启用 </n-button>
               <n-button size="small" v-if="item.IsTrade" type="tertiary"> 禁用 </n-button>
               <n-button size="small" type="error"> 删除 </n-button>
-              <n-button size="small" type="primary"> 单独交易 </n-button>
+              <n-button size="small" type="primary"> 查看详情 </n-button>
             </div>
           </template>
         </n-card>
