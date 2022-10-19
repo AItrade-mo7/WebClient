@@ -76,7 +76,6 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           hoverable
           size="small"
         >
-          {{ item }}
           <div class="Server__item">
             <span class="Server__label">ApiKey </span>
             <span class="Server__val">

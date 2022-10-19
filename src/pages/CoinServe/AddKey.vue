@@ -94,7 +94,7 @@ const copyFun = () => {
 
 <template>
   <PageTitle>
-    新增 OKX Key 密钥
+    新增 OKX API 密钥
     <template #after>
       <RouterLink to="/About/OkxKey" className="CreateOkxKey__about">
         <n-button circle quaternary size="tiny" class="About__btn">
