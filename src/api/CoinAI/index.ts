@@ -71,12 +71,18 @@ interface OrderParam {
   CoinServeID: string;
   Index: number;
   Type: string;
+  Password: string;
 }
 
 export const Order = (data: OrderParam) => {
+  const param = {
+    ...data,
+    Password: Md5(data.Password),
+  };
+
   return ajax_json({
     url: '/CoinAI/Order',
-    data,
+    data: param,
     method: 'post',
   });
 };

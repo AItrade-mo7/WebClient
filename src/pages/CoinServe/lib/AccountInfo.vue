@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { h, onMounted } from 'vue';
+import { h, onMounted, defineEmits } from 'vue';
 import { GetAccountDetail } from '@/api/CoinAI/index';
 import { DateFormat, Decimal, WholeDirFormat } from '@/utils/filters';
 import OrderBtn from './OrderBtn.vue';
@@ -27,6 +27,10 @@ function GetDetail() {
     }
   });
 }
+
+const OrderEnd = () => {
+  GetDetail();
+};
 
 onMounted(() => {
   GetDetail();
@@ -74,7 +78,7 @@ onMounted(() => {
     </div>
 
     <div class="TradeBtnWrapper">
-      <OrderBtn></OrderBtn>
+      <OrderBtn :WssData="props.WssData" :NowIndex="NowIndex" @Success="OrderEnd" />
     </div>
   </div>
 </template>
