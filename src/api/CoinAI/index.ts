@@ -66,3 +66,17 @@ export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
     method: 'post',
   });
 };
+
+interface OrderParam {
+  CoinServeID: string;
+  Index: number;
+  Type: string;
+}
+
+export const Order = (data: OrderParam) => {
+  return ajax_json({
+    url: '/CoinAI/Order',
+    data,
+    method: 'post',
+  });
+};
