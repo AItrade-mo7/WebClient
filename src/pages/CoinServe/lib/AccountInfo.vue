@@ -43,7 +43,7 @@ onMounted(() => {
       </div>
     </div>
     <br />
-    <div class="title">当前持仓</div>
+    <div class="title" v-if="Positions.length > 0">当前持仓</div>
     <div class="data-wrapper" v-for="item in Positions">
       <div class="block">
         <span class="label"> 持仓产品 </span>
