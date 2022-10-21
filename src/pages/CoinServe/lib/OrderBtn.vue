@@ -38,9 +38,9 @@ const SendOrder = (Type: string) => {
     <n-button :disabled="SubmitStatus" @click="SendOrder('Close')"> 全部清仓</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#18a058" @click="SendOrder('Buy')">开多</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#d03050" @click="SendOrder('Sell')">开空</n-button>
-    <n-button :disabled="SubmitStatus" type="primary" secondary color="#18a058" @click="SendOrder('BuySPOT')"
-      >买入现货</n-button
-    >
+    <n-button :disabled="SubmitStatus" type="primary" secondary color="#18a058" @click="SendOrder('BuySPOT')">
+      买入现货
+    </n-button>
   </div>
 </template>
 
