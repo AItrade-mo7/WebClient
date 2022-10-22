@@ -180,7 +180,7 @@ const OperationSwitch = () => {
           <XIcon class="RTS-icon" name="QuestionCircleTwotone" />
           ;
         </div>
-        <div class="data-item">测算时间: {{ DateFormat(CoinTickerList[0].Ts, true) }} ;</div>
+        <div class="data-item">测算时间: {{ DateFormat(CoinTickerList[0].TimeUnix, true) }} ;</div>
         <RouterLink to="/CoinTicker/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
           <n-button size="small" type="success" secondary> 查看测算历史 </n-button>
         </RouterLink>
