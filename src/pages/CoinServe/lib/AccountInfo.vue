@@ -18,12 +18,8 @@ function GetDetail() {
     Index: props.NowIndex,
   }).then((res) => {
     if (res.Code > 0) {
-      if (res.Data.Balance.length > 0) {
-        Balance = res.Data.Balance;
-      }
-      if (res.Data.Positions.length > 0) {
-        Positions = res.Data.Positions;
-      }
+      Balance = res.Data.Balance;
+      Positions = res.Data.Positions;
     }
   });
 }
