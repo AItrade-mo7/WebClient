@@ -5,6 +5,7 @@ import { defineAsyncComponent } from 'vue';
 import { cloneDeep, ParseOkxKey } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
 import { UserInfoStore } from '@/store';
+import { WholeDirFormat } from '@/utils/filters';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
@@ -89,12 +90,30 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="value"> {{ WssData.Name }} </span>
       </div>
       <div class="block">
+        <span class="label">计价货币</span>
+        <span class="value"> {{ WssData.NowTicker.Unit }} </span>
+      </div>
+      <div class="block">
         <span class="label">杠杆倍数</span>
         <span class="value"> {{ WssData.TradeLever }} </span>
       </div>
       <div class="block">
         <span class="label">当前监听</span>
         <span class="value"> {{ WssData.TradeInst.InstID }} </span>
+      </div>
+      <div class="block">
+        <span class="label">当前价格</span>
+        <span class="value"> {{ WssData.TradeCoin.Last }} </span>
+      </div>
+      <div class="block">
+        <span class="label">交易方向</span>
+        <span class="value" :class="WholeDirFormat(WssData.NowTicker.WholeDir).class">
+          {{ WholeDirFormat(WssData.NowTicker.WholeDir).text }}
+        </span>
+      </div>
+      <div class="block">
+        <span class="label">数据时间</span>
+        <span class="value"> {{ WssData.NowTicker.TimeStr }} </span>
       </div>
     </n-space>
 
