@@ -5,6 +5,8 @@ import { defineAsyncComponent } from 'vue';
 import { GetCoinAILIst, RemoveCoinAI } from '@/api/CoinAI/GetList';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { cloneDeep } from '@/utils/tools';
+import AuthModal from '@/lib/AuthModal';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
@@ -19,11 +21,23 @@ const GetCoinAILIstFun = () => {
   });
 };
 
+let SubmitStatus: boolean = $ref(false);
 const RemoveCoinAIFun = (ServeID) => {
-  RemoveCoinAI({
-    ServeID,
-  }).then((res) => {
-    GetCoinAILIstFun();
+  SubmitStatus = true;
+  AuthModal({
+    IsPassword: true,
+    async OkBack(param) {
+      const Password = param.Password;
+      return RemoveCoinAI({
+        ServeID,
+        Password,
+      }).then((res) => {
+        if (res.Code > 0) {
+          GetCoinAILIstFun();
+        }
+        SubmitStatus = false;
+      });
+    },
   });
 };
 
@@ -88,7 +102,13 @@ const Reload = () => {
             <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button size="small" v-else-if="item.Status == -2" type="error" @click="RemoveCoinAIFun(item.ServeID)">
+            <n-button
+              size="small"
+              v-else-if="item.Status == -2"
+              type="error"
+              :disabled="SubmitStatus"
+              @click="RemoveCoinAIFun(item.ServeID)"
+            >
               删除
             </n-button>
             <n-button size="small" v-else type="info" @click="RemoveCoinAIFun(item.ServeID)"> 加载中。。。 </n-button>
