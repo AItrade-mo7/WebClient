@@ -86,3 +86,22 @@ export const Order = (data: OrderParam) => {
     method: 'post',
   });
 };
+
+interface EditConfigParam {
+  CoinServeID: string;
+  Password: string;
+  ServerName: string;
+}
+
+export const EditConfig = (data: EditConfigParam) => {
+  const param = {
+    ...data,
+    Password: Md5(data.Password),
+  };
+
+  return ajax_json({
+    url: '/CoinAI/EditConfig',
+    data: param,
+    method: 'post',
+  });
+};
