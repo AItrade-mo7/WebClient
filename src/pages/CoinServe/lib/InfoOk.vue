@@ -7,6 +7,7 @@ import { HandleKey } from '@/api/CoinAI/index';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
+const ServeConfig = defineAsyncComponent(() => import('./ServeConfig.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -25,6 +26,10 @@ const DrawerClose = () => {
   DrawerStatus = false;
   NowIndex = -1;
   NowKey = {};
+};
+
+const ShowConfig = (index) => {
+  DrawerStatus = true;
 };
 
 let HandleKeyStatus: boolean = $ref(false);
@@ -66,7 +71,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   <div class="InfoOk" v-if="WssData.DataSource">
     <div class="title">
       系统状态
-      <n-button type="primary" class="editBtn" size="tiny" circle>
+      <n-button type="primary" class="editBtn" @Click="ShowConfig" size="tiny" circle>
         <template #icon>
           <XIcon name="EditOutlined" />
         </template>
@@ -164,8 +169,11 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </div>
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
-      <n-drawer-content :title="NowKey.Name">
+      <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
         <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
+      </n-drawer-content>
+      <n-drawer-content v-if="!NowKey.Name">
+        <ServeConfig :WssData="props.WssData" />
       </n-drawer-content>
     </n-drawer>
   </div>
