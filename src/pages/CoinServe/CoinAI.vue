@@ -94,12 +94,11 @@ const OpenSet = () => {
 
   <div class="PageWrapper">
     <InfoOk :WssData="WssData"></InfoOk>
-    <!-- <TradeBtn v-if="WssData.ServeID" :WssData="WssData" /> -->
   </div>
 
-  <div>
+  <!-- <div>
     {{ WssData }}
-  </div>
+  </div> -->
 </template>
 
 <style lang="less" scoped>

@@ -107,9 +107,11 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </div>
       <div class="block">
         <span class="label">交易方向</span>
-        <span class="value" :class="WholeDirFormat(WssData.NowTicker.WholeDir).class">
-          {{ WholeDirFormat(WssData.NowTicker.WholeDir).text }}
-        </span>
+        <RouterLink to="/CoinTicker">
+          <span class="value" :class="WholeDirFormat(WssData.NowTicker.WholeDir).class">
+            {{ WholeDirFormat(WssData.NowTicker.WholeDir).text }}
+          </span>
+        </RouterLink>
       </div>
       <div class="block">
         <span class="label">数据时间</span>
