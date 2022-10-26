@@ -144,7 +144,6 @@ const HandleKeySubmit = async (type: string, Index: number) => {
               {{ item.Passphrase }}
             </span>
           </div>
-          {{ index }}
 
           <template #footer>
             <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
