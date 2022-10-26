@@ -9,6 +9,7 @@ import { UserInfoStore } from '@/store';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
 const ServeConfig = defineAsyncComponent(() => import('./ServeConfig.vue'));
+const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -175,6 +176,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </template>
     </div>
 
+    <div class="MainTradeBtn">
+      <OrderBtn :WssData="props.WssData" :NowIndex="-1" />
+    </div>
+
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
         <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
@@ -260,5 +265,9 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.MainTradeBtn {
+  padding: 20px;
 }
 </style>

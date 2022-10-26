@@ -225,14 +225,14 @@ const Reload = () => {
   width: 74px;
   flex-grow: 0;
   flex-shrink: 0;
-  color: #333;
+  color: #999;
   &::after {
     content: ':';
   }
 }
 
 .Server__val {
-  color: #999;
+  color: #333;
 }
 
 .Server__link {

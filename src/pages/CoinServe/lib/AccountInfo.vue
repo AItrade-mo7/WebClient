@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { h, onMounted, defineEmits } from 'vue';
+import { h, onMounted, defineAsyncComponent } from 'vue';
 import { GetAccountDetail } from '@/api/CoinAI/index';
 import { DateFormat, Decimal, WholeDirFormat } from '@/utils/filters';
-import OrderBtn from './OrderBtn.vue';
+const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
   WssData: Object,
