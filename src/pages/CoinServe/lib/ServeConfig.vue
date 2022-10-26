@@ -3,7 +3,6 @@ import { defineAsyncComponent } from 'vue';
 import { EditConfig } from '@/api/CoinAI/index';
 import AuthModal from '@/lib/AuthModal';
 import { cloneDeep, ParseOkxKey } from '@/utils/tools';
-const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -11,7 +10,7 @@ const props = defineProps({
 
 let SubmitStatus: boolean = $ref(false);
 let formValue = $ref({
-  ServerName: '',
+  ServerName: props.WssData.Name,
   Password: '',
 });
 
