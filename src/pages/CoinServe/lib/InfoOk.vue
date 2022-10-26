@@ -90,6 +90,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="label">杠杆倍数</span>
         <span class="value"> {{ WssData.TradeLever }} </span>
       </div>
+      <div class="block">
+        <span class="label">当前监听</span>
+        <span class="value"> {{ WssData.TradeInst.InstID }} </span>
+      </div>
     </n-space>
 
     <div class="title">
@@ -185,12 +189,14 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   font-size: 18px;
   display: flex;
   align-items: center;
+  margin-bottom: 6px;
   .addBtn {
     display: block;
     margin-left: 12px;
   }
 }
 .data-wrapper {
+  margin-bottom: 12px;
   .block {
     font-size: 14px;
     .label {
