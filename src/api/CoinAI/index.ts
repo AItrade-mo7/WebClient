@@ -72,12 +72,14 @@ interface OrderParam {
   Index: number;
   Type: string;
   Password: string;
+  Code: string;
 }
 
 export const Order = (data: OrderParam) => {
   const param = {
     ...data,
     Password: Md5(data.Password),
+    Code: Md5(data.Code),
   };
 
   return ajax_json({
