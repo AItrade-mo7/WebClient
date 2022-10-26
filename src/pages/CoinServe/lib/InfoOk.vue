@@ -64,17 +64,32 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 
 <template>
   <div class="InfoOk" v-if="WssData.DataSource">
-    <div class="title">系统状态</div>
+    <div class="title">
+      系统状态
+      <n-button type="primary" class="editBtn" size="tiny" circle>
+        <template #icon>
+          <XIcon name="EditOutlined" />
+        </template>
+      </n-button>
+    </div>
     <n-space class="data-wrapper">
       <div class="block">
         <span class="label">系统时间</span>
         <span class="value"> {{ DateFormat(WssData.SysTime, true, true) }} </span>
       </div>
+      <div class="block">
+        <span class="label">系统名称</span>
+        <span class="value"> {{ WssData.Name }} </span>
+      </div>
+      <div class="block">
+        <span class="label">杠杆倍数</span>
+        <span class="value"> {{ WssData.TradeLever }} </span>
+      </div>
     </n-space>
 
     <div class="title">
       APIKey 管理
-      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn">
+      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn" v-if="WssData.ApiKeyList.length > 0">
         <n-button type="primary" size="tiny" circle>
           <template #icon>
             <XIcon name="PlusOutlined" />
@@ -83,6 +98,14 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </RouterLink>
     </div>
     <div class="APIKeyWrapper">
+      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn" v-if="WssData.ApiKeyList.length < 1">
+        <n-button type="primary">
+          <template #icon>
+            <XIcon name="PlusOutlined" />
+          </template>
+          添加一个 OKX 秘钥
+        </n-button>
+      </RouterLink>
       <template v-if="WssData.ApiKeyList">
         <n-card
           v-for="(item, index) in WssData.ApiKeyList"
@@ -170,6 +193,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       }
     }
   }
+}
+
+.editBtn {
+  margin-left: 12px;
 }
 
 .APIKeyWrapper {
