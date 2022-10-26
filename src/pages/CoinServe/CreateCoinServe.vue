@@ -48,8 +48,8 @@ const copyFun = () => {
         <span class="lineHight">{{ Port ? Port : 'x' }}</span>
         端口 ！
         <br />
-        <span class="label">位置要求：</span> 优先推荐 AWS <span class="lineHight">美国</span>、
-        <span class="lineHight">日本</span> 或 <span class="lineHight">香港</span> 等地的 海外 主机。
+        <span class="label">位置要求：</span> 优先推荐 <span class="lineHight">阿里云香港</span> 的 虚拟主机 或 AWS
+        <span class="lineHight">美国</span>、 <span class="lineHight">日本</span> 等地的 海外 主机。
         <span class="hint"><span class="lineHight">墙内</span>无法通过交易所执行下单指令</span>
         <br />
         <span class="label">硬件配置：</span> 最低 <span class="lineHight"> 1GB </span> 内存
@@ -79,7 +79,7 @@ const copyFun = () => {
         <div>
           当然，您也可以热爱学习：
           <a href="https://meichangliang.feishu.cn/docx/doxcnZgnULZK8l5t2safbcnTtcf" target="_blank">
-            <n-button secondary type="success" class="linkHref"> AWS云服务器购买教程 </n-button>
+            <n-button secondary type="success" class="linkHref"> 阿里云香港虚拟主机购买教程 </n-button>
           </a>
           <a href="https://meichangliang.feishu.cn/docx/doxcnszFe2G6ReLP4rcqzW4O4Be" target="_blank">
             <n-button secondary type="success" class="linkHref"> CoinAI 部署指南 </n-button>
@@ -96,6 +96,24 @@ const copyFun = () => {
     <br />
     <div class="title">第五步：返回 CoinServe 列表并刷新</div>
     <div class="content">
+      执行完上述步骤后，如果没有出现错误，则您的邮箱将会收到一封提醒邮件。
+      <br />
+      <br />
+      步骤简单理解为：
+      <br />
+      填写端口号
+      <span class="lineHight"> -> </span>
+      复制指令
+      <span class="lineHight"> -> </span>
+      登录海外服务器粘贴并执行该指令。
+      <br />
+      <br />
+
+      1. 服务运行正常，可以在服务列表中看到 绿色的 【进入】 按钮，否则将是红色的【删除】按钮 <br />
+      2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的端口是否开放 <br />
+      3. 同一个端口重复部署，则会更新对应的服务，不同端口重复部署则会创建新的服务。重新部署，数据不会丢失。<br />
+      <br />
+      <br />
       <RouterLink to="/CoinServe">
         <n-button type="warning" class="submitBtn">
           <template #icon>
