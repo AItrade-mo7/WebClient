@@ -9,6 +9,14 @@ export const GetCoinAILIst = () => {
   });
 };
 
+export const GetPublicCoinAILIst = () => {
+  return ajax_json({
+    url: '/api/private/coinAI/PublicList',
+    data: null,
+    method: 'post',
+  });
+};
+
 interface RemoveCoinAIType {
   ServeID: string;
   Password: string;
