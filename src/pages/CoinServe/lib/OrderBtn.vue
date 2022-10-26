@@ -18,7 +18,7 @@ const SendOrder = (Type: string) => {
       const Password = param.Password;
       return Order({
         CoinServeID: props.WssData.ServeID,
-        Index: props.WssData.NowIndex,
+        Index: props.NowIndex,
         Type,
         Password,
       }).then((res) => {
@@ -35,6 +35,7 @@ const SendOrder = (Type: string) => {
 
 <template>
   <div class="TradeBtn">
+    {{}}
     <n-button :disabled="SubmitStatus" @click="SendOrder('Close')"> 全部清仓</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#18a058" @click="SendOrder('Buy')">开多</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#d03050" @click="SendOrder('Sell')">开空</n-button>

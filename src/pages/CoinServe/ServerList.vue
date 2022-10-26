@@ -101,6 +101,8 @@ const Reload = () => {
     </template>
   </PageTitle>
   <div class="PageWrapper">
+    <div class="title">我的 CoinAI 服务</div>
+    <div>部署私人的 CoinAI 自动交易服务，更加稳定可靠。交易延迟更低，不用排队。</div>
     <div class="ListWrapper">
       <n-card v-for="item in ServeList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
@@ -139,7 +141,9 @@ const Reload = () => {
         </RouterLink>
       </n-card>
     </div>
-
+    <hr />
+    <div class="title">公共 CoinAI 服务</div>
+    <div>开发者提供的 CoinAI 服务，位于测试服务器上，可能会定期进行清理。</div>
     <div class="ListWrapper">
       <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
@@ -171,11 +175,6 @@ const Reload = () => {
             <n-button size="small" v-else type="info" @click="RemoveCoinAIFun(item.ServeID)"> 加载中。。。 </n-button>
           </div>
         </template>
-      </n-card>
-      <n-card embedded hoverable size="small">
-        <RouterLink to="/CoinServe/CreateCoinServe" class="addBtn">
-          <XIcon name="PlusOutlined" />
-        </RouterLink>
       </n-card>
     </div>
   </div>
@@ -257,6 +256,13 @@ const Reload = () => {
     line-height: 148px;
     text-align: center;
   }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 10px;
 }
 
 .reload_btn {

@@ -4,6 +4,7 @@ import AuthModal from '@/lib/AuthModal';
 import { defineAsyncComponent } from 'vue';
 import { cloneDeep, ParseOkxKey } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
+import { UserInfoStore } from '@/store';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
@@ -142,8 +143,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
               {{ item.Passphrase }}
             </span>
           </div>
+          {{ index }}
+
           <template #footer>
-            <div class="card_footer">
+            <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
               <n-button
                 size="small"
                 v-if="item.IsTrade"
