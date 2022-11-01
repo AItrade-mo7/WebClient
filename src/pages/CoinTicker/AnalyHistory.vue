@@ -18,8 +18,8 @@ let Total = $ref(0);
 let Size = $ref(300);
 let IsChartView = $ref(true);
 let CurrentCoin = $ref('BTC');
-let OperationStatus = $ref(false);
 let ShowCoinRTS = $ref(false);
+let SetViewShow = $ref(false);
 
 let ScreenDir = $ref('');
 
@@ -63,8 +63,6 @@ const SwitchCoin = (Coin) => {
         CheckItemFunc(params.data.AKData.Analy.TimeID);
       });
     }
-
-    OperationStatus = true;
   });
 };
 
@@ -116,83 +114,76 @@ const CountUR = (ur: any) => {
 };
 
 // 图标和列表切换
-
 const SwitchChart = () => {
   IsChartView = !IsChartView;
   GetHistoryList(1);
 };
-
-const OperationSwitch = () => {
-  OperationStatus = !OperationStatus;
-};
 </script>
-
 <template>
-  <PageTitle>
-    72h系统测算结果
-    <template #after>
-      <n-button size="tiny" quaternary @click="OperationSwitch">
+  <PageTitle> 72h系统测算结果 </PageTitle>
+  <div class="AnalyHistory">
+    <n-button
+      type="warning"
+      class="SetBtnShow"
+      @click="
+        SetViewShow = true;
+        ShowCoinRTS = false;
+      "
+    >
+      <template #icon>
+        <XIcon name="EyeOutlined" />
+      </template>
+    </n-button>
+    <div class="OperationWrapper" v-if="SetViewShow" :class="ScreenDir">
+      <n-button type="error" class="SetBtn" @click="SetViewShow = false">
         <template #icon>
-          <XIcon spin name="SettingOutlined" />
+          <XIcon name="EyeInvisibleTwotone" />
         </template>
       </n-button>
-    </template>
-  </PageTitle>
-  <div class="AnalyHistory">
-    <n-modal v-model:show="OperationStatus">
-      <div class="OperationWrapper">
-        <n-pagination
-          v-model:page="Current"
-          size="small"
-          :item-count="Total"
-          :page-size="Size"
-          :on-update:page="GetHistoryList"
-          :page-slot="6"
-        />
-        <div class="OperationWrapper_btnWrapper">
-          <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
-            当前: {{ IsChartView ? '图表展示' : '数列展示' }}
-          </n-button>
-          <template v-if="IsChartView">
-            <n-button
-              v-if="CurrentCoin === 'ETH'"
-              @click="SwitchCoin('BTC')"
-              type="info"
-              size="tiny"
-              class="SwitchCoinBtn"
-              :disabled="CurrentCoin === 'BTC'"
-            >
-              当前:ETH走势
-            </n-button>
-            <n-button
-              v-if="CurrentCoin === 'BTC'"
-              @click="SwitchCoin('ETH')"
-              type="info"
-              size="tiny"
-              class="SwitchCoinBtn"
-              :disabled="CurrentCoin === 'ETH'"
-            >
-              当前:BTC走势
-            </n-button>
-          </template>
-        </div>
-        <n-button @click="SwitchScreen" type="warning" size="tiny" class="SwitchScreen">
-          当前:{{ ScreenDir == 'mobile' ? '横屏' : '竖屏' }}
-        </n-button>
-        <div v-if="ShowCoinRTS">
-          <CoinRTS type="Earning"></CoinRTS>
-        </div>
 
-        <div class="EarnCountShowBtn">
-          <n-button @click="ShowCoinRTS = !ShowCoinRTS" type="warning" strong secondary circle size="tiny">
-            <template #icon>
-              <XIcon v-if="ShowCoinRTS" name="ArrowUpOutlined" />
-              <XIcon v-else name="ArrowDownOutlined" />
-            </template>
+      <div class="OperationWrapper_btnWrapper">
+        <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
+          当前: {{ IsChartView ? '图表展示' : '数列展示' }}
+        </n-button>
+        <template v-if="IsChartView">
+          <n-button
+            v-if="CurrentCoin === 'ETH'"
+            @click="SwitchCoin('BTC')"
+            type="info"
+            size="tiny"
+            class="SwitchCoinBtn"
+            :disabled="CurrentCoin === 'BTC'"
+          >
+            当前:ETH走势
           </n-button>
-        </div>
+          <n-button
+            v-if="CurrentCoin === 'BTC'"
+            @click="SwitchCoin('ETH')"
+            type="info"
+            size="tiny"
+            class="SwitchCoinBtn"
+            :disabled="CurrentCoin === 'ETH'"
+          >
+            当前:BTC走势
+          </n-button>
+        </template>
       </div>
-    </n-modal>
+      <n-button @click="SwitchScreen" type="warning" size="tiny" class="SwitchScreen">
+        当前:{{ ScreenDir == 'mobile' ? '横屏' : '竖屏' }}
+      </n-button>
+      <div v-if="ShowCoinRTS">
+        <CoinRTS type="Earning"></CoinRTS>
+      </div>
+
+      <div class="EarnCountShowBtn">
+        <n-button @click="ShowCoinRTS = !ShowCoinRTS" type="warning" strong secondary circle size="tiny">
+          <template #icon>
+            <XIcon v-if="ShowCoinRTS" name="ArrowUpOutlined" />
+            <XIcon v-else name="ArrowDownOutlined" />
+          </template>
+        </n-button>
+      </div>
+    </div>
 
     <div v-if="!IsChartView">
       <template v-for="item in AnalyKdataList">
@@ -234,6 +225,30 @@ const OperationSwitch = () => {
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+.SetBtnShow {
+  position: absolute;
+  z-index: 8;
+  right: 50px;
+  top: 50px;
+}
+.OperationWrapper {
+  text-align: left;
+}
+.SetBtn {
+  margin-left: 12px;
+  margin-bottom: 0;
+}
+
+.SetBtn,
+.SetBtnShow {
+  width: 30px;
+  height: 30px;
+  .n-icon-slot {
+    .XIcon {
+      font-size: 20px;
+    }
+  }
+}
 
 .DataBox {
   margin: 10px 0;
@@ -294,6 +309,10 @@ const OperationSwitch = () => {
   }
 }
 
+.SwitchCoinBtn {
+  margin-bottom: 10px;
+}
+
 .ChartWrapper {
   position: absolute;
   left: 0;
@@ -324,8 +343,9 @@ const OperationSwitch = () => {
 
 .EarnCountShowBtn {
   float: right;
-  height: 0px;
   position: relative;
+  margin-top: 20px;
+
   .n-button {
     position: absolute;
     right: 0;
