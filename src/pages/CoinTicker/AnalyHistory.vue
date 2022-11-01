@@ -133,15 +133,15 @@ const SwitchChart = () => {
       </template>
     </n-button>
     <div class="OperationWrapper" v-if="SetViewShow" :class="ScreenDir">
-      <n-button type="error" class="SetBtn" @click="SetViewShow = false">
-        <template #icon>
-          <XIcon name="EyeInvisibleTwotone" />
-        </template>
-      </n-button>
       <n-date-picker v-model:value="TimeRange" type="datetimerange" clearable :on-confirm="TimeRangeChange" />
 
       <div class="OperationWrapper_btnWrapper">
-        <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
+        <n-button type="error" @click="SetViewShow = false" size="small">
+          <template #icon>
+            <XIcon name="EyeInvisibleTwotone" />
+          </template>
+        </n-button>
+        <n-button @click="SwitchChart" type="warning" size="small">
           当前: {{ IsChartView ? '图表展示' : '数列展示' }}
         </n-button>
         <template v-if="IsChartView">
@@ -149,8 +149,7 @@ const SwitchChart = () => {
             v-if="CurrentCoin === 'ETH'"
             @click="SwitchCoin('BTC')"
             type="info"
-            size="tiny"
-            class="SwitchCoinBtn"
+            size="small"
             :disabled="CurrentCoin === 'BTC'"
           >
             当前:ETH走势
@@ -159,28 +158,26 @@ const SwitchChart = () => {
             v-if="CurrentCoin === 'BTC'"
             @click="SwitchCoin('ETH')"
             type="info"
-            size="tiny"
-            class="SwitchCoinBtn"
+            size="small"
             :disabled="CurrentCoin === 'ETH'"
           >
             当前:BTC走势
           </n-button>
         </template>
-      </div>
-      <n-button @click="SwitchScreen" type="warning" size="tiny" class="SwitchScreen">
-        当前:{{ ScreenDir == 'mobile' ? '横屏' : '竖屏' }}
-      </n-button>
-      <div v-if="ShowCoinRTS">
-        <CoinRTS type="Earning"></CoinRTS>
-      </div>
+        <n-button @click="SwitchScreen" type="warning" size="small">
+          当前:{{ ScreenDir == 'mobile' ? '横屏' : '竖屏' }}
+        </n-button>
 
-      <div class="EarnCountShowBtn">
         <n-button @click="ShowCoinRTS = !ShowCoinRTS" type="warning" strong secondary circle size="tiny">
           <template #icon>
             <XIcon v-if="ShowCoinRTS" name="ArrowUpOutlined" />
             <XIcon v-else name="ArrowDownOutlined" />
           </template>
         </n-button>
+      </div>
+
+      <div v-if="ShowCoinRTS">
+        <CoinRTS type="Earning"></CoinRTS>
       </div>
     </div>
 
@@ -233,10 +230,6 @@ const SwitchChart = () => {
 .OperationWrapper {
   text-align: left;
 }
-.SetBtn {
-  margin-left: 12px;
-  margin-bottom: 0;
-}
 
 .SetBtn,
 .SetBtnShow {
@@ -277,11 +270,6 @@ const SwitchChart = () => {
   }
 }
 
-.SwitchBtn {
-  margin-right: 8px;
-  margin-left: 12px;
-}
-
 .SwitchScreen {
   margin-left: 12px;
 }
@@ -290,8 +278,8 @@ const SwitchChart = () => {
   position: absolute;
   max-width: 90vw;
   max-height: 80vh;
-  right: 2vw;
-  top: 2vh;
+  right: 46px;
+  top: 46px;
   z-index: 9;
   padding: 10px;
   border-radius: 6px;
@@ -301,15 +289,18 @@ const SwitchChart = () => {
   overflow-y: scroll;
 
   .OperationWrapper_btnWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     margin-top: 14px;
+    justify-content: space-between;
+    .n-button {
+      margin: 8px;
+    }
   }
   .n-pagination {
     justify-content: center;
   }
-}
-
-.SwitchCoinBtn {
-  margin-bottom: 10px;
 }
 
 .ChartWrapper {
@@ -337,18 +328,6 @@ const SwitchChart = () => {
     top: 0;
     transform-origin: 0 0 0;
     transform: rotate(90deg);
-  }
-}
-
-.EarnCountShowBtn {
-  float: right;
-  position: relative;
-  margin-top: 20px;
-
-  .n-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 }
 
