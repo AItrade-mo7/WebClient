@@ -3,6 +3,7 @@ import { Logo } from '@/config/constant';
 import { logout } from '@/api/Account';
 import { UserInfoStore } from '@/store';
 import { defineAsyncComponent } from 'vue';
+import { TopBarStore } from '@/store';
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
@@ -49,6 +50,13 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
           <XIcon name="LoginOutlined" />
         </template>
         退出登录
+      </n-button>
+      <br />
+      <n-button type="info" @click="TopBarStore.open()">
+        <template #icon>
+          <XIcon name="MenuFoldOutlined" />
+        </template>
+        开始
       </n-button>
       <br />
     </div>
