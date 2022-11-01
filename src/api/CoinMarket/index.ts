@@ -10,11 +10,7 @@ export const GetNowTickerAnaly = () => {
 
 export interface CoinHistoryParam {
   InstID: string;
-  Size: number;
-  Current: number;
-  Sort: {
-    [key: string]: 1 | -1;
-  };
+  TimeUnix: number[];
 }
 
 export const GetCoinHistory = (data: CoinHistoryParam) => {
@@ -38,11 +34,7 @@ export const GetInstList = (data: InstParam): Promise<any> => {
 };
 
 export interface GetAnalyHistoryParam {
-  Size: number;
-  Current: number;
-  Sort: {
-    [key: string]: 1 | -1;
-  };
+  TimeUnix: number[];
 }
 
 export const GetAnalyList = (data: GetAnalyHistoryParam): Promise<any> => {

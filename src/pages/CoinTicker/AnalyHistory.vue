@@ -3,7 +3,7 @@ import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep, mStorage } from '@/utils/tools';
 import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
-import { WholeDirFormat } from '@/utils/filters';
+import { WholeDirFormat, DateFormat } from '@/utils/filters';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
@@ -13,32 +13,27 @@ const CoinRTS = defineAsyncComponent(() => import('@/lib/CoinRTS.vue'));
 let CoinKdataList = $ref([]);
 let HistoryList = $ref([]);
 let AnalyKdataList = $ref([]);
-let Current = $ref(0);
-let Total = $ref(0);
-let Size = $ref(300);
 let IsChartView = $ref(true);
 let CurrentCoin = $ref('BTC');
 let ShowCoinRTS = $ref(false);
 let SetViewShow = $ref(false);
-
 let ScreenDir = $ref('');
 
-const GetHistoryList = (page: number) => {
-  Current = page;
-  GetAnalyList({
-    Size: Size,
-    Current: Current - 1,
-    Sort: {
-      TimeUnix: -1,
-    },
-  }).then((res) => {
-    console.log(res);
+let TimeRange = $ref([0, 0]);
 
+function TimeRangeChange(val) {
+  TimeRange = cloneDeep(val);
+  GetHistoryList();
+}
+
+const GetHistoryList = () => {
+  console.log('11', DateFormat(TimeRange[0]), DateFormat(TimeRange[1]));
+
+  GetAnalyList({
+    TimeUnix: TimeRange,
+  }).then((res) => {
     if (res.Code > 0) {
       HistoryList = res.Data.List;
-      Total = res.Data.Total;
-      Current = res.Data.Current + 1;
-      Size = res.Data.Size;
       SwitchCoin(CurrentCoin);
     }
   });
@@ -46,13 +41,11 @@ const GetHistoryList = (page: number) => {
 
 const SwitchCoin = (Coin) => {
   CurrentCoin = Coin;
+  console.log('22', DateFormat(TimeRange[0]), DateFormat(TimeRange[1]));
+
   GetCoinHistory({
+    TimeUnix: TimeRange,
     InstID: CurrentCoin,
-    Size: Size,
-    Current: Current - 1,
-    Sort: {
-      TimeUnix: -1,
-    },
   }).then((res) => {
     CoinKdataList = res.Data.List;
     AnalyKdataList = MergeAnalyKdata(cloneDeep(HistoryList), cloneDeep(CoinKdataList));
@@ -67,7 +60,12 @@ const SwitchCoin = (Coin) => {
 };
 
 onMounted(() => {
-  GetHistoryList(1);
+  var timeEnd = Date.now();
+  var timeStart = timeEnd - 3600 * 1000 * 72;
+
+  TimeRange = [timeStart, timeEnd];
+
+  GetHistoryList();
   var localScreen = mStorage.get('ScreenDir');
   if (localScreen == 'mobile') {
     ScreenDir = 'mobile';
@@ -116,11 +114,11 @@ const CountUR = (ur: any) => {
 // 图标和列表切换
 const SwitchChart = () => {
   IsChartView = !IsChartView;
-  GetHistoryList(1);
+  GetHistoryList();
 };
 </script>
 <template>
-  <PageTitle> 72h系统测算结果 </PageTitle>
+  <PageTitle> 系统测算历史 </PageTitle>
   <div class="AnalyHistory">
     <n-button
       type="warning"
@@ -140,6 +138,7 @@ const SwitchChart = () => {
           <XIcon name="EyeInvisibleTwotone" />
         </template>
       </n-button>
+      <n-date-picker v-model:value="TimeRange" type="datetimerange" clearable :on-confirm="TimeRangeChange" />
 
       <div class="OperationWrapper_btnWrapper">
         <n-button @click="SwitchChart" type="warning" size="tiny" class="SwitchBtn">
