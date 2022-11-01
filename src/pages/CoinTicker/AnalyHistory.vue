@@ -133,7 +133,7 @@ const SwitchChart = () => {
       </template>
     </n-button>
     <div class="OperationWrapper" v-if="SetViewShow" :class="ScreenDir">
-      <n-date-picker v-model:value="TimeRange" type="datetimerange" clearable :on-confirm="TimeRangeChange" />
+      <n-date-picker v-model:value="TimeRange" type="daterange" clearable :on-confirm="TimeRangeChange" />
 
       <div class="OperationWrapper_btnWrapper">
         <n-button type="error" @click="SetViewShow = false" size="small">
