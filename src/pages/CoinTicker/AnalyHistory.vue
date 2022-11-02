@@ -27,8 +27,6 @@ function TimeRangeChange(val) {
 }
 
 const GetHistoryList = () => {
-  console.log('11', DateFormat(TimeRange[0]), DateFormat(TimeRange[1]));
-
   GetAnalyList({
     TimeUnix: TimeRange,
   }).then((res) => {
@@ -41,7 +39,6 @@ const GetHistoryList = () => {
 
 const SwitchCoin = (Coin) => {
   CurrentCoin = Coin;
-  console.log('22', DateFormat(TimeRange[0]), DateFormat(TimeRange[1]));
 
   GetCoinHistory({
     TimeUnix: TimeRange,
@@ -216,11 +213,24 @@ const SwitchChart = () => {
         <ListPage v-if="DrawerStatus" :TimeID="DetailTimeID"></ListPage>
       </n-drawer-content>
     </n-drawer>
+
+    <div class="AKItem">
+      <div>
+        <span class="date">2022-11-02T21:15:00</span>
+        <span class="version">3</span>
+      </div>
+      <div>版本: 3</div>
+      <div>开: 112258</div>
+      <div>高: 112258</div>
+      <div>低: 112258</div>
+      <div>收: 112258</div>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+
 .SetBtnShow {
   position: absolute;
   z-index: 8;

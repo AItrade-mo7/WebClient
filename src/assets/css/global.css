@@ -72,3 +72,16 @@ a {
 .EchartsTooltip {
   z-index: 1000 !important;
 }
+.AKItem {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+}
+.AKItem .date {
+  color: blue;
+}
+.AKItem .version {
+  color: red;
+  margin-left: 4px;
+}

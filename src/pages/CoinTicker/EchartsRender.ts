@@ -136,6 +136,15 @@ export const EchartsRender = (AKList) => {
       axisPointer: {
         type: 'cross',
       },
+      formatter(params) {
+        const itemData = params[0];
+        const index = itemData.data[0];
+        const AKListIndex = AKList.length - (index + 1);
+        const data = AKList[AKListIndex];
+        console.log('data', data);
+
+        return `<div class="AKItem">${data.TimeDate}</div>`;
+      },
     },
     grid: {
       top: '40',
@@ -172,7 +181,6 @@ export const EchartsRender = (AKList) => {
         end: 100,
       },
     ],
-
     series: [
       {
         name: 'K线',

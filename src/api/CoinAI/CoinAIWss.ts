@@ -38,7 +38,6 @@ export function NewSocket(opt: WssType) {
   // const socketUrl = 'ws://localhost:8999/wss';
   // const socketUrl = `ws://50.18.29.218:9210/CoinAI/wss?host=${opt.Host}`;
   // const socketUrl = `ws://trade-api.mo7.cc:9210/CoinAI/wss?host=${opt.Host}`;
-  // console.log(socketUrl);
 
   const Auth = {
     Token: getToken(),

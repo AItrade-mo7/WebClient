@@ -45,8 +45,6 @@ const GetCoinTickerList = async (TimeID?: string) => {
 
 let timer: any = null;
 onMounted(() => {
-  console.log(props.TimeID);
-
   if (props.TimeID) {
     GetCoinTickerList(props.TimeID);
     return;
