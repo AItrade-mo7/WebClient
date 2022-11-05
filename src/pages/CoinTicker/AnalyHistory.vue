@@ -50,7 +50,11 @@ const SwitchCoin = (Coin) => {
     if (IsChartView) {
       const myChart = EchartsRender(cloneDeep(AnalyKdataList));
       myChart.on('click', (params: any) => {
-        CheckItemFunc(params.data.AKData.Analy.TimeID);
+        const itemData = params.data;
+        const index = itemData[0];
+        const AKListIndex = AnalyKdataList.length - (index + 1);
+        const AKData = AnalyKdataList[AKListIndex];
+        CheckItemFunc(AKData.Analy.TimeID);
       });
     }
   });

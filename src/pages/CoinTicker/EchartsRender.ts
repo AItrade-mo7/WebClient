@@ -134,8 +134,6 @@ export const EchartsRender = (AKList) => {
         const AKListIndex = AKList.length - (index + 1);
         const data = AKList[AKListIndex];
 
-        console.log(data);
-
         return `<div class="AKItem ${WholeDirFormat(data.Dir).class}">
           <div class="warn">V=<span>${data.Analy.Version}</span></div>
           <div>开=<span>${data.O}</span></div>
