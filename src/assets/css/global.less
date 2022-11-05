@@ -83,18 +83,39 @@ a {
 }
 
 .EchartsTooltip {
+  position: fixed !important;
   z-index: 1000 !important;
+  top: 40px !important;
+  left: 8px !important;
+  transform: none !important;
+  background-color: rgba(255, 255, 255, 0.7) !important;
 }
-.AKItem {
+
+.TestDiv {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.AKItem {
   font-size: 12px;
-  .date {
-    color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  div {
+    margin-right: 6px;
   }
-  .version {
+
+  &.red span {
     color: red;
-    margin-left: 4px;
   }
+  &.green span {
+    color: green;
+  }
+
+  .warn span {
+    color: #f0b90b;
+  }
+
+  color: #000 !important;
 }

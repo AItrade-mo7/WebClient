@@ -1,5 +1,5 @@
 import * as echarts from 'echarts';
-import { DateFormat } from '@/utils/filters';
+import { DateFormat, WholeDirFormat } from '@/utils/filters';
 
 const downColor = '#ec0000';
 const downBorderColor = '#8A0000';
@@ -59,20 +59,9 @@ function CreatePointData(AKData) {
       yAxis = AKData.L;
       textOffset = 10;
       break;
-    case 2:
-      text = '震';
-      color = '#82E0AA';
-      yAxis = AKData.L;
-      textOffset = 10;
-      break;
     case -1:
       text = '跌';
       color = '#E74C3C';
-      yAxis = AKData.H;
-      break;
-    case -2:
-      text = '震';
-      color = '#F1948A';
       yAxis = AKData.H;
       break;
     default:
@@ -80,6 +69,9 @@ function CreatePointData(AKData) {
       color = '#808B96';
       yAxis = AKData.C;
       break;
+  }
+  if (!AKData.Analy.WholeDir) {
+    return {};
   }
   return {
     coord: [AnyTime, yAxis],
@@ -142,7 +134,16 @@ export const EchartsRender = (AKList) => {
         const AKListIndex = AKList.length - (index + 1);
         const data = AKList[AKListIndex];
 
-        return `<div class="AKItem">${data.TimeDate}</div>`;
+        console.log(data);
+
+        return `<div class="AKItem ${WholeDirFormat(data.Dir).class}">
+          <div class="warn">V=<span>${data.Analy.Version}</span></div>
+          <div>开=<span>${data.O}</span></div>
+          <div>高=<span>${data.H}</span></div>
+          <div>低=<span>${data.L}</span></div>
+          <div>收=<span>${data.C}</span></div>
+          <div><span>(${data.RosePer}%)</span></div>
+        </div>`;
       },
     },
     grid: {

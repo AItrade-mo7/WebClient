@@ -70,18 +70,35 @@ a {
   max-width: 80vw;
 }
 .EchartsTooltip {
+  position: fixed !important;
   z-index: 1000 !important;
+  top: 40px !important;
+  left: 8px !important;
+  transform: none !important;
+  background-color: rgba(255, 255, 255, 0.7) !important;
 }
-.AKItem {
+.TestDiv {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.AKItem {
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  color: #000 !important;
 }
-.AKItem .date {
-  color: blue;
+.AKItem div {
+  margin-right: 6px;
 }
-.AKItem .version {
+.AKItem.red span {
   color: red;
-  margin-left: 4px;
+}
+.AKItem.green span {
+  color: green;
+}
+.AKItem .warn span {
+  color: #f0b90b;
 }

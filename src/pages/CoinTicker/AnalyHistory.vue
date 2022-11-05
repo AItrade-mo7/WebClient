@@ -121,23 +121,19 @@ const SwitchChart = () => {
       type="warning"
       class="SetBtnShow"
       @click="
-        SetViewShow = true;
+        SetViewShow = !SetViewShow;
         ShowCoinRTS = false;
       "
     >
       <template #icon>
-        <XIcon name="EyeOutlined" />
+        <XIcon v-if="SetViewShow" name="EyeOutlined" />
+        <XIcon v-if="!SetViewShow" name="EyeInvisibleTwotone" />
       </template>
     </n-button>
     <div class="OperationWrapper" v-if="SetViewShow" :class="ScreenDir">
       <n-date-picker v-model:value="TimeRange" type="daterange" clearable :on-confirm="TimeRangeChange" />
 
       <div class="OperationWrapper_btnWrapper">
-        <n-button type="error" @click="SetViewShow = false" size="small">
-          <template #icon>
-            <XIcon name="EyeInvisibleTwotone" />
-          </template>
-        </n-button>
         <n-button @click="SwitchChart" type="warning" size="small">
           当前: {{ IsChartView ? '图表展示' : '数列展示' }}
         </n-button>
@@ -213,18 +209,6 @@ const SwitchChart = () => {
         <ListPage v-if="DrawerStatus" :TimeID="DetailTimeID"></ListPage>
       </n-drawer-content>
     </n-drawer>
-
-    <div class="AKItem">
-      <div>
-        <span class="date">2022-11-02T21:15:00</span>
-        <span class="version">3</span>
-      </div>
-      <div>版本: 3</div>
-      <div>开: 112258</div>
-      <div>高: 112258</div>
-      <div>低: 112258</div>
-      <div>收: 112258</div>
-    </div>
   </div>
 </template>
 
@@ -233,7 +217,7 @@ const SwitchChart = () => {
 
 .SetBtnShow {
   position: absolute;
-  z-index: 8;
+  z-index: 1001;
   right: 50px;
   top: 50px;
 }
