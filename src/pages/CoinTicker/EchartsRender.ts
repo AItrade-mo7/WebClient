@@ -141,7 +141,6 @@ export const EchartsRender = (AKList) => {
         const index = itemData.data[0];
         const AKListIndex = AKList.length - (index + 1);
         const data = AKList[AKListIndex];
-        console.log('data', data);
 
         return `<div class="AKItem">${data.TimeDate}</div>`;
       },
