@@ -53,6 +53,11 @@ const Submit = async () => {
     <h2 className="title">
       <div>注册</div>
     </h2>
+    <div class="title-hint">
+      尽量使用常用邮箱来注册，以便第一时间接受行情消息。可以在
+      <RouterLink to="/Personal">个人中心</RouterLink>
+      修改邮箱。
+    </div>
 
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item">
@@ -110,5 +115,12 @@ const Submit = async () => {
 }
 .forget {
   text-align: center;
+}
+
+.title-hint {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 12px;
+  max-width: 400px;
 }
 </style>

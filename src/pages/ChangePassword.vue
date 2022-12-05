@@ -78,7 +78,7 @@ const Submit = async () => {
           type="password"
           name="Password"
           show-password-on="click"
-          placeholder="请输入密码"
+          placeholder="请输入新密码"
           :inputProps="{ autocomplete: 'password' }"
         ></n-input>
       </n-form-item>
