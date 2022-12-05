@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, onMounted, onUnmounted } from 'vue';
-import { GetNowTickerAnaly, GetAnalyDetail } from '@/api/CoinMarket';
+import { GetNowTickerAnaly, GetAnalyDetail, GetNowTrend } from '@/api/CoinMarket';
 import { defineAsyncComponent } from 'vue';
 import { DateFormat } from '@/utils/filters';
 import { WholeDirFormat } from '@/utils/filters';
@@ -43,6 +43,15 @@ const GetCoinTickerList = async (TimeID?: string) => {
   }
 };
 
+let TrendList = $ref([]);
+const GetTrend = () => {
+  GetNowTrend().then((res) => {
+    if (res.Data && res.Data.length > 0) {
+      TrendList = res.Data;
+    }
+  });
+};
+
 let timer: any = null;
 onMounted(() => {
   if (props.TimeID) {
@@ -50,10 +59,12 @@ onMounted(() => {
     return;
   }
 
+  GetTrend();
   GetCoinTickerList();
 
   clearInterval(timer);
   timer = setInterval(() => {
+    GetTrend();
     GetCoinTickerList();
   }, 180000);
 });
@@ -190,6 +201,12 @@ const OperationSwitch = () => {
             绑定账户开启程序化交易
           </n-button>
         </RouterLink>
+      </n-space>
+      <n-space class="data-title" v-if="TrendList.length > 0">
+        <div class="data-item value" :class="WholeDirFormat(TrendList[0].Dir).class">
+          当前市场趋势: {{ WholeDirFormat(TrendList[0].Dir).text }} ;
+        </div>
+        <div class="data-item">趋势交易对: {{ TrendList[0].InstID }} ;</div>
       </n-space>
     </div>
     <div class="TableWrapper">

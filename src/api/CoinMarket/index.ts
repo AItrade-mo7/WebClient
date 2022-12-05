@@ -56,3 +56,11 @@ export const GetAnalyDetail = (data: GetAnalyDetailParam): Promise<any> => {
     method: 'post',
   });
 };
+
+export const GetNowTrend = (): Promise<any> => {
+  return ajax_json({
+    url: '/CoinMarket/public/GetNowTrend',
+    data: null,
+    method: 'post',
+  });
+};
