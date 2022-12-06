@@ -1,7 +1,7 @@
 import type { resType, resDataType } from './utils.d';
 import { logout } from '@/api/Account';
 
-export const res_dispose = (response: resType): resDataType => {
+export const res_dispose = (response: any): resDataType => {
   const data = response.data;
 
   // 账号尚未注册

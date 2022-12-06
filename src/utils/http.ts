@@ -26,7 +26,7 @@ function set_axios_config() {
   service.interceptors.response.use(
     (response: any) => {
       LoadingStore.close();
-      return res_dispose(response);
+      return res_dispose(response) as any;
     },
     (error) => {
       LoadingStore.close();
