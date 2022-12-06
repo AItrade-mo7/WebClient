@@ -117,7 +117,7 @@ const copyFun = () => {
         </n-input>
       </n-form-item>
 
-      <n-form-item class="myForm__item" label="密码短语">
+      <n-form-item class="myForm__item" label="密码">
         <n-input
           name="Passphrase"
           v-model:value="formValue.Passphrase"
