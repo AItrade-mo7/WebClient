@@ -50,20 +50,6 @@ const Submit = async () => {
   SubmitStatus = false;
 };
 
-const readPlate = async () => {
-  const text = await navigator.clipboard.readText();
-  const obj = ParseOkxKey(text);
-  if (obj.ApiKey.length > 10) {
-    window.$message.success('解析成功!');
-    formValue = {
-      ...formValue,
-      ...obj,
-    };
-  } else {
-    window.$message.warning('解析失败!');
-  }
-};
-
 function GetConfig(ServeID) {
   GetCoinAIConfig({
     CoinServeID: ServeID,
@@ -166,9 +152,6 @@ const copyFun = () => {
       <n-form-item class="myForm__item">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
       </n-form-item>
-      <div class="page__footer">
-        <n-button size="tiny" tertiary type="success" @click="readPlate"> 读取剪切板 </n-button>
-      </div>
     </n-form>
   </div>
 </template>
