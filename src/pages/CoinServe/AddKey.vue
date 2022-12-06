@@ -139,7 +139,7 @@ const copyJoinCode = (text) => {
         </n-input>
       </n-form-item>
 
-      <n-form-item class="myForm__item" label="绑定IP地址">
+      <n-form-item class="myForm__item" label="复制以下内容 并填写到【绑定IP地址】一栏">
         <n-input
           name="IP"
           v-model:value="Config.AppEnv.IP"
@@ -152,22 +152,26 @@ const copyJoinCode = (text) => {
         <n-button type="primary" @click="copyFun"> 复制 </n-button>
       </n-form-item>
 
-      <div class="joinFooter">
-        <div>
-          <span class="joinCode">OKX（欧易） 注册邀请码： 11352015</span>
-          <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
-          <br />
-
-          <a class="joinLink" href="https://zixinshi.com/join/11352015" target="_blank">下载 和 注册 欧意(OKX)</a>
-
-          <br />
-        </div>
-      </div>
-
       <n-form-item class="myForm__item">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
       </n-form-item>
     </n-form>
+
+    <div class="joinFooter">
+      <div>
+        <span class="joinCode">OKX（欧易） 注册邀请码： 11352015</span>
+        <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
+        <br />
+
+        <a class="joinLink" href="https://zixinshi.com/join/11352015" target="_blank">下载 和 注册 欧意(OKX)</a>
+
+        <br />
+      </div>
+    </div>
+
+    <div class="pageFooter">
+      <RouterLink to="/About/OkxKey" className="CreateOkxKey__about--footer"> OKX秘钥申请指南 </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -188,6 +192,14 @@ const copyJoinCode = (text) => {
     color: @mainColor;
   }
 }
+.pageFooter {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.CreateOkxKey__about--footer {
+  text-align: center;
+  color: @mainColor;
+}
 
 .page__footer {
   display: flex;
@@ -196,6 +208,7 @@ const copyJoinCode = (text) => {
 }
 .joinFooter {
   text-align: center;
+  margin-bottom: 12px;
 }
 .joinCode {
   margin-right: 6px;
@@ -203,6 +216,6 @@ const copyJoinCode = (text) => {
 .joinLink {
   color: @mainColor;
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 </style>
