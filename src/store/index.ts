@@ -46,8 +46,8 @@ export const UserInfoStore = reactive({
 // ===================== PingData ============================
 
 export interface AppInfo {
-  name: string;
-  version: string;
+  Name: string;
+  Version: string;
 }
 
 export interface PingDataType {
@@ -62,12 +62,12 @@ export interface PingDataType {
 
 const PingData: PingDataType = {
   ApiInfo: {
-    name: '',
-    version: '',
+    Name: '',
+    Version: '',
   },
   ClientInfo: {
-    name: '',
-    version: '',
+    Name: '',
+    Version: '',
   },
   Method: '',
   Path: '',

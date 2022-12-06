@@ -133,10 +133,10 @@ const showDrawer = () => {
               </template>
             </n-button>
             <RouterLink to="/About/ReleaseNotes" class="TopBar__version">
-              <span v-if="PingDataStore.value.ClientInfo.version != ViteConst.AppVersion" class="red">
+              <span v-if="PingDataStore.value.ClientInfo.Version != ViteConst.AppVersion" class="red">
                 客户端版本: {{ ViteConst.AppVersion }} <XIcon name="ArrowUpOutlined" />
               </span>
-              <span v-if="PingDataStore.value.ClientInfo.version == ViteConst.AppVersion" class="red">
+              <span v-if="PingDataStore.value.ClientInfo.Version == ViteConst.AppVersion">
                 客户端版本: {{ ViteConst.AppVersion }}
               </span>
             </RouterLink>
