@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { h, defineEmits } from 'vue';
 import { Order } from '@/api/CoinAI/index';
 import AuthModal from '@/lib/AuthModal';
 

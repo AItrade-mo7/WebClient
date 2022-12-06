@@ -51,6 +51,16 @@ const Submit = async () => {
         </n-input>
       </n-form-item>
 
+      <n-form-item class="myForm__item" label="杠杆倍数">
+        <n-input
+          name="ServerName"
+          v-model:value="formValue.ServerName"
+          :inputProps="{ autocomplete: 'password' }"
+          placeholder="系统名称"
+        >
+        </n-input>
+      </n-form-item>
+
       <n-form-item class="myForm__item">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
       </n-form-item>
