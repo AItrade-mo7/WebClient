@@ -204,9 +204,9 @@ const OperationSwitch = () => {
       </n-space>
       <n-space class="data-title" v-if="TrendList.length > 0">
         <div class="data-item value" :class="WholeDirFormat(TrendList[0].Dir).class">
-          当前市场趋势: {{ WholeDirFormat(TrendList[0].Dir).text }} ;
+          市场趋势: {{ WholeDirFormat(TrendList[0].Dir).text }} ;
         </div>
-        <div class="data-item">趋势交易对: {{ TrendList[0].InstID }} ;</div>
+        <div class="data-item">推荐交易对: {{ TrendList[0].InstID }} ;</div>
       </n-space>
     </div>
     <div class="TableWrapper">
