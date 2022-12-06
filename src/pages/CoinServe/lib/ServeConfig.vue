@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
 import { EditConfig } from '@/api/CoinAI/index';
 import AuthModal from '@/lib/AuthModal';
-import { cloneDeep, ParseOkxKey } from '@/utils/tools';
+import { cloneDeep } from '@/utils/tools';
 
 const props = defineProps({
   WssData: Object,
@@ -35,6 +34,11 @@ const Submit = async () => {
     },
   });
 };
+
+let Config = $ref({
+  AppEnv: {},
+  GithubInfo: {},
+});
 </script>
 
 <template>
