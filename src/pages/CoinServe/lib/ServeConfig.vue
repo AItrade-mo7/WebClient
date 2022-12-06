@@ -5,12 +5,14 @@ import { cloneDeep } from '@/utils/tools';
 
 const props = defineProps({
   WssData: Object,
+  Config: Object,
 });
 
 let SubmitStatus: boolean = $ref(false);
 let formValue = $ref({
   ServerName: props.WssData.Name,
   Password: '',
+  Lever: props.WssData.TradeLever,
 });
 
 const SendForm = async () => {
@@ -35,10 +37,22 @@ const Submit = async () => {
   });
 };
 
-let Config = $ref({
-  AppEnv: {},
-  GithubInfo: {},
+var LeverOpt = $ref({
+  2: '2x',
 });
+var TradeLeverMax = $ref(0);
+var TradeLeverMin = $ref(1);
+
+function FormatLeverOpt() {
+  var len = props.Config.LeverOpt.length;
+  TradeLeverMax = props.Config.LeverOpt[len - 1];
+  TradeLeverMin = props.Config.LeverOpt[0];
+
+  for (const key of props.Config.LeverOpt) {
+    LeverOpt[key] = key + 'x';
+  }
+}
+FormatLeverOpt();
 </script>
 
 <template>
@@ -56,13 +70,15 @@ let Config = $ref({
       </n-form-item>
 
       <n-form-item class="myForm__item" label="杠杆倍数">
-        <n-input
-          name="ServerName"
-          v-model:value="formValue.ServerName"
-          :inputProps="{ autocomplete: 'password' }"
-          placeholder="系统名称"
-        >
-        </n-input>
+        <n-slider
+          :tooltip="false"
+          name="Lever"
+          v-model:value="formValue.Lever"
+          :marks="LeverOpt"
+          step="mark"
+          :max="TradeLeverMax"
+          :min="TradeLeverMin"
+        />
       </n-form-item>
 
       <n-form-item class="myForm__item">

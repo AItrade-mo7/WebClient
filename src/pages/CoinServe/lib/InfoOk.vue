@@ -14,6 +14,7 @@ const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
   WssData: Object,
+  Config: Object,
 });
 
 let DrawerStatus = $ref(false);
@@ -202,10 +203,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
-        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
+        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" :Config="props.Config" />
       </n-drawer-content>
       <n-drawer-content v-if="!NowKey.Name">
-        <ServeConfig :WssData="props.WssData" />
+        <ServeConfig :WssData="props.WssData" :Config="props.Config" />
       </n-drawer-content>
     </n-drawer>
   </div>

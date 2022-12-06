@@ -13,6 +13,7 @@ const InfoOk = defineAsyncComponent(() => import('./lib/InfoOk.vue'));
 let Config = $ref({
   AppEnv: {},
   GithubInfo: {},
+  LeverOpt: [],
 });
 
 function GetConfig(ServeID) {
@@ -92,8 +93,8 @@ const OpenSet = () => {
     </n-drawer-content>
   </n-drawer>
 
-  <div class="PageWrapper">
-    <InfoOk :WssData="WssData"></InfoOk>
+  <div class="PageWrapper" v-if="WssData.TradeLever > 1 && Config.AppEnv.Name.length > 1">
+    <InfoOk :WssData="WssData" :Config="Config"></InfoOk>
   </div>
 
   <!-- <div>
