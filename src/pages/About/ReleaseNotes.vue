@@ -38,6 +38,7 @@ onMounted(() => {
     <div class="block">
       <span class="label">最新客户端版本</span>
       <span class="value"> {{ ClientInfo.Version }} </span>
+      <span v-if="ClientInfo.Version != ViteConst.AppVersion" class="red"> 清除浏览器缓存 </span>
     </div>
 
     <div class="block">
