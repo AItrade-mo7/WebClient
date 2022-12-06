@@ -64,3 +64,11 @@ export const GetNowTrend = (): Promise<any> => {
     method: 'post',
   });
 };
+
+export const MarketPing = (): Promise<any> => {
+  return ajax_json({
+    url: '/CoinMarket/public/Ping',
+    data: null,
+    method: 'post',
+  });
+};
