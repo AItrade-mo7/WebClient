@@ -143,7 +143,7 @@ const Reload = () => {
     </div>
     <hr />
     <div class="title">公共 CoinAI 服务</div>
-    <div>开发者提供的 CoinAI 服务，位于测试服务器上，可能会定期进行清理。</div>
+    <div>使用开发者提供的 CoinAI 服务</div>
     <div class="ListWrapper">
       <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
