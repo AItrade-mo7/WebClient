@@ -54,8 +54,10 @@ const Submit = async () => {
       <div>注册</div>
     </h2>
     <div class="title-hint">
-      尽量使用常用邮箱来注册，以便第一时间接受行情消息。可以在
-      <RouterLink to="/Personal">个人中心</RouterLink>
+      尽量使用常用邮箱来进行注册，以便第一时间接受行情消息。
+      <br />
+      可以在
+      <RouterLink class="link" to="/Personal">个人中心</RouterLink>
       修改邮箱。
     </div>
 
@@ -92,8 +94,14 @@ const Submit = async () => {
 </template>
 
 <style lang="less" scoped>
+@import '@/config/constant.less';
+
 .logo-box {
   padding-bottom: 36px;
+}
+
+.link {
+  color: @mainColor;
 }
 
 .logo {
