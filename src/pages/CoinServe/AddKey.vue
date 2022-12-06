@@ -76,6 +76,9 @@ onMounted(() => {
 const copyFun = () => {
   CopyText(Config.AppEnv.IP);
 };
+const copyJoinCode = (text) => {
+  CopyText(text);
+};
 </script>
 
 <template>
@@ -103,7 +106,7 @@ const copyFun = () => {
         </n-input>
       </n-form-item>
 
-      <n-form-item class="myForm__item" label="密码">
+      <n-form-item class="myForm__item" label="密码 (申请欧意 V5 API 时设置的密码短语)">
         <n-input
           name="Passphrase"
           v-model:value="formValue.Passphrase"
@@ -149,6 +152,18 @@ const copyFun = () => {
         <n-button type="primary" @click="copyFun"> 复制 </n-button>
       </n-form-item>
 
+      <div class="joinFooter">
+        <div>
+          <span class="joinCode">OKX（欧易） 注册邀请码： 11352015</span>
+          <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
+          <br />
+
+          <a class="joinLink" href="https://zixinshi.com/join/11352015" target="_blank">下载 和 注册 欧意(OKX)</a>
+
+          <br />
+        </div>
+      </div>
+
       <n-form-item class="myForm__item">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
       </n-form-item>
@@ -178,5 +193,16 @@ const copyFun = () => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+.joinFooter {
+  text-align: center;
+}
+.joinCode {
+  margin-right: 6px;
+}
+.joinLink {
+  color: @mainColor;
+  display: inline-block;
+  margin-top: 14px;
 }
 </style>
