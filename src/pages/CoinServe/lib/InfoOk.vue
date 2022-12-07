@@ -6,6 +6,7 @@ import { cloneDeep, ParseOkxKey } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
 import { UserInfoStore } from '@/store';
 import { WholeDirFormat } from '@/utils/filters';
+import { $lcg } from '@/utils/tools';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
@@ -14,7 +15,6 @@ const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
   WssData: Object,
-  Config: Object,
 });
 
 let DrawerStatus = $ref(false);
@@ -24,7 +24,7 @@ let NowKey = $ref({});
 const ShowKeyDetail = (index) => {
   DrawerStatus = true;
   NowIndex = index;
-  NowKey = props.WssData.ApiKeyList[NowIndex];
+  NowKey = props.WssData.AppEnv.ApiKeyList[NowIndex];
 };
 const DrawerClose = () => {
   DrawerStatus = false;
@@ -72,7 +72,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 </script>
 
 <template>
-  <div class="InfoOk" v-if="WssData.DataSource">
+  <div class="InfoOk" v-if="props.WssData.DataSource">
     <div class="title">
       系统状态
       <n-button type="primary" class="editBtn" @Click="ShowConfig" size="tiny" circle>
@@ -84,45 +84,50 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     <n-space class="data-wrapper">
       <div class="block">
         <span class="label">系统时间</span>
-        <span class="value"> {{ DateFormat(WssData.SysTime, true, true) }} </span>
+        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
       </div>
       <div class="block">
         <span class="label">系统名称</span>
-        <span class="value"> {{ WssData.Name }} </span>
+        <span class="value"> {{ props.WssData.Name }} </span>
       </div>
       <div class="block">
         <span class="label">计价货币</span>
-        <span class="value"> {{ WssData.NowTicker.Unit }} </span>
+        <span class="value"> {{ $lcg(props.WssData, 'NowTicker.Unit') }} </span>
       </div>
       <div class="block">
         <span class="label">杠杆倍数</span>
-        <span class="value"> {{ WssData.TradeLever }} </span>
+        <span class="value"> {{ props.WssData.TradeLever }} </span>
       </div>
       <div class="block">
         <span class="label">当前监听</span>
-        <span class="value"> {{ WssData.TradeInst.InstID }} </span>
+        <span class="value"> {{ props.WssData.TradeInstID }} </span>
       </div>
       <div class="block">
         <span class="label">当前价格</span>
-        <span class="value"> {{ WssData.TradeCoin.Last }} </span>
+        <span class="value"> xxxxxx </span>
       </div>
       <div class="block">
         <span class="label">交易方向</span>
         <RouterLink to="/CoinTicker">
-          <span class="value" :class="WholeDirFormat(WssData.NowTicker.WholeDir).class">
+          xxxxxx
+          <!-- <span class="value" :class="WholeDirFormat(props.WssData.NowTicker.WholeDir).class">
             {{ WholeDirFormat(WssData.NowTicker.WholeDir).text }}
-          </span>
+          </span> -->
         </RouterLink>
       </div>
       <div class="block">
         <span class="label">数据时间</span>
-        <span class="value"> {{ WssData.NowTicker.TimeStr }} </span>
+        <span class="value"> {{ $lcg(props.WssData, 'NowTicker.TimeStr') }} </span>
       </div>
     </n-space>
 
-    <div class="title">
+    <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
       APIKey 管理
-      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn" v-if="WssData.ApiKeyList.length > 0">
+      <RouterLink
+        :to="`/CoinServe/AddKey?id=${props.WssData.ServeID}`"
+        class="addBtn"
+        v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
+      >
         <n-button type="primary" size="tiny" circle>
           <template #icon>
             <XIcon name="PlusOutlined" />
@@ -130,8 +135,12 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         </n-button>
       </RouterLink>
     </div>
-    <div class="APIKeyWrapper">
-      <RouterLink :to="`/CoinServe/AddKey?id=${WssData.ServeID}`" class="addBtn" v-if="WssData.ApiKeyList.length < 1">
+    <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
+      <RouterLink
+        :to="`/CoinServe/AddKey?id=${props.WssData.ServeID}`"
+        class="addBtn"
+        v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
+      >
         <n-button type="primary">
           <template #icon>
             <XIcon name="PlusOutlined" />
@@ -139,9 +148,9 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           添加一个 OKX 秘钥
         </n-button>
       </RouterLink>
-      <template v-if="WssData.ApiKeyList">
+      <template v-if="props.WssData.AppEnv.ApiKeyList">
         <n-card
-          v-for="(item, index) in WssData.ApiKeyList"
+          v-for="(item, index) in props.WssData.AppEnv.ApiKeyList"
           :key="item.Name"
           :title="item.Name"
           embedded
@@ -203,10 +212,10 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
-        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" :Config="props.Config" />
+        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
       </n-drawer-content>
       <n-drawer-content v-if="!NowKey.Name">
-        <ServeConfig :WssData="props.WssData" :Config="props.Config" />
+        <ServeConfig :WssData="props.WssData" />
       </n-drawer-content>
     </n-drawer>
   </div>
