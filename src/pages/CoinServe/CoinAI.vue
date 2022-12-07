@@ -17,7 +17,10 @@ let Config = $ref({
   LeverOpt: [],
 });
 
-function GetConfig(ServeID) {
+function GetConfig() {
+  const route = useRoute();
+  const ServeID = route.query.id as string;
+
   GetCoinAIConfig({
     CoinServeID: ServeID,
   })
@@ -38,7 +41,10 @@ function GetConfig(ServeID) {
 let WssObj = null;
 let WssData = $ref({});
 
-function StartWss(ServeID) {
+function StartWss() {
+  const route = useRoute();
+  const ServeID = route.query.id as string;
+
   WssObj = NewSocket({
     Host: ServeID,
     MessageEvent(res) {
@@ -47,17 +53,14 @@ function StartWss(ServeID) {
           ...Config,
           ...res.Response.Data,
         };
-
-        console.log(cloneDeep(WssData));
       }
     },
   });
 }
 
 onMounted(() => {
-  const route = useRoute();
-  GetConfig(route.query.id);
-  StartWss(route.query.id);
+  GetConfig();
+  StartWss();
 });
 
 onUnmounted(() => {
