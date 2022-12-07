@@ -33,7 +33,7 @@ const MyCopyText = (text) => {
     <div class="title">第一步：填写端口号</div>
     <div class="content">
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
-      <span class="hint">建议选择非常用端口号,该端口号用于启动监听服务。</span>
+      <span class="hint">建议选择非常用端口号(9000-9999),该端口号用于启动 Web 服务。</span>
     </div>
     <br />
     <div class="title">第二步：复制指令</div>
@@ -53,7 +53,7 @@ const MyCopyText = (text) => {
         <br />
         <br />
         <span class="label">位置要求：</span> 主机必须位于 <span class="lineHight">香港</span>、
-        <span class="lineHight">日本</span>、<span class="lineHight">新加坡</span>，可使用
+        <span class="lineHight">日本</span>或<span class="lineHight">新加坡</span>，可使用
         <span class="lineHight">阿里云</span> 或者 <span class="lineHight">AWS</span> 的云服务器。
         <span class="hint"><span class="lineHight">墙内</span>无法通过交易所执行下单指令</span>
         <br />
@@ -86,7 +86,7 @@ const MyCopyText = (text) => {
           <n-button size="tiny" type="primary" @click="MyCopyText(`date '+%m-%d %H:%M'`)"> 复制 </n-button>
         </div>
         <br />
-        <span class="label">脚本执行：</span> 当以上工作就绪，最好使用 root 权限执行当前指令
+        <span class="label">指令执行：</span> 当以上工作就绪，最好使用 root 权限执行当前指令。
         <br />
         <br />
         <span class="desc">
@@ -95,7 +95,7 @@ const MyCopyText = (text) => {
           <span class="hint">
             若此步骤过于专业，可求助您身边的
             <span class="lineHight">程序员</span>
-            好友。本页面可刷新并无限次重新生成脚本。
+            好友。本页面可刷新并无限次重新生成指令。
           </span>
         </span>
         <br />
@@ -103,10 +103,10 @@ const MyCopyText = (text) => {
         <div>
           当然，您也可以热爱学习：
           <a href="https://meichangliang.feishu.cn/docx/doxcnZgnULZK8l5t2safbcnTtcf" target="_blank">
-            <n-button secondary type="success" class="linkHref"> 海外虚拟主机购买教程 </n-button>
+            <n-button secondary type="success" class="linkHref"> 海外云主机购买教程 </n-button>
           </a>
           <a href="https://meichangliang.feishu.cn/docx/doxcnszFe2G6ReLP4rcqzW4O4Be" target="_blank">
-            <n-button secondary type="success" class="linkHref"> CoinAI 部署图文教程 </n-button>
+            <n-button secondary type="success" class="linkHref"> CoinAI 部署教程 </n-button>
           </a>
         </div>
         <div>
@@ -137,6 +137,7 @@ const MyCopyText = (text) => {
       2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的端口是否开放 <br />
       3.
       同一台服务器的同一个端口重复部署，则会更新对应的服务，不同端口重复部署则会创建新的服务。重新部署，数据不会丢失。<br />
+      4. 查看服务运行状态可使用<span class="codeView"> pm2 ls </span> 指令 。
       <br />
       <br />
       <RouterLink to="/CoinServe">
@@ -159,6 +160,10 @@ const MyCopyText = (text) => {
   margin-bottom: 6px;
 }
 
+.lineHight {
+  color: @mainColor;
+}
+
 .cont_input {
   width: 160px;
   margin-right: 12px;
@@ -167,8 +172,14 @@ const MyCopyText = (text) => {
 .submitBtn {
   width: 160px;
 }
-.lineHight {
-  color: @mainColor;
+
+.codeView {
+  color: #999;
+  font-size: 14px;
+  background-color: #f6f8fa;
+  padding: 3px 4px;
+  border-radius: 6px;
+  margin: 4px;
 }
 
 .ShellAbout_desc {
@@ -176,10 +187,7 @@ const MyCopyText = (text) => {
   line-height: 28px;
   color: #333;
 }
-.codeView {
-  color: #999;
-  font-size: 14px;
-}
+
 .label {
   font-weight: bold;
   font-size: 16px;
@@ -189,6 +197,9 @@ const MyCopyText = (text) => {
   color: #999;
 }
 
+.Code {
+  background-color: #f6f8fa;
+}
 .linkHref {
   margin-right: 20px;
 }
