@@ -17,12 +17,6 @@ const props = defineProps({
   WssData: Object,
 });
 
-let MyWssData = $ref({});
-
-window.$Event['CoinAIWssData'] = (WssData) => {
-  MyWssData = WssData;
-};
-
 let DrawerStatus = $ref(false);
 let NowIndex = $ref(-1);
 let NowKey = $ref({});

@@ -53,10 +53,6 @@ function StartWss() {
           ...Config,
           ...res.Response.Data,
         };
-
-        if (window.$Event['CoinAIWssData']) {
-          window.$Event['CoinAIWssData'](cloneDeep(WssData));
-        }
       }
     },
   });
@@ -102,7 +98,7 @@ const OpenSet = () => {
 
   <n-drawer v-model:show="drawerStatus" placement="top">
     <n-drawer-content class="AITradeServer__drawer-content">
-      <SysManage v-if="drawerStatus" :WssData="WssData" />
+      <SysManage v-if="drawerStatus" />
     </n-drawer-content>
   </n-drawer>
 
