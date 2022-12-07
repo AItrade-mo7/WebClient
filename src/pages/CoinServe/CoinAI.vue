@@ -98,17 +98,13 @@ const OpenSet = () => {
 
   <n-drawer v-model:show="drawerStatus" placement="top">
     <n-drawer-content class="AITradeServer__drawer-content">
-      <SysManage v-if="drawerStatus" />
+      <SysManage v-if="drawerStatus" :WssData="WssData" />
     </n-drawer-content>
   </n-drawer>
 
   <div class="PageWrapper" v-if="WssData.TradeLever > 1 && WssData.AppEnv.Name.length > 1">
     <InfoOk :WssData="WssData"></InfoOk>
   </div>
-
-  <!-- <div>
-    {{ WssData }}
-  </div> -->
 </template>
 
 <style lang="less" scoped>
