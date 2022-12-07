@@ -18,6 +18,8 @@ if (ViteConst) {
     rmAgin: 'mo777',
   };
 
+  window.$Event = {};
+
   set_axios_config();
 }
 

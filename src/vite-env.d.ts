@@ -29,6 +29,9 @@ declare global {
       RunMod: number;
       BaseUrl: string;
     };
+    $Event: {
+      [string]: any;
+    };
   }
 }
 

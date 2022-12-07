@@ -17,10 +17,9 @@ let Config = $ref({
   LeverOpt: [],
 });
 
-function GetConfig() {
-  const route = useRoute();
-  const ServeID = route.query.id as string;
+let ServeID = $ref('');
 
+function GetConfig() {
   GetCoinAIConfig({
     CoinServeID: ServeID,
   })
@@ -42,13 +41,12 @@ let WssObj = null;
 let WssData = $ref({});
 
 function StartWss() {
-  const route = useRoute();
-  const ServeID = route.query.id as string;
-
   WssObj = NewSocket({
     Host: ServeID,
     MessageEvent(res) {
       if (res.Response.Code == 1) {
+        console.log(Config.AppEnv);
+
         WssData = {
           ...Config,
           ...res.Response.Data,
@@ -58,7 +56,14 @@ function StartWss() {
   });
 }
 
+window.$Event['CoinAIGetConfig'] = () => {
+  GetConfig();
+};
+
 onMounted(() => {
+  const route = useRoute();
+  ServeID = route.query.id;
+
   GetConfig();
   StartWss();
 });
