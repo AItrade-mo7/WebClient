@@ -74,11 +74,12 @@ const SendReStart = async (Info) => {
     CoinServeID: props.Config.AppEnv.ServeID,
   });
   if (res.Code > 0) {
-    window.$message.success('重启指令已发送!', {
+    window.$message.success('重启指令已发送!请等待页面跳转', {
       onAfterLeave() {
         mStorage.remove('CoinServeID');
         window.location.replace('/CoinServe');
       },
+      duration: 5000,
     });
   }
 };
