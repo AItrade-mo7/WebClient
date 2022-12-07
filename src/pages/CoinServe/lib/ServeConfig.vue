@@ -5,7 +5,6 @@ import { cloneDeep } from '@/utils/tools';
 
 const props = defineProps({
   WssData: Object,
-  Config: Object,
 });
 
 let SubmitStatus: boolean = $ref(false);
@@ -44,11 +43,11 @@ var TradeLeverMax = $ref(0);
 var TradeLeverMin = $ref(1);
 
 function FormatLeverOpt() {
-  var len = props.Config.LeverOpt.length;
-  TradeLeverMax = props.Config.LeverOpt[len - 1];
-  TradeLeverMin = props.Config.LeverOpt[0];
+  var len = props.WssData.LeverOpt.length;
+  TradeLeverMax = props.WssData.LeverOpt[len - 1];
+  TradeLeverMin = props.WssData.LeverOpt[0];
 
-  for (const key of props.Config.LeverOpt) {
+  for (const key of props.WssData.LeverOpt) {
     LeverOpt[key] = key + 'x';
   }
 }

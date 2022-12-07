@@ -50,7 +50,6 @@ const SendForm = async () => {
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);
-    // $router.go(-1);
   }
 };
 
@@ -107,7 +106,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="value"> xxxxxx </span>
       </div>
       <div class="block">
-        <span class="label">交易方向</span>
+        <span class="label">市场方向</span>
         <RouterLink to="/CoinTicker">
           xxxxxx
           <!-- <span class="value" :class="WholeDirFormat(props.WssData.NowTicker.WholeDir).class">
