@@ -26,6 +26,10 @@ function GetConfig() {
     .then((res) => {
       if (res.Code > 0) {
         Config = res.Data;
+        WssData = {
+          ...Config,
+          ...WssData,
+        };
       }
     })
     .catch((err) => {
@@ -45,8 +49,6 @@ function StartWss() {
     Host: ServeID,
     MessageEvent(res) {
       if (res.Response.Code == 1) {
-        console.log(Config.AppEnv);
-
         WssData = {
           ...Config,
           ...res.Response.Data,
