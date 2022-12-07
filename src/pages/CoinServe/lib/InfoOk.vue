@@ -121,7 +121,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </n-space>
 
     <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
-      APIKey 管理
+      APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
         :to="`/CoinServe/AddKey?id=${props.WssData.ServeID}`"
         class="addBtn"
