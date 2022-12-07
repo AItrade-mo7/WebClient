@@ -47,7 +47,7 @@ const MyCopyText = (text) => {
     <div class="title">第三步：执行指令</div>
     <div class="content">
       <div class="ShellAbout_desc">
-        <span class="label">注：</span>务必在 <span class="lineHight">策略组</span> 中开放云主机的
+        <span class="label">注：</span>务必在 <span class="lineHight">安全组</span> 中开放云主机的
         <span class="lineHight">{{ Port ? Port : 'x' }}</span>
         端口 ！
         <br />
