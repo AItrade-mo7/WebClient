@@ -4,6 +4,7 @@ import { RouterLink, useRoute } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { NewSocket } from '@/api/CoinAI/CoinAIWss';
+import { $lcg, cloneDeep } from '@/utils/tools';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -42,15 +43,12 @@ function StartWss(ServeID) {
     Host: ServeID,
     MessageEvent(res) {
       if (res.Response.Code == 1) {
-        WssData = res.Response.Data;
+        WssData = {
+          ...Config,
+          ...res.Response.Data,
+        };
 
-        Config.AppEnv.ApiKeyList = WssData.ApiKeyList;
-        Config.AppEnv.IP = WssData.IP;
-        Config.AppEnv.Name = WssData.Name;
-        Config.AppEnv.Port = WssData.Port;
-        Config.AppEnv.ServeID = WssData.ServeID;
-        Config.AppEnv.UserID = WssData.UserID;
-        Config.AppEnv.Version = WssData.Version;
+        console.log(cloneDeep(WssData));
       }
     },
   });
@@ -75,9 +73,9 @@ const OpenSet = () => {
 
 <template>
   <PageTitle class="CoinAIPageTitle">
-    {{ Config.AppEnv.ServeID }}
-    <template #after v-if="Config.AppEnv">
-      <n-badge class="AITradeServer__dotNet" :dot="Config.AppEnv.Version != Config.GithubInfo.Version">
+    {{ $lcg(WssData, 'AppEnv.ServeID') }}
+    <template #after v-if="WssData.AppEnv">
+      <n-badge class="AITradeServer__dotNet" :dot="WssData.AppEnv.Version != WssData.GithubInfo.Version">
         <n-button size="tiny" quaternary @click="OpenSet">
           <template #icon>
             <XIcon spin name="SettingOutlined" />
@@ -89,12 +87,12 @@ const OpenSet = () => {
 
   <n-drawer v-model:show="drawerStatus" placement="top">
     <n-drawer-content class="AITradeServer__drawer-content">
-      <SysManage v-if="drawerStatus" :Config="Config" />
+      <SysManage v-if="drawerStatus" :WssData="WssData" />
     </n-drawer-content>
   </n-drawer>
 
-  <div class="PageWrapper" v-if="WssData.TradeLever > 1 && Config.AppEnv.Name.length > 1">
-    <InfoOk :WssData="WssData" :Config="Config"></InfoOk>
+  <div class="PageWrapper" v-if="WssData.TradeLever > 1 && WssData.AppEnv.Name.length > 1">
+    <InfoOk :WssData="WssData"></InfoOk>
   </div>
 
   <!-- <div>

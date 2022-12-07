@@ -5,11 +5,11 @@ import AuthModal from '@/lib/AuthModal';
 import { mStorage } from '@/utils/tools';
 
 const props = defineProps({
-  Config: Object,
+  WssData: Object,
 });
 
-const nowVersion = props.Config.AppEnv.Version;
-const newVersion = props.Config.GithubInfo.Version;
+const nowVersion = props.WssData.AppEnv.Version;
+const newVersion = props.WssData.GithubInfo.Version;
 let isUpdate = false;
 
 if (newVersion && nowVersion) {
@@ -57,7 +57,7 @@ const SendFetch = (type: number) => {
 const SendStop = async (Info) => {
   const res = await Remove({
     ...Info,
-    CoinServeID: props.Config.AppEnv.ServeID,
+    CoinServeID: props.WssData.AppEnv.ServeID,
   });
   if (res.Code > 0) {
     window.$message.warning('删除指令已发送!', {
@@ -71,7 +71,7 @@ const SendStop = async (Info) => {
 const SendReStart = async (Info) => {
   const res = await ReStart({
     ...Info,
-    CoinServeID: props.Config.AppEnv.ServeID,
+    CoinServeID: props.WssData.AppEnv.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success('重启指令已发送!请等待页面跳转', {
