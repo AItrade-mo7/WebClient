@@ -53,11 +53,16 @@ function StartWss() {
           ...Config,
           ...res.Response.Data,
         };
+
+        if (window.$Event['CoinAIWssData']) {
+          window.$Event['CoinAIWssData'](cloneDeep(WssData));
+        }
       }
     },
   });
 }
 
+// 注入全局服务
 window.$Event['CoinAIGetConfig'] = () => {
   GetConfig();
 };
