@@ -12,6 +12,7 @@ let formValue = $ref({
   ServerName: props.WssData.Name,
   Password: '',
   Lever: props.WssData.TradeLever,
+  MaxApiKeyNum: props.WssData.MaxApiKeyNum,
 });
 
 const SendForm = async () => {
@@ -58,7 +59,7 @@ FormatLeverOpt();
   <div class="ServeConfig">
     <div class="title">修改系统参数</div>
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
-      <n-form-item class="myForm__item" label="系统名称">
+      <n-form-item class="myForm__item" label-placement="left" label="系统名称:">
         <n-input
           name="ServerName"
           v-model:value="formValue.ServerName"
@@ -68,7 +69,7 @@ FormatLeverOpt();
         </n-input>
       </n-form-item>
 
-      <n-form-item class="myForm__item" label="杠杆倍数">
+      <n-form-item class="myForm__item" label="杠杆倍数:">
         <n-slider
           :tooltip="false"
           name="Lever"
@@ -78,6 +79,16 @@ FormatLeverOpt();
           :max="TradeLeverMax"
           :min="TradeLeverMin"
         />
+      </n-form-item>
+
+      <n-form-item class="myForm__item" label-placement="left" label="ApiKey 数量上限 :">
+        <n-input-number
+          name="MaxApiKeyNum"
+          v-model:value="formValue.MaxApiKeyNum"
+          :inputProps="{ autocomplete: 'password' }"
+          placeholder="ApiKey 数量上限"
+        >
+        </n-input-number>
       </n-form-item>
 
       <n-form-item class="myForm__item">
