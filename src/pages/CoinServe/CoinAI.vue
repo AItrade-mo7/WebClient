@@ -95,20 +95,25 @@ const OpenSet = () => {
       </n-badge>
     </template>
   </PageTitle>
+  <div class="wrapper">
+    <n-drawer v-model:show="drawerStatus" placement="top">
+      <n-drawer-content class="AITradeServer__drawer-content">
+        <SysManage v-if="drawerStatus" :WssData="WssData" />
+      </n-drawer-content>
+    </n-drawer>
 
-  <n-drawer v-model:show="drawerStatus" placement="top">
-    <n-drawer-content class="AITradeServer__drawer-content">
-      <SysManage v-if="drawerStatus" :WssData="WssData" />
-    </n-drawer-content>
-  </n-drawer>
-
-  <div class="PageWrapper" v-if="WssData.TradeLever > 1 && WssData.AppEnv.Name.length > 1">
-    <InfoOk :WssData="WssData"></InfoOk>
+    <div class="PageWrapper" v-if="WssData.TradeLever > 1 && WssData.AppEnv.Name.length > 1">
+      <InfoOk :WssData="WssData"></InfoOk>
+    </div>
+    <n-alert class="noData" v-else title="该信息如果长时间存在，请尝试刷新或更换浏览器！" type="info"> </n-alert>
   </div>
 </template>
 
 <style lang="less" scoped>
 @import '@/config/constant.less';
+.wrapper {
+  padding-top: 1px;
+}
 
 .lineHight {
   color: @mainColor;
@@ -123,6 +128,10 @@ const OpenSet = () => {
 }
 .red {
   color: @redColor;
+}
+
+.noData {
+  margin-top: 50px;
 }
 </style>
 

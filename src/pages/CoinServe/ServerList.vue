@@ -78,7 +78,6 @@ function GetConfig(list, lType) {
       });
   }
 }
-
 onMounted(() => {
   GetCoinAILIstFun();
 });
@@ -101,6 +100,7 @@ const Reload = () => {
     </template>
   </PageTitle>
   <div class="PageWrapper">
+    <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning"></n-alert>
     <div class="title">我的 CoinAI 服务</div>
     <div>
       部署私人的 CoinAI
