@@ -100,11 +100,11 @@ const Reload = () => {
     </template>
   </PageTitle>
   <div class="PageWrapper">
-    <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning"></n-alert>
+    <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning" closable></n-alert>
     <div class="title">我的 CoinAI 服务</div>
-    <div>
+    <div class="explain">
       部署私人的 CoinAI
-      机器人服务，更加稳定可靠。交易延迟更低，不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。
+      机器人交易服务，更加稳定可靠。交易延迟更低，下单不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。
     </div>
     <div class="ListWrapper">
       <n-card v-for="item in ServeList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
@@ -146,7 +146,7 @@ const Reload = () => {
     </div>
     <hr />
     <div class="title">公共 CoinAI 服务</div>
-    <div>使用开发者提供的 CoinAI 服务，简单方便。</div>
+    <div class="explain">使用开发者提供的 CoinAI 服务，简单方便。</div>
     <div class="ListWrapper">
       <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
@@ -215,6 +215,11 @@ const Reload = () => {
       top: 10px;
     }
   }
+}
+
+.explain {
+  color: @mainColor;
+  margin-bottom: 12px;
 }
 
 .Server__item {
