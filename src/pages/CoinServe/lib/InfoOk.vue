@@ -69,6 +69,21 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   });
   HandleKeyStatus = false;
 };
+
+function GetWholeDir(wss) {
+  const Last = $lcg(props.WssData, 'TradeKdataLast', {});
+  console.log();
+  let WholeDir = 0;
+  if (Last.CAP_EMA - 0 > 1) {
+    WholeDir = 1;
+  } else {
+    WholeDir = -1;
+  }
+  return {
+    ...WholeDirFormat(WholeDir),
+    CAP_EMA: Last.CAP_EMA,
+  };
+}
 </script>
 
 <template>
@@ -98,21 +113,26 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="label">杠杆倍数</span>
         <span class="value"> {{ props.WssData.TradeLever }} </span>
       </div>
+    </n-space>
+
+    <div class="title">监听数据</div>
+    <n-space class="data-wrapper">
       <div class="block">
         <span class="label">当前监听</span>
-        <span class="value"> {{ props.WssData.TradeInstID }} </span>
+        <span class="value"> {{ $lcg(props.WssData, 'TradeKdataLast.InstID') }} </span>
       </div>
       <div class="block">
         <span class="label">当前价格</span>
-        <span class="value"> xxxxxx </span>
+        <span class="value" :class="WholeDirFormat($lcg(props.WssData, 'TradeKdataLast.Dir')).class">
+          {{ $lcg(props.WssData, 'TradeKdataLast.C') }}
+        </span>
       </div>
       <div class="block">
-        <span class="label">市场方向</span>
+        <span class="label">上涨指数</span>
         <RouterLink to="/CoinTicker">
-          xxxxxx
-          <!-- <span class="value" :class="WholeDirFormat(props.WssData.NowTicker.WholeDir).class">
-            {{ WholeDirFormat(WssData.NowTicker.WholeDir).text }}
-          </span> -->
+          <span class="value" :class="GetWholeDir(props.WssData).class">
+            {{ GetWholeDir(props.WssData).CAP_EMA }}
+          </span>
         </RouterLink>
       </div>
       <div class="block">
@@ -222,6 +242,8 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 </template>
 
 <style lang="less" scoped>
+@import '@/config/constant.less';
+
 .title {
   font-weight: 700;
   font-size: 18px;
@@ -244,6 +266,18 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         content: ' : ';
       }
     }
+  }
+}
+
+.value {
+  &.green {
+    color: @greenColor;
+  }
+  &.red {
+    color: @redColor;
+  }
+  &.gray {
+    color: #999;
   }
 }
 
