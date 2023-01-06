@@ -1,11 +1,23 @@
 #!/bin/bash
-# 加载变量
+##WebHook:~ 发布 trade.mo7.cc ~
 source "./_shell/init.sh"
-#############
+# 加载变量
 
-pnpm run build
+echo ${outPutPath}
 
-echo "移动文件到 ProdProject 目录"
-rm -rf ${deployPath}
-cp -r ${outPutPath}"/." ${deployPath}"/"
-cp -r ${path}"/package.json" ${deployPath}
+rm -rf ${outPutPath}
+npm run build &&
+  npm run git
+
+nowTime=$(date +%Y-%m-%d\T%H:%M:%S)
+
+cd ${outPutPath}
+
+git init
+git add .
+git commit -m ${nowTime}
+git remote add origin ${deployPath}
+git push -f --set-upstream origin master:main
+echo "同步完成"
+
+exit
