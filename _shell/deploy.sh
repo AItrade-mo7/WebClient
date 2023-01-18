@@ -19,6 +19,8 @@ git commit -m ${nowTime}
 git remote add origin ${deployPath}
 git push -f --set-upstream origin master:main
 echo "同步完成"
-rm -rf ${outPutPath}"/.git"
+rm -rf ${outPutPath}
+
+echo "http://itpo.mo7.cc:9999/"
 
 exit
