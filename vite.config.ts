@@ -1,15 +1,15 @@
 import { defineConfig } from 'vite';
 import YAML from 'yamljs';
 import vue from '@vitejs/plugin-vue';
-import { VitePWA } from 'vite-plugin-pwa';
+import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import path from 'path';
 import AppPackage from './package.json';
 
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 // ========= PWA 配置  =========
-const PwaConfig: any = {
-  injectRegister: 'script',
+const PwaConfig: Partial<VitePWAOptions> = {
+  injectRegister: 'auto',
   registerType: 'autoUpdate',
   workbox: {
     sourcemap: true,

@@ -1,8 +1,12 @@
 import { createApp } from 'vue';
 import { registerSW } from 'virtual:pwa-register';
 registerSW({
-  onOfflineReady() {},
+  // 每小时检查一次
+  onRegistered: (r) => r && setInterval(async () => await r.update(), 3600000),
+  // 注册失败则报错到 console
+  onRegisterError: (error) => console.error(error),
 });
+
 import App from '@/lib/router/App.vue';
 import { router } from '@/lib/router';
 

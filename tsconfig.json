@@ -7,7 +7,7 @@
     "allowJs": true,
     "checkJs": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["naive-ui/volar"],
+    "types": ["vite/client", "vite-plugin-pwa/client", "naive-ui/volar"],
     "lib": ["ESNext"],
     "strict": false,
     "outDir": "./",
