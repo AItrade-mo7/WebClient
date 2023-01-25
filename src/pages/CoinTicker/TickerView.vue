@@ -178,7 +178,7 @@ const OperationSwitch = () => {
 <template>
   <PageTitle v-if="!props.TimeID"> CoinTicker </PageTitle>
   <div class="ListWrapper">
-    <div v-if="CoinTickerList.length" class="Describe">
+    <div v-if="CoinTickerList && CoinTickerList.length" class="Describe">
       <n-space class="data-title">
         <div class="data-item">锚定货币: {{ Unit }} ;</div>
         <div class="RTSWrapper" @click="OperationSwitch">
