@@ -88,18 +88,28 @@ const Submit = async () => {
           <XIcon name="SkinOutlined" />
         </n-input>
       </n-form-item>
-      <div class="UpdateTime" v-if="Info.CreateTime">Cookie 上次更新时间: {{ Info.CreateTime }}</div>
+      <div class="UpdateTime" v-if="Info.CreateTime">Cookie 已存入数据库，上次更新时间: {{ Info.CreateTime }}</div>
 
-      <div v-if="ReqResult">
-        {{ ReqResult }}
-      </div>
+      <div v-if="ReqResult" class="resultView"><span> 爬虫结果：</span>{{ ReqResult }}</div>
 
       <div class="SubmitItem">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交（测试） </n-button>
       </div>
     </n-form>
+
+    <div class="prompt">
+      注意：每天的 1,10,15,21 点 会自动触发一次签到，签到出现问题则会发送邮件到当前邮箱，届时需要重新获取新的 Cookie
+      并提交。
+    </div>
   </div>
 </template>
+<style lang="less">
+.GenshinForm {
+  .n-form-item-feedback-wrapper {
+    display: none;
+  }
+}
+</style>
 
 <style lang="less" scoped>
 .GenshinForm {
@@ -110,10 +120,14 @@ const Submit = async () => {
     text-align: left;
   }
   .SubmitItem {
+    margin-top: 18px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+  }
+  .n-form-item-feedback-wrapper {
+    display: none;
   }
 }
 
@@ -127,6 +141,7 @@ const Submit = async () => {
   font-size: 14px;
   text-align: right;
   color: #999;
+  margin: 12px 0;
 }
 
 .title {
@@ -135,5 +150,25 @@ const Submit = async () => {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 18px;
+}
+
+.resultView {
+  border: 1px solid #999;
+  padding: 6px;
+  span {
+    color: #e2aa53;
+  }
+}
+
+.prompt {
+  font-size: 16px;
+  text-align: center;
+
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #e2aa53;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-top: 28px;
 }
 </style>
