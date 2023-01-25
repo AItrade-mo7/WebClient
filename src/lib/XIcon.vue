@@ -86,6 +86,9 @@ const MyIconLoad = () => {
     case 'MinusCircleFilled':
       return defineAsyncComponent(() => import('@vicons/antd/MinusCircleFilled'));
 
+    case 'MHYLogo':
+      return defineAsyncComponent(() => import('@/lib/MHYLogo.vue'));
+
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));
   }

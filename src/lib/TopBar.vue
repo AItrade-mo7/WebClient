@@ -104,7 +104,7 @@ const showDrawer = () => {
             <RouterLink to="/Genshin" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
-                  <XIcon name="HomeOutlined" />
+                  <XIcon name="MHYLogo" />
                 </template>
                 米游社自动签到
               </n-button>
