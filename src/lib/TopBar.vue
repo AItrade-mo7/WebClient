@@ -101,6 +101,17 @@ const showDrawer = () => {
           </div>
 
           <div className="TopBar__item">
+            <RouterLink to="/Genshin" class="item_btn">
+              <n-button text size="tiny">
+                <template #icon>
+                  <XIcon name="HomeOutlined" />
+                </template>
+                米游社自动签到
+              </n-button>
+            </RouterLink>
+          </div>
+
+          <div className="TopBar__item">
             <RouterLink to="/" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
