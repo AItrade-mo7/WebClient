@@ -81,6 +81,10 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/DollarCircleTwotone'));
     case 'ClusterOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/ClusterOutlined'));
+    case 'PlusCircleFilled':
+      return defineAsyncComponent(() => import('@vicons/antd/PlusCircleFilled'));
+    case 'MinusCircleFilled':
+      return defineAsyncComponent(() => import('@vicons/antd/MinusCircleFilled'));
 
     default:
       return defineAsyncComponent(() => import('@vicons/antd/Html5Filled'));

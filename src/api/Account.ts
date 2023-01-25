@@ -1,6 +1,13 @@
 import { ajax_json } from '@/utils/http';
 import { Md5, removeToken } from '@/utils/tools';
-import type { LoginParam, RegisterParam, SendCodeParam, ChangePasswordParam, EditProfileParam } from './api.d';
+import type {
+  LoginParam,
+  RegisterParam,
+  SendCodeParam,
+  ChangePasswordParam,
+  EditProfileParam,
+  GenshinCheckParam,
+} from './api.d';
 
 export const login = (data: LoginParam) => {
   const param = {
@@ -75,6 +82,14 @@ export const EditProfile = (data: EditProfileParam) => {
   return ajax_json({
     url: '/api/private/edit_profile',
     data: param,
+    method: 'post',
+  });
+};
+
+export const GenshinCheck = (data: GenshinCheckParam) => {
+  return ajax_json({
+    url: '/api/private/genshin_check',
+    data: data,
     method: 'post',
   });
 };

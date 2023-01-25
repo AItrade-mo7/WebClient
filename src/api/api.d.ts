@@ -57,3 +57,7 @@ export interface EditProfileParam {
   SecurityCode: string;
   Password: string;
 }
+
+export interface GenshinCheckParam {
+  Cookies: Array<string>;
+}
