@@ -59,5 +59,5 @@ export interface EditProfileParam {
 }
 
 export interface GenshinCheckParam {
-  Cookies: Array<string>;
+  Cookie: string;
 }

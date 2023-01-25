@@ -93,3 +93,11 @@ export const GenshinCheck = (data: GenshinCheckParam) => {
     method: 'post',
   });
 };
+
+export const GetGenshinCookie = () => {
+  return ajax_json({
+    url: '/api/private/get_genshin_cookie',
+    data: null,
+    method: 'post',
+  });
+};

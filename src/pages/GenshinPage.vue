@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { UserInfoStore } from '@/store';
 import { Logo } from '@/config/constant';
-import { GenshinCheck } from '@/api/Account';
+import { GenshinCheck, GetGenshinCookie } from '@/api/Account';
 import { cloneDeep, UpLoadFileEncrypt, $lcg, getToken, setToken } from '@/utils/tools';
 import AuthModal from '@/lib/AuthModal';
 
@@ -11,26 +11,22 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
-  Cookies: [''],
+  Cookie: '',
 });
+
+let ReqResult = $ref('');
 
 // 提交按钮
 const Submit = async () => {
   SubmitStatus = true;
+
   const res = await GenshinCheck({
-    ...cloneDeep(formValue),
+    Cookie: formValue.Cookie,
   });
+
+  ReqResult = JSON.stringify(res);
+
   SubmitStatus = false;
-  if (res.Code > 0) {
-  }
-};
-
-const AddLine = () => {
-  formValue.Cookies.push('');
-};
-
-const RemoveLine = (index) => {
-  formValue.Cookies.splice(index, 1);
 };
 </script>
 
@@ -41,7 +37,13 @@ const RemoveLine = (index) => {
 
     <n-form :model="formValue" size="small" class="GenshinForm">
       <div class="Label">
-        提交 Cookie (
+        提交并验证
+
+        <n-button class="LinkBlog" text tag="a" href="https://www.miyoushe.com/ys" target="_blank" type="primary">
+          米游社
+        </n-button>
+
+        Cookie (
         <n-button
           class="LinkBlog"
           text
@@ -50,41 +52,29 @@ const RemoveLine = (index) => {
           target="_blank"
           type="primary"
         >
-          如何获取 Cookie ?
+          如何获取 米游社 Cookie ?
         </n-button>
         ) :
       </div>
-      <div v-for="(item, index) in formValue.Cookies" class="InputWrapper">
-        <n-form-item class="inputItem">
-          <n-input
-            v-model:value="formValue.Cookies[index]"
-            type="textarea"
-            :autosize="{ minRows: 5, maxRows: 5 }"
-            name="Cookies"
-            placeholder="填写Cookie, 例如：_MHYUUID=2bd94c1b-ffee-4cdd-87e8-ff0de88d2ba1; DEVICEFP_SE ......"
-            :inputProps="{ autocomplete: 'password' }"
-          >
-            <XIcon name="SkinOutlined" />
-          </n-input>
-        </n-form-item>
-        <div class="ReqResult" @click="RemoveLine(index)">
-          <div>请求结果</div>
-          <n-button tertiary circle type="error">
-            <template #icon>
-              <XIcon name="MinusCircleFilled" />
-            </template>
-          </n-button>
-        </div>
+      <n-form-item class="inputItem">
+        <n-input
+          v-model:value="formValue.Cookie"
+          type="textarea"
+          :autosize="{ minRows: 5, maxRows: 5 }"
+          name="Cookies"
+          placeholder="填写Cookie, 例如：_MHYUUID=2bd94c1b-ffee-4cdd-87e8-ff0de88d2ba1; DEVICEFP_SE ......"
+          :inputProps="{ autocomplete: 'password' }"
+        >
+          <XIcon name="SkinOutlined" />
+        </n-input>
+      </n-form-item>
+
+      <div>
+        {{ ReqResult }}
       </div>
 
       <div class="SubmitItem">
-        <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
-        <n-button class="Submit" :disabled="SubmitStatus" @click="AddLine">
-          <template #icon>
-            <XIcon name="PlusCircleFilled" />
-          </template>
-          新增一行
-        </n-button>
+        <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交（测试） </n-button>
       </div>
     </n-form>
   </div>
@@ -106,14 +96,10 @@ const RemoveLine = (index) => {
   }
 }
 
-.InputWrapper {
-  padding: 16px;
-
-  .ReqResult {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+.ReqResult {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
