@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { UserInfoStore } from '@/store';
 import { Logo } from '@/config/constant';
 import { GenshinCheck, GetGenshinCookie } from '@/api/Account';
@@ -14,7 +15,24 @@ const formValue = $ref({
   Cookie: '',
 });
 
+const Info = $ref({
+  CreateTime: '',
+});
+
 let ReqResult = $ref('');
+
+function GetDBCookie() {
+  GetGenshinCookie().then((res) => {
+    if (res.Code > 0) {
+      Info.CreateTime = res.Data.CreateTimeStr;
+      formValue.Cookie = res.Data.MiYouSheCookie;
+    }
+  });
+}
+
+onMounted(() => {
+  GetDBCookie();
+});
 
 // 提交按钮
 const Submit = async () => {
@@ -27,6 +45,8 @@ const Submit = async () => {
   ReqResult = JSON.stringify(res);
 
   SubmitStatus = false;
+
+  GetDBCookie();
 };
 </script>
 
@@ -60,7 +80,7 @@ const Submit = async () => {
         <n-input
           v-model:value="formValue.Cookie"
           type="textarea"
-          :autosize="{ minRows: 5, maxRows: 5 }"
+          :autosize="{ minRows: 5 }"
           name="Cookies"
           placeholder="填写Cookie, 例如：_MHYUUID=2bd94c1b-ffee-4cdd-87e8-ff0de88d2ba1; DEVICEFP_SE ......"
           :inputProps="{ autocomplete: 'password' }"
@@ -68,8 +88,9 @@ const Submit = async () => {
           <XIcon name="SkinOutlined" />
         </n-input>
       </n-form-item>
+      <div class="UpdateTime" v-if="Info.CreateTime">Cookie 上次更新时间: {{ Info.CreateTime }}</div>
 
-      <div>
+      <div v-if="ReqResult">
         {{ ReqResult }}
       </div>
 
@@ -100,6 +121,12 @@ const Submit = async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.UpdateTime {
+  font-size: 14px;
+  text-align: right;
+  color: #999;
 }
 
 .title {
