@@ -82,7 +82,7 @@ const Submit = async () => {
           type="textarea"
           :autosize="{ minRows: 5 }"
           name="Cookies"
-          placeholder="填写Cookie, 例如：_MHYUUID=2bd94c1b-ffee-4cdd-87e8-ff0de88d2ba1; DEVICEFP_SE ......"
+          placeholder="填写Cookie, 例如：cookie_token_v2=v2_A_zUAV- ......"
           :inputProps="{ autocomplete: 'password' }"
         >
           <XIcon name="SkinOutlined" />
