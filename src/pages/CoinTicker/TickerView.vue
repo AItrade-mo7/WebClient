@@ -4,6 +4,7 @@ import { GetNowTickerAnaly, GetAnalyDetail, GetNowTrend } from '@/api/CoinMarket
 import { defineAsyncComponent } from 'vue';
 import { DateFormat } from '@/utils/filters';
 import { WholeDirFormat } from '@/utils/filters';
+import { UserInfoStore } from '@/store';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
@@ -45,11 +46,13 @@ const GetCoinTickerList = async (TimeID?: string) => {
 
 let TrendList = $ref([]);
 const GetTrend = () => {
-  GetNowTrend().then((res) => {
-    if (res.Data && res.Data.length > 0) {
-      TrendList = res.Data;
-    }
-  });
+  if (UserInfoStore.value.UserID) {
+    GetNowTrend().then((res) => {
+      if (res.Data && res.Data.length > 0) {
+        TrendList = res.Data;
+      }
+    });
+  }
 };
 
 let timer: any = null;
@@ -207,6 +210,15 @@ const OperationSwitch = () => {
           市场趋势: {{ WholeDirFormat(TrendList[0].Dir).text }} ;
         </div>
         <div class="data-item">推荐交易对: {{ TrendList[0].InstID }} ;</div>
+      </n-space>
+
+      <n-space class="data-title" v-else>
+        <div class="data-item value">
+          市场趋势:
+          <RouterLink to="/Login">
+            <n-button size="tiny" type="info"> 登录查看 </n-button>
+          </RouterLink>
+        </div>
       </n-space>
     </div>
     <div class="TableWrapper">

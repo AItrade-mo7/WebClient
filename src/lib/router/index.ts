@@ -13,11 +13,11 @@ const routes: any = [
     path: '/Register',
     component: () => import('@/pages/RegisterPage.vue'),
   },
-  {
-    path: '/Genshin',
-    isLogin: true,
-    component: () => import('@/pages/GenshinPage.vue'),
-  },
+  // {
+  //   path: '/Genshin',
+  //   isLogin: true,
+  //   component: () => import('@/pages/GenshinPage.vue'),
+  // },
   {
     path: '/CoinTicker',
     component: () => import('@/pages/CoinTicker/IndexPage.vue'),
