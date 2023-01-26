@@ -10,7 +10,6 @@ const props = defineProps({
 
 let SubmitStatus: boolean = $ref(false);
 const SendOrder = (Type: string) => {
-  SubmitStatus = true;
   AuthModal({
     Title: props.NowIndex == -1 ? '该操作将同时操作所有账户进行交易！' : '操作当前账户',
     IsPassword: true,
@@ -18,6 +17,7 @@ const SendOrder = (Type: string) => {
     async OkBack(param) {
       const Password = param.Password;
       const Code = param.Code;
+      SubmitStatus = true;
       return Order({
         CoinServeID: props.WssData.ServeID,
         Index: props.NowIndex,

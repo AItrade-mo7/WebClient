@@ -46,9 +46,6 @@ export default (opt: Config) => {
     positiveText: '确认',
     negativeText: '取消',
     onPositiveClick: (event) => {
-      event.path[0].disabled = true;
-      event.path[1].disabled = true;
-
       const CodeElm: any = window.document.getElementById('AuthModal_Code');
       const PasswordElm: any = window.document.getElementById('AuthModal_Password');
 

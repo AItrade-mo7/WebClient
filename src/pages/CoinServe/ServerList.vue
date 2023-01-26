@@ -31,11 +31,11 @@ const GetCoinAILIstFun = () => {
 
 let SubmitStatus: boolean = $ref(false);
 const RemoveCoinAIFun = (ServeID) => {
-  SubmitStatus = true;
   AuthModal({
     IsPassword: true,
     async OkBack(param) {
       const Password = param.Password;
+      SubmitStatus = true;
       return RemoveCoinAI({
         ServeID,
         Password,
