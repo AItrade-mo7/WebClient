@@ -23,4 +23,4 @@ rm -rf "${OutPutPath}/.git"
 
 echo "http://itpo.mo7.cc:9999/"
 
-exit
+exit 0
