@@ -2,6 +2,8 @@
 
 AITrade 的客户端
 
+trade.mo7.cc
+
 ## 配置文件
 
 sys_env.yaml
