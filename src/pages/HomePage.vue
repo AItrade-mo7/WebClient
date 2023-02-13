@@ -13,8 +13,10 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     <img class="logo" :src="Logo" alt="" srcset="" />
     <div class="appName"><span class="aiText">AI</span><span class="fundText">Trade</span></div>
     <div>
-      基于<span class="fundText">大数据</span>和<span class="fundText">深度学习</span> , 打造属于您个人的 AI 交易服务。
+      基于<span class="fundText">大数据</span>和<span class="fundText">深度学习</span> , 打造属于您个人的交易服务。
     </div>
+
+    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的邮件警报体系，可一行命令独立部署在个人服务器之上。</div>
     <br />
 
     <br />
@@ -84,5 +86,11 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   .n-button {
     width: 100%;
   }
+}
+
+.ServeDesc {
+  color: #666;
+  font-size: 14px;
+  margin-top: 6px;
 }
 </style>
