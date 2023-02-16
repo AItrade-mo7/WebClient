@@ -86,7 +86,7 @@ const OpenSet = () => {
   <PageTitle class="CoinAIPageTitle">
     {{ $lcg(WssData, 'AppEnv.ServeID') }}
     <template #after v-if="WssData.AppEnv">
-      <n-badge class="AITradeServer__dotNet" :dot="WssData.AppEnv.Version != WssData.GithubInfo.Version">
+      <n-badge class="AItradeServer__dotNet" :dot="WssData.AppEnv.Version != WssData.GithubInfo.Version">
         <n-button size="tiny" quaternary @click="OpenSet">
           <template #icon>
             <XIcon spin name="SettingOutlined" />
@@ -97,7 +97,7 @@ const OpenSet = () => {
   </PageTitle>
   <div class="wrapper">
     <n-drawer v-model:show="drawerStatus" placement="top">
-      <n-drawer-content class="AITradeServer__drawer-content">
+      <n-drawer-content class="AItradeServer__drawer-content">
         <SysManage v-if="drawerStatus" :WssData="WssData" />
       </n-drawer-content>
     </n-drawer>
@@ -138,7 +138,7 @@ const OpenSet = () => {
 <style lang="less">
 @import '@/config/constant.less';
 
-.n-badge.n-badge--dot.AITradeServer__dotNet {
+.n-badge.n-badge--dot.AItradeServer__dotNet {
   position: relative;
   .n-badge-sup {
     position: absolute;
@@ -150,7 +150,7 @@ const OpenSet = () => {
     min-width: 5px;
   }
 }
-.n-drawer .AITradeServer__drawer-content .n-drawer-body-content-wrapper {
+.n-drawer .AItradeServer__drawer-content .n-drawer-body-content-wrapper {
   padding: 16px;
 }
 

@@ -1,6 +1,6 @@
 # UserCenter
 
-AITrade 的客户端
+AItrade 的客户端
 
 trade.mo7.cc
 

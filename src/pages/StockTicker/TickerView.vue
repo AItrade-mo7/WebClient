@@ -18,7 +18,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     <a class="lineHeight" href="https://mo7.cc/" target="_blank">开发者 个人 主页</a>
     <br />
     <br />
-    <a class="lineHeight" href="https://github.com/AITrade-mo7" target="_blank"> 项目仓库地址(目前为非开源) </a>
+    <a class="lineHeight" href="https://github.com/AItrade-mo7" target="_blank"> 项目仓库地址(目前为非开源) </a>
     <br />
     <br />
     <a target="_blank"> 程序架构设计原稿 (飞书账号被封，申诉中) </a>

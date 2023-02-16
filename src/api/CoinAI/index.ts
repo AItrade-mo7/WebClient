@@ -1,11 +1,11 @@
 import { ajax_json } from '@/utils/http';
 import { Md5 } from '@/utils/tools';
 
-interface AITradeNetParam {
+interface AItradeNetParam {
   CoinServeID: string;
 }
 
-export const GetCoinAIConfig = (data: AITradeNetParam): Promise<any> => {
+export const GetCoinAIConfig = (data: AItradeNetParam): Promise<any> => {
   return ajax_json({
     url: '/CoinAI/config',
     data,

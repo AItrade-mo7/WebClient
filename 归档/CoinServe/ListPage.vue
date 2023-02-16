@@ -24,7 +24,7 @@ const GetKeyList = async () => {
 
 let ServerList = $ref([]);
 
-const AITradeNetPing = (id: string) => {
+const AItradeNetPing = (id: string) => {
   if (id) {
     CoinFundPing({
       CoinServeID: id,
@@ -48,7 +48,7 @@ const GetList = async () => {
   if (res.Code > 0) {
     ServerList = res.Data || [];
     for (const item of ServerList) {
-      AITradeNetPing(item.CoinServeID);
+      AItradeNetPing(item.CoinServeID);
     }
   }
 };
@@ -103,7 +103,7 @@ const delServer = (item) => {
       </RouterLink>
     </template>
   </PageTitle>
-  <div class="PageWrapper AITradeServerList">
+  <div class="PageWrapper AItradeServerList">
     <div v-if="ServerList.length > 0 && KeyList.length > 0" class="ListWrapper">
       <n-card
         v-for="item in ServerList"

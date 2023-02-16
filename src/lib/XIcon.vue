@@ -53,7 +53,7 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/SkinOutlined'));
     case 'SafetyOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/SafetyOutlined'));
-    case 'AITradeLogo':
+    case 'AItradeLogo':
       return defineAsyncComponent(() => import('@/lib/LogoView.vue'));
     case 'OkxLogo':
       return defineAsyncComponent(() => import('@/lib/OkxLogo.vue'));

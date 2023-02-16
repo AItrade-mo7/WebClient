@@ -15,14 +15,14 @@ const PwaConfig: Partial<VitePWAOptions> = {
     sourcemap: true,
   },
   manifest: {
-    name: 'AITrade',
-    short_name: 'AITrade',
+    name: 'AItrade',
+    short_name: 'AItrade',
     theme_color: '#F0B90B',
-    description: 'AITrade, 个人智能 AI 基金',
+    description: 'AItrade, 个人智能 AI 基金',
     lang: 'zh',
     icons: [
       {
-        src: '//file.mo7.cc/AITrade/logo/app.svg', //inside the scope!
+        src: '//file.mo7.cc/AItrade/logo/app.svg', //inside the scope!
         sizes: '48x48 72x72 96x96 128x128 256x256', //see the size in the devtools, not in editor. I've set up size 1200x1200 in Illustrator, but Chrome says it's 150x150. Also, "sizes":"any" not work.
         type: 'image/svg+xml', //not image/svg which is still visible in web
         purpose: 'any', //not "maskable any" as you may see there in answers.

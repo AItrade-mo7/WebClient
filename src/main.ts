@@ -10,7 +10,7 @@ registerSW({
 import App from '@/lib/router/App.vue';
 import { router } from '@/lib/router';
 
-import '@/assets/js/AITrade.net';
+import '@/assets/js/AItrade.net';
 import 'normalize.css';
 import '@/assets/css/global.less';
 

@@ -1,3 +1,3 @@
-export const Logo = '//file.mo7.cc/AITrade/logo/app.svg';
-export const OkxLogo = '//file.mo7.cc/AITrade/logo/okx.png';
-export const ZTSLogo = '//file.mo7.cc/AITrade/logo/zts.png';
+export const Logo = '//file.mo7.cc/AItrade/logo/app.svg';
+export const OkxLogo = '//file.mo7.cc/AItrade/logo/okx.png';
+export const ZTSLogo = '//file.mo7.cc/AItrade/logo/zts.png';
