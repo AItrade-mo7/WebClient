@@ -50,8 +50,9 @@ export const Register = (data: RegisterParam) => {
 
 export const fetchSendCode = (data: SendCodeParam) => {
   return ajax_json({
-    BaseUrl: '//msg.mo7.cc',
-    url: '/api/await/SendEmailCode',
+    // BaseUrl: '//msg.mo7.cc',
+    // url: '/api/await/SendEmailCode',
+    url: '/api/public/send_code',
     data,
     method: 'post',
   });

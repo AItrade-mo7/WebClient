@@ -57,7 +57,7 @@ const ajax_json = (param: axiosParam): Promise<resDataType> => {
     delete config.data;
   }
 
-  if (param.BaseUrl.length > 1) {
+  if (config.BaseUrl?.length > 1) {
     config.url = config.BaseUrl + config.url;
     delete config.BaseUrl;
   }
