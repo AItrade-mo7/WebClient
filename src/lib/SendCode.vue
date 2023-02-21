@@ -2,7 +2,7 @@
 import { verifyConfig } from '@/utils/verify';
 import { fetchSendCode } from '@/api/Account';
 
-let num = $ref(0);
+let num = $ref(0); // 倒计时
 
 const props = defineProps({
   Email: String,
@@ -35,6 +35,10 @@ const handleClick = async () => {
   num = 60;
   timer = setInterval(() => {
     num--;
+    if (num < 1) {
+      num = 0;
+      clearInterval(timer);
+    }
   }, 1000);
 
   const res = await fetchSendCode({
@@ -46,13 +50,9 @@ const handleClick = async () => {
     clearInterval(timer);
   });
 
-  if (!res) {
-    return;
-  }
-
-  if (res.Code > 0) {
+  if (res && res.Code > 0) {
     window.$message.success(res.Msg);
-    if (num === 0) {
+    if (num < 1) {
       num = 60;
       clearInterval(timer);
     }
@@ -64,7 +64,7 @@ const handleClick = async () => {
 </script>
 
 <template>
-  <n-button type="primary" :Email="props.Email" :disabled="SubmitStatus" @click="handleClick" ghost>{{
-    FilterNum()
-  }}</n-button>
+  <n-button type="primary" :Email="props.Email" :disabled="SubmitStatus" @click="handleClick" ghost>
+    {{ FilterNum() }}
+  </n-button>
 </template>

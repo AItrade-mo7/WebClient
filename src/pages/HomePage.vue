@@ -50,7 +50,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       </RouterLink>
     </div>
     <br />
-    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，可一行命令独立部署。</div>
+    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，一行命令独立部署。</div>
   </div>
 </template>
 

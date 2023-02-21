@@ -1,4 +1,5 @@
 export interface axiosParam {
+  BaseUrl?: string;
   url: string;
   data: any;
   method: 'get' | 'post';
