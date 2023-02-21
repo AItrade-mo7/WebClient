@@ -16,7 +16,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       基于<span class="fundText">大数据</span>和<span class="fundText">深度学习</span> , 打造属于您个人的交易服务。
     </div>
 
-    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的邮件警报体系，可一行命令独立部署在个人服务器之上。</div>
     <br />
 
     <br />
@@ -51,6 +50,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       </RouterLink>
     </div>
     <br />
+    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，可一行命令独立部署。</div>
   </div>
 </template>
 
