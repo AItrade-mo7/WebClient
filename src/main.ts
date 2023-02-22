@@ -14,16 +14,18 @@ import '@/assets/js/AItrade.net';
 import 'normalize.css';
 import '@/assets/css/global.less';
 
-// 初始化 axios 配置
+// 初始化全局和 axios 配置
 import { set_axios_config } from '@/utils/http';
 if (ViteConst) {
   window.ViteConst = {
     ...ViteConst,
-    rmAgin: 'mo777',
+    Author: 'http://mo7.cc',
   };
-
   window.$Event = {};
-
+  // 如果为 正式环境 则强制切换为正式 api
+  if (window.location.hostname == 'trade.mo7.cc') {
+    window.ViteConst.BaseUrl = '//trade-api.mo7.cc';
+  }
   set_axios_config();
 }
 
