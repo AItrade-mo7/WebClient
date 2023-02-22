@@ -39,6 +39,7 @@ export interface RegisterParam {
 export interface SendCodeParam {
   Email: string;
   Action: string;
+  EntrapmentCode?: string;
 }
 
 export interface ChangePasswordParam {
@@ -54,7 +55,7 @@ export interface EditProfileParam {
   NewEmailCode: string;
   Avatar: string;
   NickName: string;
-  SecurityCode: string;
+  EntrapmentCode: string;
   Password: string;
 }
 

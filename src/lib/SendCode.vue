@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { verifyConfig } from '@/utils/verify';
 import { fetchSendCode } from '@/api/Account';
+import { stringify } from 'qs';
 
 let num = $ref(0); // 倒计时
 
 const props = defineProps({
   Email: String,
   Action: String,
+  EntrapmentCode: String,
 });
 
 let timer: any = null;
@@ -44,6 +46,7 @@ const handleClick = async () => {
   const res = await fetchSendCode({
     Email: props.Email,
     Action: props.Action,
+    EntrapmentCode: props.EntrapmentCode,
   }).catch(() => {
     SubmitStatus = false;
     num = 0;

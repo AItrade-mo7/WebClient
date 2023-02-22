@@ -17,7 +17,7 @@ const formValue = $ref({
   NewEmailCode: '',
   Avatar: '',
   NickName: '',
-  SecurityCode: '',
+  EntrapmentCode: '',
   Password: '',
 });
 
@@ -28,7 +28,7 @@ const SetUserInfo = () => {
     UserInfo = cloneDeep(UserInfoStore.value);
     formValue.Avatar = UserInfo.Avatar;
     formValue.NickName = UserInfo.NickName;
-    formValue.SecurityCode = UserInfo.SecurityCode;
+    formValue.EntrapmentCode = UserInfo.EntrapmentCode;
   }
   return '';
 };
@@ -60,9 +60,9 @@ const Submit = () => {
   SubmitStatus = true;
 
   const isEmail = formValue.NewEmail.length > 4 && formValue.NewEmail != UserInfoStore.value.Email;
-  const isSecurityCode = formValue.SecurityCode != UserInfoStore.value.SecurityCode;
+  const isEntrapmentCode = formValue.EntrapmentCode != UserInfoStore.value.EntrapmentCode;
 
-  if (isEmail || isSecurityCode) {
+  if (isEmail || isEntrapmentCode) {
     AuthModal({
       EmailAction: '修改资料',
       IsPassword: true,
@@ -132,8 +132,8 @@ const winUpLoad = (res): any => {
 
       <n-form-item class="myForm__item" label="防伪标识符:">
         <n-input
-          v-model:value="formValue.SecurityCode"
-          name="SecurityCode"
+          v-model:value="formValue.EntrapmentCode"
+          name="EntrapmentCode"
           placeholder="修改防伪标识符"
           :inputProps="{ autocomplete: 'password' }"
         >

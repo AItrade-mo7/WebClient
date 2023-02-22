@@ -17,7 +17,7 @@ let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
   Email: '',
   Code: '',
-  SecurityCode: '',
+  EntrapmentCode: '',
 });
 
 const Submit = async () => {
@@ -79,15 +79,15 @@ const Submit = async () => {
       <n-form-item class="myForm__item">
         <div class="input_hint_wrapper">
           <n-input
-            name="SecurityCode"
-            v-model:value="formValue.SecurityCode"
+            name="EntrapmentCode"
+            v-model:value="formValue.EntrapmentCode"
             :inputProps="{ autocomplete: 'password' }"
             placeholder="请输入防钓鱼码"
           >
             <template #prefix> <XIcon name="VerifiedOutlined" /> </template>
           </n-input>
           <div class="input_hint">
-            <span>注意：</span>您收到的<span>任何</span>来自系统的邮件都会携带此安全码。
+            <span>注意：</span>您收到的<span>任何</span>来自系统的邮件都会携带此防钓鱼码。
             <br />
             否则可视为<span>钓鱼邮件</span>。可在<RouterLink class="link" to="/Personal">个人中心</RouterLink>定期更换。
           </div>
@@ -103,7 +103,7 @@ const Submit = async () => {
             placeholder="请输入6位验证码"
             :maxlength="6"
           />
-          <SendCode :Email="formValue.Email" Action="注册" />
+          <SendCode :Email="formValue.Email" Action="注册" :EntrapmentCode="formValue.EntrapmentCode" />
         </n-input-group>
       </n-form-item>
 

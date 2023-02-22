@@ -21,7 +21,7 @@ export interface UserInfoType {
   NickName: string;
   UserID: string;
   UpdateTime: number;
-  SecurityCode: string;
+  EntrapmentCode: string;
 }
 
 const UserInfo: UserInfoType = {
@@ -31,7 +31,7 @@ const UserInfo: UserInfoType = {
   NickName: '',
   UserID: '',
   UpdateTime: 0,
-  SecurityCode: '',
+  EntrapmentCode: '',
 };
 export const UserInfoStore = reactive({
   value: UserInfo,
