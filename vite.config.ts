@@ -34,32 +34,9 @@ const PwaConfig: Partial<VitePWAOptions> = {
   },
 };
 
-// ========= 处理 sys_env.yaml 文件 =========
-let SysEnv = { RunMod: 0 };
-try {
-  SysEnv = YAML.load('sys_env.yaml');
-} catch {}
-let RunMod = 0;
-if (SysEnv) {
-  RunMod = SysEnv.RunMod;
-}
-
 // ========= 处理 proxy.json 文件 =========
 import ProxyFile from './proxy.js';
 let ProxyConfig: any = ProxyFile;
-if (RunMod == 0) {
-  ProxyConfig = null;
-}
-
-// ========= 处理 BaseUrl 文件 =========
-
-let BaseUrl = '';
-if (RunMod == 1) {
-  BaseUrl = ProxyConfig['/api'].target;
-}
-if (RunMod == 0) {
-  BaseUrl = '//trade-api.mo7.cc';
-}
 
 // =========  https://vitejs.dev/config/  =========
 const pathSrc = path.resolve(__dirname, 'src');
@@ -83,8 +60,7 @@ export default defineConfig({
     ViteConst: JSON.stringify({
       AppVersion: AppPackage.version,
       AppName: AppPackage.name,
-      RunMod,
-      BaseUrl,
+      BaseUrl: ProxyConfig['/api'].target,
     }),
   },
   server: {
