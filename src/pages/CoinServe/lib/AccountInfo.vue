@@ -14,7 +14,7 @@ let Positions = $ref([]);
 
 function GetDetail() {
   GetAccountDetail({
-    CoinServeID: props.WssData.ServeID,
+    SatelliteServe: props.WssData.ServeID,
     Index: props.NowIndex,
   }).then((res) => {
     if (res.Code > 0) {

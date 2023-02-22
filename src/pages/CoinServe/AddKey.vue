@@ -29,7 +29,7 @@ let formValue = $ref({
 const SendForm = async () => {
   const res = await SetKey({
     ...cloneDeep(formValue),
-    CoinServeID: Config.AppEnv.ServeID,
+    SatelliteServe: Config.AppEnv.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);
@@ -52,7 +52,7 @@ const Submit = async () => {
 
 function GetConfig(ServeID) {
   GetCoinAIConfig({
-    CoinServeID: ServeID,
+    SatelliteServe: ServeID,
   })
     .then((res) => {
       if (res.Code > 0) {

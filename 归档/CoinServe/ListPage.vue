@@ -27,13 +27,13 @@ let ServerList = $ref([]);
 const AItradeNetPing = (id: string) => {
   if (id) {
     CoinFundPing({
-      CoinServeID: id,
+      SatelliteServe: id,
     }).then((res) => {
       const label = $lcg(res, 'Data.AppInfo.name', '');
       if (label == 'coin-ai') {
         for (let i = 0; i < ServerList.length; i++) {
           const item = ServerList[i];
-          if (item.CoinServeID == id) {
+          if (item.SatelliteServe == id) {
             ServerList[i].Status = true;
             break;
           }
@@ -48,7 +48,7 @@ const GetList = async () => {
   if (res.Code > 0) {
     ServerList = res.Data || [];
     for (const item of ServerList) {
-      AItradeNetPing(item.CoinServeID);
+      AItradeNetPing(item.SatelliteServe);
     }
   }
 };
@@ -70,7 +70,7 @@ function GetKey(KeyId: string): any {
 }
 
 const OpenServerDetail = (id: string) => {
-  mStorage.set('CoinServeID', id);
+  mStorage.set('SatelliteServe', id);
   $router.push('/CoinServe/Info');
 };
 
@@ -80,7 +80,7 @@ const delServer = (item) => {
     IsPassword: true,
     async OkBack(param) {
       return DelServer({
-        CoinServeID: data.CoinServeID,
+        SatelliteServe: data.SatelliteServe,
         Password: param.Password,
       }).then((res) => {
         if (res.Code > 0) {
@@ -107,8 +107,8 @@ const delServer = (item) => {
     <div v-if="ServerList.length > 0 && KeyList.length > 0" class="ListWrapper">
       <n-card
         v-for="item in ServerList"
-        :key="item.CoinServeID"
-        :title="item.CoinServeID"
+        :key="item.SatelliteServe"
+        :title="item.SatelliteServe"
         embedded
         hoverable
         size="small"
@@ -153,10 +153,10 @@ const delServer = (item) => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <n-button size="small" v-if="item.Status" type="success" @click="OpenServerDetail(item.CoinServeID)">
+            <n-button size="small" v-if="item.Status" type="success" @click="OpenServerDetail(item.SatelliteServe)">
               服务正在运行【查看】
             </n-button>
-            <n-button size="small" v-else type="error" @click="OpenServerDetail(item.CoinServeID)">
+            <n-button size="small" v-else type="error" @click="OpenServerDetail(item.SatelliteServe)">
               服务尚未运行【去部署】
             </n-button>
           </div>

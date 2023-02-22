@@ -12,7 +12,7 @@ export interface AddCoinServerParam {
 }
 
 export interface DelCoinServerParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Password: string;
 }
 

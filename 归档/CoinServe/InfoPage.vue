@@ -11,12 +11,12 @@ const InfoNot = defineAsyncComponent(() => import('./lib/InfoNot.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
 
 const $router = useRouter();
-const CoinServeID = mStorage.get('CoinServeID');
+const SatelliteServe = mStorage.get('SatelliteServe');
 let CoinServeConfig = $ref({});
 
 const GetConfig = () => {
   GetCoinFundConfig({
-    CoinServeID,
+    SatelliteServe,
   }).then((res) => {
     if (res.Code > 0) {
       CoinServeConfig = res.Data;
@@ -24,8 +24,8 @@ const GetConfig = () => {
   });
 };
 
-if (CoinServeID.length < 6) {
-  window.$message.warning('缺少 CoinServeID');
+if (SatelliteServe.length < 6) {
+  window.$message.warning('缺少 SatelliteServe');
   $router.replace('/CoinServe');
 } else {
   // 开始
@@ -41,7 +41,7 @@ const OpenSet = () => {
 
 <template>
   <PageTitle>
-    {{ CoinServeID }}
+    {{ SatelliteServe }}
     <template #after v-if="CoinServeConfig.AppInfo">
       <n-badge
         class="AItradeServer__dotNet"
@@ -64,7 +64,7 @@ const OpenSet = () => {
 
   <div class="PageWrapper">
     <InfoOk v-if="CoinServeConfig.AppInfo" :config="CoinServeConfig" />
-    <InfoNot v-if="!CoinServeConfig.AppInfo" :CoinServeID="CoinServeID" />
+    <InfoNot v-if="!CoinServeConfig.AppInfo" :SatelliteServe="SatelliteServe" />
   </div>
 </template>
 

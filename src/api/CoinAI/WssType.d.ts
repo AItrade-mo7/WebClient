@@ -1,6 +1,6 @@
 export interface WssDataType {
   DataSource: string;
   SysTime: number;
-  CoinServeID: string;
+  SatelliteServe: string;
   UserID: string;
 }

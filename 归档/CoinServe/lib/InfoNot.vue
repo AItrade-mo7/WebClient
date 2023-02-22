@@ -5,18 +5,18 @@ import { defineAsyncComponent } from 'vue';
 const ShellAbout = defineAsyncComponent(() => import('./ShellAbout.vue'));
 
 const props = defineProps({
-  CoinServeID: String,
+  SatelliteServe: String,
 });
 
 let Url = $ref('');
 const deployFunc = () => {
-  const CoinServeID = props?.CoinServeID;
+  const SatelliteServe = props?.SatelliteServe;
 
   AuthModal({
     IsPassword: true,
     async OkBack(param) {
       return GetDeployShell({
-        CoinServeID,
+        SatelliteServe,
         Password: param.Password,
       }).then((res) => {
         Url = res.Data.Src;
@@ -35,8 +35,8 @@ const deployFunc = () => {
       </div>
     </div>
 
-    <div v-if="Url && props?.CoinServeID">
-      <ShellAbout :Src="Url" :CoinServeID="props?.CoinServeID"></ShellAbout>
+    <div v-if="Url && props?.SatelliteServe">
+      <ShellAbout :Src="Url" :SatelliteServe="props?.SatelliteServe"></ShellAbout>
     </div>
   </div>
 </template>

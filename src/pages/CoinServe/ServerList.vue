@@ -54,7 +54,7 @@ function GetConfig(list, lType) {
   for (let i = 0; i < newList.length; i++) {
     const item = newList[i];
     GetCoinAIConfig({
-      CoinServeID: item.ServeID,
+      SatelliteServe: item.ServeID,
     })
       .then((res) => {
         if (res.Code > 0) {

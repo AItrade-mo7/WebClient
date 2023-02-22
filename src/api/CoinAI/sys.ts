@@ -4,7 +4,7 @@ import { Md5 } from '@/utils/tools';
 interface SysParam {
   Password: string;
   Code: string;
-  CoinServeID: string;
+  SatelliteServe: string;
 }
 
 export const ReStart = (param: SysParam) => {
@@ -18,7 +18,7 @@ export const ReStart = (param: SysParam) => {
     url: '/CoinAI/sys/restart',
     data,
     method: 'post',
-    CoinServeID: data.CoinServeID,
+    SatelliteServe: data.SatelliteServe,
   });
 };
 
@@ -33,6 +33,6 @@ export const Remove = (param: SysParam): Promise<any> => {
     url: '/CoinAI/sys/remove',
     data,
     method: 'post',
-    CoinServeID: data.CoinServeID,
+    SatelliteServe: data.SatelliteServe,
   });
 };

@@ -2,7 +2,7 @@ import { ajax_json } from '@/utils/http';
 import { Md5 } from '@/utils/tools';
 
 interface AItradeNetParam {
-  CoinServeID: string;
+  SatelliteServe: string;
 }
 
 export const GetCoinAIConfig = (data: AItradeNetParam): Promise<any> => {
@@ -14,7 +14,7 @@ export const GetCoinAIConfig = (data: AItradeNetParam): Promise<any> => {
 };
 
 interface SetKeyParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Name: string;
   ApiKey: string;
   SecretKey: string;
@@ -36,7 +36,7 @@ export const SetKey = (data: SetKeyParam): Promise<any> => {
 };
 
 interface HandleKeyParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Index: number;
   Password: string;
 }
@@ -55,7 +55,7 @@ export const HandleKey = (data: HandleKeyParam): Promise<any> => {
 };
 
 interface AccountDetailParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Index: number;
 }
 
@@ -68,7 +68,7 @@ export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
 };
 
 interface OrderParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Index: number;
   Type: string;
   Password: string;
@@ -90,7 +90,7 @@ export const Order = (data: OrderParam) => {
 };
 
 interface EditConfigParam {
-  CoinServeID: string;
+  SatelliteServe: string;
   Password: string;
   ServerName: string;
 }

@@ -19,7 +19,7 @@ const SendOrder = (Type: string) => {
       const Code = param.Code;
       SubmitStatus = true;
       return Order({
-        CoinServeID: props.WssData.ServeID,
+        SatelliteServe: props.WssData.ServeID,
         Index: props.NowIndex,
         Type,
         Password,

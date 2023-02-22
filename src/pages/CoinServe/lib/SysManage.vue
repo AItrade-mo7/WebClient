@@ -57,7 +57,7 @@ const SendFetch = (type: number) => {
 const SendStop = async (Info) => {
   const res = await Remove({
     ...Info,
-    CoinServeID: props.WssData.AppEnv.ServeID,
+    SatelliteServe: props.WssData.AppEnv.ServeID,
   });
   if (res.Code > 0) {
     window.$message.warning('删除指令已发送!', {
@@ -71,12 +71,12 @@ const SendStop = async (Info) => {
 const SendReStart = async (Info) => {
   const res = await ReStart({
     ...Info,
-    CoinServeID: props.WssData.AppEnv.ServeID,
+    SatelliteServe: props.WssData.AppEnv.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success('重启指令已发送!请等待页面跳转', {
       onAfterLeave() {
-        mStorage.remove('CoinServeID');
+        mStorage.remove('SatelliteServe');
         window.location.replace('/CoinServe');
       },
       duration: 5000,

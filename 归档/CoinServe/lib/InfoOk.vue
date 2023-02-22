@@ -17,9 +17,9 @@ let ResData: resDataType = $ref({});
 let socketObj: any;
 
 onMounted(() => {
-  if (props.config.AppEnv.CoinServeID) {
+  if (props.config.AppEnv.SatelliteServe) {
     socketObj = NewSocket({
-      Host: props.config.AppEnv.CoinServeID,
+      Host: props.config.AppEnv.SatelliteServe,
       MessageEvent(res) {
         ResData = res.Response;
         if (res.Response.Code == 1) {
@@ -50,9 +50,9 @@ onUnmounted(() => {
       </div>
     </n-space>
   </div>
-  <TradeBtn v-if="WssData.CoinServeID" :WssData="WssData" />
+  <TradeBtn v-if="WssData.SatelliteServe" :WssData="WssData" />
   <div v-if="!WssData.DataSource">
-    正在连接到 <span class="lineHight">{{ props.config.AppEnv.CoinServeID }}</span> .....
+    正在连接到 <span class="lineHight">{{ props.config.AppEnv.SatelliteServe }}</span> .....
   </div>
 </template>
 

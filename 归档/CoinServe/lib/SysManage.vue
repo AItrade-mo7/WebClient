@@ -58,12 +58,12 @@ const SendStop = async (Info) => {
   await Remove({
     ...Info,
     ServerInfo: {
-      Host: props.config.AppEnv.CoinServeID,
+      Host: props.config.AppEnv.SatelliteServe,
     },
   });
   window.$message.success('删除指令已发送!', {
     onAfterLeave() {
-      mStorage.remove('CoinServeID');
+      mStorage.remove('SatelliteServe');
       window.location.replace('/CoinServe');
     },
   });
@@ -73,13 +73,13 @@ const SendReStart = async (Info) => {
   await ReStart({
     ...Info,
     ServerInfo: {
-      Host: props.config.AppEnv.CoinServeID,
+      Host: props.config.AppEnv.SatelliteServe,
     },
   });
 
   window.$message.success('重启指令已发送!', {
     onAfterLeave() {
-      mStorage.remove('CoinServeID');
+      mStorage.remove('SatelliteServe');
       window.location.replace('/CoinServe');
     },
   });

@@ -7,25 +7,25 @@ const props = defineProps({
 
 const BuyUp = () => {
   Buy({
-    CoinServeID: props.WssData.CoinServeID,
+    SatelliteServe: props.WssData.SatelliteServe,
   });
 };
 
 const SellDown = () => {
   Sell({
-    CoinServeID: props.WssData.CoinServeID,
+    SatelliteServe: props.WssData.SatelliteServe,
   });
 };
 
 const CloseAll = () => {
   Close({
-    CoinServeID: props.WssData.CoinServeID,
+    SatelliteServe: props.WssData.SatelliteServe,
   });
 };
 
 const BuySPOT = () => {
   Buy({
-    CoinServeID: props.WssData.CoinServeID,
+    SatelliteServe: props.WssData.SatelliteServe,
   });
 };
 </script>

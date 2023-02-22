@@ -4,13 +4,13 @@ import { GetCoinFundConfig } from '@/api/CoinAI';
 
 const props = defineProps({
   Src: String,
-  CoinServeID: String,
+  SatelliteServe: String,
 });
 
 let Port = '';
 let Host = '';
-if (props.CoinServeID) {
-  const host_arr = props.CoinServeID.split(':');
+if (props.SatelliteServe) {
+  const host_arr = props.SatelliteServe.split(':');
   Port = host_arr[1];
   Host = host_arr[0];
 }
@@ -23,7 +23,7 @@ const wgetSh = `wget -qO- ${window.location.protocol}${props.Src} | sudo bash`;
 
 const getConfig = () => {
   GetCoinFundConfig({
-    CoinServeID: props.CoinServeID,
+    SatelliteServe: props.SatelliteServe,
   })
     .then((res) => {
       if (res.Code > 0) {
@@ -51,7 +51,7 @@ const getConfig = () => {
     <div class="ShellAbout_desc">
       复制该指令，并在 ip 为
       <div class="ShellAbout_desc-ip">
-        <a :href="`http://${props.CoinServeID}`" target="_blank">
+        <a :href="`http://${props.SatelliteServe}`" target="_blank">
           <span class="lineHight"> {{ Host }} </span>:{{ Port }}
         </a>
       </div>

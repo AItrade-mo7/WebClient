@@ -21,7 +21,7 @@ let ServeID = $ref('');
 
 function GetConfig() {
   GetCoinAIConfig({
-    CoinServeID: ServeID,
+    SatelliteServe: ServeID,
   })
     .then((res) => {
       if (res.Code > 0) {

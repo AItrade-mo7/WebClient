@@ -18,7 +18,7 @@ let formValue = $ref({
 const SendForm = async () => {
   const res = await EditConfig({
     ...cloneDeep(formValue),
-    CoinServeID: props.WssData.ServeID,
+    SatelliteServe: props.WssData.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);

@@ -47,9 +47,9 @@ const ajax_json = (param: axiosParam): Promise<resDataType> => {
     ...param,
   };
 
-  // 处理 CoinServeID
-  if (param?.data?.CoinServeID) {
-    config.headers['Coin-Serve-ID'] = param.data.CoinServeID;
+  // 处理 SatelliteServe
+  if (param?.data?.SatelliteServe) {
+    config.headers['Satellite-Serve'] = param.data.SatelliteServe;
   }
 
   // 请求参数转换

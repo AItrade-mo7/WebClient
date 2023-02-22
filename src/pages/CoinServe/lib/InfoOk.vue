@@ -46,7 +46,7 @@ let HandleKeyFormValue = $ref({
 const SendForm = async () => {
   const res = await HandleKey({
     ...cloneDeep(HandleKeyFormValue),
-    CoinServeID: props.WssData.ServeID,
+    SatelliteServe: props.WssData.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);

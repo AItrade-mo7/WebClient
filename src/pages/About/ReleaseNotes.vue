@@ -26,7 +26,7 @@ function GetPing() {
 let CoinAIGithubInfo = $ref({});
 function GetConfig() {
   GetCoinAIConfig({
-    CoinServeID: '3.1.68.15:9012',
+    SatelliteServe: '3.1.68.15:9012',
   }).then((res) => {
     if (res.Code > 0) {
       CoinAIGithubInfo = res.Data.GithubInfo;
