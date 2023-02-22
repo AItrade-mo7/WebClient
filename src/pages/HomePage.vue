@@ -17,6 +17,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </div>
 
     <br />
+    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，一行命令独立部署。</div>
 
     <br />
     <div class="HomeBtnItem">
@@ -50,7 +51,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       </RouterLink>
     </div>
     <br />
-    <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，一行命令独立部署。</div>
   </div>
 </template>
 

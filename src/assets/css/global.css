@@ -58,6 +58,17 @@ a {
 .myForm .my-textarea {
   text-align: left;
 }
+.myForm .input_hint_wrapper {
+  width: 100%;
+}
+.myForm .input_hint_wrapper .input_hint {
+  color: #999;
+  margin-top: 8px;
+  padding: 4px 12px;
+}
+.myForm .input_hint_wrapper .input_hint span {
+  color: #f0b90b;
+}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.3s ease;

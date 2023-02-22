@@ -17,6 +17,7 @@ let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
   Email: '',
   Code: '',
+  SecurityCode: '',
 });
 
 const Submit = async () => {
@@ -53,24 +54,44 @@ const Submit = async () => {
     <h2 className="title">
       <div>注册</div>
     </h2>
-    <div class="title-hint">
-      尽量使用常用邮箱来进行注册，以便第一时间接受行情消息。
-      <br />
-      可以在
-      <RouterLink class="link" to="/Personal">个人中心</RouterLink>
-      修改邮箱。
-    </div>
 
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item">
-        <n-input
-          name="Email"
-          v-model:value="formValue.Email"
-          :inputProps="{ autocomplete: 'password' }"
-          placeholder="请输入邮箱地址"
-        >
-          <template #prefix> <XIcon name="MailOutlined" /> </template>
-        </n-input>
+        <div class="input_hint_wrapper">
+          <n-input
+            name="Email"
+            v-model:value="formValue.Email"
+            :inputProps="{ autocomplete: 'password' }"
+            placeholder="请输入邮箱地址"
+          >
+            <template #prefix> <XIcon name="MailOutlined" /> </template>
+          </n-input>
+          <div class="input_hint">
+            提示：邮箱是您的身份和通知接收凭证，请注意邮箱安全。
+            <br />
+            可以在
+            <RouterLink class="link" to="/Personal">个人中心</RouterLink>
+            进行管理。
+          </div>
+        </div>
+      </n-form-item>
+
+      <n-form-item class="myForm__item">
+        <div class="input_hint_wrapper">
+          <n-input
+            name="SecurityCode"
+            v-model:value="formValue.SecurityCode"
+            :inputProps="{ autocomplete: 'password' }"
+            placeholder="请输入防钓鱼码"
+          >
+            <template #prefix> <XIcon name="VerifiedOutlined" /> </template>
+          </n-input>
+          <div class="input_hint">
+            <span>注意：</span>您收到的<span>任何</span>来自系统的邮件都会携带此安全码。
+            <br />
+            否则可视为<span>钓鱼邮件</span>。可在<RouterLink class="link" to="/Personal">个人中心</RouterLink>定期更换。
+          </div>
+        </div>
       </n-form-item>
 
       <n-form-item class="myForm__item">
@@ -123,12 +144,5 @@ const Submit = async () => {
 }
 .forget {
   text-align: center;
-}
-
-.title-hint {
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 12px;
-  max-width: 400px;
 }
 </style>
