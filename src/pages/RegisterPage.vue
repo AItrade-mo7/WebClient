@@ -41,6 +41,10 @@ const Submit = async () => {
         $router.replace('/Login');
       },
     });
+  } else if (res.Code == -13) {
+    setTimeout(() => {
+      $router.replace('/Login');
+    }, 1000);
   }
 };
 </script>
@@ -67,7 +71,7 @@ const Submit = async () => {
             <template #prefix> <XIcon name="MailOutlined" /> </template>
           </n-input>
           <div class="input_hint">
-            提示：邮箱是您的身份凭证，请注意邮箱安全。
+            <span> 提示</span>：邮箱是您的身份凭证，请注意邮箱安全。
             <br />
             可以在
             <RouterLink class="link" to="/Personal">个人中心</RouterLink>
