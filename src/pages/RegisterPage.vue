@@ -67,7 +67,7 @@ const Submit = async () => {
             <template #prefix> <XIcon name="MailOutlined" /> </template>
           </n-input>
           <div class="input_hint">
-            提示：邮箱是您的身份和通知接收凭证，请注意邮箱安全。
+            提示：邮箱是您的身份凭证，请注意邮箱安全。
             <br />
             可以在
             <RouterLink class="link" to="/Personal">个人中心</RouterLink>
@@ -95,16 +95,21 @@ const Submit = async () => {
       </n-form-item>
 
       <n-form-item class="myForm__item">
-        <n-input-group>
-          <n-input
-            name="Code"
-            v-model:value="formValue.Code"
-            :inputProps="{ autocomplete: 'password' }"
-            placeholder="请输入6位验证码"
-            :maxlength="6"
-          />
-          <SendCode :Email="formValue.Email" Action="注册" :EntrapmentCode="formValue.EntrapmentCode" />
-        </n-input-group>
+        <div class="input_hint_wrapper">
+          <n-input-group>
+            <n-input
+              name="Code"
+              v-model:value="formValue.Code"
+              :inputProps="{ autocomplete: 'password' }"
+              placeholder="请输入6位验证码"
+              :maxlength="6"
+            />
+            <SendCode :Email="formValue.Email" Action="注册" :EntrapmentCode="formValue.EntrapmentCode" />
+          </n-input-group>
+          <div class="input_hint">
+            <RouterLink class="link" to="/About/EmailList">查看当前系统邮箱地址</RouterLink>
+          </div>
+        </div>
       </n-form-item>
 
       <n-form-item class="myForm__item">

@@ -4,8 +4,8 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
 
 <template>
-  <PageTitle> PWA 应用安装指南 </PageTitle>
-  <div>PWA 应用安装指南</div>
+  <PageTitle> 系统邮箱地址列表 </PageTitle>
+  <div>EmailList</div>
 </template>
 
 <style lang="less" scoped></style>

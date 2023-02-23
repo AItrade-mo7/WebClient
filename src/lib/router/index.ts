@@ -96,6 +96,11 @@ const routes: any = [
         description: 'CoinServe 使用说明',
         component: () => import('@/pages/About/CoinServe.vue'),
       },
+      {
+        path: 'EmailList',
+        description: '系统邮件地址',
+        component: () => import('@/pages/About/EmailList.vue'),
+      },
     ],
   },
   {

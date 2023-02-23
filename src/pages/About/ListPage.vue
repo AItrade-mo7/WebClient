@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { routes } from '@/lib/router/index';
 import { RouterLink } from 'vue-router';
+import { defineAsyncComponent } from 'vue';
+const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 let aboutListPage = [];
 
@@ -12,6 +14,7 @@ for (const item of routes) {
 </script>
 
 <template>
+  <PageTitle> About </PageTitle>
   <div class="list">
     <template v-for="item in aboutListPage" :key="item.name">
       <div v-if="item.path">
