@@ -59,7 +59,11 @@ const ajax_json = (param: axiosParam): Promise<resDataType> => {
   }
 
   // 添加加密验证
-  var headersAuth = Encrypt(param.url + window.navigator.userAgent + Md5(JSON.stringify(config.data)));
+  var datastr = '';
+  if (config.data) {
+    datastr = JSON.stringify(config.data);
+  }
+  var headersAuth = Encrypt(param.url + window.navigator.userAgent + Md5(datastr));
   config.headers['Auth-Encrypt'] = headersAuth;
 
   // 处理请求地址

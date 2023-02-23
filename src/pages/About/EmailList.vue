@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, onMounted } from 'vue';
+import { GetSysEmailList } from '@/api/Ping';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
+
+onMounted(() => {
+  GetSysEmailList().then((res) => {
+    console.log(res);
+  });
+});
 </script>
 
 <template>

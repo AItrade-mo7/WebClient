@@ -7,3 +7,11 @@ export const Ping = (data?: any) => {
     method: 'post',
   });
 };
+
+export const GetSysEmailList = () => {
+  return ajax_json({
+    url: '/api/public/GetSysEmailList',
+    data: '',
+    method: 'post',
+  });
+};
