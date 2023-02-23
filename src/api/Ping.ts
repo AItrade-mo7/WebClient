@@ -10,6 +10,7 @@ export const Ping = (data?: any) => {
 
 export const GetSysEmailList = () => {
   return ajax_json({
+    BaseUrl: '//msg.mo7.cc',
     url: '/api/public/GetSysEmailList',
     data: '',
     method: 'post',
