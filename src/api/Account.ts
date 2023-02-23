@@ -82,8 +82,7 @@ export const ChangePassword = (data: ChangePasswordParam) => {
 export const EditProfile = (data: EditProfileParam) => {
   const param = {
     ...data,
-    OldEmailCode: Md5(data.OldEmailCode),
-    NewEmailCode: Md5(data.NewEmailCode),
+    EmailCode: Md5(data.EmailCode),
     Password: Md5(data.Password),
   };
 

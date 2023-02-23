@@ -12,13 +12,11 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
-  OldEmailCode: '',
-  NewEmail: '',
-  NewEmailCode: '',
   Avatar: '',
   NickName: '',
   EntrapmentCode: '',
   Password: '',
+  EmailCode: '',
 });
 
 // 数据回填
@@ -34,13 +32,13 @@ const SetUserInfo = () => {
 };
 
 // 发送表单
-const SendForm = async (isEmail: boolean) => {
+const SendForm = async (isEntrapmentCode: boolean) => {
   const res = await EditProfile({
     ...cloneDeep(formValue),
   });
   SubmitStatus = false;
   if (res.Code > 0) {
-    if (isEmail) {
+    if (isEntrapmentCode) {
       window.$notification.success({
         meta: res.Data,
         content: res.Msg,
@@ -59,23 +57,22 @@ const SendForm = async (isEmail: boolean) => {
 const Submit = () => {
   SubmitStatus = true;
 
-  const isEmail = formValue.NewEmail.length > 4 && formValue.NewEmail != UserInfoStore.value.Email;
   const isEntrapmentCode = formValue.EntrapmentCode != UserInfoStore.value.EntrapmentCode;
 
-  if (isEmail || isEntrapmentCode) {
+  if (isEntrapmentCode) {
     AuthModal({
       EmailAction: '修改资料',
       IsPassword: true,
       async OkBack(param) {
-        formValue.OldEmailCode = param.Code;
+        formValue.EmailCode = param.Code;
         formValue.Password = param.Password;
-        return SendForm(isEmail);
+        return SendForm(isEntrapmentCode);
       },
     });
     return;
   }
 
-  SendForm(isEmail);
+  SendForm(isEntrapmentCode);
 };
 
 const loseUpLoad = (): any => {
@@ -139,30 +136,6 @@ const winUpLoad = (res): any => {
         >
           <template #prefix> <XIcon name="SafetyOutlined" /> </template>
         </n-input>
-      </n-form-item>
-
-      <n-form-item class="myForm__item" label="修改登录邮箱?">
-        <n-input
-          name="NewEmail"
-          v-model:value="formValue.NewEmail"
-          :inputProps="{ autocomplete: 'password' }"
-          placeholder="请输入新邮箱地址"
-        >
-          <template #prefix> <XIcon name="MailOutlined" /> </template>
-        </n-input>
-      </n-form-item>
-
-      <n-form-item class="myForm__item" v-if="formValue.NewEmail">
-        <n-input-group>
-          <n-input
-            name="NewEmailCode"
-            v-model:value="formValue.NewEmailCode"
-            :inputProps="{ autocomplete: 'password' }"
-            placeholder="新邮箱验证码"
-            :maxlength="6"
-          />
-          <SendCode :Email="formValue.NewEmail" Action="修改资料" />
-        </n-input-group>
       </n-form-item>
 
       <n-form-item class="myForm__item">

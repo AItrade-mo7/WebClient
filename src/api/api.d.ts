@@ -50,13 +50,11 @@ export interface ChangePasswordParam {
 }
 
 export interface EditProfileParam {
-  OldEmailCode: string;
-  NewEmail: string;
-  NewEmailCode: string;
   Avatar: string;
   NickName: string;
   EntrapmentCode: string;
   Password: string;
+  EmailCode: string;
 }
 
 export interface GenshinCheckParam {
