@@ -23,8 +23,14 @@ export const login = (data: LoginParam) => {
 };
 
 export const logout = () => {
-  removeToken();
-  window.location.replace('/Login');
+  ajax_json({
+    url: '/api/private/loginOut',
+    data: null,
+    method: 'post',
+  }).then(() => {
+    removeToken();
+    window.location.replace('/Login');
+  });
 };
 
 export const getUserInfo = () => {

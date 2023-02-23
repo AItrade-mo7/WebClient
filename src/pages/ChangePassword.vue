@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { UserInfoStore } from '@/store';
 import { Logo } from '@/config/constant';
-import { ChangePassword } from '@/api/Account';
+import { ChangePassword, logout } from '@/api/Account';
 // import { verifyConfig } from '@/utils/verify';
 import { cloneDeep } from '@/utils/tools';
 import { useRouter } from 'vue-router';
@@ -28,6 +28,7 @@ const Submit = async () => {
   });
   SubmitStatus = false;
   if (res.Code > 0) {
+    logout();
     window.$notification.success({
       meta: res.Data,
       content: res.Msg,
