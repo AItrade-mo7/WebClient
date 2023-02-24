@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { GetEmailList, AddEmail, SetMainEmail } from '@/api/Account';
+import { GetEmailList, AddEmail, SetMainEmail, DelEmail } from '@/api/Account';
 import { defineAsyncComponent, onMounted } from 'vue';
+import { verifyConfig } from '@/utils/verify';
+import { cloneDeep } from '@/utils/tools';
+import AuthModal from '@/lib/AuthModal';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
+const SendCode = defineAsyncComponent(() => import('@/lib/SendCode.vue'));
 
 let EmailInfo = $ref({});
 const GetList = () => {
@@ -10,7 +15,72 @@ const GetList = () => {
     if (res.Code > 0) {
       EmailInfo = res.Data;
     }
-    console.log('GetEmailList', res.Data);
+  });
+  formValue.Email = '';
+  formValue.EmailCode = '';
+  formValue.Password = '';
+};
+
+let SubmitStatus: boolean = $ref(false);
+
+var formValue = $ref({
+  Email: '',
+  EmailCode: '',
+  Password: '',
+});
+
+const Submit = async () => {
+  const v1 = verifyConfig('Email', formValue.Email);
+  const v2 = verifyConfig('Code', formValue.EmailCode);
+  const v3 = verifyConfig('Password', formValue.Password);
+  if (v1 || v2 || v3) {
+    window.$message.warning(v1 || v2 || v3);
+    return;
+  }
+
+  SubmitStatus = true;
+  const res = await AddEmail({
+    ...cloneDeep(formValue),
+  });
+  SubmitStatus = false;
+  if (res.Code > 0) {
+    GetList();
+  }
+};
+
+const SetMainBtn = (item) => {
+  AuthModal({
+    Title: '邮件已发送至' + item,
+    Email: item,
+    EmailAction: '设置主要邮箱',
+    IsPassword: true,
+    async OkBack(param) {
+      formValue.Email = item;
+      formValue.EmailCode = param.Code;
+      formValue.Password = param.Password;
+      return SetMainEmail({
+        ...cloneDeep(formValue),
+      }).then(() => {
+        GetList();
+      });
+    },
+  });
+};
+const DelBtn = (item) => {
+  AuthModal({
+    Title: '邮件已发送至主要邮箱',
+    EmailAction: '删除邮箱' + item,
+    IsPassword: true,
+    async OkBack(param) {
+      formValue.Email = item;
+      formValue.EmailCode = param.Code;
+      formValue.Password = param.Password;
+      return DelEmail({
+        ...cloneDeep(formValue),
+      }).then(() => {
+        GetList();
+      });
+    },
   });
 };
 
@@ -41,16 +111,51 @@ onMounted(() => {
         </div>
         <div v-if="item == EmailInfo.Email" class="MainTxt">主要</div>
         <div v-if="item != EmailInfo.Email" class="Btn">
-          <n-button size="tiny" type="error"> 删除 </n-button>
-          <n-button size="tiny" type="primary"> 设为主要 </n-button>
+          <n-button size="tiny" type="error" @click="DelBtn(item)"> 删除 </n-button>
+          <n-button size="tiny" type="primary" @click="SetMainBtn(item)"> 设为主要 </n-button>
         </div>
       </div>
-      <div class="AddBtn">
-        <n-button strong type="primary">
-          <template #icon>
-            <XIcon name="PlusOutlined" />
-          </template>
-        </n-button>
+      <div class="AddWrapper">
+        <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
+          <n-form-item class="myForm__item">
+            <n-input
+              name="Email"
+              v-model:value="formValue.Email"
+              :inputProps="{ autocomplete: 'password' }"
+              placeholder="新增邮箱地址"
+            >
+              <template #prefix> <XIcon name="MailOutlined" /> </template>
+            </n-input>
+          </n-form-item>
+
+          <n-form-item class="myForm__item">
+            <n-input-group>
+              <n-input
+                name="EmailCode"
+                v-model:value="formValue.EmailCode"
+                :inputProps="{ autocomplete: 'password' }"
+                placeholder="请输入6位验证码"
+                :maxlength="6"
+              />
+              <SendCode :Email="formValue.Email" Action="新增邮箱" />
+            </n-input-group>
+          </n-form-item>
+
+          <n-form-item class="myForm__item">
+            <n-input
+              v-model:value="formValue.Password"
+              type="password"
+              name="Password"
+              show-password-on="click"
+              placeholder="请输入密码"
+              :inputProps="{ autocomplete: 'password' }"
+            ></n-input>
+          </n-form-item>
+
+          <n-form-item class="myForm__item">
+            <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 新增邮箱 </n-button>
+          </n-form-item>
+        </n-form>
       </div>
     </div>
   </div>
@@ -68,7 +173,7 @@ onMounted(() => {
 }
 
 .Email_item {
-  padding-bottom: 8px;
+  padding: 8px 0;
   border-bottom: 1px solid #ddd;
   .Email {
     font-size: 18px;
@@ -100,12 +205,9 @@ onMounted(() => {
   }
 }
 
-.AddBtn {
+.AddWrapper {
   width: 100%;
   margin: 20px auto;
-  button {
-    width: 100%;
-  }
 }
 
 .Personal__info {
@@ -122,6 +224,14 @@ onMounted(() => {
   .Personal__Email {
     font-size: 12px;
     color: #999;
+  }
+}
+</style>
+
+<style lang="less">
+.ManageEmail {
+  .n-form-item-feedback-wrapper {
+    display: none;
   }
 }
 </style>

@@ -113,9 +113,15 @@ export const GetGenshinCookie = () => {
 // 新增邮箱
 
 export const AddEmail = (data: AddEmailParam) => {
+  var myData = {
+    ...data,
+    EmailCode: Md5(data.EmailCode),
+    Password: Md5(data.Password),
+  };
+
   return ajax_json({
     url: '/api/private/AddEmail',
-    data: data,
+    data: myData,
     method: 'post',
   });
 };
@@ -131,9 +137,30 @@ export const GetEmailList = () => {
 
 // 设为主要
 export const SetMainEmail = (data: AddEmailParam) => {
+  var myData = {
+    ...data,
+    EmailCode: Md5(data.EmailCode),
+    Password: Md5(data.Password),
+  };
+
   return ajax_json({
     url: '/api/private/SetMainEmail',
-    data: data,
+    data: myData,
+    method: 'post',
+  });
+};
+
+// 删除
+export const DelEmail = (data: AddEmailParam) => {
+  var myData = {
+    ...data,
+    EmailCode: Md5(data.EmailCode),
+    Password: Md5(data.Password),
+  };
+
+  return ajax_json({
+    url: '/api/private/DelEmail',
+    data: myData,
     method: 'post',
   });
 };

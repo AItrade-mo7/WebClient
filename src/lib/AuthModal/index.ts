@@ -11,6 +11,7 @@ export interface BackData {
 }
 
 export interface Config {
+  Email?: string;
   Title?: string;
   IsPassword?: boolean;
   EmailAction?: string;
@@ -21,10 +22,15 @@ export default (opt: Config) => {
 
   let Modal = PasswordView.render;
 
+  let SendEmail = UserInfoStore.value.Email;
+  if (opt.Email) {
+    SendEmail = opt.Email;
+  }
+
   if (opt.EmailAction) {
     Modal = CodeView.render;
     fetchSendCode({
-      Email: UserInfoStore.value.Email,
+      Email: SendEmail,
       Action: opt.EmailAction,
     }).then((res) => {
       if (res.Code > 0) {
