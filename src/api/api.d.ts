@@ -60,3 +60,9 @@ export interface EditProfileParam {
 export interface GenshinCheckParam {
   Cookie: string;
 }
+
+export interface AddEmailParam {
+  Email: string;
+  EmailCode: string;
+  Password: string;
+}

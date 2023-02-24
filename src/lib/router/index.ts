@@ -13,10 +13,7 @@ const routes: any = [
     path: '/Register',
     component: () => import('@/pages/RegisterPage.vue'),
   },
-  {
-    path: '/ManageEmail',
-    component: () => import('@/pages/ManageEmail.vue'),
-  },
+
   // {
   //   path: '/Genshin',
   //   isLogin: true,
@@ -122,6 +119,11 @@ const routes: any = [
     path: '/Personal',
     isLogin: true,
     component: () => import('@/pages/PersonalPage.vue'),
+  },
+  {
+    path: '/ManageEmail',
+    isLogin: true,
+    component: () => import('@/pages/ManageEmail.vue'),
   },
   {
     path: '/EditProfile',

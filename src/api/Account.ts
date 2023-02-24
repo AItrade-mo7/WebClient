@@ -7,6 +7,7 @@ import type {
   ChangePasswordParam,
   EditProfileParam,
   GenshinCheckParam,
+  AddEmailParam,
 } from './api.d';
 
 export const login = (data: LoginParam) => {
@@ -105,6 +106,34 @@ export const GetGenshinCookie = () => {
   return ajax_json({
     url: '/api/private/get_genshin_cookie',
     data: null,
+    method: 'post',
+  });
+};
+
+// 新增邮箱
+
+export const AddEmail = (data: AddEmailParam) => {
+  return ajax_json({
+    url: '/api/private/AddEmail',
+    data: data,
+    method: 'post',
+  });
+};
+
+// 查询邮箱
+export const GetEmailList = () => {
+  return ajax_json({
+    url: '/api/private/GetEmailList',
+    data: null,
+    method: 'post',
+  });
+};
+
+// 设为主要
+export const SetMainEmail = (data: AddEmailParam) => {
+  return ajax_json({
+    url: '/api/private/SetMainEmail',
+    data: data,
     method: 'post',
   });
 };
