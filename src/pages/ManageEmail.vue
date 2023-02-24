@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetEmailList, AddEmail, SetMainEmail, DelEmail } from '@/api/Account';
+import { GetEmailList, AddEmail, SetMainEmail, DelEmail, getUserInfo } from '@/api/Account';
 import { defineAsyncComponent, onMounted } from 'vue';
 import { verifyConfig } from '@/utils/verify';
 import { cloneDeep } from '@/utils/tools';
@@ -69,6 +69,7 @@ const SetMainBtn = (item) => {
 const DelBtn = (item) => {
   AuthModal({
     Title: '邮件已发送至主要邮箱',
+    Email: EmailInfo.Email,
     EmailAction: '删除邮箱' + item,
     IsPassword: true,
     async OkBack(param) {
