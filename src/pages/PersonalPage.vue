@@ -18,47 +18,62 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </div>
 
     <div className="Personal__link">
-      <RouterLink to="/EditProfile">
-        <n-button type="primary">
+      <div class="Personal__Card">
+        <RouterLink to="/EditProfile">
+          <n-button type="primary">
+            <template #icon>
+              <XIcon name="EditOutlined" />
+            </template>
+            编辑资料
+          </n-button>
+        </RouterLink>
+      </div>
+      <div class="Personal__Card">
+        <RouterLink to="/ChangePassword">
+          <n-button secondary type="primary">
+            <template #icon>
+              <XIcon name="KeyOutlined" />
+            </template>
+            修改密码
+          </n-button>
+        </RouterLink>
+      </div>
+      <div class="Personal__Card">
+        <RouterLink to="/ManageEmail">
+          <n-button tertiary type="info">
+            <template #icon>
+              <XIcon name="MailOutlined" />
+            </template>
+            邮箱管理
+          </n-button>
+        </RouterLink>
+      </div>
+      <div class="Personal__Card">
+        <RouterLink to="/About/Duty">
+          <n-button type="error">
+            <template #icon>
+              <XIcon name="DeleteOutlined" />
+            </template>
+            注销账户
+          </n-button>
+        </RouterLink>
+      </div>
+      <div class="Personal__Card">
+        <n-button type="warning" ghost @click="logout">
           <template #icon>
-            <XIcon name="EditOutlined" />
+            <XIcon name="LoginOutlined" />
           </template>
-          编辑资料
+          退出登录
         </n-button>
-      </RouterLink>
-      <br />
-      <RouterLink to="/ChangePassword">
-        <n-button>
+      </div>
+      <div class="Personal__Card">
+        <n-button type="info" @click="TopBarStore.open()">
           <template #icon>
-            <XIcon name="KeyOutlined" />
+            <XIcon name="MenuFoldOutlined" />
           </template>
-          修改密码
+          开始
         </n-button>
-      </RouterLink>
-      <br />
-      <RouterLink to="/About/Duty">
-        <n-button type="error">
-          <template #icon>
-            <XIcon name="DeleteOutlined" />
-          </template>
-          注销账户
-        </n-button>
-      </RouterLink>
-      <br />
-      <n-button type="warning" ghost @click="logout">
-        <template #icon>
-          <XIcon name="LoginOutlined" />
-        </template>
-        退出登录
-      </n-button>
-      <br />
-      <n-button type="info" @click="TopBarStore.open()">
-        <template #icon>
-          <XIcon name="MenuFoldOutlined" />
-        </template>
-        开始
-      </n-button>
-      <br />
+      </div>
     </div>
   </div>
 </template>
@@ -68,10 +83,22 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   text-align: center;
   .n-button {
     margin: 0 auto;
-    margin-bottom: 16px;
-    max-width: 317px;
     width: 100%;
+    height: 100%;
     text-align: center;
+  }
+}
+
+.Personal__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  .Personal__Card {
+    width: 200px;
+    height: 120px;
+    padding: 20px;
+    margin: 20px;
   }
 }
 

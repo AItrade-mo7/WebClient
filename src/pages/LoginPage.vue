@@ -52,7 +52,7 @@ const Submit = async () => {
       <div>登录</div>
     </h2>
 
-    <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
+    <n-form @keyup.enter="Submit" ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item">
         <n-input
           name="Email"
