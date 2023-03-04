@@ -6,11 +6,7 @@ export const res_dispose = (response: any): resDataType => {
 
   // 账号尚未注册
   if (data.Code == -7) {
-    window.$message.warning(data.Msg, {
-      onLeave() {
-        window.location.replace('/Register');
-      },
-    });
+    window.$message.warning(data.Msg);
     return data;
   }
 
