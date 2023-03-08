@@ -69,7 +69,7 @@ const Submit = async () => {
             placeholder="请输入6位验证码"
             :maxlength="6"
           />
-          <SendCode :Email="formValue.Email" Action="注册" />
+          <SendCode :Email="formValue.Email" Action="修改密码" />
         </n-input-group>
       </n-form-item>
 

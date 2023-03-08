@@ -20,9 +20,8 @@ const formValue = $ref({
 
 const Submit = async () => {
   const v1 = verifyConfig('Email', formValue.Email);
-  const v2 = verifyConfig('Password', formValue.Password);
-  if (v1 || v2) {
-    window.$message.warning(v1 || v2);
+  if (v1) {
+    window.$message.warning(v1);
     return;
   }
 
