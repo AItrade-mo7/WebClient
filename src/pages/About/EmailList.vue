@@ -20,7 +20,7 @@ onMounted(() => {
       </li>
     </ul>
     <div>
-      出于成本和政策原因，采用了 QQ 和 Gmail 邮箱服务用系统邮件通知。 上述邮件开发者很久才会登录一次。
+      出于成本和政策原因，采用了 QQ 和 Gmail 邮箱服务用系统邮件通知。 上述邮件开发者很久才会登录一次。请勿回复。
       <br />
       遇到任何问题可以发送邮件至：
       <br />
@@ -28,8 +28,8 @@ onMounted(() => {
       <br />
       或者添加飞书群
       <br />
-      群二维码：
       <img class="feishu_code" src="//file.mo7.cc/disk/feishu_code.jpg" alt="" srcset="" />
+      <br />
       <span class="hint">注： 此列表会根据业务需求动态扩增。</span>
       <br />
     </div>
