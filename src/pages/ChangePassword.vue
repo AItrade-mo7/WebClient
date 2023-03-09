@@ -22,6 +22,11 @@ const formValue = $ref({
 });
 
 const Submit = async () => {
+  if (formValue.Password.length < 6) {
+    window.$message.warning('密码不能太短');
+    return;
+  }
+
   SubmitStatus = true;
   const res = await ChangePassword({
     ...cloneDeep(formValue),
