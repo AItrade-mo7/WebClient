@@ -6,7 +6,9 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 <template>
   <PageTitle> 用户协议与免责声明 </PageTitle>
   <div>
-    用户协议与免责声明
+    <br />
+    <br />
+    用户协议与免责声明 [暂时还没有]
 
     <hr />
     <br />

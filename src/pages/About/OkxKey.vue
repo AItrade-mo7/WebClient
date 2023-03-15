@@ -26,6 +26,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     </n-button>
     <br />
     <br />
+    PS： 部分页面可能需要科学上网才能访问。
   </div>
 </template>
 

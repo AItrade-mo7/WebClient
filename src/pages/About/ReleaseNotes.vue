@@ -45,7 +45,7 @@ onMounted(() => {
   <div class="data-wrapper" v-if="ClientInfo.Version">
     <div class="ClientInfo">
       <div class="block" :class="{ red: ClientInfo.Version != ViteConst.AppVersion }">
-        <span class="label">客户端版本</span>
+        <span class="label">当前客户端版本</span>
         <span class="value"> {{ ViteConst.AppVersion }} </span>
       </div>
       <span v-if="ClientInfo.Version != ViteConst.AppVersion" class="red">
