@@ -74,7 +74,7 @@ const routes: any = [
 
       {
         path: 'PWA',
-        description: 'PWA应用安装指南',
+        description: 'PWA应用科普',
         component: () => import('@/pages/About/PWA.vue'),
       },
       {
@@ -89,12 +89,12 @@ const routes: any = [
       },
       {
         path: 'OkxKey',
-        description: 'Okx 密钥',
+        description: 'OKX API Key 申请指南',
         component: () => import('@/pages/About/OkxKey.vue'),
       },
       {
         path: 'SatelliteServe',
-        description: 'SatelliteServe 使用说明',
+        description: '卫星服务使用说明',
         component: () => import('@/pages/About/SatelliteServe.vue'),
       },
       {

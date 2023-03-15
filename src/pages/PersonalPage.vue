@@ -19,6 +19,14 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
     <div className="Personal__link">
       <div class="Personal__Card">
+        <n-button type="info" @click="TopBarStore.open()">
+          <template #icon>
+            <XIcon name="MenuFoldOutlined" />
+          </template>
+          开始
+        </n-button>
+      </div>
+      <div class="Personal__Card">
         <RouterLink to="/EditProfile">
           <n-button type="primary">
             <template #icon>
@@ -64,14 +72,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
             <XIcon name="LoginOutlined" />
           </template>
           退出登录
-        </n-button>
-      </div>
-      <div class="Personal__Card">
-        <n-button type="info" @click="TopBarStore.open()">
-          <template #icon>
-            <XIcon name="MenuFoldOutlined" />
-          </template>
-          开始
         </n-button>
       </div>
     </div>

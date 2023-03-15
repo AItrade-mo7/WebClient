@@ -40,7 +40,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="InfoCircleOutlined" />
                 </template>
-                About
+                关于
               </n-button>
             </RouterLink>
           </div>
@@ -73,7 +73,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="OkxLogo" />
                 </template>
-                CoinTicker
+                数字货币市场行情
               </n-button>
             </RouterLink>
           </div>
@@ -84,7 +84,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="AItradeLogo" />
                 </template>
-                CoinAI
+                管理卫星服务
               </n-button>
             </RouterLink>
           </div>
@@ -95,7 +95,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="ZTSLogo" />
                 </template>
-                StockTicker
+                股票市场行情
               </n-button>
             </RouterLink>
           </div>
@@ -119,7 +119,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="HomeOutlined" />
                 </template>
-                Home
+                首页
               </n-button>
             </RouterLink>
           </div>

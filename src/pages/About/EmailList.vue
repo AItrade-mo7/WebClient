@@ -20,17 +20,26 @@ onMounted(() => {
       </li>
     </ul>
     <div>
-      出于成本和政策原因，采用了 QQ 和 Gmail 邮箱服务用系统邮件通知。 上述邮件开发者很久才会登录一次。请勿回复。
+      出于成本和政策原因，采用了 QQ 和 Gmail 邮箱服务用作系统邮件通知。 上述邮箱开发者很久才会登录一次。请勿回复。
+      <br />
+      系统发送给您的每一封电子邮件末尾必定带有【防钓鱼码】。否则可视为无效。
       <br />
       遇到任何问题可以发送邮件至：
       <br />
-      <span class="linehig"> meichangliang@outlook.com </span>
+      <n-button
+        text
+        tag="a"
+        href="mailto:meichangliang@outlook.com?subject=【AItrade求助】"
+        target="_blank"
+        type="primary"
+      >
+        meichangliang@outlook.com
+      </n-button>
       <br />
-      或者添加飞书群
+      或者添加飞书群（请遵守相关条例法规）
       <br />
       <img class="feishu_code" src="//file.mo7.cc/disk/feishu_code.jpg" alt="" srcset="" />
       <br />
-      <span class="hint">注： 此列表会根据业务需求动态扩增。</span>
       <br />
     </div>
   </div>

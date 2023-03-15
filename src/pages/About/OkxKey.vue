@@ -4,8 +4,29 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
 
 <template>
-  <PageTitle> okx 密钥申请指南 </PageTitle>
-  <div>okx 密钥申请指南</div>
+  <PageTitle> OKX API Key 申请指南 </PageTitle>
+  <div>
+    <br />
+    <br />
+
+    欧意(OKX)官网：
+    <n-button text tag="a" href="https://www.okx.com" target="_blank" type="primary"> www.okx.com </n-button>
+
+    <br />
+    <br />
+
+    <n-button text tag="a" href="https://www.jianshu.com/p/bdfaccbd4ac2" target="_blank" type="primary">
+      获取OKEx API Key流程
+    </n-button>
+
+    <br />
+    <br />
+    <n-button text tag="a" href="https://www.okx.com/cn/download" target="_blank" type="primary">
+      下载 OKX 客户端
+    </n-button>
+    <br />
+    <br />
+  </div>
 </template>
 
 <style lang="less" scoped></style>

@@ -4,7 +4,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
 
 <template>
-  <PageTitle>StockServe</PageTitle>
+  <PageTitle>StockTicker</PageTitle>
   <div class="PageWrapper">
     股票 市场分析 相关功能尚在规划当中。
     <br />
