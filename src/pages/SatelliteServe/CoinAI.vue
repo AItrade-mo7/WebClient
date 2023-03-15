@@ -14,8 +14,10 @@ const InfoOk = defineAsyncComponent(() => import('./lib/InfoOk.vue'));
 let Config = $ref({
   AppEnv: {},
   GithubInfo: {},
-  LeverOpt: [],
 });
+
+let WssObj = null;
+let WssData = $ref({});
 
 let ServeID = $ref('');
 
@@ -40,9 +42,6 @@ function GetConfig() {
       });
     });
 }
-
-let WssObj = null;
-let WssData = $ref({});
 
 function StartWss() {
   WssObj = NewSocket({
@@ -102,7 +101,7 @@ const OpenSet = () => {
       </n-drawer-content>
     </n-drawer>
 
-    <div class="PageWrapper" v-if="WssData.TradeLever > 1 && WssData.AppEnv.Name.length > 1">
+    <div class="PageWrapper" v-if="WssData.SysTime > 1 && WssData.AppEnv.SysName.length > 1">
       <InfoOk :WssData="WssData"></InfoOk>
     </div>
     <n-alert class="noData" v-else title="该信息如果长时间存在，请尝试刷新或更换浏览器！" type="info"> </n-alert>
