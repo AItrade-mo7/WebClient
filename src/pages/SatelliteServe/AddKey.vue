@@ -161,9 +161,6 @@ const copyJoinCode = (text) => {
       <div>
         <span class="joinCode">OKX（欧易） 注册邀请码： 11352015</span>
         <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
-        <br />
-
-        <a class="joinLink" href="https://zixinshi.com/join/11352015" target="_blank">下载 和 注册 欧意(OKX)</a>
 
         <br />
       </div>
