@@ -144,7 +144,7 @@ function GetWholeDir(wss) {
     <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
       APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
-        :to="`/CoinServe/AddKey?id=${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey?id=${props.WssData.ServeID}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
       >
@@ -157,7 +157,7 @@ function GetWholeDir(wss) {
     </div>
     <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
       <RouterLink
-        :to="`/CoinServe/AddKey?id=${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey?id=${props.WssData.ServeID}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
       >

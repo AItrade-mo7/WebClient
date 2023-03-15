@@ -62,7 +62,7 @@ function GetConfig(ServeID) {
     .catch((err) => {
       window.$message.error('服务尚未启动', {
         onAfterLeave() {
-          window.location.href = '/CoinServe';
+          window.location.href = '/SatelliteServe';
         },
       });
     });

@@ -79,7 +79,7 @@ const showDrawer = () => {
           </div>
 
           <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
-            <RouterLink to="/CoinServe" class="item_btn">
+            <RouterLink to="/SatelliteServe" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
                   <XIcon name="AItradeLogo" />

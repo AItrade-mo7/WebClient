@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["src/**/*.ts", "src/**/*.vue", "src/pages/CoinServe/lib/OrderBtn/.vue.ts"],
+  "include": ["src/**/*.ts", "src/**/*.vue"],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",

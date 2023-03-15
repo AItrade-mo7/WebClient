@@ -64,7 +64,7 @@ const SendStop = async (Info) => {
   window.$message.success('删除指令已发送!', {
     onAfterLeave() {
       mStorage.remove('SatelliteServe');
-      window.location.replace('/CoinServe');
+      window.location.replace('/SatelliteServe');
     },
   });
 };
@@ -80,7 +80,7 @@ const SendReStart = async (Info) => {
   window.$message.success('重启指令已发送!', {
     onAfterLeave() {
       mStorage.remove('SatelliteServe');
-      window.location.replace('/CoinServe');
+      window.location.replace('/SatelliteServe');
     },
   });
 };

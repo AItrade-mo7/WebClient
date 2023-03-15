@@ -118,7 +118,7 @@ const MyCopyText = (text) => {
       </div>
     </div>
     <br />
-    <div class="title">第五步：返回 CoinServe 列表并刷新</div>
+    <div class="title">第五步：返回 SatelliteServe 列表并刷新</div>
     <div class="content">
       执行完上述步骤后，如果没有出现错误，您的邮箱将会收到一封提醒邮件。
       <br />
@@ -140,7 +140,7 @@ const MyCopyText = (text) => {
       4. 查看服务运行状态可使用<span class="codeView"> pm2 ls </span> 指令 。
       <br />
       <br />
-      <RouterLink to="/CoinServe">
+      <RouterLink to="/SatelliteServe">
         <n-button type="warning" class="submitBtn">
           <template #icon>
             <XIcon name="ClusterOutlined" />

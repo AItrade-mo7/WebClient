@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AuthModal from '@/lib/AuthModal';
-import { GetDeployShell } from '@/api/CoinServe';
+import { GetDeployShell } from '@/api/SatelliteServe';
 import { defineAsyncComponent } from 'vue';
 const ShellAbout = defineAsyncComponent(() => import('./ShellAbout.vue'));
 

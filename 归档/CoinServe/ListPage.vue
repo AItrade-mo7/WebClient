@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetServerList, DelServer } from '@/api/CoinServe';
+import { GetServerList, DelServer } from '@/api/SatelliteServe';
 import { GetOkxKeyList } from '@/api/OkxKey';
 import { DateFormat } from '@/utils/filters';
 import { CoinFundPing } from '@/api/CoinAI';
@@ -71,7 +71,7 @@ function GetKey(KeyId: string): any {
 
 const OpenServerDetail = (id: string) => {
   mStorage.set('SatelliteServe', id);
-  $router.push('/CoinServe/Info');
+  $router.push('/SatelliteServe/Info');
 };
 
 const delServer = (item) => {
@@ -94,9 +94,9 @@ const delServer = (item) => {
 
 <template>
   <PageTitle>
-    CoinServe
+    SatelliteServe
     <template #after>
-      <RouterLink to="/About/CoinServe" className="CoinServe__about">
+      <RouterLink to="/About/SatelliteServe" className="CoinServe__about">
         <n-button circle quaternary size="tiny" class="About__btn">
           <template #icon> <XIcon name="QuestionCircleOutlined" /> </template>
         </n-button>
@@ -174,7 +174,7 @@ const delServer = (item) => {
             录入一个 OKX 密钥
           </n-button>
         </RouterLink>
-        <RouterLink to="/CoinServe/Add" class="item_btn">
+        <RouterLink to="/SatelliteServe/Add" class="item_btn">
           <n-button size="small" type="primary">
             <template #icon> <XIcon name="CodeTwotone" /> </template>
             注册一个 CoinAI

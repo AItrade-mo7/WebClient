@@ -62,7 +62,7 @@ const SendStop = async (Info) => {
   if (res.Code > 0) {
     window.$message.warning('删除指令已发送!', {
       onAfterLeave() {
-        window.location.replace('/CoinServe');
+        window.location.replace('/SatelliteServe');
       },
     });
   }
@@ -77,7 +77,7 @@ const SendReStart = async (Info) => {
     window.$message.success('重启指令已发送!请等待页面跳转', {
       onAfterLeave() {
         mStorage.remove('SatelliteServe');
-        window.location.replace('/CoinServe');
+        window.location.replace('/SatelliteServe');
       },
       duration: 5000,
     });

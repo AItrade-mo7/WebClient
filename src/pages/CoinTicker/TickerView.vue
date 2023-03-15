@@ -196,7 +196,7 @@ const OperationSwitch = () => {
         <RouterLink to="/CoinTicker/AnalyHistory" class="RouterLinkBtn" v-if="!props.TimeID">
           <n-button size="small" type="success" secondary> 查看测算历史 </n-button>
         </RouterLink>
-        <RouterLink to="/CoinServe" class="RouterLinkBtn">
+        <RouterLink to="/SatelliteServe" class="RouterLinkBtn">
           <n-button type="warning">
             <template #icon>
               <XIcon name="ClusterOutlined" />

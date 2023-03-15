@@ -26,7 +26,7 @@ const GetConfig = () => {
 
 if (SatelliteServe.length < 6) {
   window.$message.warning('缺少 SatelliteServe');
-  $router.replace('/CoinServe');
+  $router.replace('/SatelliteServe');
 } else {
   // 开始
   GetConfig();

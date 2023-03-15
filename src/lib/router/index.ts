@@ -36,29 +36,29 @@ const routes: any = [
     ],
   },
   {
-    path: '/CoinServe',
-    component: () => import('@/pages/CoinServe/IndexPage.vue'),
+    path: '/SatelliteServe',
+    component: () => import('@/pages/SatelliteServe/IndexPage.vue'),
     children: [
       {
         path: '',
         isLogin: true,
         description: 'ServerList',
-        component: () => import('@/pages/CoinServe/ServerList.vue'),
+        component: () => import('@/pages/SatelliteServe/ServerList.vue'),
       },
       {
         path: 'CreateCoinServe',
         description: 'CreateCoinServe',
-        component: () => import('@/pages/CoinServe/CreateCoinServe.vue'),
+        component: () => import('@/pages/SatelliteServe/CreateCoinServe.vue'),
       },
       {
         path: 'CoinAI',
         description: 'CoinAI',
-        component: () => import('@/pages/CoinServe/CoinAI.vue'),
+        component: () => import('@/pages/SatelliteServe/CoinAI.vue'),
       },
       {
         path: 'AddKey',
         description: 'AddKey',
-        component: () => import('@/pages/CoinServe/AddKey.vue'),
+        component: () => import('@/pages/SatelliteServe/AddKey.vue'),
       },
     ],
   },
@@ -93,9 +93,9 @@ const routes: any = [
         component: () => import('@/pages/About/OkxKey.vue'),
       },
       {
-        path: 'CoinServe',
-        description: 'CoinServe 使用说明',
-        component: () => import('@/pages/About/CoinServe.vue'),
+        path: 'SatelliteServe',
+        description: 'SatelliteServe 使用说明',
+        component: () => import('@/pages/About/SatelliteServe.vue'),
       },
       {
         path: 'EmailList',

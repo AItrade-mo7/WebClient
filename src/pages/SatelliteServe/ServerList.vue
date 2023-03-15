@@ -89,9 +89,9 @@ const Reload = () => {
 
 <template>
   <PageTitle>
-    CoinServe
+    SatelliteServe
     <template #after>
-      <RouterLink to="/About/CoinServe" className="CoinServe__about">
+      <RouterLink to="/About/SatelliteServe" className="CoinServe__about">
         <n-button circle quaternary size="tiny" class="About__btn">
           <template #icon> <XIcon name="QuestionCircleOutlined" /> </template>
         </n-button>
@@ -122,7 +122,7 @@ const Reload = () => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
+            <RouterLink :to="`/SatelliteServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
             <n-button
@@ -139,7 +139,7 @@ const Reload = () => {
         </template>
       </n-card>
       <n-card embedded hoverable size="small">
-        <RouterLink to="/CoinServe/CreateCoinServe" class="addBtn">
+        <RouterLink to="/SatelliteServe/CreateCoinServe" class="addBtn">
           <XIcon name="PlusOutlined" />
         </RouterLink>
       </n-card>
@@ -163,7 +163,7 @@ const Reload = () => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <RouterLink :to="`/CoinServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
+            <RouterLink :to="`/SatelliteServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
             <n-button
