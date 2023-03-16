@@ -31,6 +31,7 @@ const GetCoinAILIstFun = () => {
 
 let SubmitStatus: boolean = $ref(false);
 const RemoveCoinAIFun = (ServeID) => {
+  GetCoinAILIstFun();
   AuthModal({
     IsPassword: true,
     async OkBack(param) {
@@ -78,8 +79,14 @@ function GetConfig(list, lType) {
       });
   }
 }
+
+let timer: any = null;
 onMounted(() => {
   GetCoinAILIstFun();
+  clearInterval(timer);
+  timer = setInterval(() => {
+    GetCoinAILIstFun();
+  }, 180000); // 3 分钟自动重新请求一次
 });
 
 const Reload = () => {
@@ -111,13 +118,13 @@ const Reload = () => {
         <div class="Server__item">
           <span class="Server__label"> Name </span>
           <span class="Server__val">
-            {{ item.Name }}
+            {{ item.SysName }}
           </span>
         </div>
         <div class="Server__item">
           <span class="Server__label"> Version </span>
           <span class="Server__val">
-            {{ item.Version }}
+            {{ item.SysVersion }}
           </span>
         </div>
         <template #footer>
