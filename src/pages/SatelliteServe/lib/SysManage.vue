@@ -8,7 +8,7 @@ const props = defineProps({
   WssData: Object,
 });
 
-const nowVersion = props.WssData.AppEnv.Version;
+const nowVersion = props.WssData.AppEnv.SysVersion;
 const newVersion = props.WssData.GithubInfo.Version;
 let isUpdate = false;
 
@@ -111,7 +111,7 @@ const SendReStart = async (Info) => {
         将会从
         <a href="https://github.com/mo7static/AItrade.net" target="_blank" class="lineHeight">GitHub</a>
         下载最新代码,并完成
-        <span class="lineHeight-warn">冷重启</span>，重启之后您的账户将会重新受到托管。
+        <span class="lineHeight-warn">冷重启</span>，重启之后该服务下的所有账户将会重新受到托管。
         <n-button size="tiny" type="success" @click="SendFetch(1)">执行升级</n-button>
       </div>
       <div v-if="BtnStatus == -1">
