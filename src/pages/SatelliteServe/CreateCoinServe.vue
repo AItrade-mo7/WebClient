@@ -10,7 +10,7 @@ let Port = $ref('');
 const GenerateShell = () => {
   var BaseUrl = window.ViteConst.BaseUrl;
   var Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
-  var shPoint = `sudo wget -qO- "${Url}" | sudo bash`;
+  var shPoint = `sudo curl -o- "${Url}" | sudo bash`;
   return shPoint;
 };
 
@@ -33,32 +33,31 @@ const MyCopyText = (text) => {
     <div class="title">第一步：填写端口号</div>
     <div class="content">
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
-      <span class="hint">建议选择非常用端口号(9000-9999),该端口号用于启动 Web 服务。</span>
+      <div class="hint">建议选择非常用端口号(9000-9999),该端口号用于启动 Web 服务。</div>
     </div>
     <br />
-    <div class="title">第二步：复制指令</div>
-    <div class="content">
-      <div class="ShellAbout__urlBox">
-        <div class="codeView" v-if="Port">{{ GenerateShell() }}</div>
-        <n-button size="tiny" type="primary" @click="copyFun"> 复制 </n-button>
-      </div>
-    </div>
-    <br />
-    <div class="title">第三步：执行指令</div>
+    <div class="title">第二步：执行指令</div>
     <div class="content">
       <div class="ShellAbout_desc">
         <span class="label">注：</span>务必在 <span class="lineHight">安全组</span> 中开放云主机的
         <span class="lineHight">{{ Port ? Port : 'x' }}</span>
         端口 ！
+        <div class="content">
+          <div class="ShellAbout__urlBox">
+            <div class="codeView" v-if="Port">{{ GenerateShell() }}</div>
+            <n-button size="tiny" type="primary" @click="copyFun"> 复制 </n-button>
+          </div>
+        </div>
         <br />
+        云主机要求:
         <br />
         <span class="label">位置要求：</span> 主机必须位于 <span class="lineHight">香港</span>、
         <span class="lineHight">日本</span>或<span class="lineHight">新加坡</span>，可使用
-        <span class="lineHight">阿里云</span> 或者 <span class="lineHight">AWS</span> 的云服务器。
+        <span class="lineHight">阿里云、腾讯云</span> 或者 <span class="lineHight">AWS</span> 的云服务器。
         <span class="hint"><span class="lineHight">墙内</span>无法通过交易所执行下单指令</span>
         <br />
         <br />
-        <span class="label">硬件配置：</span> 推荐 <span class="lineHight"> 2</span> 核芯、
+        <span class="label">最低硬件配置：</span> <span class="lineHight"> 2</span> 核芯、
         <span class="lineHight">2GB</span> 内存、<span class="lineHight">20GB</span> 存储。
         <span class="hint">
           程序采用 Go 语言编写, 会实时爬取交易所数据，并执行超高频复杂计算, 运行峰值内存消耗为 50M~80M 。
@@ -67,14 +66,17 @@ const MyCopyText = (text) => {
         <br />
         <span class="label">系统要求：</span>
         <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
-        <span class="lineHight">Ubuntu 20.04</span> 及以上版本
+        <span class="lineHight"> Debian 11 / Ubuntu 20</span> LTS 版本 （其它Linux版本部署需要自己手动执行部署）
+        <RouterLink to="/About/SatelliteServe">
+          <n-button size="tiny" type="primary"> 手动部署步骤 </n-button>
+        </RouterLink>
 
         <br />
         <br />
         <span class="label">系统时区：</span> 请务必设置为 <span class="lineHight">中国时区</span>。
         <span class="hint">时区必须统一，否则会出现计算结果错误。 </span>
         <div class="code">
-          Ubuntu 可直接执行指令更改时区：
+          Debian/Ubuntu 可直接执行指令更改时区：
           <span class="codeView">sudo timedatectl set-timezone Asia/Shanghai</span>
           <n-button size="tiny" type="primary" @click="MyCopyText(`sudo timedatectl set-timezone Asia/Shanghai`)">
             复制
@@ -82,15 +84,15 @@ const MyCopyText = (text) => {
         </div>
         <div class="code">
           查看当前Linux 系统时间的指令：
-          <span class="codeView">date '+%m-%d %H:%M'</span>
-          <n-button size="tiny" type="primary" @click="MyCopyText(`date '+%m-%d %H:%M'`)"> 复制 </n-button>
+          <span class="codeView">date '+%Y-%m-%d %H:%M'</span>
+          <n-button size="tiny" type="primary" @click="MyCopyText(`date '+%Y-%m-%d %H:%M'`)"> 复制 </n-button>
         </div>
         <br />
         <span class="label">指令执行：</span> 当以上工作就绪，最好使用 root 权限执行当前指令。
         <br />
         <br />
         <span class="desc">
-          <span class="label">注：</span> 同一台云主机可以采用不同端口部署不超过
+          <span class="label">注：</span> 建议同一台云主机可以采用不同端口部署不超过
           <span class="lineHight">3</span> 个服务。运行服务越多，对服务器硬件配置要求越高。可以多个账户共用一台云主机。
           <span class="hint">
             若此步骤过于专业，可求助您身边的
@@ -102,11 +104,11 @@ const MyCopyText = (text) => {
         <br />
         <div>
           当然，您也可以热爱学习：
-          <a href="https://meichangliang.feishu.cn/docx/doxcnZgnULZK8l5t2safbcnTtcf" target="_blank">
+          <a href="https://zhuanlan.zhihu.com/p/360837901" target="_blank">
             <n-button secondary type="success" class="linkHref"> 海外云主机购买教程 </n-button>
           </a>
-          <a href="https://meichangliang.feishu.cn/docx/doxcnszFe2G6ReLP4rcqzW4O4Be" target="_blank">
-            <n-button secondary type="success" class="linkHref"> CoinAI 部署教程 </n-button>
+          <a href="/About/SatelliteServe" target="_blank">
+            <n-button secondary type="success" class="linkHref"> CoinAI 部署图文教程 </n-button>
           </a>
         </div>
         <div>
@@ -118,7 +120,7 @@ const MyCopyText = (text) => {
       </div>
     </div>
     <br />
-    <div class="title">第五步：返回 SatelliteServe 列表并刷新</div>
+    <div class="title">第五步：注意事项</div>
     <div class="content">
       执行完上述步骤后，如果没有出现错误，您的邮箱将会收到一封提醒邮件。
       <br />
@@ -129,23 +131,28 @@ const MyCopyText = (text) => {
       <span class="lineHight"> -> </span>
       复制系统生成的指令
       <span class="lineHight"> -> </span>
-      SSH 登录海外 Linux 服务器粘贴并执行该指令。
+      登录海外 Linux 服务器粘贴并执行该指令。
       <br />
       <br />
 
       1. 服务运行正常，可以在服务列表中看到 绿色的 【进入】 按钮，否则将是红色的【删除】按钮 <br />
-      2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的端口是否开放 <br />
+      2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的安全组端口是否开放 <br />
       3.
       同一台服务器的同一个端口重复部署，则会更新对应的服务，不同端口重复部署则会创建新的服务。重新部署，数据不会丢失。<br />
-      4. 查看服务运行状态可使用<span class="codeView"> pm2 ls </span> 指令 。
-      <br />
+      4. 建议使用具有弹性IP的独立云主机，且永远不要更换弹性IP。<br />
+      5. 服务的进程管理依赖于
+      <a href="https://pm2.fenxianglu.cn" class="lineHight" target="_blank"> pm2 </a>您也可以手动安装 pm2
+      加速脚本执行速度 <br />
+      6. 查看服务运行状态可使用<span class="codeView"> pm2 ls </span> 指令 。<br />
+      7. 若服务器重启，可以手动执行程序安装目录下的 <span class="codeView"> ./Reboot.sh </span> 进行重启。<br />
+
       <br />
       <RouterLink to="/SatelliteServe">
         <n-button type="warning" class="submitBtn">
           <template #icon>
             <XIcon name="ClusterOutlined" />
           </template>
-          返回服务列表
+          返回服务列表查看服务状态
         </n-button>
       </RouterLink>
     </div>
@@ -170,7 +177,7 @@ const MyCopyText = (text) => {
 }
 
 .submitBtn {
-  width: 160px;
+  width: 260px;
 }
 
 .codeView {

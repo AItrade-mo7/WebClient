@@ -5,7 +5,12 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 <template>
   <PageTitle> SatelliteServe 使用说明 </PageTitle>
-  <div>卫星服务架构图 【待补充】</div>
+  <div>
+    卫星服务架构图 【待补充】
+
+    <br />
+    卫星服务部署详解 【待补充】
+  </div>
 </template>
 
 <style lang="less" scoped></style>

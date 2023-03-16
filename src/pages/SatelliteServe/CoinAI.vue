@@ -85,7 +85,7 @@ const OpenSet = () => {
   <PageTitle class="CoinAIPageTitle">
     {{ $lcg(WssData, 'AppEnv.ServeID') }}
     <template #after v-if="WssData.AppEnv">
-      <n-badge class="AItradeServer__dotNet" :dot="WssData.AppEnv.Version != WssData.GithubInfo.Version">
+      <n-badge class="AItradeServer__dotNet" :dot="WssData.AppEnv.SysVersion != WssData.GithubInfo.Version">
         <n-button size="tiny" quaternary @click="OpenSet">
           <template #icon>
             <XIcon spin name="SettingOutlined" />
