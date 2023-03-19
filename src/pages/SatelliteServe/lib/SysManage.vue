@@ -90,7 +90,7 @@ const ApplyPublic = async () => {
     <div className="SysManage__hint">当前版本：{{ props.WssData.AppEnv.SysVersion }}</div>
     <div className="SysManage__hint new">
       最新版本：{{ props.WssData.GithubInfo.Version }}
-      <a href="https://github.com/mo7static/AItrade.net" target="_blank" class="lineHeight">(GitHub)</a>
+      <a href="https://github.com/AItrade-mo7/CoinAIPackage" target="_blank" class="lineHeight">(GitHub)</a>
     </div>
 
     <div class="btn-wrapper">
