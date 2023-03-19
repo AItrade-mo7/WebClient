@@ -34,10 +34,13 @@ export const logout = () => {
   });
 };
 
-export const getUserInfo = () => {
+interface GetUserInfoParam {
+  UserID: string;
+}
+export const getUserInfo = (data?: GetUserInfoParam) => {
   return ajax_json({
     url: '/api/private/get_user_info',
-    data: null,
+    data,
     method: 'get',
   });
 };

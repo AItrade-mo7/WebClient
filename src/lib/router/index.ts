@@ -116,6 +116,11 @@ const routes: any = [
     ],
   },
   {
+    path: '/UserInfo',
+    isLogin: true,
+    component: () => import('@/pages/UserInfo.vue'),
+  },
+  {
     path: '/Personal',
     isLogin: true,
     component: () => import('@/pages/PersonalPage.vue'),

@@ -69,20 +69,6 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   });
   HandleKeyStatus = false;
 };
-
-// function GetWholeDir() {
-//   const Last = $lcg(props.WssData, 'TradeKdataLast', {});
-//   let WholeDir = 0;
-//   if (Last.CAP_EMA - 0 > 1) {
-//     WholeDir = 1;
-//   } else {
-//     WholeDir = -1;
-//   }
-//   return {
-//     ...WholeDirFormat(WholeDir),
-//     CAP_EMA: Last.CAP_EMA,
-//   };
-// }
 </script>
 
 <template>
@@ -102,15 +88,29 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </div>
       <div class="block">
         <span class="label">系统名称</span>
-        <span class="value"> {{ props.WssData.Name }} </span>
+        <span class="value"> {{ props.WssData.SysName }} </span>
       </div>
       <div class="block">
-        <span class="label">计价货币</span>
-        <span class="value"> {{ $lcg(props.WssData, 'NowTicker.Unit') }} </span>
+        <span class="label">系统版本</span>
+        <span class="value"> {{ props.WssData.SysVersion }} </span>
       </div>
       <div class="block">
-        <span class="label">杠杆倍数</span>
-        <span class="value"> {{ props.WssData.TradeLever }} </span>
+        <span class="label">系统端口</span>
+        <span class="value"> {{ props.WssData.Port }} </span>
+      </div>
+      <div class="block">
+        <span class="label">系统IP</span>
+        <span class="value"> {{ props.WssData.IP }} </span>
+      </div>
+      <div class="block">
+        <span class="label">系统类型</span>
+        <span class="value"> {{ props.WssData.Type }} </span>
+      </div>
+      <div class="block">
+        <span class="label">管理员信息</span>
+        <RouterLink class="value" :to="`/UserInfo?id=${props.WssData.MainUser.UserID}`">
+          <n-button size="medium" type="primary" text> {{ props.WssData.MainUser.NickName }} </n-button>
+        </RouterLink>
       </div>
     </n-space>
 
@@ -125,14 +125,6 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="value" :class="WholeDirFormat($lcg(props.WssData, 'TradeKdataLast.Dir')).class">
           {{ $lcg(props.WssData, 'TradeKdataLast.C') }}
         </span>
-      </div>
-      <div class="block">
-        <span class="label">上涨指数</span>
-        <!-- <RouterLink to="/CoinTicker">
-          <span class="value" :class="GetWholeDir(props.WssData).class">
-            {{ GetWholeDir(props.WssData).CAP_EMA }}
-          </span>
-        </RouterLink> -->
       </div>
       <div class="block">
         <span class="label">数据时间</span>
