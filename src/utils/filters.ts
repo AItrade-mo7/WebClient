@@ -97,12 +97,12 @@ export const ChartToStr = (val: string): string => {
 };
 
 export const WholeDirFormat = (n: any, isRatio = false) => {
-  var ReturnObj = {
+  const ReturnObj = {
     text: '空',
     class: 'gray',
   };
 
-  var Type = n - 0;
+  const Type = n - 0;
 
   switch (Type) {
     case 1:
@@ -132,7 +132,7 @@ export const WholeDirFormat = (n: any, isRatio = false) => {
 };
 
 export const Decimal = (num: string, Per = false) => {
-  var returnNum = Number(num);
+  let returnNum = Number(num);
   if (Per) {
     returnNum = returnNum * 100;
   }

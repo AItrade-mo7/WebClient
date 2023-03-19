@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import YAML from 'yamljs';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import path from 'path';
@@ -36,7 +35,7 @@ const PwaConfig: Partial<VitePWAOptions> = {
 
 // ========= 处理 proxy.json 文件 =========
 import ProxyFile from './proxy.js';
-let ProxyConfig: any = ProxyFile;
+const ProxyConfig: any = ProxyFile;
 
 // =========  https://vitejs.dev/config/  =========
 const pathSrc = path.resolve(__dirname, 'src');

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { verifyConfig } from '@/utils/verify';
 import { fetchSendCode } from '@/api/Account';
-import { stringify } from 'qs';
 
 let num = $ref(0); // 倒计时
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GetEmailList, AddEmail, SetMainEmail, DelEmail, getUserInfo } from '@/api/Account';
+import { GetEmailList, AddEmail, SetMainEmail, DelEmail } from '@/api/Account';
 import { defineAsyncComponent, onMounted } from 'vue';
 import { verifyConfig } from '@/utils/verify';
 import { cloneDeep } from '@/utils/tools';
@@ -23,7 +23,7 @@ const GetList = () => {
 
 let SubmitStatus: boolean = $ref(false);
 
-var formValue = $ref({
+const formValue = $ref({
   Email: '',
   EmailCode: '',
   Password: '',
@@ -49,7 +49,7 @@ const Submit = async () => {
 
 const SetMainBtn = (item) => {
   AuthModal({
-    Title: '邮件已发送至' + item,
+    Title: `邮件已发送至${item}`,
     Email: item,
     EmailAction: '设置主要邮箱',
     IsPassword: true,
@@ -69,7 +69,7 @@ const DelBtn = (item) => {
   AuthModal({
     Title: '邮件已发送至主要邮箱',
     Email: EmailInfo.Email,
-    EmailAction: '删除邮箱' + item,
+    EmailAction: `删除邮箱${item}`,
     IsPassword: true,
     async OkBack(param) {
       formValue.Email = item;
@@ -100,7 +100,8 @@ onMounted(() => {
 
     <div class="EmailWrapper">
       <div
-        v-for="item in EmailInfo.UserEmail"
+        v-for="(item, index) in EmailInfo.UserEmail"
+        :key="index"
         class="Email_item"
         :class="{
           Main: item == EmailInfo.Email,

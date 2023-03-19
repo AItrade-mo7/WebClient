@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { h, onMounted, onUnmounted } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
+import { onMounted, onUnmounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { NewSocket } from '@/api/CoinAI/CoinAIWss';
-import { $lcg, cloneDeep } from '@/utils/tools';
+import { $lcg } from '@/utils/tools';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -34,7 +34,7 @@ function GetConfig() {
         };
       }
     })
-    .catch((err) => {
+    .catch(() => {
       window.$message.error('服务尚未启动', {
         onAfterLeave() {
           window.location.href = '/SatelliteServe';

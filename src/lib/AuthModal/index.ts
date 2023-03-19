@@ -51,7 +51,7 @@ export default (opt: Config) => {
     closable: false,
     positiveText: '确认',
     negativeText: '取消',
-    onPositiveClick: (event) => {
+    onPositiveClick: () => {
       const CodeElm: any = window.document.getElementById('AuthModal_Code');
       const PasswordElm: any = window.document.getElementById('AuthModal_Password');
 

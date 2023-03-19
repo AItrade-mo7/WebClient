@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { h, onMounted, defineAsyncComponent } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
 import { Ping } from '@/api/Ping';
 import { MarketPing } from '@/api/CoinMarket/index';
-import { GetCoinAIConfig, SetKey } from '@/api/CoinAI/index';
+import { GetCoinAIConfig } from '@/api/CoinAI/index';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 

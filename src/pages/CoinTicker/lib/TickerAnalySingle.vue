@@ -17,7 +17,7 @@ const CountUR = (ur: any) => {
 
 <template>
   <div class="TickerAnaly" v-if="props.Single.length">
-    <n-space class="data-wrapper" v-for="item in props.Single">
+    <n-space class="data-wrapper" v-for="(item, index) in props.Single" :key="index">
       <div class="block">
         <span class="label">时间切片</span>
         <span class="value hour">{{ item.DiffHour }} hour </span>

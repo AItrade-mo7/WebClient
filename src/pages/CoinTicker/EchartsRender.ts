@@ -12,8 +12,8 @@ function SplitData(AKList) {
   const values = []; // 只要 o c l h
   const pointData = [];
   /* 
-    pointData
-    {
+    pointData 
+    { 
       coord: ['10-07 06:45', 20000],
       value: 2300,
       itemStyle: {
@@ -39,8 +39,8 @@ function SplitData(AKList) {
   }
 
   return {
-    categoryData: categoryData,
-    values: values,
+    categoryData,
+    values,
     pointData,
   };
 }
@@ -84,7 +84,7 @@ function CreatePointData(AKData) {
       offset: [0, textOffset],
     },
     itemStyle: {
-      color: color,
+      color,
       opacity: 1,
       borderType: 'solid',
       borderColor: '#000',
@@ -104,7 +104,7 @@ export const MergeAnalyKdata = (AnalyList, KdataList) => {
       TimeDate: KdataTime,
       Analy: {},
     };
-    for (var j = AnalyList.length - 1; j >= 0; j--) {
+    for (let j = AnalyList.length - 1; j >= 0; j--) {
       const AnyEl = AnalyList[j];
       const AnyTime = DateFormat(AnyEl.TimeUnix);
       if (AnyTime == KdataTime) {

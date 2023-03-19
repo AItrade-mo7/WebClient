@@ -2,7 +2,7 @@
 import { DateFormat } from '@/utils/filters';
 import AuthModal from '@/lib/AuthModal';
 import { defineAsyncComponent } from 'vue';
-import { cloneDeep, ParseOkxKey } from '@/utils/tools';
+import { cloneDeep } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
 import { UserInfoStore } from '@/store';
 import { WholeDirFormat } from '@/utils/filters';
@@ -32,7 +32,7 @@ const DrawerClose = () => {
   NowKey = {};
 };
 
-const ShowConfig = (index) => {
+const ShowConfig = () => {
   DrawerStatus = true;
 };
 
@@ -70,20 +70,19 @@ const HandleKeySubmit = async (type: string, Index: number) => {
   HandleKeyStatus = false;
 };
 
-function GetWholeDir(wss) {
-  const Last = $lcg(props.WssData, 'TradeKdataLast', {});
-  console.log();
-  let WholeDir = 0;
-  if (Last.CAP_EMA - 0 > 1) {
-    WholeDir = 1;
-  } else {
-    WholeDir = -1;
-  }
-  return {
-    ...WholeDirFormat(WholeDir),
-    CAP_EMA: Last.CAP_EMA,
-  };
-}
+// function GetWholeDir() {
+//   const Last = $lcg(props.WssData, 'TradeKdataLast', {});
+//   let WholeDir = 0;
+//   if (Last.CAP_EMA - 0 > 1) {
+//     WholeDir = 1;
+//   } else {
+//     WholeDir = -1;
+//   }
+//   return {
+//     ...WholeDirFormat(WholeDir),
+//     CAP_EMA: Last.CAP_EMA,
+//   };
+// }
 </script>
 
 <template>
@@ -129,11 +128,11 @@ function GetWholeDir(wss) {
       </div>
       <div class="block">
         <span class="label">上涨指数</span>
-        <RouterLink to="/CoinTicker">
+        <!-- <RouterLink to="/CoinTicker">
           <span class="value" :class="GetWholeDir(props.WssData).class">
             {{ GetWholeDir(props.WssData).CAP_EMA }}
           </span>
-        </RouterLink>
+        </RouterLink> -->
       </div>
       <div class="block">
         <span class="label">数据时间</span>

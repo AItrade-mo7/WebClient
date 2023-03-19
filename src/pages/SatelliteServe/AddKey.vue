@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { h, onMounted, onUnmounted } from 'vue';
+import { onMounted } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
-import { cloneDeep, ParseOkxKey } from '@/utils/tools';
+import { cloneDeep } from '@/utils/tools';
 import { CopyText } from '@/utils/tools';
 import AuthModal from '@/lib/AuthModal';
 import { useRouter } from 'vue-router';
@@ -18,7 +18,7 @@ let Config = $ref({
 });
 
 let SubmitStatus: boolean = $ref(false);
-let formValue = $ref({
+const formValue = $ref({
   Name: '',
   ApiKey: '',
   SecretKey: '',
@@ -59,7 +59,7 @@ function GetConfig(ServeID) {
         Config = res.Data;
       }
     })
-    .catch((err) => {
+    .catch(() => {
       window.$message.error('服务尚未启动', {
         onAfterLeave() {
           window.location.href = '/SatelliteServe';

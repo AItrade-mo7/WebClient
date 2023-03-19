@@ -147,7 +147,7 @@ const router = createRouter({
 
 router.beforeEach((to) => {
   const Token = getToken();
-  var isToLogin = false;
+  let isToLogin = false;
   if (!Token) {
     TraverseRouter((path, isLogin) => {
       if (to.path == path) {
@@ -165,12 +165,12 @@ router.beforeEach((to) => {
 
 function TraverseRouter(callBack) {
   for (const route of routes) {
-    var path = route.path;
+    const path = route.path;
     if (route.children?.length > 0) {
       for (const children of route.children) {
-        var NewPath = path;
+        let NewPath = path;
         if (children.path) {
-          NewPath = path + '/' + children.path;
+          NewPath = `${path}/${children.path}`;
         }
         callBack(NewPath, children.isLogin);
       }

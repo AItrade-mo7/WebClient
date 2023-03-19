@@ -18,7 +18,7 @@ interface WssType {
 
 export function NewSocket(opt: WssType) {
   let protocol = 'wss:';
-  let host = window.ViteConst.BaseUrl;
+  const host = window.ViteConst.BaseUrl;
   let pathname = '/api/wss';
 
   const location = window.location;
@@ -31,7 +31,7 @@ export function NewSocket(opt: WssType) {
     pathname = `/CoinAI/wss?host=${opt.Host}`;
   }
 
-  let socketUrl = protocol + host + pathname;
+  const socketUrl = protocol + host + pathname;
 
   // const socketUrl = 'ws://trade-api.mo7.cc/api/wss';
   // const socketUrl = 'ws://trade.mo7.cc/wss';

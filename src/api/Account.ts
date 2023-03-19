@@ -97,7 +97,7 @@ export const EditProfile = (data: EditProfileParam) => {
 export const GenshinCheck = (data: GenshinCheckParam) => {
   return ajax_json({
     url: '/api/private/genshin_check',
-    data: data,
+    data,
     method: 'post',
   });
 };
@@ -113,7 +113,7 @@ export const GetGenshinCookie = () => {
 // 新增邮箱
 
 export const AddEmail = (data: AddEmailParam) => {
-  var myData = {
+  const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
     Password: Md5(data.Password),
@@ -137,7 +137,7 @@ export const GetEmailList = () => {
 
 // 设为主要
 export const SetMainEmail = (data: AddEmailParam) => {
-  var myData = {
+  const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
     Password: Md5(data.Password),
@@ -152,7 +152,7 @@ export const SetMainEmail = (data: AddEmailParam) => {
 
 // 删除
 export const DelEmail = (data: AddEmailParam) => {
-  var myData = {
+  const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
     Password: Md5(data.Password),

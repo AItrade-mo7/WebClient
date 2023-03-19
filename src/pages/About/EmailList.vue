@@ -15,7 +15,7 @@ onMounted(() => {
   <PageTitle> 系统邮箱地址列表 </PageTitle>
   <div>
     <ul class="emailWrapper">
-      <li v-for="item in EmailList">
+      <li v-for="(item, index) in EmailList" :key="index">
         {{ item }}
       </li>
     </ul>

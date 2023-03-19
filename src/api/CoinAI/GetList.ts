@@ -1,5 +1,5 @@
 import { ajax_json } from '@/utils/http';
-import { Md5, removeToken } from '@/utils/tools';
+import { Md5 } from '@/utils/tools';
 
 export const GetCoinAILIst = () => {
   return ajax_json({

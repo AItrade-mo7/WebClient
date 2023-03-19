@@ -26,7 +26,7 @@ const IndexInfo = [
 <template>
   <div class="EarnCount">
     <div class="title">数字货币交易情绪<b>(Coin-RTS)</b></div>
-    <div v-for="item in IndexInfo" class="descWrapper">
+    <div v-for="(item, index) in IndexInfo" class="descWrapper" :key="index">
       <span class="name" :class="item.Style">{{ item.Text }}</span>
       <span class="desc">{{ item.Desc }} </span>
     </div>

@@ -8,7 +8,7 @@ const props = defineProps({
 });
 
 let SubmitStatus: boolean = $ref(false);
-let formValue = $ref({
+const formValue = $ref({
   ServerName: props.WssData.Name,
   Password: '',
   Lever: props.WssData.TradeLever,
@@ -37,19 +37,19 @@ const Submit = async () => {
   });
 };
 
-var LeverOpt = $ref({
+const LeverOpt = $ref({
   2: '2x',
 });
-var TradeLeverMax = $ref(0);
-var TradeLeverMin = $ref(1);
+let TradeLeverMax = $ref(0);
+let TradeLeverMin = $ref(1);
 
 function FormatLeverOpt() {
-  var len = props.WssData.LeverOpt.length;
+  const len = props.WssData.LeverOpt.length;
   TradeLeverMax = props.WssData.LeverOpt[len - 1];
   TradeLeverMin = props.WssData.LeverOpt[0];
 
   for (const key of props.WssData.LeverOpt) {
-    LeverOpt[key] = key + 'x';
+    LeverOpt[key] = `${key}x`;
   }
 }
 FormatLeverOpt();

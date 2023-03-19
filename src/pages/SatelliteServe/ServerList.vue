@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { h, onMounted, onUnmounted } from 'vue';
+import { onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAILIst, GetPublicCoinAILIst, RemoveCoinAI } from '@/api/CoinAI/GetList';
@@ -35,7 +35,7 @@ const RemoveCoinAIFun = (ServeID) => {
   AuthModal({
     Email: UserInfoStore.value.Email,
     IsPassword: true,
-    EmailAction: '删除 ' + ServeID + ' 服务',
+    EmailAction: `删除 ${ServeID} 服务`,
     async OkBack(param) {
       const Password = param.Password;
       const EmailCode = param.Code;
@@ -55,7 +55,7 @@ const RemoveCoinAIFun = (ServeID) => {
 };
 
 function GetConfig(list, lType) {
-  var newList = cloneDeep(list);
+  const newList = cloneDeep(list);
   for (let i = 0; i < newList.length; i++) {
     const item = newList[i];
     GetCoinAIConfig({

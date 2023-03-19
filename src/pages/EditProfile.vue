@@ -6,7 +6,6 @@ import { cloneDeep, UpLoadFileEncrypt, $lcg, getToken, setToken } from '@/utils/
 import AuthModal from '@/lib/AuthModal';
 
 import { defineAsyncComponent } from 'vue';
-const SendCode = defineAsyncComponent(() => import('@/lib/SendCode.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 

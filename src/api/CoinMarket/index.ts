@@ -40,7 +40,7 @@ export interface GetAnalyHistoryParam {
 export const GetAnalyList = (data: GetAnalyHistoryParam): Promise<any> => {
   return ajax_json({
     url: '/CoinMarket/public/GetAnalyList',
-    data: data,
+    data,
     method: 'post',
   });
 };
@@ -52,7 +52,7 @@ interface GetAnalyDetailParam {
 export const GetAnalyDetail = (data: GetAnalyDetailParam): Promise<any> => {
   return ajax_json({
     url: '/CoinMarket/public/GetAnalyDetail',
-    data: data,
+    data,
     method: 'post',
   });
 };

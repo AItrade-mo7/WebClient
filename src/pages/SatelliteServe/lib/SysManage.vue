@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cloneDeep } from '@/utils/tools';
 import { ReStart, Remove } from '@/api/CoinAI/sys';
 import AuthModal from '@/lib/AuthModal';
 import { mStorage } from '@/utils/tools';
@@ -8,12 +7,9 @@ const props = defineProps({
   WssData: Object,
 });
 
-const nowVersion = props.WssData.AppEnv.SysVersion;
-const newVersion = props.WssData.GithubInfo.Version;
 let isUpdate = false;
-
-if (newVersion && nowVersion) {
-  isUpdate = newVersion !== nowVersion;
+if (props.WssData.GithubInfo.Version && props.WssData.AppEnv.SysVersion) {
+  isUpdate = props.WssData.GithubInfo.Version !== props.WssData.AppEnv.SysVersion;
 }
 
 let BtnStatus = $ref(0);
@@ -87,9 +83,9 @@ const SendReStart = async (Info) => {
 
 <template>
   <div class="SysManage">
-    <div className="SysManage__hint">当前版本：{{ nowVersion }}</div>
+    <div className="SysManage__hint">当前版本：{{ props.WssData.AppEnv.SysVersion }}</div>
     <div className="SysManage__hint new">
-      最新版本：{{ newVersion }}
+      最新版本：{{ props.WssData.GithubInfo.Version }}
       <a href="https://github.com/mo7static/AItrade.net" target="_blank" class="lineHeight">(GitHub)</a>
     </div>
 

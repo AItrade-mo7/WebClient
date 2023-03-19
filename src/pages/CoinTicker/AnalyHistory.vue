@@ -3,7 +3,7 @@ import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAnalyList, GetCoinHistory } from '@/api/CoinMarket';
 import { cloneDeep, mStorage } from '@/utils/tools';
 import { EchartsRender, MergeAnalyKdata } from './EchartsRender';
-import { WholeDirFormat, DateFormat } from '@/utils/filters';
+import { WholeDirFormat } from '@/utils/filters';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
@@ -15,8 +15,8 @@ let HistoryList = $ref([]);
 let AnalyKdataList = $ref([]);
 let IsChartView = $ref(true);
 let CurrentCoin = $ref('BTC');
-let ShowCoinRTS = $ref(false);
-let SetViewShow = $ref(false);
+const ShowCoinRTS = $ref(false);
+const SetViewShow = $ref(false);
 let ScreenDir = $ref('');
 
 let TimeRange = $ref([0, 0]);
@@ -61,13 +61,13 @@ const SwitchCoin = (Coin) => {
 };
 
 onMounted(() => {
-  var timeEnd = Date.now();
-  var timeStart = timeEnd - 3600 * 1000 * 72;
+  const timeEnd = Date.now();
+  const timeStart = timeEnd - 3600 * 1000 * 72;
 
   TimeRange = [timeStart, timeEnd];
 
   GetHistoryList();
-  var localScreen = mStorage.get('ScreenDir');
+  const localScreen = mStorage.get('ScreenDir');
   if (localScreen == 'mobile') {
     ScreenDir = 'mobile';
   } else {
@@ -179,7 +179,7 @@ const SwitchChart = () => {
     </div>
 
     <div v-if="!IsChartView">
-      <template v-for="item in AnalyKdataList">
+      <template v-for="(item, index) in AnalyKdataList" :key="index">
         <div class="DataBox" :class="WholeDirFormat(item.Analy.WholeDir).class">
           <n-space>
             <div class="time">{{ item.TimeDate }}</div>

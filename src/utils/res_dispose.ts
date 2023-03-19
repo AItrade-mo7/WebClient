@@ -1,4 +1,4 @@
-import type { resType, resDataType } from './utils.d';
+import type { resDataType } from './utils.d';
 import { logout } from '@/api/Account';
 
 export const res_dispose = (response: any): resDataType => {

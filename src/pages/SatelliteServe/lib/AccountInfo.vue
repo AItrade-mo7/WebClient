@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { h, onMounted, defineAsyncComponent } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
 import { GetAccountDetail } from '@/api/CoinAI/index';
 import { DateFormat, Decimal, WholeDirFormat } from '@/utils/filters';
 const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
@@ -37,14 +37,14 @@ onMounted(() => {
   <div class="AccountInfo">
     <div class="title">账户余额 (USDT)</div>
     <div class="data-wrapper">
-      <div class="block" v-for="item in Balance">
+      <div class="block" v-for="(item, index) in Balance" :key="index">
         <span class="label">{{ item.CcyName }}</span>
         <span class="value">{{ Decimal(item.Balance) }}</span>
       </div>
     </div>
     <br />
     <div class="title" v-if="Positions.length > 0">当前持仓</div>
-    <div class="data-wrapper" v-for="item in Positions">
+    <div class="data-wrapper" v-for="(item, index) in Positions" :key="index">
       <div class="block">
         <span class="label"> 持仓产品 </span>
         <span class="value"> {{ item.InstID }} </span>

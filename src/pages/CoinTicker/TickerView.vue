@@ -29,7 +29,7 @@ const GetCoinTickerList = async (TimeID?: string) => {
   let res: any = {};
   if (TimeID) {
     res = await GetAnalyDetail({
-      TimeID: TimeID,
+      TimeID,
     });
   } else {
     res = await GetNowTickerAnaly();
@@ -154,7 +154,7 @@ const columns: any[] = [
   },
 ];
 
-const RowClassName = (rowData) => {
+const RowClassName = () => {
   // if (AnalyWhole.MaxUP.InstID == rowData.InstID) {
   //   return 'MaxUP';
   // }
@@ -234,7 +234,7 @@ const OperationSwitch = () => {
         :data="CoinTickerList"
       />
     </div>
-    <div v-for="item in AnalyWhole">
+    <div v-for="(item, index) in AnalyWhole" :key="index">
       <TickerAnalyWhole :Analy="item" />
     </div>
 

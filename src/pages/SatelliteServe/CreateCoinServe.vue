@@ -9,9 +9,9 @@ const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 let Port = $ref('');
 
 const GenerateShell = () => {
-  var BaseUrl = window.ViteConst.BaseUrl;
-  var Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
-  var shPoint = `sudo curl -o- "${Url}" | sudo bash`;
+  const BaseUrl = window.ViteConst.BaseUrl;
+  const Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
+  const shPoint = `sudo curl -o- "${Url}" | sudo bash`;
   return shPoint;
 };
 
