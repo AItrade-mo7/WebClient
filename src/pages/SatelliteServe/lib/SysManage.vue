@@ -79,6 +79,10 @@ const SendReStart = async (Info) => {
     });
   }
 };
+
+const ApplyPublic = async () => {
+  BtnStatus = -2;
+};
 </script>
 
 <template>
@@ -90,8 +94,9 @@ const SendReStart = async (Info) => {
     </div>
 
     <div class="btn-wrapper">
-      <n-button ghost type="error" @click="stopServer"> 删除服务 </n-button>
+      <n-button ghost type="error" @click="stopServer"> 停止服务 </n-button>
       <n-button ghost type="success" @click="restartServer"> 更新并重启 </n-button>
+      <n-button ghost @click="ApplyPublic"> 申请公开此服务 </n-button>
     </div>
     <div class="warn">
       <div v-if="BtnStatus == 0">
@@ -105,18 +110,27 @@ const SendReStart = async (Info) => {
       </div>
       <div v-if="BtnStatus == 1">
         将会从
-        <a href="https://github.com/mo7static/AItrade.net" target="_blank" class="lineHeight">GitHub</a>
-        下载最新代码,并完成
-        <span class="lineHeight-warn">冷重启</span>，重启之后该服务下的所有账户将会重新受到托管。
+        <a href="https://github.com/AItrade-mo7/CoinAIPackage" target="_blank" class="lineHeight">GitHub</a>
+        下载最新安装包,并完成
+        <span class="lineHeight-warn">冷重启</span>, 重启之后该服务下的所有账户将会重新受到托管。
         <n-button size="tiny" type="success" @click="SendFetch(1)">执行升级</n-button>
       </div>
       <div v-if="BtnStatus == -1">
         这将彻底
         <span class="lineHeight-err">停止</span>
-        并
-        <span class="lineHeight-err">删除</span>
-        您的服务，本地安装的文件将会被删除，包括二进制安装文件以及运行日志和填写的数据和资料,稍后可能需要重新部署
-        <n-button size="tiny" type="error" @click="SendFetch(-1)">我就是要删掉它</n-button>
+        您的服务，<span class="lineHeight-err">彻底删除</span>包括程序文件和本地的运行日志。
+        <br />
+        但该服务器的数据不会丢失，稍后可重新部署并自动恢复。 <br />
+        若想彻底删除数据，请在停止服务后前往
+        <RouterLink to="/SatelliteServe" className="lineHeight"> 卫星服务管理列表 </RouterLink>
+        执行删除。
+        <n-button size="tiny" type="error" @click="SendFetch(-1)">我就是要停止它</n-button>
+      </div>
+
+      <div v-if="BtnStatus == -2">
+        当前卫星服务可以被所有用户查看和访问,
+        每一个加入该服务的用户，都将由您进行审核和批准。同时该卫星服务的运营和维护以及安全也将由您来负责。<br />
+        当前审核进度为: 【该功能尚在开发中...】 。
       </div>
     </div>
   </div>

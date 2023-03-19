@@ -15,11 +15,16 @@ let Config = $ref({
   AppEnv: {},
   GithubInfo: {},
 });
-
+let ServeID = $ref('');
 let WssObj = null;
 let WssData = $ref({});
 
-let ServeID = $ref('');
+function UpdateWssData(Config, WssDataSource) {
+  WssData = {
+    ...Config,
+    ...WssDataSource,
+  };
+}
 
 function GetConfig() {
   GetCoinAIConfig({
@@ -28,10 +33,7 @@ function GetConfig() {
     .then((res) => {
       if (res.Code > 0) {
         Config = res.Data;
-        WssData = {
-          ...Config,
-          ...WssData,
-        };
+        UpdateWssData(Config, WssData);
       }
     })
     .catch(() => {
@@ -48,10 +50,7 @@ function StartWss() {
     Host: ServeID,
     MessageEvent(res) {
       if (res.Response.Code == 1) {
-        WssData = {
-          ...Config,
-          ...res.Response.Data,
-        };
+        UpdateWssData(Config, res.Response.Data);
       }
     },
   });
