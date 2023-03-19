@@ -108,7 +108,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </div>
       <div class="block">
         <span class="label">管理员信息</span>
-        <RouterLink class="value" :to="`/UserInfo?id=${props.WssData.MainUser.UserID}`">
+        <RouterLink class="value" :to="`/SatelliteServe/MainUser/${props.WssData.ServeID}`">
           <n-button size="medium" type="primary" text> {{ props.WssData.MainUser.NickName }} </n-button>
         </RouterLink>
       </div>
@@ -135,7 +135,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
       APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
-        :to="`/SatelliteServe/AddKey?id=${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey/${props.WssData.ServeID}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
       >
@@ -148,7 +148,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </div>
     <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
       <RouterLink
-        :to="`/SatelliteServe/AddKey?id=${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey/${props.WssData.ServeID}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
       >

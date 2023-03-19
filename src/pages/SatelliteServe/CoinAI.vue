@@ -63,7 +63,9 @@ window.$Event['CoinAIGetConfig'] = () => {
 
 onMounted(() => {
   const route = useRoute();
-  ServeID = route.query.id;
+  ServeID = route.params.id;
+
+  console.log(route);
 
   GetConfig();
   StartWss();

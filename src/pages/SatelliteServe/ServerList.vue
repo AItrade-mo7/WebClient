@@ -138,7 +138,7 @@ const Reload = () => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <RouterLink :to="`/SatelliteServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
+            <RouterLink :to="`/SatelliteServe/CoinAI/${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
             <template v-else-if="item.Status == -2">
@@ -180,7 +180,7 @@ const Reload = () => {
         </div>
         <template #footer>
           <div class="card_footer">
-            <RouterLink :to="`/SatelliteServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
+            <RouterLink :to="`/SatelliteServe/CoinAI/${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
             <n-button

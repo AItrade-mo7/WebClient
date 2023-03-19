@@ -51,14 +51,19 @@ const routes: any = [
         component: () => import('@/pages/SatelliteServe/CreateCoinServe.vue'),
       },
       {
-        path: 'CoinAI',
+        path: 'CoinAI/:id',
         description: 'CoinAI',
         component: () => import('@/pages/SatelliteServe/CoinAI.vue'),
       },
       {
-        path: 'AddKey',
+        path: 'AddKey/:id',
         description: 'AddKey',
         component: () => import('@/pages/SatelliteServe/AddKey.vue'),
+      },
+      {
+        path: 'MainUser/:id',
+        isLogin: true,
+        component: () => import('@/pages/SatelliteServe/MainUser.vue'),
       },
     ],
   },
@@ -114,11 +119,6 @@ const routes: any = [
         component: () => import('@/pages/StockTicker/TickerView.vue'),
       },
     ],
-  },
-  {
-    path: '/UserInfo',
-    isLogin: true,
-    component: () => import('@/pages/UserInfo.vue'),
   },
   {
     path: '/Personal',
