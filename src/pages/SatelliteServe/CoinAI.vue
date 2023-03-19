@@ -65,8 +65,6 @@ onMounted(() => {
   const route = useRoute();
   ServeID = route.params.id;
 
-  console.log(route);
-
   GetConfig();
   StartWss();
 });
