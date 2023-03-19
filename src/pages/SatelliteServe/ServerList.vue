@@ -117,7 +117,7 @@ const Reload = () => {
       部署私人的卫星服务，更加稳定可靠。交易延迟更低，下单不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。无须担心名额限制。
     </div>
     <div class="ListWrapper">
-      <n-card v-for="item in ServeList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
+      <n-card v-for="(item, index) in ServeList" :key="index" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
           <span class="Server__label"> Name </span>
           <span class="Server__val">
@@ -165,7 +165,7 @@ const Reload = () => {
       使用他人部署公开的卫星服务，简单方便，安全稳定。每一个公开对外的卫星服务都由开发者亲自认证，其管理者的技术水平足以应对一般的突发性状况。为控制交易延迟，每一个公开服务的使用名额有限。
     </div>
     <div class="ListWrapper">
-      <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
+      <n-card v-for="(item, index) in PublicList" :key="index" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
           <span class="Server__label"> Name </span>
           <span class="Server__val">

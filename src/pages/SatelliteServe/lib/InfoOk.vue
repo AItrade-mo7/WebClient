@@ -162,7 +162,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       <template v-if="props.WssData.AppEnv.ApiKeyList">
         <n-card
           v-for="(item, index) in props.WssData.AppEnv.ApiKeyList"
-          :key="item.Name"
+          :key="index"
           :title="item.Name"
           embedded
           hoverable
