@@ -108,10 +108,9 @@ const Reload = () => {
   </PageTitle>
   <div class="PageWrapper">
     <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning" closable></n-alert>
-    <div class="title">我的 CoinAI 服务</div>
+    <div class="title">我的卫星服务</div>
     <div class="explain">
-      部署私人的 CoinAI
-      机器人交易服务，更加稳定可靠。交易延迟更低，下单不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。
+      部署私人的卫星服务，更加稳定可靠。交易延迟更低，下单不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。无须担心名额限制。
     </div>
     <div class="ListWrapper">
       <n-card v-for="item in ServeList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
@@ -127,20 +126,25 @@ const Reload = () => {
             {{ item.SysVersion }}
           </span>
         </div>
+        <div class="Server__item">
+          <span class="Server__label"> Type </span>
+          <span class="Server__val">
+            {{ item.Type }}
+          </span>
+        </div>
         <template #footer>
           <div class="card_footer">
             <RouterLink :to="`/SatelliteServe/CoinAI?id=${item.ServeID}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button
-              size="small"
-              v-else-if="item.Status == -2"
-              type="error"
-              :disabled="SubmitStatus"
-              @click="RemoveCoinAIFun(item.ServeID)"
-            >
-              删除
-            </n-button>
+            <template v-else-if="item.Status == -2">
+              <n-button size="small" type="error" :disabled="SubmitStatus" @click="RemoveCoinAIFun(item.ServeID)">
+                删除
+              </n-button>
+              <RouterLink class="Reboot" :to="`/SatelliteServe/CreateCoinServe?port=${item.Port}`">
+                <n-button size="small" type="primary"> 重新部署 </n-button>
+              </RouterLink>
+            </template>
             <n-button size="small" v-else type="info" @click="RemoveCoinAIFun(item.ServeID)"> 加载中。。。 </n-button>
           </div>
         </template>
@@ -152,8 +156,10 @@ const Reload = () => {
       </n-card>
     </div>
     <hr />
-    <div class="title">公共 CoinAI 服务</div>
-    <div class="explain">使用开发者提供的 CoinAI 服务，简单方便。</div>
+    <div class="title">公开的卫星服务</div>
+    <div class="explain">
+      使用他人部署公开的卫星服务，简单方便，安全稳定。每一个公开对外的卫星服务都由开发者亲自认证，其管理者的技术水平足以应对一般的突发性状况。为控制交易延迟，每一个公开服务的名额有限。
+    </div>
     <div class="ListWrapper">
       <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
@@ -175,7 +181,7 @@ const Reload = () => {
             </RouterLink>
             <n-button
               size="small"
-              v-else-if="item.Status == -2"
+              v-if="item.Status == -2"
               type="error"
               :disabled="SubmitStatus"
               @click="RemoveCoinAIFun(item.ServeID)"
@@ -233,7 +239,7 @@ const Reload = () => {
   word-break: break-all;
   display: flex;
   font-size: 12px;
-  padding: 8px 0;
+  padding: 4px 0;
   align-items: center;
 }
 .Server__label {
@@ -283,5 +289,9 @@ const Reload = () => {
 .reload_btn {
   margin-left: 4px;
   margin-right: 4px;
+}
+
+.Reboot {
+  margin-left: 12px;
 }
 </style>

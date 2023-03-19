@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, onMounted } from 'vue';
 import { CopyText } from '@/utils/tools';
 import { UserInfoStore } from '@/store';
+import { RouterLink, useRoute } from 'vue-router';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -25,6 +26,11 @@ const copyFun = () => {
 const MyCopyText = (text) => {
   CopyText(text);
 };
+
+onMounted(() => {
+  const route = useRoute();
+  Port = route.query.port;
+});
 </script>
 
 <template>
@@ -33,14 +39,20 @@ const MyCopyText = (text) => {
     <div class="title">第一步：填写端口号</div>
     <div class="content">
       <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
-      <div class="hint">建议选择非常用端口号(9000-9999),该端口号用于启动 Web 服务。</div>
+      <div class="hint">
+        建议选择非常用端口号(例如: 9000-9999),该端口号用于启动 Web 服务用于通信。
+        <br />
+        同一个IP下的同一个端口号则会视为同一个卫星服务。如： 如果已存在
+        <span class="lineHight">123.456.789.123:9012</span>服务，若填写 <span class="lineHight">9012</span> 并且在IP为
+        <span class="lineHight">123.456.789.123</span>的服务器上重新执行部署，则会视为服务重启，数据不会丢失。
+      </div>
     </div>
     <br />
     <div class="title">第二步：执行指令</div>
     <div class="content">
       <div class="ShellAbout_desc">
         <span class="label">注：</span>务必在 <span class="lineHight">安全组</span> 中开放云主机的
-        <span class="lineHight">{{ Port ? Port : 'x' }}</span>
+        <span class="lineHight">TCP: {{ Port ? Port : 'x' }}</span>
         端口 ！
         <div class="content">
           <div class="ShellAbout__urlBox">
@@ -136,15 +148,24 @@ const MyCopyText = (text) => {
       <br />
 
       1. 服务运行正常，可以在服务列表中看到 绿色的 【进入】 按钮，否则将是红色的【删除】按钮 <br />
-      2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的安全组端口是否开放 <br />
+      2. 若正常收到了启动邮件，服务列表依然显示红色删除按钮，请检查云主机对应的<span class="lineHight">安全组</span>
+      端口是否开放 <br />
       3.
-      同一台服务器的同一个端口重复部署，则会更新对应的服务，不同端口重复部署则会创建新的服务。重新部署，数据不会丢失。<br />
-      4. 建议使用具有弹性IP的独立云主机，且永远不要更换弹性IP。<br />
+      同一台服务器的同一个端口重复部署，则会视为更新并重启服务，不同端口重复部署则会创建新的服务。重新部署，数据不会丢失。<br />
+      4. 建议使用具有弹性IP的独立云主机，且永远不要更换IP。<br />
       5. 服务的进程管理依赖于
       <a href="https://pm2.fenxianglu.cn" class="lineHight" target="_blank"> pm2 </a>您也可以手动安装 pm2
-      加速脚本执行速度 <br />
-      6. 查看服务运行状态可使用<span class="codeView"> pm2 ls </span> 指令 。<br />
-      7. 若服务器重启，可以手动执行程序安装目录下的 <span class="codeView"> ./Reboot.sh </span> 进行重启。<br />
+      加速脚本执行过程。
+      <span class="hint">
+        整个安装脚本其实只用到了 apt-get 和 curl 两个系统指令。本质上程序主体支持所有的 Linux x86_64 和 aarch64 发行版,
+        但作者只测试过 Debian/Ubuntu 。 若对Linux比较了解, 也可以自行手动部署，或联系作者。
+        <RouterLink to="/About/SatelliteServe">
+          <n-button size="tiny" type="primary"> 手动部署步骤 </n-button>
+        </RouterLink>
+      </span>
+      <br />
+      6. 若是通过系统生成的指令安装的服务，可使用<span class="codeView"> pm2 ls </span> 指令 查看卫星服务的运行状态。<br />
+      7. 若服务出现问题，可以手动执行程序安装目录下的 <span class="codeView"> ./Reboot.sh </span> 进行重启或更新。<br />
 
       <br />
       <RouterLink to="/SatelliteServe">

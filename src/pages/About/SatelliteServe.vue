@@ -10,6 +10,11 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
     <br />
     卫星服务部署详解 【待补充】
+    <br />
+
+    <n-button text tag="a" href="https://github.com/AItrade-mo7/CoinAIPackage" target="_blank" type="primary">
+      卫星服务二进制程序包 | Github
+    </n-button>
   </div>
 </template>
 
