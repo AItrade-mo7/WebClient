@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { NewSocket } from '@/api/CoinAI/CoinAIWss';
-import { $lcg } from '@/utils/tools';
+import { $lcg, GetParamServeID } from '@/utils/tools';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
@@ -62,8 +61,7 @@ window.$Event['CoinAIGetConfig'] = () => {
 };
 
 onMounted(() => {
-  const route = useRoute();
-  ServeID = route.params.id;
+  ServeID = GetParamServeID();
 
   GetConfig();
   StartWss();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
-import { cloneDeep } from '@/utils/tools';
+import { RouterLink } from 'vue-router';
+import { cloneDeep, GetParamServeID } from '@/utils/tools';
 import { CopyText } from '@/utils/tools';
 import AuthModal from '@/lib/AuthModal';
 import { useRouter } from 'vue-router';
@@ -69,8 +69,8 @@ function GetConfig(ServeID) {
 }
 
 onMounted(() => {
-  const route = useRoute();
-  GetConfig(route.query.id);
+  const ServeID = GetParamServeID();
+  GetConfig(ServeID);
 });
 
 const copyFun = () => {

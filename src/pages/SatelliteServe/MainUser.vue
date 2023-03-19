@@ -1,19 +1,12 @@
 <script setup lang="ts">
 import { defineAsyncComponent, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import { getUserInfo } from '@/api/Account';
+import { GetParamServeID } from '@/utils/tools';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
-let UserID = $ref('');
-let UserData = $ref({});
+let ServeID = $ref('');
 
 onMounted(() => {
-  const route = useRoute();
-  UserID = route.query.id;
-
-  getUserInfo({ UserID }).then((res) => {
-    UserData = res.Data;
-  });
+  ServeID = GetParamServeID();
 });
 </script>
 
@@ -21,7 +14,7 @@ onMounted(() => {
   <PageTitle>UserInfo</PageTitle>
   <div class="PageWrapper UserInfo">
     <h1>【尚在开发中】 设定，只能查看当前用户主动公开的信息。</h1>
-    {{ UserData }}
+    {{ ServeID }}
   </div>
 </template>
 

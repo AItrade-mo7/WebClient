@@ -6,7 +6,7 @@ import { cloneDeep } from '@/utils/tools';
 import { HandleKey } from '@/api/CoinAI/index';
 import { UserInfoStore } from '@/store';
 import { WholeDirFormat } from '@/utils/filters';
-import { $lcg } from '@/utils/tools';
+import { $lcg, ServeIDToParam } from '@/utils/tools';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
@@ -108,7 +108,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </div>
       <div class="block">
         <span class="label">管理员信息</span>
-        <RouterLink class="value" :to="`/SatelliteServe/MainUser/${props.WssData.ServeID}`">
+        <RouterLink class="value" :to="`/SatelliteServe/MainUser/${ServeIDToParam(props.WssData.ServeID)}`">
           <n-button size="medium" type="primary" text> {{ props.WssData.MainUser.NickName }} </n-button>
         </RouterLink>
       </div>
@@ -135,7 +135,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
       APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
-        :to="`/SatelliteServe/AddKey/${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
       >
@@ -148,7 +148,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </div>
     <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
       <RouterLink
-        :to="`/SatelliteServe/AddKey/${props.WssData.ServeID}`"
+        :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
         v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
       >

@@ -161,3 +161,20 @@ export const ParseOkxKey = (str: string) => {
 
   return str_obj;
 };
+
+// 把ServeID转为路由参数
+export const ServeIDToParam = (str: string): string => {
+  const s1 = str.replace(/\./gi, 'i');
+  const s2 = s1.replace(/:/gi, 'p');
+  return s2;
+};
+
+// 获取路由当中的ServeID
+import { useRoute } from 'vue-router';
+export const GetParamServeID = (): string => {
+  const route = useRoute();
+  const ServeID = route.params.id as string;
+  const s1 = ServeID.replace(/i/gi, '.');
+  const s2 = s1.replace(/p/gi, ':');
+  return s2;
+};
