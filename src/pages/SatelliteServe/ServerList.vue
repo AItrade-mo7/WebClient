@@ -6,7 +6,7 @@ import { GetCoinAILIst, GetPublicCoinAILIst, RemoveCoinAI } from '@/api/CoinAI/G
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { cloneDeep } from '@/utils/tools';
 import AuthModal from '@/lib/AuthModal';
-
+import { UserInfoStore } from '@/store';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
@@ -33,13 +33,17 @@ let SubmitStatus: boolean = $ref(false);
 const RemoveCoinAIFun = (ServeID) => {
   GetCoinAILIstFun();
   AuthModal({
+    Email: UserInfoStore.value.Email,
     IsPassword: true,
+    EmailAction: '删除 ' + ServeID + ' 服务',
     async OkBack(param) {
       const Password = param.Password;
+      const EmailCode = param.Code;
       SubmitStatus = true;
       return RemoveCoinAI({
         ServeID,
         Password,
+        EmailCode,
       }).then((res) => {
         if (res.Code > 0) {
           GetCoinAILIstFun();
@@ -158,7 +162,7 @@ const Reload = () => {
     <hr />
     <div class="title">公开的卫星服务</div>
     <div class="explain">
-      使用他人部署公开的卫星服务，简单方便，安全稳定。每一个公开对外的卫星服务都由开发者亲自认证，其管理者的技术水平足以应对一般的突发性状况。为控制交易延迟，每一个公开服务的名额有限。
+      使用他人部署公开的卫星服务，简单方便，安全稳定。每一个公开对外的卫星服务都由开发者亲自认证，其管理者的技术水平足以应对一般的突发性状况。为控制交易延迟，每一个公开服务的使用名额有限。
     </div>
     <div class="ListWrapper">
       <n-card v-for="item in PublicList" :key="item.ServeID" :title="item.ServeID" embedded hoverable size="small">

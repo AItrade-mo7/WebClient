@@ -20,12 +20,14 @@ export const GetPublicCoinAILIst = () => {
 interface RemoveCoinAIType {
   ServeID: string;
   Password: string;
+  EmailCode: string;
 }
 
 export const RemoveCoinAI = (data: RemoveCoinAIType) => {
   const param = {
     ...data,
     Password: Md5(data.Password),
+    EmailCode: Md5(data.EmailCode),
   };
 
   return ajax_json({
