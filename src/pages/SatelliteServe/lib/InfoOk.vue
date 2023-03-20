@@ -24,7 +24,7 @@ let NowKey = $ref({});
 const ShowKeyDetail = (index) => {
   DrawerStatus = true;
   NowIndex = index;
-  NowKey = props.WssData.AppEnv.ApiKeyList[NowIndex];
+  NowKey = props.WssData.ApiKeyList[NowIndex];
 };
 const DrawerClose = () => {
   DrawerStatus = false;
@@ -126,12 +126,12 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </n-space>
     <hr />
 
-    <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
-      APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
+    <div class="title" v-if="props.WssData.ApiKeyList">
+      APIKey 管理 ({{ props.WssData.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
-        v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
+        v-if="props.WssData.ApiKeyList.length > 0"
       >
         <n-button type="primary" size="tiny" circle>
           <template #icon>
@@ -140,11 +140,11 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         </n-button>
       </RouterLink>
     </div>
-    <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
+    <div class="APIKeyWrapper" v-if="props.WssData.ApiKeyList">
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
-        v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
+        v-if="props.WssData.ApiKeyList.length < 1"
       >
         <n-button type="primary">
           <template #icon>
@@ -153,9 +153,9 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           添加一个 OKX 秘钥
         </n-button>
       </RouterLink>
-      <template v-if="props.WssData.AppEnv.ApiKeyList">
+      <template v-if="props.WssData.ApiKeyList">
         <n-card
-          v-for="(item, index) in props.WssData.AppEnv.ApiKeyList"
+          v-for="(item, index) in props.WssData.ApiKeyList"
           :key="index"
           :title="item.Name"
           embedded

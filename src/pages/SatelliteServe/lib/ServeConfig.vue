@@ -9,9 +9,8 @@ const props = defineProps({
 
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
-  ServerName: props.WssData.Name,
+  ServerName: props.WssData.SysName,
   Password: '',
-  Lever: props.WssData.TradeLever,
   MaxApiKeyNum: props.WssData.MaxApiKeyNum,
 });
 
@@ -40,6 +39,7 @@ const Submit = async () => {
 
 <template>
   <div class="ServeConfig">
+    {{ props.WssData }}
     <div class="title">修改系统参数</div>
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item" label-placement="left" label="系统名称:">

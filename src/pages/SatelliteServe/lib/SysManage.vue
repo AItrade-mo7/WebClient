@@ -8,8 +8,8 @@ const props = defineProps({
 });
 
 let isUpdate = false;
-if (props.WssData.GithubInfo.Version && props.WssData.AppEnv.SysVersion) {
-  isUpdate = props.WssData.GithubInfo.Version !== props.WssData.AppEnv.SysVersion;
+if (props.WssData.GithubVersion && props.WssData.SysVersion) {
+  isUpdate = props.WssData.GithubVersion !== props.WssData.SysVersion;
 }
 
 let BtnStatus = $ref(0);
@@ -53,7 +53,7 @@ const SendFetch = (type: number) => {
 const SendStop = async (Info) => {
   const res = await Remove({
     ...Info,
-    SatelliteServe: props.WssData.AppEnv.ServeID,
+    SatelliteServe: props.WssData.ServeID,
   });
   if (res.Code > 0) {
     window.$message.warning('删除指令已发送!', {
@@ -67,7 +67,7 @@ const SendStop = async (Info) => {
 const SendReStart = async (Info) => {
   const res = await ReStart({
     ...Info,
-    SatelliteServe: props.WssData.AppEnv.ServeID,
+    SatelliteServe: props.WssData.ServeID,
   });
   if (res.Code > 0) {
     window.$message.success('重启指令已发送!请等待页面跳转', {
@@ -87,16 +87,16 @@ const ApplyPublic = async () => {
 
 <template>
   <div class="SysManage">
-    <div className="SysManage__hint">当前版本：{{ props.WssData.AppEnv.SysVersion }}</div>
+    <div className="SysManage__hint">当前版本：{{ props.WssData.SysVersion }}</div>
     <div className="SysManage__hint new">
-      最新版本：{{ props.WssData.GithubInfo.Version }}
+      最新版本：{{ props.WssData.GithubVersion }}
       <a href="https://github.com/AItrade-mo7/CoinAIPackage" target="_blank" class="lineHeight">(GitHub)</a>
     </div>
 
     <div class="btn-wrapper">
       <n-button ghost type="error" @click="stopServer"> 停止服务 </n-button>
       <n-button ghost type="success" @click="restartServer"> 更新并重启 </n-button>
-      <n-button ghost @click="ApplyPublic"> 申请公开此服务 </n-button>
+      <n-button ghost @click="ApplyPublic"> 申请公开 </n-button>
     </div>
     <div class="warn">
       <div v-if="BtnStatus == 0">
