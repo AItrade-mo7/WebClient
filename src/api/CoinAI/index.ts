@@ -92,7 +92,7 @@ export const Order = (data: OrderParam) => {
 interface EditConfigParam {
   SatelliteServe: string;
   Password: string;
-  ServerName: string;
+  SysName: string;
 }
 
 export const EditConfig = (data: EditConfigParam) => {

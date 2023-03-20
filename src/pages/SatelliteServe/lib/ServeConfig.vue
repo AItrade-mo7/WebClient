@@ -9,8 +9,8 @@ const props = defineProps({
 
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
-  ServerName: props.WssData.SysName,
   Password: '',
+  SysName: props.WssData.SysName,
   MaxApiKeyNum: props.WssData.MaxApiKeyNum,
 });
 
@@ -39,13 +39,12 @@ const Submit = async () => {
 
 <template>
   <div class="ServeConfig">
-    {{ props.WssData }}
     <div class="title">修改系统参数</div>
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item" label-placement="left" label="系统名称:">
         <n-input
-          name="ServerName"
-          v-model:value="formValue.ServerName"
+          name="SysName"
+          v-model:value="formValue.SysName"
           :inputProps="{ autocomplete: 'password' }"
           placeholder="系统名称"
         >
