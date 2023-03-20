@@ -83,27 +83,19 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </div>
     <n-space class="data-wrapper">
       <div class="block">
-        <span class="label">系统时间</span>
-        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
-      </div>
-      <div class="block">
         <span class="label">系统名称</span>
         <span class="value"> {{ props.WssData.SysName }} </span>
       </div>
       <div class="block">
-        <span class="label">系统版本</span>
-        <span class="value"> {{ props.WssData.SysVersion }} </span>
-      </div>
-      <div class="block">
-        <span class="label">系统端口</span>
-        <span class="value"> {{ props.WssData.Port }} </span>
+        <span class="label">系统时间</span>
+        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
       </div>
       <div class="block">
         <span class="label">系统IP</span>
         <span class="value"> {{ props.WssData.IP }} </span>
       </div>
       <div class="block">
-        <span class="label">系统类型</span>
+        <span class="label">策略类型</span>
         <span class="value"> {{ props.WssData.Type }} </span>
       </div>
       <div class="block">
@@ -113,6 +105,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         </RouterLink>
       </div>
     </n-space>
+    <hr />
 
     <div class="title">监听数据</div>
     <n-space class="data-wrapper">
@@ -131,6 +124,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="value"> {{ $lcg(props.WssData, 'NowTicker.TimeStr') }} </span>
       </div>
     </n-space>
+    <hr />
 
     <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
       APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
@@ -217,6 +211,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       </template>
     </div>
 
+    <hr />
     <div class="MainTradeBtn">
       <OrderBtn :WssData="props.WssData" :NowIndex="-1" />
     </div>

@@ -51,7 +51,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="LoginOutlined" />
                 </template>
-                Login
+                登录
               </n-button>
             </RouterLink>
           </div>
@@ -62,7 +62,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="UserAddOutlined" />
                 </template>
-                Register
+                注册
               </n-button>
             </RouterLink>
           </div>
