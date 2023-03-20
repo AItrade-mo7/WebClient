@@ -25,6 +25,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     <br />
     <br />
     群二维码：
+    <br />
     <img class="feishu_code" src="//file.mo7.cc/disk/feishu_code.jpg" alt="" srcset="" />
   </div>
 </template>
