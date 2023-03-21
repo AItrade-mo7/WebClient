@@ -216,7 +216,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
 
     <hr />
     <div class="MainTradeBtn">
-      <OrderBtn :WssData="props.WssData" :NowIndex="-1" />
+      <OrderBtn :WssData="props.WssData" KeyName="ALL" />
     </div>
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">

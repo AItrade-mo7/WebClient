@@ -69,7 +69,7 @@ export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
 
 interface OrderParam {
   SatelliteServe: string;
-  Name: number;
+  Name: string;
   Type: string;
   Password: string;
   Code: string;
