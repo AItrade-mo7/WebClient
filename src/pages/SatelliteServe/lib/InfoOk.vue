@@ -38,7 +38,7 @@ const ShowConfig = () => {
 
 let HandleKeyStatus: boolean = $ref(false);
 let HandleKeyFormValue = $ref({
-  Index: -1,
+  Name: '',
   Password: '',
   Type: '',
 });
@@ -54,7 +54,7 @@ const SendForm = async () => {
   window.$Event['CoinAIGetConfig']();
 };
 
-const HandleKeySubmit = async (type: string, Index: number) => {
+const HandleKeySubmit = async (type: string, name: string) => {
   HandleKeyFormValue = {};
   HandleKeyStatus = true;
   AuthModal({
@@ -63,7 +63,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       HandleKeyStatus = false;
       HandleKeyFormValue.Password = param.Password;
       HandleKeyFormValue.Type = type;
-      HandleKeyFormValue.Index = Index;
+      HandleKeyFormValue.Name = name;
       return SendForm();
     },
   });
@@ -176,32 +176,35 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           </div>
           <div class="Server__item">
             <span class="Server__label">Passphrase </span>
-            <span class="Server__val">
-              {{ item.Passphrase }}
-            </span>
+            <span class="Server__val"> {{ item.Passphrase }} </span>
           </div>
 
           <template #footer>
             <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
               <n-button
                 size="small"
-                v-if="item.IsTrade"
+                v-if="item.Status == 'enable'"
                 type="success"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', index)"
+                @click="HandleKeySubmit('disable', item.Name)"
               >
                 已启用
               </n-button>
               <n-button
                 size="small"
-                v-if="!item.IsTrade"
+                v-if="item.Status == 'disable'"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', index)"
+                @click="HandleKeySubmit('enable', item.Name)"
               >
                 已禁用
               </n-button>
-              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del', index)">
+              <n-button
+                size="small"
+                type="error"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit('delete', item.Name)"
+              >
                 删除
               </n-button>
               <n-button size="small" type="primary" @click="ShowKeyDetail(index)"> 查看详情 </n-button>
