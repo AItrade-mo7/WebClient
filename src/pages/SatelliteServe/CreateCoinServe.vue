@@ -70,7 +70,7 @@ onMounted(() => {
         <br />
         <br />
         <span class="label">最低硬件配置：</span> <span class="lineHight"> 2</span> 核芯、
-        <span class="lineHight">2GB</span> 内存、<span class="lineHight">20GB</span> 存储。
+        <span class="lineHight">2GB</span> 内存、<span class="lineHight">30GB</span> 存储。
         <span class="hint">
           程序采用 Go 语言编写, 会实时爬取交易所数据，并执行超高频复杂计算, 运行峰值内存消耗为 50M~80M 。
         </span>
@@ -78,7 +78,7 @@ onMounted(() => {
         <br />
         <span class="label">系统要求：</span>
         <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
-        <span class="lineHight"> Debian 11 / Ubuntu 20</span> LTS 版本 （其它Linux版本部署需要自己手动执行部署）
+        <span class="lineHight"> Debian 11+ / Ubuntu 20+</span> （其它 Linux 发行版部署需要自己手动执行部署）
         <RouterLink to="/About/SatelliteServe">
           <n-button size="tiny" type="primary"> 手动部署步骤 </n-button>
         </RouterLink>

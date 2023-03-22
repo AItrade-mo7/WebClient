@@ -47,22 +47,26 @@ const routes: any = [
       },
       {
         path: 'CreateCoinServe',
+        isLogin: true,
         description: 'CreateCoinServe',
         component: () => import('@/pages/SatelliteServe/CreateCoinServe.vue'),
       },
       {
         path: 'CoinAI/:id',
+        isLogin: true,
         description: 'CoinAI',
         component: () => import('@/pages/SatelliteServe/CoinAI.vue'),
       },
       {
         path: 'AddKey/:id',
+        isLogin: true,
         description: 'AddKey',
         component: () => import('@/pages/SatelliteServe/AddKey.vue'),
       },
       {
         path: 'MainUser/:id',
         isLogin: true,
+        description: 'MainUser',
         component: () => import('@/pages/SatelliteServe/MainUser.vue'),
       },
     ],
