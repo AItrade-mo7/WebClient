@@ -12,8 +12,10 @@ export const res_dispose = (response: any): resDataType => {
 
   // Token 错误
   if (data.Code == -3) {
-    window.$message.warning(`${data.Msg},请重新登陆`, () => {
-      logout();
+    window.$message.warning(`${data.Msg},请重新登陆`, {
+      onAfterLeave() {
+        logout();
+      },
     });
     return data;
   }

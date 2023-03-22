@@ -183,6 +183,15 @@ const HandleKeySubmit = async (type: string, name: string) => {
             <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
               <n-button
                 size="small"
+                type="error"
+                v-if="item.Status == 'disable'"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit('delete', item.Name)"
+              >
+                删除
+              </n-button>
+              <n-button
+                size="small"
                 v-if="item.Status == 'enable'"
                 type="success"
                 :disabled="HandleKeyStatus"
@@ -199,15 +208,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
               >
                 已禁用
               </n-button>
-              <n-button
-                size="small"
-                type="error"
-                :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('delete', item.Name)"
-              >
-                删除
+              <n-button v-if="item.Status == 'enable'" size="small" type="primary" @click="ShowKeyDetail(index)">
+                查看详情
               </n-button>
-              <n-button size="small" type="primary" @click="ShowKeyDetail(index)"> 查看详情 </n-button>
             </div>
           </template>
         </n-card>
@@ -317,7 +320,10 @@ const HandleKeySubmit = async (type: string, name: string) => {
 .card_footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  .n-button {
+    margin-left: 6px;
+  }
 }
 
 .MainTradeBtn {
