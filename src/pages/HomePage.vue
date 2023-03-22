@@ -11,7 +11,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   <PageTitle :Back="false">Home</PageTitle>
   <div class="PageWrapper">
     <img class="logo" :src="Logo" alt="" srcset="" />
-    <div class="appName"><span class="aiText">AI</span><span class="fundText">Trade</span></div>
+    <div class="appName"><span class="aiText">AI</span><span class="fundText">trade</span></div>
     <div>
       基于<span class="fundText">大数据</span>和<span class="fundText">深度学习</span> , 打造属于您个人的交易服务。
     </div>
