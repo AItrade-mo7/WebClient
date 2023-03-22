@@ -28,6 +28,8 @@ a {
   padding: 48px 16px 16px;
   font-size: 14px;
   position: relative;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 .n-avatar {
@@ -130,4 +132,14 @@ a {
   }
 
   color: #000 !important;
+}
+
+//  阴影扩散动画
+@keyframes promptBorder {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 185, 11, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(240, 185, 11, 0);
+  }
 }

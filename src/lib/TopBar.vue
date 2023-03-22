@@ -51,7 +51,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="LoginOutlined" />
                 </template>
-                Login
+                登录
               </n-button>
             </RouterLink>
           </div>
@@ -62,7 +62,7 @@ const showDrawer = () => {
                 <template #icon>
                   <XIcon name="UserAddOutlined" />
                 </template>
-                Register
+                注册
               </n-button>
             </RouterLink>
           </div>
@@ -78,17 +78,6 @@ const showDrawer = () => {
             </RouterLink>
           </div>
 
-          <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
-            <RouterLink to="/SatelliteServe" class="item_btn">
-              <n-button text size="tiny">
-                <template #icon>
-                  <XIcon name="AItradeLogo" />
-                </template>
-                管理卫星服务
-              </n-button>
-            </RouterLink>
-          </div>
-
           <div className="TopBar__item">
             <RouterLink to="/StockTicker" class="item_btn">
               <n-button text size="tiny">
@@ -100,18 +89,16 @@ const showDrawer = () => {
             </RouterLink>
           </div>
 
-          <!-- 
-            <div className="TopBar__item">
-              <RouterLink to="/Genshin" class="item_btn">
-                <n-button text size="tiny">
-                  <template #icon>
-                    <XIcon name="MHYLogo" />
-                  </template>
-                  米游社自动签到
-                </n-button>
-              </RouterLink>
-            </div>
-         -->
+          <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
+            <RouterLink to="/SatelliteServe" class="item_btn">
+              <n-button text size="tiny">
+                <template #icon>
+                  <XIcon name="AItradeLogo" />
+                </template>
+                卫星服务管理
+              </n-button>
+            </RouterLink>
+          </div>
 
           <div className="TopBar__item">
             <RouterLink to="/" class="item_btn">

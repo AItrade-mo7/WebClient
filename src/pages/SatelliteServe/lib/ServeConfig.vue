@@ -9,9 +9,8 @@ const props = defineProps({
 
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
-  ServerName: props.WssData.Name,
   Password: '',
-  Lever: props.WssData.TradeLever,
+  SysName: props.WssData.SysName,
   MaxApiKeyNum: props.WssData.MaxApiKeyNum,
 });
 
@@ -36,23 +35,6 @@ const Submit = async () => {
     },
   });
 };
-
-const LeverOpt = $ref({
-  2: '2x',
-});
-let TradeLeverMax = $ref(0);
-let TradeLeverMin = $ref(1);
-
-function FormatLeverOpt() {
-  const len = props.WssData.LeverOpt.length;
-  TradeLeverMax = props.WssData.LeverOpt[len - 1];
-  TradeLeverMin = props.WssData.LeverOpt[0];
-
-  for (const key of props.WssData.LeverOpt) {
-    LeverOpt[key] = `${key}x`;
-  }
-}
-FormatLeverOpt();
 </script>
 
 <template>
@@ -61,24 +43,12 @@ FormatLeverOpt();
     <n-form ref="loginForm" :model="formValue" size="small" class="myForm">
       <n-form-item class="myForm__item" label-placement="left" label="系统名称:">
         <n-input
-          name="ServerName"
-          v-model:value="formValue.ServerName"
+          name="SysName"
+          v-model:value="formValue.SysName"
           :inputProps="{ autocomplete: 'password' }"
           placeholder="系统名称"
         >
         </n-input>
-      </n-form-item>
-
-      <n-form-item class="myForm__item" label="杠杆倍数:">
-        <n-slider
-          :tooltip="false"
-          name="Lever"
-          v-model:value="formValue.Lever"
-          :marks="LeverOpt"
-          step="mark"
-          :max="TradeLeverMax"
-          :min="TradeLeverMin"
-        />
       </n-form-item>
 
       <n-form-item class="myForm__item" label-placement="left" label="ApiKey 数量上限 :">

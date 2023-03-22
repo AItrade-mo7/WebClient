@@ -5,22 +5,22 @@ import AuthModal from '@/lib/AuthModal';
 const $emit = defineEmits(['Success']);
 const props = defineProps({
   WssData: Object,
-  NowIndex: Number,
+  KeyName: String,
 });
 
 let SubmitStatus: boolean = $ref(false);
 const SendOrder = (Type: string) => {
   AuthModal({
-    Title: props.NowIndex == -1 ? '该操作将同时操作所有账户进行交易！' : '操作当前账户',
+    Title: props.KeyName == 'ALL' ? '该操作将同时操作所有账户进行交易！' : '操作当前账户',
     IsPassword: true,
-    EmailAction: props.NowIndex == -1 ? '全账户交易操作' : '',
+    EmailAction: props.KeyName == 'ALL' ? '全账户交易操作' : '',
     async OkBack(param) {
       const Password = param.Password;
       const Code = param.Code;
       SubmitStatus = true;
       return Order({
         SatelliteServe: props.WssData.ServeID,
-        Index: props.NowIndex,
+        Name: props.KeyName,
         Type,
         Password,
         Code,

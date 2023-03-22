@@ -1,0 +1,14 @@
+{
+  "SysName": "墨七的测试账户的 CoinAI",
+  "SysVersion": "0.15.4",
+  "UserID": "749a30b2a0824a0eafb81fecb9410f62",
+  "Port": "9013",
+  "IP": "43.154.90.213",
+  "ServeID": "43.154.90.213:9013",
+  "MaxApiKeyNum": 32,
+  "Type": "CoinAI.net",
+  "CreateTime": 1679253087678,
+  "UpdateTime": 1679281634051,
+  "ApiKeyList": [],
+  "GithubVersion": "0.15.4"
+}

@@ -1,33 +1,63 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
+import { CopyText } from '@/utils/tools';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
+const copyJoinCode = (text) => {
+  CopyText(text);
+};
 </script>
 
 <template>
   <PageTitle> OKX API Key 申请指南 </PageTitle>
-  <div>
+  <div class="Content">
     <br />
-    <br />
+    如何创建 OKX Api Key:
+    <n-button
+      text
+      tag="a"
+      href="https://helpokexsupport.zendesk.com/hc/zh-cn/articles/5181414708623-如何创建API"
+      target="_blank"
+      type="primary"
+      class="createApiLinkBtn"
+    >
+      <div class="createApiLink">https://helpokexsupport.zendesk.com/hc/zh-cn/articles/5181414708623-如何创建API</div>
+    </n-button>
 
-    欧意(OKX)官网：
-    <n-button text tag="a" href="https://www.okx.com" target="_blank" type="primary"> www.okx.com </n-button>
-
+    <h3>欧意(OKX)官网：</h3>
+    官网：
+    <n-button text tag="a" href="https://www.okx.com" target="_blank" type="primary"> https://www.okx.com </n-button>
     <br />
-    <br />
-
-    <n-button text tag="a" href="https://www.jianshu.com/p/bdfaccbd4ac2" target="_blank" type="primary">
-      获取OKEx API Key流程
+    备选地址：<n-button text tag="a" href="https://www.cnouyi.care" target="_blank" type="primary">
+      https://www.cnouyi.care
     </n-button>
 
     <br />
     <br />
-    <n-button text tag="a" href="https://www.okx.com/cn/download" target="_blank" type="primary">
-      下载 OKX 客户端
+
+    开发者的邀请链接：
+    <n-button text tag="a" href="https://cnouyi.care/join/11352015" target="_blank" type="primary">
+      https://cnouyi.care/join/11352015
     </n-button>
     <br />
     <br />
-    PS： 部分页面可能需要科学上网才能访问。
+    <span class="joinCode">注册邀请码： 11352015</span>
+    <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
+    <br />
+    <br />
+    PS： 官方网址可能需要科学上网才能访问，推荐使用备选地址下载客户端，若备选地址失效请联系开发者更换。
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.joinCode {
+  margin-right: 6px;
+}
+
+.createApiLinkBtn {
+  max-width: 100%;
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}
+</style>

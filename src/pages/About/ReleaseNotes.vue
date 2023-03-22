@@ -26,7 +26,7 @@ function GetPing() {
 let CoinAIGithubInfo = $ref({});
 function GetConfig() {
   GetCoinAIConfig({
-    SatelliteServe: '3.1.68.15:9012',
+    SatelliteServe: '43.154.90.213:9012',
   }).then((res) => {
     if (res.Code > 0) {
       CoinAIGithubInfo = res.Data.GithubInfo;
@@ -48,13 +48,13 @@ onMounted(() => {
         <span class="label">当前客户端版本</span>
         <span class="value"> {{ ViteConst.AppVersion }} </span>
       </div>
-      <span v-if="ClientInfo.Version != ViteConst.AppVersion" class="red">
-        【等待缓存过期，或手动清除浏览器缓存】
-      </span>
       <div class="block">
         <span class="label">最新客户端版本</span>
         <span class="value"> {{ ClientInfo.Version }} </span>
       </div>
+      <span v-if="ClientInfo.Version !== ViteConst.AppVersion" class="red">
+        【等待缓存过期，或手动清除浏览器缓存】
+      </span>
     </div>
 
     <div class="block">
@@ -71,12 +71,17 @@ onMounted(() => {
       <span class="label">CoinAI.net 版本</span>
       <span class="value"> {{ CoinAIGithubInfo.Version }} </span>
     </div>
+
+    <hr />
+    更新日志：<br />
+    【待补充】
   </div>
 </template>
 
 <style lang="less" scoped>
 .ClientInfo {
   display: flex;
+  flex-wrap: wrap;
   .block {
     margin-right: 16px;
   }

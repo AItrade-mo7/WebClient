@@ -37,7 +37,7 @@ export const SetKey = (data: SetKeyParam): Promise<any> => {
 
 interface HandleKeyParam {
   SatelliteServe: string;
-  Index: number;
+  Name: string;
   Password: string;
 }
 
@@ -56,7 +56,7 @@ export const HandleKey = (data: HandleKeyParam): Promise<any> => {
 
 interface AccountDetailParam {
   SatelliteServe: string;
-  Index: number;
+  Name: string;
 }
 
 export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
@@ -69,7 +69,7 @@ export const GetAccountDetail = (data: AccountDetailParam): Promise<any> => {
 
 interface OrderParam {
   SatelliteServe: string;
-  Index: number;
+  Name: string;
   Type: string;
   Password: string;
   Code: string;
@@ -92,7 +92,7 @@ export const Order = (data: OrderParam) => {
 interface EditConfigParam {
   SatelliteServe: string;
   Password: string;
-  ServerName: string;
+  SysName: string;
 }
 
 export const EditConfig = (data: EditConfigParam) => {

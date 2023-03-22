@@ -18,27 +18,25 @@ const props = defineProps({
 });
 
 let DrawerStatus = $ref(false);
-let NowIndex = $ref(-1);
 let NowKey = $ref({});
 
 const ShowKeyDetail = (index) => {
+  NowKey = props.WssData.ApiKeyList[index];
   DrawerStatus = true;
-  NowIndex = index;
-  NowKey = props.WssData.AppEnv.ApiKeyList[NowIndex];
 };
 const DrawerClose = () => {
-  DrawerStatus = false;
-  NowIndex = -1;
   NowKey = {};
+  DrawerStatus = false;
 };
 
 const ShowConfig = () => {
+  NowKey = {};
   DrawerStatus = true;
 };
 
 let HandleKeyStatus: boolean = $ref(false);
 let HandleKeyFormValue = $ref({
-  Index: -1,
+  Name: '',
   Password: '',
   Type: '',
 });
@@ -54,7 +52,7 @@ const SendForm = async () => {
   window.$Event['CoinAIGetConfig']();
 };
 
-const HandleKeySubmit = async (type: string, Index: number) => {
+const HandleKeySubmit = async (type: string, name: string) => {
   HandleKeyFormValue = {};
   HandleKeyStatus = true;
   AuthModal({
@@ -63,7 +61,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
       HandleKeyStatus = false;
       HandleKeyFormValue.Password = param.Password;
       HandleKeyFormValue.Type = type;
-      HandleKeyFormValue.Index = Index;
+      HandleKeyFormValue.Name = name;
       return SendForm();
     },
   });
@@ -83,27 +81,19 @@ const HandleKeySubmit = async (type: string, Index: number) => {
     </div>
     <n-space class="data-wrapper">
       <div class="block">
-        <span class="label">系统时间</span>
-        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
-      </div>
-      <div class="block">
         <span class="label">系统名称</span>
         <span class="value"> {{ props.WssData.SysName }} </span>
       </div>
       <div class="block">
-        <span class="label">系统版本</span>
-        <span class="value"> {{ props.WssData.SysVersion }} </span>
-      </div>
-      <div class="block">
-        <span class="label">系统端口</span>
-        <span class="value"> {{ props.WssData.Port }} </span>
+        <span class="label">系统时间</span>
+        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
       </div>
       <div class="block">
         <span class="label">系统IP</span>
         <span class="value"> {{ props.WssData.IP }} </span>
       </div>
       <div class="block">
-        <span class="label">系统类型</span>
+        <span class="label">策略类型</span>
         <span class="value"> {{ props.WssData.Type }} </span>
       </div>
       <div class="block">
@@ -113,6 +103,7 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         </RouterLink>
       </div>
     </n-space>
+    <hr />
 
     <div class="title">监听数据</div>
     <n-space class="data-wrapper">
@@ -131,13 +122,14 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         <span class="value"> {{ $lcg(props.WssData, 'NowTicker.TimeStr') }} </span>
       </div>
     </n-space>
+    <hr />
 
-    <div class="title" v-if="props.WssData.AppEnv.ApiKeyList">
-      APIKey 管理 ({{ props.WssData.AppEnv.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
+    <div class="title" v-if="props.WssData.ApiKeyList">
+      APIKey 管理 ({{ props.WssData.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
-        v-if="props.WssData.AppEnv.ApiKeyList.length > 0"
+        v-if="props.WssData.ApiKeyList.length > 0"
       >
         <n-button type="primary" size="tiny" circle>
           <template #icon>
@@ -146,11 +138,11 @@ const HandleKeySubmit = async (type: string, Index: number) => {
         </n-button>
       </RouterLink>
     </div>
-    <div class="APIKeyWrapper" v-if="props.WssData.AppEnv.ApiKeyList">
+    <div class="APIKeyWrapper" v-if="props.WssData.ApiKeyList">
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
-        v-if="props.WssData.AppEnv.ApiKeyList.length < 1"
+        v-if="props.WssData.ApiKeyList.length < 1"
       >
         <n-button type="primary">
           <template #icon>
@@ -159,9 +151,9 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           添加一个 OKX 秘钥
         </n-button>
       </RouterLink>
-      <template v-if="props.WssData.AppEnv.ApiKeyList">
+      <template v-if="props.WssData.ApiKeyList">
         <n-card
-          v-for="(item, index) in props.WssData.AppEnv.ApiKeyList"
+          v-for="(item, index) in props.WssData.ApiKeyList"
           :key="index"
           :title="item.Name"
           embedded
@@ -182,48 +174,58 @@ const HandleKeySubmit = async (type: string, Index: number) => {
           </div>
           <div class="Server__item">
             <span class="Server__label">Passphrase </span>
-            <span class="Server__val">
-              {{ item.Passphrase }}
-            </span>
+            <span class="Server__val"> {{ item.Passphrase }} </span>
           </div>
 
           <template #footer>
             <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
               <n-button
                 size="small"
-                v-if="item.IsTrade"
-                type="success"
+                type="error"
+                v-if="item.Status == 'disable'"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', index)"
+                @click="HandleKeySubmit('delete', item.Name)"
               >
-                已启用
+                删除
               </n-button>
               <n-button
                 size="small"
-                v-if="!item.IsTrade"
+                v-if="item.Status == 'enable'"
+                type="success"
+                :disabled="HandleKeyStatus"
+                @click="HandleKeySubmit('disable', item.Name)"
+              >
+                已启用
+              </n-button>
+
+              <n-button
+                class="disableBtn"
+                size="small"
+                v-if="item.Status == 'disable'"
                 type="tertiary"
                 :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('embed', index)"
+                @click="HandleKeySubmit('enable', item.Name)"
               >
                 已禁用
               </n-button>
-              <n-button size="small" type="error" :disabled="HandleKeyStatus" @click="HandleKeySubmit('del', index)">
-                删除
+
+              <n-button v-if="item.Status == 'enable'" size="small" type="primary" @click="ShowKeyDetail(index)">
+                查看详情
               </n-button>
-              <n-button size="small" type="primary" @click="ShowKeyDetail(index)"> 查看详情 </n-button>
             </div>
           </template>
         </n-card>
       </template>
     </div>
 
+    <hr />
     <div class="MainTradeBtn">
-      <OrderBtn :WssData="props.WssData" :NowIndex="-1" />
+      <OrderBtn :WssData="props.WssData" KeyName="ALL" />
     </div>
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
-        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
+        <AccountInfo :WssData="props.WssData" :ApiKey="NowKey" />
       </n-drawer-content>
       <n-drawer-content v-if="!NowKey.Name">
         <ServeConfig :WssData="props.WssData" />
@@ -319,7 +321,14 @@ const HandleKeySubmit = async (type: string, Index: number) => {
 .card_footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  .n-button {
+    margin-left: 6px;
+  }
+}
+
+.disableBtn {
+  animation: promptBorder 1.5s infinite;
 }
 
 .MainTradeBtn {

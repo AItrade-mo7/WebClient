@@ -20,7 +20,8 @@ let WssData = $ref({});
 
 function UpdateWssData(Config, WssDataSource) {
   WssData = {
-    ...Config,
+    ...Config.AppEnv,
+    GithubVersion: Config.GithubInfo.Version,
     ...WssDataSource,
   };
 }
@@ -81,8 +82,8 @@ const OpenSet = () => {
 <template>
   <PageTitle class="CoinAIPageTitle">
     {{ $lcg(WssData, 'AppEnv.ServeID') }}
-    <template #after v-if="WssData.AppEnv">
-      <n-badge class="AItradeServer__dotNet" :dot="WssData.AppEnv.SysVersion != WssData.GithubInfo.Version">
+    <template #after v-if="WssData.SysVersion">
+      <n-badge class="AItradeServer__dotNet" :dot="WssData.SysVersion != WssData.GithubVersion">
         <n-button size="tiny" quaternary @click="OpenSet">
           <template #icon>
             <XIcon spin name="SettingOutlined" />
@@ -98,7 +99,7 @@ const OpenSet = () => {
       </n-drawer-content>
     </n-drawer>
 
-    <div class="PageWrapper" v-if="WssData.SysTime > 1 && WssData.AppEnv.SysName.length > 1">
+    <div class="PageWrapper" v-if="WssData.SysTime > 1 && WssData.SysName.length > 1">
       <InfoOk :WssData="WssData"></InfoOk>
     </div>
     <n-alert class="noData" v-else title="该信息如果长时间存在，请尝试刷新或更换浏览器！" type="info"> </n-alert>

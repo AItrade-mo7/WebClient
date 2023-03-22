@@ -159,10 +159,13 @@ const copyJoinCode = (text) => {
 
     <div class="joinFooter">
       <div>
-        <span class="joinCode">OKX（欧易） 注册邀请码： 11352015</span>
+        <span class="joinCode">注册邀请码： 11352015</span>
         <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
 
         <br />
+        <n-button text tag="a" href="https://cnouyi.care/join/11352015" target="_blank" type="primary">
+          邀请链接
+        </n-button>
       </div>
     </div>
 
