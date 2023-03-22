@@ -199,7 +199,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
               >
                 已启用
               </n-button>
+
               <n-button
+                class="disableBtn"
                 size="small"
                 v-if="item.Status == 'disable'"
                 type="tertiary"
@@ -208,6 +210,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
               >
                 已禁用
               </n-button>
+
               <n-button v-if="item.Status == 'enable'" size="small" type="primary" @click="ShowKeyDetail(index)">
                 查看详情
               </n-button>
@@ -324,6 +327,10 @@ const HandleKeySubmit = async (type: string, name: string) => {
   .n-button {
     margin-left: 6px;
   }
+}
+
+.disableBtn {
+  animation: promptBorder 1.5s infinite;
 }
 
 .MainTradeBtn {
