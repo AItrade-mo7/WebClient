@@ -6,7 +6,7 @@ const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
   WssData: Object,
-  NowKeyName: String,
+  ApiKey: Object,
 });
 
 let Balance = $ref([]);
@@ -15,7 +15,7 @@ let Positions = $ref([]);
 function GetDetail() {
   GetAccountDetail({
     SatelliteServe: props.WssData.ServeID,
-    Name: props.NowKeyName,
+    Name: props.ApiKey.Name,
   }).then((res) => {
     if (res.Code > 0) {
       Balance = res.Data.Balance;
@@ -73,9 +73,9 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="TradeBtnWrapper">
+    <!-- <div class="TradeBtnWrapper">
       <OrderBtn :WssData="props.WssData" :KeyName="props.NowKeyName" @Success="OrderEnd" />
-    </div>
+    </div> -->
   </div>
 </template>
 

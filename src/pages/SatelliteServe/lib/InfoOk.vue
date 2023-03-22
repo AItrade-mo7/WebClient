@@ -18,21 +18,19 @@ const props = defineProps({
 });
 
 let DrawerStatus = $ref(false);
-let NowIndex = $ref(-1);
 let NowKey = $ref({});
 
 const ShowKeyDetail = (index) => {
+  NowKey = props.WssData.ApiKeyList[index];
   DrawerStatus = true;
-  NowIndex = index;
-  NowKey = props.WssData.ApiKeyList[NowIndex];
 };
 const DrawerClose = () => {
-  DrawerStatus = false;
-  NowIndex = -1;
   NowKey = {};
+  DrawerStatus = false;
 };
 
 const ShowConfig = () => {
+  NowKey = {};
   DrawerStatus = true;
 };
 
@@ -227,7 +225,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
 
     <n-drawer v-model:show="DrawerStatus" placement="bottom" height="80%" :on-after-leave="DrawerClose">
       <n-drawer-content :title="NowKey.Name" v-if="NowKey.Name">
-        <AccountInfo :WssData="props.WssData" :NowIndex="NowIndex" />
+        <AccountInfo :WssData="props.WssData" :ApiKey="NowKey" />
       </n-drawer-content>
       <n-drawer-content v-if="!NowKey.Name">
         <ServeConfig :WssData="props.WssData" />
