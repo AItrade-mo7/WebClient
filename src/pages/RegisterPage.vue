@@ -12,7 +12,15 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 const $router = useRouter();
 
-let SubmitStatus: boolean = $ref(false);
+let SubmitStatus: boolean = $ref(true);
+
+let Duty = $ref(false);
+
+const DutyFunc = () => {
+  Duty = !Duty;
+
+  SubmitStatus = !Duty;
+};
 
 const formValue = $ref({
   Email: '',
@@ -118,6 +126,14 @@ const Submit = async () => {
 
       <n-form-item class="myForm__item">
         <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 注册 </n-button>
+      </n-form-item>
+
+      <n-form-item class="myForm__item">
+        <div class="input_hint_wrapper">
+          <n-checkbox v-model:checked="Duty" :on-update:checked="DutyFunc"> </n-checkbox>
+          同意并已阅读
+          <RouterLink class="link" to="/About/Duty">《用户协议与免责声明》</RouterLink>
+        </div>
       </n-form-item>
     </n-form>
   </div>
