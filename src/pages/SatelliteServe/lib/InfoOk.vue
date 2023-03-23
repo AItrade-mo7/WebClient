@@ -121,6 +121,11 @@ const HandleKeySubmit = async (type: string, name: string) => {
         <span class="label">数据时间</span>
         <span class="value"> {{ $lcg(props.WssData, 'NowTicker.TimeStr') }} </span>
       </div>
+
+      <div class="block">
+        <span class="label">当前交易对</span>
+        <span class="value"> {{ $lcg(props.WssData, 'TradeInst.InstID') }} </span>
+      </div>
     </n-space>
     <hr />
 
