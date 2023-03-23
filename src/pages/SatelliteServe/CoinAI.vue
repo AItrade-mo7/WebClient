@@ -10,10 +10,7 @@ const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const SysManage = defineAsyncComponent(() => import('./lib/SysManage.vue'));
 const InfoOk = defineAsyncComponent(() => import('./lib/InfoOk.vue'));
 
-let Config = $ref({
-  AppEnv: {},
-  GithubInfo: {},
-});
+let Config = $ref({});
 let ServeID = $ref('');
 let WssObj = null;
 let WssData = $ref({});
@@ -22,6 +19,8 @@ function UpdateWssData(Config, WssDataSource) {
   WssData = {
     ...Config.AppEnv,
     GithubVersion: Config.GithubInfo.Version,
+    LeverOpt: Config.LeverOpt,
+    MainUser: Config.MainUser,
     ...WssDataSource,
   };
 }

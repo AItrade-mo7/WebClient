@@ -107,3 +107,23 @@ export const EditConfig = (data: EditConfigParam) => {
     method: 'post',
   });
 };
+
+interface SetAccountConfigParam {
+  SatelliteServe: string;
+  Name: string;
+  Password: string;
+  TradeLever: number;
+}
+
+export const SetAccountConfig = (data: SetAccountConfigParam) => {
+  const param = {
+    ...data,
+    Password: Md5(data.Password),
+  };
+
+  return ajax_json({
+    url: '/CoinAI/SetAccountConfig',
+    data: param,
+    method: 'post',
+  });
+};
