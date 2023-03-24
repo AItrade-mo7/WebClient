@@ -45,7 +45,7 @@ const SendOrder = (Type: string) => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .TradeBtn {
   display: flex;
   flex-wrap: wrap;

@@ -54,8 +54,8 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .PageWrapper {
   text-align: center;
@@ -69,11 +69,11 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   font-size: 36px;
 }
 .aiText {
-  color: @blueColor;
+  color: $blueColor;
 }
 
 .fundText {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .HomeBtnItem {

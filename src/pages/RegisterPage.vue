@@ -139,15 +139,15 @@ const Submit = async () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .logo-box {
   padding-bottom: 36px;
 }
 
 .link {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .logo {

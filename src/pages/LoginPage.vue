@@ -84,8 +84,8 @@ const Submit = async () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .Login__logo-box {
   padding-bottom: 36px;
 }
@@ -112,6 +112,6 @@ const Submit = async () => {
 }
 .change_password {
   text-align: right;
-  color: @mainColor;
+  color: $mainColor;
 }
 </style>

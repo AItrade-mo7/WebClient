@@ -16,7 +16,7 @@ const props = defineProps({
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .VolumeView {
   font-size: 14px;
   color: #666;

@@ -5,7 +5,7 @@ import { ZTSLogo } from '@/config/constant';
 <template>
   <img class="logo" :src="ZTSLogo" alt="" srcset="" />
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .logo {
   width: 100%;
   height: 100%;

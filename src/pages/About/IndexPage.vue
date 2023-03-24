@@ -7,7 +7,7 @@ import { RouterView } from 'vue-router';
     <RouterView />
   </div>
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .PageWrapper {
   padding-top: 36px;
 }

@@ -17,4 +17,4 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped></style>

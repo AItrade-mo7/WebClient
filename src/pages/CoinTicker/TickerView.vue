@@ -246,15 +246,15 @@ const OperationSwitch = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .value {
   &.green {
-    color: @greenColor;
+    color: $greenColor;
   }
   &.red {
-    color: @redColor;
+    color: $redColor;
   }
   &.gray {
     color: #999;
@@ -320,31 +320,31 @@ const OperationSwitch = () => {
 }
 </style>
 
-<style lang="less">
-@import '@/config/constant.less';
+<style lang="scss">
+@import '@/config/constant.scss';
 
 .n-data-table-tbody .n-data-table-tr {
   &.MaxUP {
     td {
-      border-top: 2px solid @greenColor;
-      border-bottom: 2px solid @greenColor;
+      border-top: 2px solid $greenColor;
+      border-bottom: 2px solid $greenColor;
       &:first-child {
-        border-left: 2px solid @greenColor;
+        border-left: 2px solid $greenColor;
       }
       &:last-child {
-        border-right: 2px solid @greenColor;
+        border-right: 2px solid $greenColor;
       }
     }
   }
   &.MaxDown {
     td {
-      border-top: 2px solid @redColor;
-      border-bottom: 2px solid @redColor;
+      border-top: 2px solid $redColor;
+      border-bottom: 2px solid $redColor;
       &:first-child {
-        border-left: 2px solid @redColor;
+        border-left: 2px solid $redColor;
       }
       &:last-child {
-        border-right: 2px solid @redColor;
+        border-right: 2px solid $redColor;
       }
     }
   }

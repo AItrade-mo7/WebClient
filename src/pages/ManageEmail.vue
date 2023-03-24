@@ -162,7 +162,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .PageWrapper {
   text-align: center;
 }
@@ -229,7 +229,7 @@ onMounted(() => {
 }
 </style>
 
-<style lang="less">
+<style lang="scss">
 .ManageEmail {
   .n-form-item-feedback-wrapper {
     display: none;

@@ -30,14 +30,14 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .wx_proceeds {
   width: 200px;
   display: block;
 }
 .lineHeight {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .feishu_code {

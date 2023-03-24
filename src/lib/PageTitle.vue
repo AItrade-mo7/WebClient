@@ -35,8 +35,8 @@ const back = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .PageTitle {
   display: flex;

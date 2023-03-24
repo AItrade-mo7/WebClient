@@ -135,7 +135,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .ClientInfo {
   display: flex;
   flex-wrap: wrap;

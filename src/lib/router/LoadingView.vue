@@ -15,8 +15,8 @@ window.$dialog = useDialog();
   </Transition>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .Loading {
   position: fixed;
   left: 0;
@@ -34,7 +34,7 @@ window.$dialog = useDialog();
 .info {
   margin-top: 8px;
   font-size: 14px;
-  color: @mainColor;
+  color: $mainColor;
   max-width: 90%;
   word-break: break-all;
   opacity: 0.7;

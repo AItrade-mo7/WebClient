@@ -68,8 +68,8 @@ const Submit = async () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .title {
   font-size: 16px;
   font-weight: 700;

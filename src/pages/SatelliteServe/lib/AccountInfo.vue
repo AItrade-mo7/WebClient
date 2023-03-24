@@ -146,8 +146,8 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .TradeBtnWrapper {
   margin-top: 12px;
@@ -155,10 +155,10 @@ onMounted(() => {
 
 .value {
   &.green {
-    color: @greenColor;
+    color: $greenColor;
   }
   &.red {
-    color: @redColor;
+    color: $redColor;
   }
   &.gray {
     color: #999;

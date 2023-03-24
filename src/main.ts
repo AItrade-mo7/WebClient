@@ -12,7 +12,7 @@ import { router } from '@/lib/router';
 
 import '@/assets/js/AItrade.net';
 import 'normalize.css';
-import '@/assets/css/global.less';
+import '@/assets/css/global.scss';
 
 // 初始化全局和 axios 配置
 import { set_axios_config } from '@/utils/http';

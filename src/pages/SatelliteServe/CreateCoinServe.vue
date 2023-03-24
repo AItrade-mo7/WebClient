@@ -180,8 +180,8 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .title {
   font-size: 16px;
   font-weight: bolder;
@@ -189,7 +189,7 @@ onMounted(() => {
 }
 
 .lineHight {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .cont_input {
@@ -249,7 +249,7 @@ onMounted(() => {
   .n-code {
     font-size: 12px;
     color: #999;
-    background-color: @mainColor;
+    background-color: $mainColor;
   }
 }
 </style>

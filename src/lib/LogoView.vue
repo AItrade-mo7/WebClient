@@ -5,7 +5,7 @@ import { Logo } from '@/config/constant';
 <template>
   <img class="logo" :src="Logo" alt="" srcset="" />
 </template>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .logo {
   width: 100%;
   height: 100%;

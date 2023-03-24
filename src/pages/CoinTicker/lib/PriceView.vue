@@ -32,7 +32,7 @@ const CountURNum = (ur: any) => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .Price {
   font-size: 14px;
   .ur {

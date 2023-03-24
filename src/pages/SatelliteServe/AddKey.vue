@@ -175,13 +175,13 @@ const copyJoinCode = (text) => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .Create__title {
   font-size: 16px;
   margin: 0;
   .About__btn {
-    color: @mainColor;
+    color: $mainColor;
   }
 }
 .CreateOkxKey__about {
@@ -189,7 +189,7 @@ const copyJoinCode = (text) => {
   align-items: center;
   justify-content: flex-start;
   .n-button {
-    color: @mainColor;
+    color: $mainColor;
   }
 }
 .pageFooter {
@@ -198,7 +198,7 @@ const copyJoinCode = (text) => {
 }
 .CreateOkxKey__about--footer {
   text-align: center;
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .page__footer {
@@ -214,7 +214,7 @@ const copyJoinCode = (text) => {
   margin-right: 6px;
 }
 .joinLink {
-  color: @mainColor;
+  color: $mainColor;
   display: inline-block;
   margin-top: 12px;
 }

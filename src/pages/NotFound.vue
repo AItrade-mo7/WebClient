@@ -49,7 +49,7 @@ const goBack = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .NotFundApp {
   height: 80vh;
   text-align: center;

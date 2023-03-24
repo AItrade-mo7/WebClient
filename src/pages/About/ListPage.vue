@@ -26,14 +26,14 @@ for (const item of routes) {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .list {
   margin-top: 20px;
 }
 
 .a_link {
   margin: 10px 6px;
-  color: @mainColor;
+  color: $mainColor;
 }
 </style>

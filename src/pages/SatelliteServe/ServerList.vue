@@ -198,14 +198,14 @@ const Reload = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .CoinServe__about {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   .n-button {
-    color: @mainColor;
+    color: $mainColor;
   }
 }
 .ListWrapper {
@@ -233,7 +233,7 @@ const Reload = () => {
 }
 
 .explain {
-  color: @mainColor;
+  color: $mainColor;
   margin-bottom: 12px;
 }
 
@@ -259,7 +259,7 @@ const Reload = () => {
 }
 
 .Server__link {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .card_footer {

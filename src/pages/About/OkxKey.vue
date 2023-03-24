@@ -48,7 +48,7 @@ const copyJoinCode = (text) => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .joinCode {
   margin-right: 6px;
 }

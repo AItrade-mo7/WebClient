@@ -54,8 +54,8 @@ const CountUR = (ur: any) => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .data-wrapper {
   background-color: antiquewhite;
@@ -80,10 +80,10 @@ const CountUR = (ur: any) => {
 }
 
 .green {
-  color: @greenColor;
+  color: $greenColor;
 }
 .red {
-  color: @redColor;
+  color: $redColor;
 }
 
 .block {

@@ -106,7 +106,7 @@ const MyIcon = MyIconLoad();
   </Icon>
 </template>
 
-<style lang="less">
+<style lang="scss">
 .XIcon {
   width: 100%;
   height: 100%;

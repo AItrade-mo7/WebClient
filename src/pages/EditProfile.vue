@@ -144,7 +144,7 @@ const winUpLoad = (res): any => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .PageWrapper {
   text-align: center;
 }

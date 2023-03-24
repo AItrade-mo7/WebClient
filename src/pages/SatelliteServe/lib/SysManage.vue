@@ -155,7 +155,7 @@ const ApplyPublic = async () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .SysManage {
   font-size: 14px;
 }

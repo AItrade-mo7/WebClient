@@ -239,8 +239,8 @@ const HandleKeySubmit = async (type: string, name: string) => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 
 .title {
   font-weight: 700;
@@ -269,10 +269,10 @@ const HandleKeySubmit = async (type: string, name: string) => {
 
 .value {
   &.green {
-    color: @greenColor;
+    color: $greenColor;
   }
   &.red {
-    color: @redColor;
+    color: $redColor;
   }
   &.gray {
     color: #999;

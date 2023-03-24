@@ -105,14 +105,14 @@ const OpenSet = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .wrapper {
   padding-top: 1px;
 }
 
 .lineHight {
-  color: @mainColor;
+  color: $mainColor;
 }
 
 .value {
@@ -120,10 +120,10 @@ const OpenSet = () => {
 }
 
 .green {
-  color: @greenColor;
+  color: $greenColor;
 }
 .red {
-  color: @redColor;
+  color: $redColor;
 }
 
 .noData {
@@ -131,8 +131,8 @@ const OpenSet = () => {
 }
 </style>
 
-<style lang="less">
-@import '@/config/constant.less';
+<style lang="scss">
+@import '@/config/constant.scss';
 
 .n-badge.n-badge--dot.AItradeServer__dotNet {
   position: relative;
@@ -152,7 +152,7 @@ const OpenSet = () => {
 
 .CoinAIPageTitle {
   .PageTitle__text {
-    color: @mainColor !important;
+    color: $mainColor !important;
   }
 }
 </style>

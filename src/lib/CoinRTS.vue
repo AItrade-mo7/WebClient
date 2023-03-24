@@ -56,8 +56,8 @@ const IndexInfo = [
   </div>
 </template>
 
-<style lang="less" scoped>
-@import '@/config/constant.less';
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
 .EarnCount {
   margin-top: 6px;
 }
@@ -66,12 +66,12 @@ const IndexInfo = [
 }
 
 .green {
-  border-color: @greenColor;
-  color: @greenColor;
+  border-color: $greenColor;
+  color: $greenColor;
 }
 .red {
-  border-color: @redColor;
-  color: @redColor;
+  border-color: $redColor;
+  color: $redColor;
 }
 
 .descWrapper {

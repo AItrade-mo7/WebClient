@@ -147,7 +147,7 @@ const showDrawer = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .TopBar {
   position: fixed;
   top: 0;
@@ -168,11 +168,11 @@ const showDrawer = () => {
 }
 </style>
 
-<style lang="less">
-@import '@/config/constant.less';
+<style lang="scss">
+@import '@/config/constant.scss';
 
 .red {
-  color: @redColor;
+  color: $redColor;
 }
 
 .TopBarDrawer {
@@ -188,7 +188,7 @@ const showDrawer = () => {
     .n-button {
       color: #f0b90b;
       &:hover {
-        color: @mainColor;
+        color: $mainColor;
       }
     }
   }
@@ -216,7 +216,7 @@ const showDrawer = () => {
 
   [aria-current='page'].item_btn {
     .n-button {
-      color: @mainColor;
+      color: $mainColor;
     }
   }
 
@@ -232,7 +232,7 @@ const showDrawer = () => {
 
   [aria-current='page'].UserInfo {
     .TopBar__NickName {
-      color: @mainColor;
+      color: $mainColor;
     }
   }
 
