@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ReStart, Remove } from '@/api/CoinAI/sys';
+import { ReStart, Remove, TheOpen } from '@/api/CoinAI/sys';
 import AuthModal from '@/lib/AuthModal';
 import { mStorage } from '@/utils/tools';
 
@@ -31,6 +31,10 @@ const SendFetch = (type: number) => {
     EmailAction = '删除服务';
   }
 
+  if (type == 2) {
+    EmailAction = '公开服务';
+  }
+
   AuthModal({
     EmailAction,
     IsPassword: true,
@@ -45,6 +49,10 @@ const SendFetch = (type: number) => {
 
       if (type === -1) {
         return SendStop(Info);
+      }
+
+      if (type === 2) {
+        return SendTheOpen(Info);
       }
     },
   });
@@ -80,8 +88,18 @@ const SendReStart = async (Info) => {
   }
 };
 
+const SendTheOpen = async (Info) => {
+  const res = await TheOpen({
+    ...Info,
+    SatelliteServe: props.WssData.ServeID,
+  });
+  if (res.Code > 0) {
+    window.$message.success(res.Msg);
+  }
+};
+
 const ApplyPublic = async () => {
-  BtnStatus = -2;
+  BtnStatus = 2;
 };
 </script>
 
@@ -96,7 +114,7 @@ const ApplyPublic = async () => {
     <div class="btn-wrapper">
       <n-button ghost type="error" @click="stopServer"> 停止服务 </n-button>
       <n-button ghost type="success" @click="restartServer"> 更新并重启 </n-button>
-      <n-button ghost @click="ApplyPublic"> 申请公开 </n-button>
+      <n-button ghost @click="ApplyPublic"> 公开服务 </n-button>
     </div>
     <div class="warn">
       <div v-if="BtnStatus == 0">
@@ -127,10 +145,11 @@ const ApplyPublic = async () => {
         <n-button size="tiny" type="error" @click="SendFetch(-1)">我就是要停止它</n-button>
       </div>
 
-      <div v-if="BtnStatus == -2">
-        当前卫星服务可以被所有用户查看和访问,
-        每一个加入该服务的用户，都将由您进行审核和批准。同时该卫星服务的运营和维护以及安全也将由您来负责。<br />
-        当前审核进度为: 【该功能尚在开发中...】 。
+      <div v-if="BtnStatus == 2">
+        公开此卫星服务以便被其它人查看和使用，同时您具有该卫星服务的最高掌控权，未来也将开放更多的可自定义功能为您独享。<br />
+        卫星服务下绑定的每一个 Key 都是平等的。 <br />
+        同时该卫星服务的运营和维护以及安全也将由您来负责。
+        <n-button size="tiny" type="primary" @click="SendFetch(2)">确认公开</n-button>
       </div>
     </div>
   </div>

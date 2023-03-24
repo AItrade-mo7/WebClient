@@ -36,3 +36,18 @@ export const Remove = (param: SysParam): Promise<any> => {
     SatelliteServe: data.SatelliteServe,
   });
 };
+
+export const TheOpen = (param: SysParam): Promise<any> => {
+  const data = {
+    ...param,
+    Password: Md5(param.Password),
+    Code: Md5(param.Code),
+  };
+
+  return ajax_json({
+    url: '/CoinAI/sys/TheOpen',
+    data,
+    method: 'post',
+    SatelliteServe: data.SatelliteServe,
+  });
+};

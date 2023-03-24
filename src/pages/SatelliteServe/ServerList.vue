@@ -114,7 +114,7 @@ const Reload = () => {
     <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning" closable></n-alert>
     <div class="title">我的卫星服务</div>
     <div class="explain">
-      部署私人的卫星服务，更加稳定可靠。交易延迟更低，下单不用排队。拥有独立的邮箱提醒服务和系统错误反应机制。可以第一时间知道特殊行情和系统运行状态。无须担心名额限制。
+      部署私人的卫星服务，更加稳定可靠。拥有独立的系统错误邮箱提醒机制。可以第一时间知道特殊行情和系统运行状态。
     </div>
     <div class="ListWrapper">
       <n-card v-for="(item, index) in ServeList" :key="index" :title="item.ServeID" embedded hoverable size="small">
@@ -161,9 +161,7 @@ const Reload = () => {
     </div>
     <hr />
     <div class="title">公开的卫星服务</div>
-    <div class="explain">
-      使用他人部署公开的卫星服务，简单方便，安全稳定。每一个公开对外的卫星服务都由开发者亲自认证，其管理者的技术水平足以应对一般的突发性状况。为控制交易延迟，每一个公开服务的使用名额有限。
-    </div>
+    <div class="explain">使用他人公开的卫星服务，简单方便。系统的运行状态和权限归服务器所有者掌控。</div>
     <div class="ListWrapper">
       <n-card v-for="(item, index) in PublicList" :key="index" :title="item.ServeID" embedded hoverable size="small">
         <div class="Server__item">
