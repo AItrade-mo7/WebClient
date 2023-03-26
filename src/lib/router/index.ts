@@ -14,11 +14,6 @@ const routes: any = [
     component: () => import('@/pages/RegisterPage.vue'),
   },
 
-  // {
-  //   path: '/Genshin',
-  //   isLogin: true,
-  //   component: () => import('@/pages/GenshinPage.vue'),
-  // },
   {
     path: '/CoinTicker',
     component: () => import('@/pages/CoinTicker/IndexPage.vue'),
@@ -128,6 +123,11 @@ const routes: any = [
     path: '/Personal',
     isLogin: true,
     component: () => import('@/pages/PersonalPage.vue'),
+  },
+  {
+    path: '/ApiKey',
+    isLogin: true,
+    component: () => import('@/pages/ApiKey.vue'),
   },
   {
     path: '/ManageEmail',

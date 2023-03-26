@@ -115,6 +115,7 @@ const Reload = () => {
     <div class="title">我的卫星服务</div>
     <div class="explain">
       部署私人的卫星服务，更加稳定可靠。拥有独立的系统错误邮箱提醒机制。可以第一时间知道特殊行情和系统运行状态。
+      适合有一定云服务运维经验的朋友。
     </div>
     <div class="ListWrapper">
       <n-card v-for="(item, index) in ServeList" :key="index" :title="item.ServeID" embedded hoverable size="small">
@@ -167,29 +168,32 @@ const Reload = () => {
         <div class="Server__item">
           <span class="Server__label"> Name </span>
           <span class="Server__val">
-            {{ item.Name }}
+            {{ item.SysName }}
           </span>
         </div>
         <div class="Server__item">
           <span class="Server__label"> Version </span>
           <span class="Server__val">
-            {{ item.Version }}
+            {{ item.SysVersion }}
+          </span>
+        </div>
+        <div class="Server__item">
+          <span class="Server__label"> Type </span>
+          <span class="Server__val">
+            {{ item.Type }}
           </span>
         </div>
         <template #footer>
           <div class="card_footer">
+            <RouterLink class="OwnerBtn" :to="`/SatelliteServe/MainUser/${ServeIDToParam(item.ServeID)}`">
+              <n-button size="small" tertiary type="primary"> 查看拥有者 </n-button>
+            </RouterLink>
             <RouterLink :to="`/SatelliteServe/CoinAI/${ServeIDToParam(item.ServeID)}`" v-if="item.Status == 2">
               <n-button size="small" type="success"> 进入 </n-button>
             </RouterLink>
-            <n-button
-              size="small"
-              v-if="item.Status == -2"
-              type="error"
-              :disabled="SubmitStatus"
-              @click="RemoveCoinAIFun(item.ServeID)"
-            >
-              删除
-            </n-button>
+            <template v-else-if="item.Status == -2">
+              <n-button size="small" type="error"> 故障！ </n-button>
+            </template>
             <n-button size="small" v-else type="info" @click="RemoveCoinAIFun(item.ServeID)"> 加载中。。。 </n-button>
           </div>
         </template>
@@ -219,7 +223,7 @@ const Reload = () => {
     margin-bottom: 8px;
     display: inline-block;
     width: 248px;
-    height: 184px;
+    height: auto;
   }
   .n-card__content {
     padding: 12px;
@@ -229,6 +233,11 @@ const Reload = () => {
       right: 10px;
       top: 10px;
     }
+  }
+
+  .OwnerBtn {
+    margin-right: 12px;
+    display: inline-block;
   }
 }
 

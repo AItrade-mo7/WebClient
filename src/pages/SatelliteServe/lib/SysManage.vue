@@ -95,6 +95,7 @@ const SendTheOpen = async (Info) => {
   });
   if (res.Code > 0) {
     window.$message.success(res.Msg);
+    window.$Event['CoinAIGetConfig']();
   }
 };
 
@@ -114,7 +115,7 @@ const ApplyPublic = async () => {
     <div class="btn-wrapper">
       <n-button ghost type="error" @click="stopServer"> 停止服务 </n-button>
       <n-button ghost type="success" @click="restartServer"> 更新并重启 </n-button>
-      <n-button ghost @click="ApplyPublic"> 公开服务 </n-button>
+      <n-button ghost @click="ApplyPublic"> {{ props.WssData.IsPublic ? '隐藏' : '公开' }}服务 </n-button>
     </div>
     <div class="warn">
       <div v-if="BtnStatus == 0">
@@ -145,12 +146,23 @@ const ApplyPublic = async () => {
         <n-button size="tiny" type="error" @click="SendFetch(-1)">我就是要停止它</n-button>
       </div>
 
-      <div v-if="BtnStatus == 2">
-        公开此卫星服务以便被其它人查看和使用，同时您具有该卫星服务的最高掌控权，未来也将开放更多的可自定义功能为您独享。<br />
-        卫星服务下绑定的每一个 Key 都是平等的。 <br />
-        同时该卫星服务的运营和维护以及安全也将由您来负责。
-        <n-button size="tiny" type="primary" @click="SendFetch(2)">确认公开</n-button>
-      </div>
+      <template v-if="!props.WssData.IsPublic">
+        <div v-if="BtnStatus == 2">
+          公开此卫星服务以便被其它人查看和使用，同时您具有该卫星服务的最高掌控权，未来也将开放更多的可自定义功能为您独享。<br />
+          卫星服务下绑定的每一个 Key 都是平等的。 <br />
+          我们鼓励您公开自己的卫星服务供他人使用，这样可以拥有更多的数据样例供开发者参考优化。同时该卫星服务的运营和维护以及安全也将由您来负责。
+          <br />
+          <n-button size="tiny" type="primary" @click="SendFetch(2)">确认公开</n-button>
+        </div>
+      </template>
+
+      <template v-if="props.WssData.IsPublic">
+        <div v-if="BtnStatus == 2">
+          在公开列表中隐藏此卫星服务，只有此服务的部署者拥有访问权限。其它用户可以通过 ApiKey
+          管理列表直接解除该服务对个人账户的托管。
+          <n-button size="tiny" @click="SendFetch(2)">确认隐藏</n-button>
+        </div>
+      </template>
     </div>
   </div>
 </template>

@@ -101,6 +101,17 @@ const showDrawer = () => {
           </div>
 
           <div className="TopBar__item">
+            <RouterLink to="/ApiKey" class="item_btn">
+              <n-button text size="tiny">
+                <template #icon>
+                  <XIcon name="KeyOutlined" />
+                </template>
+                我的 API Key
+              </n-button>
+            </RouterLink>
+          </div>
+
+          <div className="TopBar__item">
             <RouterLink to="/" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>
