@@ -78,7 +78,7 @@ onMounted(() => {
         <br />
         <span class="label">系统要求：</span>
         <span class="lineHight">aarch64</span> 或 <span class="lineHight"> x86_64 </span> 架构的
-        <span class="lineHight"> Debian 11+ / Ubuntu 20+</span> （其它 Linux 发行版部署需要自己手动执行部署）
+        <span class="lineHight"> Debian 11+ / Ubuntu 20+ </span> （其它 Linux 发行版尚未进行过测试）
         <RouterLink to="/About/SatelliteServe">
           <n-button size="tiny" type="primary"> 手动部署步骤 </n-button>
         </RouterLink>
