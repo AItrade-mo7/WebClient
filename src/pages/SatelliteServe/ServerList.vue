@@ -137,6 +137,12 @@ const Reload = () => {
             {{ item.Type }}
           </span>
         </div>
+        <div class="Server__item">
+          <span class="Server__label"> Describe </span>
+          <span class="Server__val">
+            {{ item.Describe }}
+          </span>
+        </div>
         <template #footer>
           <div class="card_footer">
             <RouterLink :to="`/SatelliteServe/CoinAI/${ServeIDToParam(item.ServeID)}`" v-if="item.Status == 2">
@@ -181,6 +187,12 @@ const Reload = () => {
           <span class="Server__label"> Type </span>
           <span class="Server__val">
             {{ item.Type }}
+          </span>
+        </div>
+        <div class="Server__item">
+          <span class="Server__label"> Describe </span>
+          <span class="Server__val">
+            {{ item.Describe }}
           </span>
         </div>
         <template #footer>

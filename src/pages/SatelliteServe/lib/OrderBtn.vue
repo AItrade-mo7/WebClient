@@ -38,8 +38,8 @@ const SendOrder = (Type: string) => {
 
 <template>
   <div class="TradeBtn">
-    <div class="Hint">{{ props.KeyName }} :</div>
-    <n-button :disabled="SubmitStatus" @click="SendOrder('Close')"> 全部清仓</n-button>
+    <div class="Hint">{{ props.KeyName == 'ALL' ? '操作全部账户' : props.KeyName }} :</div>
+    <n-button :disabled="SubmitStatus" @click="SendOrder('Close')"> 清除所有仓位</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#18a058" @click="SendOrder('Buy')">开多</n-button>
     <n-button :disabled="SubmitStatus" type="primary" color="#d03050" @click="SendOrder('Sell')">开空</n-button>
   </div>

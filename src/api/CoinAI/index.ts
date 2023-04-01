@@ -93,12 +93,16 @@ interface EditConfigParam {
   SatelliteServe: string;
   Password: string;
   SysName: string;
+  Describe: string;
+  EmailCode: string;
+  MaxApiKeyNum: number;
 }
 
 export const EditConfig = (data: EditConfigParam) => {
   const param = {
     ...data,
     Password: Md5(data.Password),
+    EmailCode: Md5(data.EmailCode),
   };
 
   return ajax_json({

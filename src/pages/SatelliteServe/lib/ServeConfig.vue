@@ -10,8 +10,10 @@ const props = defineProps({
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
   Password: '',
+  EmailCode: '',
   SysName: props.WssData.SysName,
   MaxApiKeyNum: props.WssData.MaxApiKeyNum,
+  Describe: props.WssData.Describe,
 });
 
 const SendForm = async () => {
@@ -20,6 +22,7 @@ const SendForm = async () => {
     SatelliteServe: props.WssData.ServeID,
   });
   if (res.Code > 0) {
+    window.$Event['CoinAIGetConfig']();
     window.$message.success(res.Msg);
   }
 };
@@ -28,9 +31,11 @@ const Submit = async () => {
   SubmitStatus = true;
   AuthModal({
     IsPassword: true,
+    EmailAction: '修改系统设置',
     async OkBack(param) {
       SubmitStatus = false;
       formValue.Password = param.Password;
+      formValue.EmailCode = param.Code;
       return SendForm();
     },
   });
@@ -47,6 +52,18 @@ const Submit = async () => {
           v-model:value="formValue.SysName"
           :inputProps="{ autocomplete: 'password' }"
           placeholder="系统名称"
+        >
+        </n-input>
+      </n-form-item>
+
+      <n-form-item class="myForm__item" label-placement="left" label="系统名称:">
+        <n-input
+          class="textarea"
+          name="Describe"
+          v-model:value="formValue.Describe"
+          :inputProps="{ autocomplete: 'password' }"
+          type="textarea"
+          placeholder="系统描述"
         >
         </n-input>
       </n-form-item>
@@ -74,5 +91,12 @@ const Submit = async () => {
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 16px;
+}
+
+.textarea {
+  text-align: left;
+}
+input {
+  text-align: left;
 }
 </style>

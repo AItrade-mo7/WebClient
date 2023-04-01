@@ -97,6 +97,10 @@ const HandleKeySubmit = async (type: string, name: string) => {
         <span class="value"> {{ props.WssData.Type }} </span>
       </div>
       <div class="block">
+        <span class="label">系统描述</span>
+        <span class="value"> {{ props.WssData.Describe }} </span>
+      </div>
+      <div class="block">
         <span class="label">管理员信息</span>
         <RouterLink class="value" :to="`/SatelliteServe/MainUser/${ServeIDToParam(props.WssData.ServeID)}`">
           <n-button size="medium" type="primary" text> {{ props.WssData.MainUser.NickName }} </n-button>
