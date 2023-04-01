@@ -38,7 +38,18 @@ onMounted(() => {
   <div class="PageWrapper">
     <div class="title">第一步：填写端口号</div>
     <div class="content">
-      <n-input class="cont_input" v-model:value="Port" type="text" placeholder="例如: 9895" />
+      <n-input
+        class="cont_input"
+        :disabled="!UserInfoStore.value.UserID"
+        v-model:value="Port"
+        type="text"
+        placeholder="例如: 9895"
+      />
+
+      <RouterLink to="/Login" v-if="!UserInfoStore.value.UserID">
+        <n-button size="tiny" type="success"> 请先登录 </n-button>
+      </RouterLink>
+
       <div class="hint">
         建议选择非常用端口号(例如: 9000-9999),该端口号用于启动 Web 服务用于通信。
         <br />

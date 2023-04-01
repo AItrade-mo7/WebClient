@@ -42,7 +42,6 @@ const routes: any = [
       },
       {
         path: 'CreateCoinServe',
-        isLogin: true,
         description: 'CreateCoinServe',
         component: () => import('@/pages/SatelliteServe/CreateCoinServe.vue'),
       },

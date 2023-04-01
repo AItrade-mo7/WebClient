@@ -89,7 +89,7 @@ const showDrawer = () => {
             </RouterLink>
           </div>
 
-          <div className="TopBar__item" v-if="UserInfoStore.value.UserID">
+          <div className="TopBar__item">
             <RouterLink to="/SatelliteServe" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>

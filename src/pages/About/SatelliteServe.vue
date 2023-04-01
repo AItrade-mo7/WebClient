@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
+import { RouterLink } from 'vue-router';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 </script>
 
@@ -9,7 +10,13 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
     卫星服务架构图 【待补充】
 
     <br />
-    卫星服务部署详解 【待补充】
+    <br />
+
+    <RouterLink to="/SatelliteServe/CreateCoinServe">
+      <n-button type="success"> 卫星服务部署详解 </n-button>
+    </RouterLink>
+
+    <br />
     <br />
 
     <n-button text tag="a" href="https://github.com/AItrade-mo7/CoinAIPackage" target="_blank" type="primary">
