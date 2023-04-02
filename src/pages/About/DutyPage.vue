@@ -1,6 +1,24 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
+import { RouterLink } from 'vue-router';
+import AuthModal from '@/lib/AuthModal';
+import { RemoveAccount } from '@/api/Account';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
+
+const RemoveAccountFun = () => {
+  AuthModal({
+    EmailAction: '注销账户操作',
+    IsPassword: true,
+    async OkBack(param) {
+      return RemoveAccount({
+        EmailCode: param.Code,
+        Password: param.Password,
+      }).then((res) => {
+        console.log(res);
+      });
+    },
+  });
+};
 </script>
 
 <template>
@@ -14,16 +32,20 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
     <hr />
     <br />
-    注销功能：<br />
-    1. 发出警告并验证邮箱和密码<br />
-    2. 检查是否绑定秘钥<br />
-    3. 检查是否存在正在运行的卫星服务<br />
-    4. 检查是否解绑所有邮箱<br />
-    5. 检查是否存在其余的历史数据<br />
-    6. 发出警告并请求确认<br />
-    7. 永久删除该条用户数据<br />
-    PS： 注销功能尚在开发当中。<br />
+
+    注销账户必要操作：<br /><br />
+
+    <RouterLink class="link" to="/ApiKey"> 1. 必须删除所有的 ApiKey </RouterLink> <br /><br />
+    <RouterLink class="link" to="/SatelliteServe"> 2. 必须停止并删除所有的卫星服务数据 </RouterLink> <br /><br />
+    <RouterLink class="link" to="/ManageEmail"> 3. 必须解绑所有的额外邮箱 </RouterLink> <br /><br />
+
+    <n-button type="error" @click="RemoveAccountFun()"> 注销此账户(不可挽回) </n-button>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/config/constant.scss';
+.link {
+  color: $mainColor;
+}
+</style>

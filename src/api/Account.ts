@@ -167,3 +167,20 @@ export const DelEmail = (data: AddEmailParam) => {
     method: 'post',
   });
 };
+
+interface RemoveAccountParam {
+  EmailCode: string;
+  Password: string;
+}
+
+export const RemoveAccount = (data: RemoveAccountParam) => {
+  const myData = {
+    EmailCode: Md5(data.EmailCode),
+    Password: Md5(data.Password),
+  };
+  return ajax_json({
+    url: '/api/private/RemoveAccount',
+    data: myData,
+    method: 'post',
+  });
+};
