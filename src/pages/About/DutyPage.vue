@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 import AuthModal from '@/lib/AuthModal';
-import { RemoveAccount } from '@/api/Account';
+import { RemoveAccount, logout } from '@/api/Account';
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
 const RemoveAccountFun = () => {
@@ -14,7 +14,8 @@ const RemoveAccountFun = () => {
         EmailCode: param.Code,
         Password: param.Password,
       }).then((res) => {
-        console.log(res);
+        window.$message.success(res.Msg);
+        logout();
       });
     },
   });
