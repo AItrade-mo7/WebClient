@@ -116,6 +116,7 @@ interface SetAccountConfigParam {
   SatelliteServe: string;
   Name: string;
   Password: string;
+  Hunter: string;
   TradeLever: number;
 }
 

@@ -13,9 +13,60 @@ const props = defineProps({
   ApiKey: Object,
 });
 
+let LeverOpt = $ref([1]);
+let HunterOpt = $ref([]);
+let HunterData = $ref({});
+
+function SetHunterOpt() {
+  const HunterMap = cloneDeep(props.WssData.HunterData);
+  const opt = [];
+  opt.push({
+    label: 'Null',
+    value: '',
+  });
+
+  for (const key in HunterMap) {
+    if (Object.prototype.hasOwnProperty.call(HunterMap, key)) {
+      const el = HunterMap[key];
+      const obj = {
+        label: el.HunterName,
+        value: el.HunterName,
+      };
+      opt.push(obj);
+    }
+  }
+  HunterOpt = opt;
+}
+
+function GetHunterInfo() {
+  if (props.ApiKey.Hunter < 1) {
+    return;
+  }
+  const HunterMap = cloneDeep(props.WssData.HunterData);
+  let hd: any = {};
+  if (props.ApiKey.Hunter.length > 1) {
+    hd = HunterMap[props.ApiKey.Hunter];
+  }
+  HunterData = hd;
+
+  if (!HunterData.HunterName) {
+    return;
+  }
+
+  const opt = [];
+  for (let index = 1; index <= HunterData.MaxTradeLever; index++) {
+    opt.push(index);
+  }
+
+  LeverOpt = opt;
+
+  return;
+}
+
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
   Password: '',
+  Hunter: props.ApiKey.Hunter,
   Name: props.ApiKey.Name,
   TradeLever: props.ApiKey.TradeLever,
 });
@@ -62,21 +113,19 @@ const OrderEnd = () => {
   GetDetail();
 };
 
-// const GetSliderMarks = () => {
-//   const LeverOpt = cloneDeep(props.WssData.LeverOpt);
-
-//   const returnObj = {};
-//   for (const item of LeverOpt) {
-//     returnObj[item] = `${item}X`;
-//   }
-
-//   return returnObj;
-// };
-
-// GetSliderMarks();
+const GetSliderMarks = () => {
+  const returnObj = {};
+  for (const item of LeverOpt) {
+    returnObj[item] = `${item}X`;
+  }
+  return returnObj;
+};
 
 onMounted(() => {
   GetDetail();
+  GetSliderMarks();
+  SetHunterOpt();
+  GetHunterInfo();
 });
 </script>
 
@@ -122,18 +171,22 @@ onMounted(() => {
     <div class="title">设置账户参数:</div>
     <div class="data-wrapper">
       <n-form ref="CoinAIAccountForm" :model="formValue" size="small" class="myForm">
-        <!-- <div class="input_hint_wrapper">
+        <n-form-item class="myForm__item" label-placement="left" label="选择策略:">
+          <n-select v-model:value="formValue.Hunter" :options="HunterOpt" />
+        </n-form-item>
+
+        <div class="input_hint_wrapper">
           <n-form-item class="myForm__item" label-placement="left" label="杠杆倍数:">
             <n-slider
               v-model:value="formValue.TradeLever"
               :marks="GetSliderMarks()"
               step="mark"
-              :min="props.WssData.LeverOpt[0]"
-              :max="props.WssData.LeverOpt[props.WssData.LeverOpt.length - 1]"
+              :min="LeverOpt[0]"
+              :max="LeverOpt[LeverOpt.length - 1]"
             />
           </n-form-item>
           <div class="input_hint">请根据当前账户资金数合理设置杠杆倍数，资金越大，建议杠杆倍数越小</div>
-        </div> -->
+        </div>
         <n-form-item class="myForm__item">
           <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 更新参数 </n-button>
         </n-form-item>
