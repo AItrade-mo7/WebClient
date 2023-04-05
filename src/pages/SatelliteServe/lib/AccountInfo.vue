@@ -62,18 +62,18 @@ const OrderEnd = () => {
   GetDetail();
 };
 
-const GetSliderMarks = () => {
-  const LeverOpt = cloneDeep(props.WssData.LeverOpt);
+// const GetSliderMarks = () => {
+//   const LeverOpt = cloneDeep(props.WssData.LeverOpt);
 
-  const returnObj = {};
-  for (const item of LeverOpt) {
-    returnObj[item] = `${item}X`;
-  }
+//   const returnObj = {};
+//   for (const item of LeverOpt) {
+//     returnObj[item] = `${item}X`;
+//   }
 
-  return returnObj;
-};
+//   return returnObj;
+// };
 
-GetSliderMarks();
+// GetSliderMarks();
 
 onMounted(() => {
   GetDetail();
@@ -122,7 +122,7 @@ onMounted(() => {
     <div class="title">设置账户参数:</div>
     <div class="data-wrapper">
       <n-form ref="CoinAIAccountForm" :model="formValue" size="small" class="myForm">
-        <div class="input_hint_wrapper">
+        <!-- <div class="input_hint_wrapper">
           <n-form-item class="myForm__item" label-placement="left" label="杠杆倍数:">
             <n-slider
               v-model:value="formValue.TradeLever"
@@ -133,7 +133,7 @@ onMounted(() => {
             />
           </n-form-item>
           <div class="input_hint">请根据当前账户资金数合理设置杠杆倍数，资金越大，建议杠杆倍数越小</div>
-        </div>
+        </div> -->
         <n-form-item class="myForm__item">
           <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 更新参数 </n-button>
         </n-form-item>

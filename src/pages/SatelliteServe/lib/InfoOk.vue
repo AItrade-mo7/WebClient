@@ -136,9 +136,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
       </div>
     </n-space>
     <hr />
-
+    <div class="title">正在运行的策略：</div>
     <div v-for="(item, key) in props.WssData.HunterData" :key="key">
-      <div class="title">策略名称: {{ item.HunterName }}</div>
+      <div class="title">{{ item.HunterName }}</div>
       <n-space class="data-wrapper">
         <div class="block">
           <span class="label">当前K线</span>
@@ -156,8 +156,27 @@ const HandleKeySubmit = async (type: string, name: string) => {
         </div>
 
         <div class="block">
+          <span class="label">K线长度</span>
+          <span class="value"> {{ item.KdataLen }} </span>
+        </div>
+        <div class="block">
+          <span class="label">策略数据长度</span>
+          <span class="value"> {{ item.TradeKdataLen }} </span>
+        </div>
+
+        <div class="block">
           <span class="label">当前交易对</span>
           <span class="value"> {{ item.TradeInstID }} </span>
+        </div>
+
+        <div class="block">
+          <span class="label">选币震荡等级</span>
+          <span class="value"> {{ item.HLPerLevel }} </span>
+        </div>
+
+        <div class="block">
+          <span class="label">Param</span>
+          <span class="value"> {{ item.TradeKdataOpt }} </span>
         </div>
       </n-space>
     </div>

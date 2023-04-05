@@ -9,7 +9,7 @@
   "MaxApiKeyNum": 9,
   "IsPublic": true,
   "CreateTime": 1679253087678,
-  "UpdateTime": 1680722285248,
+  "UpdateTime": 1680724614105,
   "ApiKeyList": [
     {
       "Name": "墨七的主账户",
@@ -29,12 +29,12 @@
     "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
     "NickName": "墨七的测试账户"
   },
-  "SysTime": 1680722299682,
+  "SysTime": 1680724629634,
   "DataSource": "CoinAI.net",
   "ApiKeyNum": 1,
   "NowTicker": {
-    "TimeUnix": 1680722160613,
-    "TimeID": "2023-04-06T03:16",
+    "TimeUnix": 1680724560510,
+    "TimeID": "2023-04-06T03:56",
     "TickerVol": [
       "BTC-USDT",
       "ETH-USDT",
@@ -46,8 +46,8 @@
       "MATIC-USDT",
       "LDO-USDT",
       "SOL-USDT",
-      "SHIB-USDT",
       "APT-USDT",
+      "SHIB-USDT",
       "OP-USDT"
     ]
   },
@@ -55,19 +55,21 @@
     "MyHunter": {
       "HunterName": "MyHunter",
       "HLPerLevel": 2,
-      "MaxLen": 900,
       "TradeInstID": "ETH-USDT-SWAP",
       "KdataInstID": "ETH-USDT",
       "NowKdata": {
         "InstID": "ETH-USDT",
         "TimeUnix": 1680721200000,
-        "C": "1905.97",
+        "C": "1909.68",
         "Dir": 1
       },
+      "KdataLen": 600,
+      "TradeKdataLen": 600,
       "TradeKdataOpt": {
         "MA_Period": 171,
         "CAP_Period": 4
-      }
+      },
+      "MaxTradeLever": 3
     }
   }
 }
