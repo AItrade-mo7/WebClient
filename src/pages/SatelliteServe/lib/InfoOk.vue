@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { DateFormat } from '@/utils/filters';
-import AuthModal from '@/lib/AuthModal';
 import { defineAsyncComponent } from 'vue';
-import { cloneDeep } from '@/utils/tools';
-import { HandleKey } from '@/api/CoinAI/index';
-import { UserInfoStore } from '@/store';
+
 import { WholeDirFormat } from '@/utils/filters';
 import { $lcg, ServeIDToParam } from '@/utils/tools';
 import { OKXBaseUrl } from '@/config/constant';
@@ -18,6 +15,7 @@ const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
 const ServeConfig = defineAsyncComponent(() => import('./ServeConfig.vue'));
 const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
+const ApiKeyItem = defineAsyncComponent(() => import('./ApiKeyItem.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -38,40 +36,6 @@ const DrawerClose = () => {
 const ShowConfig = () => {
   NowKey = {};
   DrawerStatus = true;
-};
-
-let HandleKeyStatus: boolean = $ref(false);
-let HandleKeyFormValue = $ref({
-  Name: '',
-  Password: '',
-  Type: '',
-});
-
-const SendForm = async () => {
-  const res = await HandleKey({
-    ...cloneDeep(HandleKeyFormValue),
-    SatelliteServe: props.WssData.ServeID,
-  });
-  if (res.Code > 0) {
-    window.$message.success(res.Msg);
-  }
-  window.$Event['CoinAIGetConfig']();
-};
-
-const HandleKeySubmit = async (type: string, name: string) => {
-  HandleKeyFormValue = {};
-  HandleKeyStatus = true;
-  AuthModal({
-    IsPassword: true,
-    async OkBack(param) {
-      HandleKeyStatus = false;
-      HandleKeyFormValue.Password = param.Password;
-      HandleKeyFormValue.Type = type;
-      HandleKeyFormValue.Name = name;
-      return SendForm();
-    },
-  });
-  HandleKeyStatus = false;
 };
 </script>
 
@@ -197,6 +161,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
         </n-button>
       </RouterLink>
     </div>
+
     <div class="APIKeyWrapper" v-if="props.WssData.ApiKeyList">
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
@@ -210,70 +175,16 @@ const HandleKeySubmit = async (type: string, name: string) => {
           添加一个 OKX 秘钥
         </n-button>
       </RouterLink>
+
       <template v-if="props.WssData.ApiKeyList">
-        <n-card
+        <ApiKeyItem
           v-for="(item, index) in props.WssData.ApiKeyList"
           :key="index"
-          :title="item.Name"
-          embedded
-          hoverable
-          size="small"
-        >
-          <div class="Server__item">
-            <span class="Server__label">ApiKey </span>
-            <span class="Server__val">
-              {{ item.ApiKey }}
-            </span>
-          </div>
-          <div class="Server__item">
-            <span class="Server__label">SecretKey </span>
-            <span class="Server__val">
-              {{ item.SecretKey }}
-            </span>
-          </div>
-          <div class="Server__item">
-            <span class="Server__label">Passphrase </span>
-            <span class="Server__val"> {{ item.Passphrase }} </span>
-          </div>
-
-          <template #footer>
-            <div class="card_footer" v-if="UserInfoStore.value.UserID == item.UserID">
-              <n-button
-                size="small"
-                type="error"
-                v-if="item.Status == 'disable'"
-                :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('delete', item.Name)"
-              >
-                删除
-              </n-button>
-              <n-button
-                size="small"
-                v-if="item.Status == 'enable'"
-                type="success"
-                :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('disable', item.Name)"
-              >
-                已启用
-              </n-button>
-
-              <n-button
-                class="disableBtn"
-                size="small"
-                v-if="item.Status == 'disable'"
-                type="tertiary"
-                :disabled="HandleKeyStatus"
-                @click="HandleKeySubmit('enable', item.Name)"
-              >
-                已禁用
-              </n-button>
-
-              <n-button v-if="item.Status == 'enable'" size="small" type="primary" @click="ShowKeyDetail(index)">
-                查看详情
-              </n-button>
-            </div>
-          </template>
-        </n-card>
+          :ApiKey="item"
+          :ApiKeyIdx="index"
+          :WssData="props.WssData"
+          @ShowDetail="ShowKeyDetail"
+        />
       </template>
     </div>
 
@@ -354,40 +265,6 @@ const HandleKeySubmit = async (type: string, name: string) => {
     padding: 12px;
     padding-top: 12px;
   }
-}
-
-.Server__item {
-  word-break: break-all;
-  display: flex;
-  font-size: 12px;
-  padding: 8px 0;
-  align-items: center;
-}
-.Server__label {
-  width: 74px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  color: #333;
-  &::after {
-    content: ':';
-  }
-}
-
-.Server__val {
-  color: #999;
-}
-
-.card_footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  .n-button {
-    margin-left: 6px;
-  }
-}
-
-.disableBtn {
-  animation: promptBorder 1.5s infinite;
 }
 
 .MainTradeBtn {

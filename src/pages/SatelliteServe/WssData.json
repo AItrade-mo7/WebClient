@@ -9,16 +9,15 @@
   "MaxApiKeyNum": 9,
   "IsPublic": true,
   "CreateTime": 1679253087678,
-  "UpdateTime": 1680724614105,
+  "UpdateTime": 1680725988777,
   "ApiKeyList": [
     {
-      "Name": "墨七的主账户",
+      "Name": "主账户的Key",
       "ApiKey": "0d0******c",
       "SecretKey": "307******F",
       "Passphrase": "@******0",
       "UserID": "749a30b2a0824a0eafb81fecb9410f62",
-      "Status": "enable",
-      "TradeLever": 4,
+      "TradeLever": 1,
       "Hunter": ""
     }
   ],
@@ -29,12 +28,12 @@
     "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
     "NickName": "墨七的测试账户"
   },
-  "SysTime": 1680724629634,
+  "SysTime": 1680726059608,
   "DataSource": "CoinAI.net",
   "ApiKeyNum": 1,
   "NowTicker": {
-    "TimeUnix": 1680724560510,
-    "TimeID": "2023-04-06T03:56",
+    "TimeUnix": 1680725760310,
+    "TimeID": "2023-04-06T04:16",
     "TickerVol": [
       "BTC-USDT",
       "ETH-USDT",
@@ -59,8 +58,8 @@
       "KdataInstID": "ETH-USDT",
       "NowKdata": {
         "InstID": "ETH-USDT",
-        "TimeUnix": 1680721200000,
-        "C": "1909.68",
+        "TimeUnix": 1680724800000,
+        "C": "1913.83",
         "Dir": 1
       },
       "KdataLen": 600,
