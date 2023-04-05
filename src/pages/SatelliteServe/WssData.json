@@ -1,0 +1,73 @@
+{
+  "SysName": "墨七的测试服务",
+  "Describe": "测试服务，作者私用",
+  "SysVersion": "0.16.5",
+  "UserID": "749a30b2a0824a0eafb81fecb9410f62",
+  "Port": "9013",
+  "IP": "43.154.90.213",
+  "ServeID": "43.154.90.213:9013",
+  "MaxApiKeyNum": 9,
+  "IsPublic": true,
+  "CreateTime": 1679253087678,
+  "UpdateTime": 1680722285248,
+  "ApiKeyList": [
+    {
+      "Name": "墨七的主账户",
+      "ApiKey": "0d0******c",
+      "SecretKey": "307******F",
+      "Passphrase": "@******0",
+      "UserID": "749a30b2a0824a0eafb81fecb9410f62",
+      "Status": "enable",
+      "TradeLever": 4,
+      "Hunter": ""
+    }
+  ],
+  "GithubVersion": "0.16.5",
+  "MainUser": {
+    "UserID": "749a30b2a0824a0eafb81fecb9410f62",
+    "Email": "670188307@qq.com",
+    "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
+    "NickName": "墨七的测试账户"
+  },
+  "SysTime": 1680722299682,
+  "DataSource": "CoinAI.net",
+  "ApiKeyNum": 1,
+  "NowTicker": {
+    "TimeUnix": 1680722160613,
+    "TimeID": "2023-04-06T03:16",
+    "TickerVol": [
+      "BTC-USDT",
+      "ETH-USDT",
+      "DOGE-USDT",
+      "XRP-USDT",
+      "CFX-USDT",
+      "LTC-USDT",
+      "FTM-USDT",
+      "MATIC-USDT",
+      "LDO-USDT",
+      "SOL-USDT",
+      "SHIB-USDT",
+      "APT-USDT",
+      "OP-USDT"
+    ]
+  },
+  "HunterData": {
+    "MyHunter": {
+      "HunterName": "MyHunter",
+      "HLPerLevel": 2,
+      "MaxLen": 900,
+      "TradeInstID": "ETH-USDT-SWAP",
+      "KdataInstID": "ETH-USDT",
+      "NowKdata": {
+        "InstID": "ETH-USDT",
+        "TimeUnix": 1680721200000,
+        "C": "1905.97",
+        "Dir": 1
+      },
+      "TradeKdataOpt": {
+        "MA_Period": 171,
+        "CAP_Period": 4
+      }
+    }
+  }
+}

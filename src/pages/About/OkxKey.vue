@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
 import { CopyText } from '@/utils/tools';
+import { OKXBaseUrl, OKXjoin, OKXjoinCode } from '@/config/constant';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const copyJoinCode = (text) => {
   CopyText(text);
@@ -27,21 +29,21 @@ const copyJoinCode = (text) => {
     官网：
     <n-button text tag="a" href="https://www.okx.com" target="_blank" type="primary"> https://www.okx.com </n-button>
     <br />
-    备选地址：<n-button text tag="a" href="https://www.cnouyi.care" target="_blank" type="primary">
-      https://www.cnouyi.care
+    备选地址：<n-button text tag="a" :href="OKXBaseUrl" target="_blank" type="primary">
+      {{ OKXBaseUrl }}
     </n-button>
 
     <br />
     <br />
 
     开发者的邀请链接：
-    <n-button text tag="a" href="https://cnouyi.care/join/11352015" target="_blank" type="primary">
-      https://cnouyi.care/join/11352015
+    <n-button text tag="a" :href="`${OKXjoin}`" target="_blank" type="primary">
+      {{ OKXjoin }}
     </n-button>
     <br />
     <br />
-    <span class="joinCode">注册邀请码： 11352015</span>
-    <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
+    <span class="joinCode">注册邀请码： {{ OKXjoinCode }}</span>
+    <n-button type="primary" size="tiny" @click="copyJoinCode(OKXjoinCode)"> 复制 </n-button>
     <br />
     <br />
     PS： 官方网址可能需要科学上网才能访问，推荐使用备选地址下载客户端，若备选地址失效请联系开发者更换。

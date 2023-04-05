@@ -7,6 +7,8 @@ import AuthModal from '@/lib/AuthModal';
 import { useRouter } from 'vue-router';
 import { GetCoinAIConfig, SetKey } from '@/api/CoinAI/index';
 import { defineAsyncComponent } from 'vue';
+import { OKXjoin, OKXjoinCode } from '@/config/constant';
+
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
@@ -159,13 +161,11 @@ const copyJoinCode = (text) => {
 
     <div class="joinFooter">
       <div>
-        <span class="joinCode">注册邀请码： 11352015</span>
-        <n-button type="primary" size="tiny" @click="copyJoinCode('11352015')"> 复制 </n-button>
+        <span class="joinCode">注册邀请码： {{ OKXjoinCode }}</span>
+        <n-button type="primary" size="tiny" @click="copyJoinCode(OKXjoinCode)"> 复制 </n-button>
 
         <br />
-        <n-button text tag="a" href="https://cnouyi.care/join/11352015" target="_blank" type="primary">
-          邀请链接
-        </n-button>
+        <n-button text tag="a" :href="OKXjoin" target="_blank" type="primary"> 邀请链接 </n-button>
       </div>
     </div>
 

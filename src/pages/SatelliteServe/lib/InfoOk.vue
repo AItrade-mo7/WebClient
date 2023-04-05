@@ -7,6 +7,12 @@ import { HandleKey } from '@/api/CoinAI/index';
 import { UserInfoStore } from '@/store';
 import { WholeDirFormat } from '@/utils/filters';
 import { $lcg, ServeIDToParam } from '@/utils/tools';
+import { OKXBaseUrl } from '@/config/constant';
+
+const GetCcyName = (InstID: string): string => {
+  const name = InstID.replace(/-USDT/gi, '');
+  return name;
+};
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
@@ -86,15 +92,11 @@ const HandleKeySubmit = async (type: string, name: string) => {
       </div>
       <div class="block">
         <span class="label">系统时间</span>
-        <span class="value"> {{ DateFormat(props.WssData.SysTime, true, true) }} </span>
+        <span class="value"> {{ DateFormat(props.WssData.SysTime, true) }} </span>
       </div>
       <div class="block">
         <span class="label">系统IP</span>
         <span class="value"> {{ props.WssData.IP }} </span>
-      </div>
-      <div class="block">
-        <span class="label">策略类型</span>
-        <span class="value"> {{ props.WssData.Type }} </span>
       </div>
       <div class="block">
         <span class="label">系统描述</span>
@@ -109,28 +111,57 @@ const HandleKeySubmit = async (type: string, name: string) => {
     </n-space>
     <hr />
 
-    <div class="title">监听数据</div>
+    <div class="title">榜单状态</div>
     <n-space class="data-wrapper">
       <div class="block">
-        <span class="label">当前监听</span>
-        <span class="value"> {{ $lcg(props.WssData, 'TradeKdataLast.InstID') }} </span>
+        <span class="label">数据时间</span>
+        <span class="value"> {{ DateFormat(props.WssData.NowTicker.TimeUnix) }} </span>
       </div>
       <div class="block">
-        <span class="label">当前价格</span>
-        <span class="value" :class="WholeDirFormat($lcg(props.WssData, 'TradeKdataLast.Dir')).class">
-          {{ $lcg(props.WssData, 'TradeKdataLast.C') }}
+        <span class="label">榜单列表</span>
+        <span class="value">
+          <n-button
+            v-for="(item, index) in props.WssData.NowTicker.TickerVol"
+            :key="index"
+            class="InstLink"
+            size="tiny"
+            tag="a"
+            :href="`${OKXBaseUrl}/cn/trade-spot/${item}`"
+            target="_blank"
+            type="primary"
+          >
+            {{ index + 1 }} : {{ GetCcyName(item) }}
+          </n-button>
         </span>
       </div>
-      <div class="block">
-        <span class="label">数据时间</span>
-        <span class="value"> {{ $lcg(props.WssData, 'NowTicker.TimeStr') }} </span>
-      </div>
-
-      <div class="block">
-        <span class="label">当前交易对</span>
-        <span class="value"> {{ $lcg(props.WssData, 'TradeInst.InstID') }} </span>
-      </div>
     </n-space>
+    <hr />
+
+    <div v-for="(item, key) in props.WssData.HunterData" :key="key">
+      <div class="title">策略名称: {{ item.HunterName }}</div>
+      <n-space class="data-wrapper">
+        <div class="block">
+          <span class="label">当前K线</span>
+          <span class="value"> {{ item.KdataInstID }} </span>
+        </div>
+        <div class="block">
+          <span class="label">当前价格</span>
+          <span class="value" :class="WholeDirFormat($lcg(item, 'NowKdata.Dir')).class">
+            {{ $lcg(item, 'NowKdata.C') }}
+          </span>
+        </div>
+        <div class="block">
+          <span class="label">K线时间</span>
+          <span class="value"> {{ DateFormat(item.NowKdata.TimeUnix) }} </span>
+        </div>
+
+        <div class="block">
+          <span class="label">当前交易对</span>
+          <span class="value"> {{ item.TradeInstID }} </span>
+        </div>
+      </n-space>
+    </div>
+
     <hr />
 
     <div class="title" v-if="props.WssData.ApiKeyList">
@@ -342,5 +373,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
 
 .MainTradeBtn {
   padding: 20px;
+}
+
+.InstLink {
+  margin: 6px;
 }
 </style>
