@@ -132,12 +132,6 @@ const Reload = () => {
           </span>
         </div>
         <div class="Server__item">
-          <span class="Server__label"> Type </span>
-          <span class="Server__val">
-            {{ item.Type }}
-          </span>
-        </div>
-        <div class="Server__item">
           <span class="Server__label"> Describe </span>
           <span class="Server__val">
             {{ item.Describe }}
@@ -181,12 +175,6 @@ const Reload = () => {
           <span class="Server__label"> Version </span>
           <span class="Server__val">
             {{ item.SysVersion }}
-          </span>
-        </div>
-        <div class="Server__item">
-          <span class="Server__label"> Type </span>
-          <span class="Server__val">
-            {{ item.Type }}
           </span>
         </div>
         <div class="Server__item">

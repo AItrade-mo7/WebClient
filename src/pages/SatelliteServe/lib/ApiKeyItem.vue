@@ -15,13 +15,13 @@ const ShowDetail = (index) => {
   $emit('ShowDetail', index);
 };
 
-const GetHuterData = () => {
+const GetHunterData = () => {
   const HunterMap = cloneDeep(props.WssData.HunterData);
 
   let HunterData: any = {};
 
   if (props.ApiKey.Hunter.length > 1) {
-    HunterData = HunterMap[props.ApiKey.Hunter];
+    HunterData = HunterMap[props.ApiKey.Hunter] || {};
   }
 
   return HunterData;
@@ -87,7 +87,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
           size="small"
           type="error"
           :disabled="HandleKeyStatus"
-          v-if="!GetHuterData().HunterName"
+          v-if="!GetHunterData().HunterName"
           @click="HandleKeySubmit('delete', props.ApiKey.Name)"
         >
           删除
@@ -95,7 +95,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
 
         <n-button
           class="disableBtn"
-          v-if="!GetHuterData().HunterName"
+          v-if="!GetHunterData().HunterName"
           size="small"
           type="tertiary"
           @click="ShowDetail(ApiKeyIdx)"
@@ -103,7 +103,7 @@ const HandleKeySubmit = async (type: string, name: string) => {
           请选择策略
         </n-button>
 
-        <n-button size="small" v-if="GetHuterData().HunterName" type="primary" @click="ShowDetail(ApiKeyIdx)">
+        <n-button size="small" v-if="GetHunterData().HunterName" type="primary" @click="ShowDetail(ApiKeyIdx)">
           查看详情
         </n-button>
       </div>
