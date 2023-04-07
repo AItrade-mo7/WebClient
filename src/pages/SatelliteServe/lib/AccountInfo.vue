@@ -5,7 +5,6 @@ import { DateFormat, Decimal, WholeDirFormat } from '@/utils/filters';
 import AuthModal from '@/lib/AuthModal';
 import { cloneDeep } from '@/utils/tools';
 import { SetAccountConfig } from '@/api/CoinAI/index';
-
 const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 
 const props = defineProps({
@@ -19,9 +18,10 @@ let HunterData = $ref({});
 
 function SetHunterOpt() {
   const HunterMap = cloneDeep(props.WssData.HunterData);
+
   const opt = [];
   opt.push({
-    label: 'Null',
+    label: '停止使用策略',
     value: '',
   });
 
@@ -38,14 +38,14 @@ function SetHunterOpt() {
   HunterOpt = opt;
 }
 
-function GetHunterInfo() {
-  if (props.ApiKey.Hunter < 1) {
+function GetHunterInfo(val) {
+  if (val < 1) {
     return;
   }
   const HunterMap = cloneDeep(props.WssData.HunterData);
   let hd: any = {};
-  if (props.ApiKey.Hunter.length > 1) {
-    hd = HunterMap[props.ApiKey.Hunter];
+  if (val.length > 1) {
+    hd = HunterMap[val] || {};
   }
   HunterData = hd;
 
@@ -54,7 +54,7 @@ function GetHunterInfo() {
   }
 
   const opt = [];
-  for (let index = 1; index <= HunterData.MaxTradeLever; index++) {
+  for (let index = 1; index <= HunterData.TradeKdataOpt.MaxTradeLever; index++) {
     opt.push(index);
   }
 
@@ -121,11 +121,17 @@ const GetSliderMarks = () => {
   return returnObj;
 };
 
+const handleUpdateValue = (val) => {
+  formValue.Hunter = val;
+  formValue.TradeLever = 1;
+  GetHunterInfo(val);
+};
+
 onMounted(() => {
   GetDetail();
   GetSliderMarks();
   SetHunterOpt();
-  GetHunterInfo();
+  GetHunterInfo(props.ApiKey.Hunter);
 });
 </script>
 
@@ -172,9 +178,8 @@ onMounted(() => {
     <div class="data-wrapper">
       <n-form ref="CoinAIAccountForm" :model="formValue" size="small" class="myForm">
         <n-form-item class="myForm__item" label-placement="left" label="选择策略:">
-          <n-select v-model:value="formValue.Hunter" :options="HunterOpt" />
+          <n-select v-model:value="formValue.Hunter" :options="HunterOpt" :on-update:value="handleUpdateValue" />
         </n-form-item>
-
         <div class="input_hint_wrapper">
           <n-form-item class="myForm__item" label-placement="left" label="杠杆倍数:">
             <n-slider
