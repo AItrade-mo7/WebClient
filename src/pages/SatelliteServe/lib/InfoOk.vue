@@ -5,6 +5,7 @@ import { defineAsyncComponent } from 'vue';
 import { WholeDirFormat } from '@/utils/filters';
 import { $lcg, ServeIDToParam } from '@/utils/tools';
 import { OKXBaseUrl } from '@/config/constant';
+import { cloneDeep } from 'lodash';
 
 const GetCcyName = (InstID: string): string => {
   const name = InstID.replace(/-USDT/gi, '');
@@ -37,6 +38,16 @@ const ShowConfig = () => {
   NowKey = {};
   DrawerStatus = true;
 };
+
+const GetHunterNameArr = () => {
+  const nameArr = Object.keys(props.WssData.HunterData).sort();
+  const HunterArr = [];
+  for (const key of nameArr) {
+    const Hunter = cloneDeep(props.WssData.HunterData[key]);
+    HunterArr.push(Hunter);
+  }
+  return HunterArr;
+};
 </script>
 
 <template>
@@ -49,6 +60,8 @@ const ShowConfig = () => {
         </template>
       </n-button>
     </div>
+
+    {{ GetHunterNameArr() }}
     <n-space class="data-wrapper">
       <div class="block">
         <span class="label">系统名称</span>
@@ -101,7 +114,7 @@ const ShowConfig = () => {
     </n-space>
     <hr />
     <div class="title">正在运行的策略：</div>
-    <div v-for="(item, key) in props.WssData.HunterData" :key="key">
+    <div v-for="(item, key) in GetHunterNameArr()" :key="key">
       <div class="title">{{ item.HunterName }}</div>
       <n-space class="data-wrapper">
         <div class="block">
@@ -134,13 +147,13 @@ const ShowConfig = () => {
         </div>
 
         <div class="block">
-          <span class="label">选币震荡等级</span>
-          <span class="value"> {{ item.HLPerLevel }} </span>
+          <span class="label">Param</span>
+          <span class="value"> {{ item.TradeKdataOpt }} </span>
         </div>
 
         <div class="block">
-          <span class="label">Param</span>
-          <span class="value"> {{ item.TradeKdataOpt }} </span>
+          <span class="label">描述</span>
+          <span class="value"> {{ item.Describe }} </span>
         </div>
       </n-space>
     </div>
