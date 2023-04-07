@@ -60,8 +60,6 @@ const GetHunterNameArr = () => {
         </template>
       </n-button>
     </div>
-
-    {{ GetHunterNameArr() }}
     <n-space class="data-wrapper">
       <div class="block">
         <span class="label">系统名称</span>
