@@ -92,6 +92,7 @@ const GetHunterNameArr = () => {
         <span class="label">数据时间</span>
         <span class="value"> {{ DateFormat(props.WssData.NowTicker.TimeUnix) }} </span>
       </div>
+      <br />
       <div class="block">
         <span class="label">榜单列表</span>
         <span class="value">
@@ -143,12 +144,12 @@ const GetHunterNameArr = () => {
           <span class="label">当前交易对</span>
           <span class="value"> {{ item.TradeInstID }} </span>
         </div>
-
+        <br />
         <div class="block">
           <span class="label">Param</span>
           <span class="value"> {{ item.TradeKdataOpt }} </span>
         </div>
-
+        <br />
         <div class="block">
           <span class="label">描述</span>
           <span class="value"> {{ item.Describe }} </span>
