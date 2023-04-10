@@ -16,6 +16,22 @@ const GetHunterNameArr = () => {
   }
   return HunterArr;
 };
+
+const GetDirText = (dir) => {
+  if (dir > 0) {
+    return '买涨';
+  }
+
+  if (dir < 0) {
+    return '买跌';
+  }
+
+  if (dir == 0) {
+    return '空仓';
+  }
+
+  return '数据异常';
+};
 </script>
 
 <template>
@@ -61,11 +77,30 @@ const GetHunterNameArr = () => {
         <span class="value"> {{ item.Describe }} </span>
       </div>
     </n-space>
-    <div class="block">
-      <span class="label">当前持仓:</span>
-      <span class="value"> asasdas </span>
-    </div>
+    <div class="titleLitter">当前持仓 <span class="hint">(如果选择了该策略，您的持仓应应与当前保持一致)</span></div>
 
+    <n-space class="data-wrapper">
+      <div class="block">
+        <span class="label">持仓币种</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.InstID') }} </span>
+      </div>
+      <div class="block">
+        <span class="label">持仓方向</span>
+        <span class="value"> {{ GetDirText($lcg(item, 'NowVirtualPosition.NowDir')) }} </span>
+      </div>
+      <div class="block">
+        <span class="label">开仓时间</span>
+        <span class="value"> {{ DateFormat($lcg(item, 'NowVirtualPosition.OpenTime')) }} </span>
+      </div>
+      <div class="block">
+        <span class="label">开仓价格</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.OpenAvgPx') }} </span>
+      </div>
+      <div class="block">
+        <span class="label">当前持仓收益</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowUplRatio') }}% </span>
+      </div>
+    </n-space>
     <hr />
   </div>
 </template>
@@ -83,6 +118,17 @@ const GetHunterNameArr = () => {
     margin-left: 12px;
   }
 }
+
+.titleLitter {
+  font-weight: 600;
+  font-size: 14px;
+  .hint {
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+  }
+}
+
 .data-wrapper {
   margin-bottom: 12px;
   .block {
