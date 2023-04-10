@@ -1,15 +1,16 @@
 {
-  "SysName": "墨七的测试服务",
-  "Describe": "测试服务，作者私用",
-  "SysVersion": "0.17.2",
+  "SysName": "墨七的测试账户的CoinAI",
+  "SysType": "CoinAI.net",
+  "Describe": "",
+  "SysVersion": "0.17.5",
   "UserID": "749a30b2a0824a0eafb81fecb9410f62",
-  "Port": "9013",
+  "Port": "9014",
   "IP": "43.154.90.213",
-  "ServeID": "43.154.90.213:9013",
-  "MaxApiKeyNum": 9,
-  "IsPublic": true,
-  "CreateTime": 1679253087678,
-  "UpdateTime": 1680863731773,
+  "ServeID": "43.154.90.213:9014",
+  "MaxApiKeyNum": 12,
+  "IsPublic": false,
+  "CreateTime": 1681046557713,
+  "UpdateTime": 1681164484875,
   "ApiKeyList": [
     {
       "Name": "主账户的Key",
@@ -21,33 +22,35 @@
       "Hunter": ""
     }
   ],
-  "GithubVersion": "0.17.2",
+  "GithubVersion": "0.17.4",
   "MainUser": {
     "UserID": "749a30b2a0824a0eafb81fecb9410f62",
     "Email": "670188307@qq.com",
     "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
     "NickName": "墨七的测试账户"
   },
-  "SysTime": 1680863805335,
+  "SysTime": 1681164757383,
   "DataSource": "CoinAI.net",
   "ApiKeyNum": 1,
   "NowTicker": {
-    "TimeUnix": 1680863461004,
-    "TimeID": "2023-04-07T18:31",
+    "TimeUnix": 1681164661303,
+    "TimeID": "2023-04-11T06:11",
     "TickerVol": [
       "BTC-USDT",
       "ETH-USDT",
-      "DOGE-USDT",
-      "XRP-USDT",
-      "ONT-USDT",
       "CFX-USDT",
-      "FTM-USDT",
+      "XRP-USDT",
+      "DOGE-USDT",
       "LTC-USDT",
-      "APT-USDT",
+      "FIL-USDT",
+      "MASK-USDT",
+      "OP-USDT",
       "SOL-USDT",
+      "ADA-USDT",
+      "FTM-USDT",
+      "STX-USDT",
       "LDO-USDT",
-      "SHIB-USDT",
-      "ATOM-USDT"
+      "APT-USDT"
     ]
   },
   "HunterData": {
@@ -67,7 +70,99 @@
       "TradeKdataOpt": {
         "EMA_Period": 0,
         "CAP_Period": 0,
+        "CAP_Max": "",
         "MaxTradeLever": 0
+      },
+      "NowVirtualPosition": {
+        "InstID": "",
+        "HunterName": "",
+        "NowTimeStr": "",
+        "NowTime": 0,
+        "NowC": "",
+        "CAP_EMA": "",
+        "EMA": "",
+        "OpenAvgPx": "",
+        "OpenTimeStr": "",
+        "OpenTime": 0,
+        "NowDir": 0,
+        "InitMoney": "",
+        "ChargeUpl": "",
+        "NowUplRatio": "",
+        "Money": ""
+      }
+    },
+    "BTC-CoinAI": {
+      "HunterName": "BTC-CoinAI",
+      "Describe": "以 BTC-USDT 交易对为主执行自动交易,支持的资金量更大,更加稳定",
+      "TradeInstID": "BTC-USDT-SWAP",
+      "KdataInstID": "BTC-USDT",
+      "NowKdata": {
+        "InstID": "BTC-USDT",
+        "TimeUnix": 1681164000000,
+        "C": "29532.2",
+        "Dir": 1
+      },
+      "KdataLen": 900,
+      "TradeKdataLen": 900,
+      "TradeKdataOpt": {
+        "EMA_Period": 86,
+        "CAP_Period": 2,
+        "CAP_Max": "0.5",
+        "MaxTradeLever": 2
+      },
+      "NowVirtualPosition": {
+        "InstID": "BTC-USDT",
+        "HunterName": "BTC-CoinAI",
+        "NowTimeStr": "2023-04-11T06:00:00",
+        "NowTime": 1681164705362,
+        "NowC": "29532.2",
+        "CAP_EMA": "10.4",
+        "EMA": "28275.1",
+        "OpenAvgPx": "29224.9",
+        "OpenTimeStr": "2023-04-11T06:00:00",
+        "OpenTime": 1681164016583,
+        "NowDir": 1,
+        "InitMoney": "1000",
+        "ChargeUpl": "0.05",
+        "NowUplRatio": "2.102",
+        "Money": "0"
+      }
+    },
+    "ETH-CoinAI": {
+      "HunterName": "ETH-CoinAI",
+      "Describe": "以 ETH-USDT 交易对为主执行自动交易,交易次数更加频发,可以收获更高收益",
+      "TradeInstID": "ETH-USDT-SWAP",
+      "KdataInstID": "ETH-USDT",
+      "NowKdata": {
+        "InstID": "ETH-USDT",
+        "TimeUnix": 1681164000000,
+        "C": "1903.29",
+        "Dir": 1
+      },
+      "KdataLen": 900,
+      "TradeKdataLen": 900,
+      "TradeKdataOpt": {
+        "EMA_Period": 78,
+        "CAP_Period": 2,
+        "CAP_Max": "0.5",
+        "MaxTradeLever": 4
+      },
+      "NowVirtualPosition": {
+        "InstID": "ETH-USDT",
+        "HunterName": "ETH-CoinAI",
+        "NowTimeStr": "2023-04-11T06:00:00",
+        "NowTime": 1681164705440,
+        "NowC": "1903.29",
+        "CAP_EMA": "5.69",
+        "EMA": "1862.37",
+        "OpenAvgPx": "1890.07",
+        "OpenTimeStr": "2023-04-11T06:00:00",
+        "OpenTime": 1681164016689,
+        "NowDir": 1,
+        "InitMoney": "1000",
+        "ChargeUpl": "0.05",
+        "NowUplRatio": "2.796",
+        "Money": "0"
       }
     }
   }

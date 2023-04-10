@@ -2,10 +2,8 @@
 import { DateFormat } from '@/utils/filters';
 import { defineAsyncComponent } from 'vue';
 
-import { WholeDirFormat } from '@/utils/filters';
-import { $lcg, ServeIDToParam } from '@/utils/tools';
+import { ServeIDToParam } from '@/utils/tools';
 import { OKXBaseUrl } from '@/config/constant';
-import { cloneDeep } from 'lodash';
 
 const GetCcyName = (InstID: string): string => {
   const name = InstID.replace(/-USDT/gi, '');
@@ -17,6 +15,7 @@ const AccountInfo = defineAsyncComponent(() => import('./AccountInfo.vue'));
 const ServeConfig = defineAsyncComponent(() => import('./ServeConfig.vue'));
 const OrderBtn = defineAsyncComponent(() => import('./OrderBtn.vue'));
 const ApiKeyItem = defineAsyncComponent(() => import('./ApiKeyItem.vue'));
+const HunterView = defineAsyncComponent(() => import('./HunterView.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -37,16 +36,6 @@ const DrawerClose = () => {
 const ShowConfig = () => {
   NowKey = {};
   DrawerStatus = true;
-};
-
-const GetHunterNameArr = () => {
-  const nameArr = Object.keys(props.WssData.HunterData).sort();
-  const HunterArr = [];
-  for (const key of nameArr) {
-    const Hunter = cloneDeep(props.WssData.HunterData[key]);
-    HunterArr.push(Hunter);
-  }
-  return HunterArr;
 };
 </script>
 
@@ -113,51 +102,7 @@ const GetHunterNameArr = () => {
     </n-space>
     <hr />
     <div class="title">正在运行的策略：</div>
-    <div v-for="(item, key) in GetHunterNameArr()" :key="key">
-      <div class="title">{{ item.HunterName }}</div>
-      <n-space class="data-wrapper">
-        <div class="block">
-          <span class="label">当前K线</span>
-          <span class="value"> {{ item.KdataInstID }} </span>
-        </div>
-        <div class="block">
-          <span class="label">当前价格</span>
-          <span class="value" :class="WholeDirFormat($lcg(item, 'NowKdata.Dir')).class">
-            {{ $lcg(item, 'NowKdata.C') }}
-          </span>
-        </div>
-        <div class="block">
-          <span class="label">K线时间</span>
-          <span class="value"> {{ DateFormat(item.NowKdata.TimeUnix) }} </span>
-        </div>
-
-        <div class="block">
-          <span class="label">K线长度</span>
-          <span class="value"> {{ item.KdataLen }} </span>
-        </div>
-        <div class="block">
-          <span class="label">策略数据长度</span>
-          <span class="value"> {{ item.TradeKdataLen }} </span>
-        </div>
-
-        <div class="block">
-          <span class="label">当前交易对</span>
-          <span class="value"> {{ item.TradeInstID }} </span>
-        </div>
-        <br />
-        <div class="block">
-          <span class="label">Param</span>
-          <span class="value"> {{ item.TradeKdataOpt }} </span>
-        </div>
-        <br />
-        <div class="block">
-          <span class="label">描述</span>
-          <span class="value"> {{ item.Describe }} </span>
-        </div>
-      </n-space>
-    </div>
-
-    <hr />
+    <HunterView :WssData="props.WssData" />
 
     <div class="title" v-if="props.WssData.ApiKeyList">
       APIKey 管理 ({{ props.WssData.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
