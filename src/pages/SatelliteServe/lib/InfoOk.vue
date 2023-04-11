@@ -192,6 +192,7 @@ const ShowConfig = () => {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap;
   .addBtn {
     display: block;
     margin-left: 12px;
