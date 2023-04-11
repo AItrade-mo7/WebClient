@@ -1,6 +1,6 @@
 {
   "name": "trade-client",
-  "version": "0.15.8",
+  "version": "0.16.1",
   "private": true,
   "scripts": {
     "dev": "vite",
