@@ -181,7 +181,7 @@ onMounted(() => {
         <n-form-item class="myForm__item" label-placement="left" label="选择策略:">
           <n-select v-model:value="formValue.Hunter" :options="HunterOpt" :on-update:value="handleUpdateValue" />
         </n-form-item>
-        <div class="input_hint_wrapper">
+        <div class="input_hint_wrapper" v-if="props.ApiKey.Hunter">
           <n-form-item class="myForm__item" label-placement="left" label="杠杆倍数:">
             <n-slider
               v-model:value="formValue.TradeLever"
