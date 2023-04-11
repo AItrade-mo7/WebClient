@@ -38,6 +38,6 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 }
 
 .feishu_code {
-  max-width: 80%;
+  max-width: 100%;
 }
 </style>

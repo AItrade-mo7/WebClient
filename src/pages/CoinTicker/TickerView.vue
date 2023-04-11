@@ -215,8 +215,12 @@ const OperationSwitch = () => {
       <n-space class="data-title" v-else>
         <div class="data-item value">
           市场趋势:
-          <RouterLink to="/Login">
+          <RouterLink to="/Login" v-if="!UserInfoStore.value.UserID">
             <n-button size="tiny" type="info"> 登录查看 </n-button>
+          </RouterLink>
+
+          <RouterLink to="/SatelliteServe" v-if="UserInfoStore.value.UserID">
+            <n-button size="tiny" type="primary"> 查看卫星服务 </n-button>
           </RouterLink>
         </div>
       </n-space>

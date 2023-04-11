@@ -114,7 +114,7 @@ const Reload = () => {
     <n-alert title="如果服务器状态不正确，请手动刷新页面。" type="warning" closable></n-alert>
     <div class="title">我的卫星服务</div>
     <div class="explain">
-      部署私人的卫星服务，更加稳定可靠。拥有独立的系统错误邮箱提醒机制。可以第一时间知道特殊行情和系统运行状态。
+      部署私人的卫星服务，更加稳定可靠，可以隐藏IP不被他人知道。拥有独立的系统错误邮箱提醒机制。可以第一时间知道特殊行情和系统运行状态。
       适合有一定云服务运维经验的朋友。
     </div>
     <div class="ListWrapper">
@@ -199,6 +199,14 @@ const Reload = () => {
         </template>
       </n-card>
     </div>
+    <hr />
+
+    <div class="groupHint">如有任何疑问，请添加用户群:</div>
+    <img class="feishu_code" src="//file.mo7.cc/disk/feishu_group_code.jpg" />
+
+    <br />
+    <br />
+    <br />
   </div>
 </template>
 
@@ -304,5 +312,13 @@ const Reload = () => {
 
 .Reboot {
   margin-left: 12px;
+}
+
+.groupHint {
+  margin: 5px 0;
+}
+
+.feishu_code {
+  max-width: 100%;
 }
 </style>
