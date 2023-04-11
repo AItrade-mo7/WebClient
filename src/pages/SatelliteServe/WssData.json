@@ -2,7 +2,7 @@
   "SysName": "墨七的测试账户的CoinAI",
   "SysType": "CoinAI.net",
   "Describe": "",
-  "SysVersion": "0.17.5",
+  "SysVersion": "0.17.6",
   "UserID": "749a30b2a0824a0eafb81fecb9410f62",
   "Port": "9014",
   "IP": "43.154.90.213",
@@ -10,7 +10,7 @@
   "MaxApiKeyNum": 12,
   "IsPublic": false,
   "CreateTime": 1681046557713,
-  "UpdateTime": 1681164484875,
+  "UpdateTime": 1681194347796,
   "ApiKeyList": [
     {
       "Name": "主账户的Key",
@@ -18,8 +18,8 @@
       "SecretKey": "307******F",
       "Passphrase": "@******0",
       "UserID": "749a30b2a0824a0eafb81fecb9410f62",
-      "TradeLever": 1,
-      "Hunter": ""
+      "TradeLever": 2,
+      "Hunter": "ETH-CoinAI"
     }
   ],
   "GithubVersion": "0.17.4",
@@ -29,31 +29,105 @@
     "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
     "NickName": "墨七的测试账户"
   },
-  "SysTime": 1681164757383,
+  "SysTime": 1681194528755,
   "DataSource": "CoinAI.net",
   "ApiKeyNum": 1,
   "NowTicker": {
-    "TimeUnix": 1681164661303,
-    "TimeID": "2023-04-11T06:11",
+    "TimeUnix": 1681194360812,
+    "TimeID": "2023-04-11T14:26",
     "TickerVol": [
       "BTC-USDT",
       "ETH-USDT",
       "CFX-USDT",
       "XRP-USDT",
-      "DOGE-USDT",
       "LTC-USDT",
-      "FIL-USDT",
-      "MASK-USDT",
-      "OP-USDT",
+      "DOGE-USDT",
       "SOL-USDT",
+      "FIL-USDT",
       "ADA-USDT",
-      "FTM-USDT",
+      "APT-USDT",
+      "MASK-USDT",
       "STX-USDT",
-      "LDO-USDT",
-      "APT-USDT"
+      "TRX-USDT"
     ]
   },
   "HunterData": {
+    "BTC-CoinAI": {
+      "HunterName": "BTC-CoinAI",
+      "Describe": "以 BTC-USDT 交易对为主执行自动交易,支持的资金量更大,更加稳定",
+      "TradeInstID": "BTC-USDT-SWAP",
+      "KdataInstID": "BTC-USDT",
+      "NowKdata": {
+        "InstID": "BTC-USDT",
+        "TimeUnix": 1681192800000,
+        "C": "30034.8",
+        "Dir": 1
+      },
+      "KdataLen": 900,
+      "TradeKdataLen": 900,
+      "TradeKdataOpt": {
+        "EMA_Period": 86,
+        "CAP_Period": 2,
+        "CAP_Max": "0.5",
+        "MaxTradeLever": 2
+      },
+      "NowVirtualPosition": {
+        "InstID": "BTC-USDT",
+        "HunterName": "BTC-CoinAI",
+        "NowTimeStr": "2023-04-11T14:00:00",
+        "NowTime": 1681194421479,
+        "NowC": "30034.8",
+        "CAP_EMA": "12.1",
+        "EMA": "28569.1",
+        "OpenAvgPx": "30019.9",
+        "OpenTimeStr": "2023-04-11T14:00:00",
+        "OpenTime": 1681194349160,
+        "NowDir": 1,
+        "InitMoney": "1000",
+        "ChargeUpl": "0.05",
+        "NowUplRatio": "0.098",
+        "Money": "1000.48",
+        "MakeMoney": "0.98"
+      }
+    },
+    "ETH-CoinAI": {
+      "HunterName": "ETH-CoinAI",
+      "Describe": "以 ETH-USDT 交易对为主执行自动交易,交易次数更加频发,可以收获更高收益",
+      "TradeInstID": "ETH-USDT-SWAP",
+      "KdataInstID": "ETH-USDT",
+      "NowKdata": {
+        "InstID": "ETH-USDT",
+        "TimeUnix": 1681192800000,
+        "C": "1918.91",
+        "Dir": 1
+      },
+      "KdataLen": 900,
+      "TradeKdataLen": 900,
+      "TradeKdataOpt": {
+        "EMA_Period": 78,
+        "CAP_Period": 2,
+        "CAP_Max": "0.5",
+        "MaxTradeLever": 4
+      },
+      "NowVirtualPosition": {
+        "InstID": "ETH-USDT",
+        "HunterName": "ETH-CoinAI",
+        "NowTimeStr": "2023-04-11T14:00:00",
+        "NowTime": 1681194421530,
+        "NowC": "1918.91",
+        "CAP_EMA": "6.41",
+        "EMA": "1872.99",
+        "OpenAvgPx": "1918.48",
+        "OpenTimeStr": "2023-04-11T14:00:00",
+        "OpenTime": 1681194349263,
+        "NowDir": 1,
+        "InitMoney": "1000",
+        "ChargeUpl": "0.05",
+        "NowUplRatio": "0.088",
+        "Money": "1000.38",
+        "MakeMoney": "0.88"
+      }
+    },
     "Auto": {
       "HunterName": "Auto",
       "Describe": "根据市场情况为您的账户选择其中一个策略执行交易【目前此功能尚在开发中】",
@@ -88,81 +162,8 @@
         "InitMoney": "",
         "ChargeUpl": "",
         "NowUplRatio": "",
-        "Money": ""
-      }
-    },
-    "BTC-CoinAI": {
-      "HunterName": "BTC-CoinAI",
-      "Describe": "以 BTC-USDT 交易对为主执行自动交易,支持的资金量更大,更加稳定",
-      "TradeInstID": "BTC-USDT-SWAP",
-      "KdataInstID": "BTC-USDT",
-      "NowKdata": {
-        "InstID": "BTC-USDT",
-        "TimeUnix": 1681164000000,
-        "C": "29532.2",
-        "Dir": 1
-      },
-      "KdataLen": 900,
-      "TradeKdataLen": 900,
-      "TradeKdataOpt": {
-        "EMA_Period": 86,
-        "CAP_Period": 2,
-        "CAP_Max": "0.5",
-        "MaxTradeLever": 2
-      },
-      "NowVirtualPosition": {
-        "InstID": "BTC-USDT",
-        "HunterName": "BTC-CoinAI",
-        "NowTimeStr": "2023-04-11T06:00:00",
-        "NowTime": 1681164705362,
-        "NowC": "29532.2",
-        "CAP_EMA": "10.4",
-        "EMA": "28275.1",
-        "OpenAvgPx": "29224.9",
-        "OpenTimeStr": "2023-04-11T06:00:00",
-        "OpenTime": 1681164016583,
-        "NowDir": 1,
-        "InitMoney": "1000",
-        "ChargeUpl": "0.05",
-        "NowUplRatio": "2.102",
-        "Money": "0"
-      }
-    },
-    "ETH-CoinAI": {
-      "HunterName": "ETH-CoinAI",
-      "Describe": "以 ETH-USDT 交易对为主执行自动交易,交易次数更加频发,可以收获更高收益",
-      "TradeInstID": "ETH-USDT-SWAP",
-      "KdataInstID": "ETH-USDT",
-      "NowKdata": {
-        "InstID": "ETH-USDT",
-        "TimeUnix": 1681164000000,
-        "C": "1903.29",
-        "Dir": 1
-      },
-      "KdataLen": 900,
-      "TradeKdataLen": 900,
-      "TradeKdataOpt": {
-        "EMA_Period": 78,
-        "CAP_Period": 2,
-        "CAP_Max": "0.5",
-        "MaxTradeLever": 4
-      },
-      "NowVirtualPosition": {
-        "InstID": "ETH-USDT",
-        "HunterName": "ETH-CoinAI",
-        "NowTimeStr": "2023-04-11T06:00:00",
-        "NowTime": 1681164705440,
-        "NowC": "1903.29",
-        "CAP_EMA": "5.69",
-        "EMA": "1862.37",
-        "OpenAvgPx": "1890.07",
-        "OpenTimeStr": "2023-04-11T06:00:00",
-        "OpenTime": 1681164016689,
-        "NowDir": 1,
-        "InitMoney": "1000",
-        "ChargeUpl": "0.05",
-        "NowUplRatio": "2.796",
-        "Money": "0"
+        "Money": "0",
+        "MakeMoney": "0"
       }
     }
   }

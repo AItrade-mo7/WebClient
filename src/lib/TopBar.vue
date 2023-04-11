@@ -112,6 +112,17 @@ const showDrawer = () => {
           </div>
 
           <div className="TopBar__item">
+            <RouterLink to="/OrderList" class="item_btn">
+              <n-button text size="tiny">
+                <template #icon>
+                  <XIcon name="FieldTimeOutlined" />
+                </template>
+                平仓记录
+              </n-button>
+            </RouterLink>
+          </div>
+
+          <div className="TopBar__item">
             <RouterLink to="/" class="item_btn">
               <n-button text size="tiny">
                 <template #icon>

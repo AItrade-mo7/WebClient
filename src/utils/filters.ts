@@ -78,6 +78,15 @@ export const DateFormat = (val: string | number, isSecond = false, isMill = fals
   }
 };
 
+export const CountTimeDiff = (nowTime, AfterTime) => {
+  const times = (nowTime - AfterTime) / 1000; // times是剩余时间总的秒数
+  const d = parseInt(String(times / 60 / 60 / 24)); // 天
+  const h = parseInt(String((times / 60 / 60) % 24)); //时
+  const m = parseInt(String((times / 60) % 60)); // 分
+  const s = parseInt(String(times % 60)); // 当前的秒
+  return `${d}天${h}时${m}分${s}秒`;
+};
+
 export const ChartToStr = (val: string): string => {
   let txt = '';
   switch (val) {

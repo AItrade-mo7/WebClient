@@ -129,6 +129,11 @@ const routes: any = [
     component: () => import('@/pages/ApiKey.vue'),
   },
   {
+    path: '/OrderList',
+    isLogin: true,
+    component: () => import('@/pages/OrderList.vue'),
+  },
+  {
     path: '/ManageEmail',
     isLogin: true,
     component: () => import('@/pages/ManageEmail.vue'),

@@ -77,16 +77,30 @@ const GetDirText = (dir) => {
         <span class="value"> {{ item.Describe }} </span>
       </div>
     </n-space>
-    <div class="titleLitter">当前持仓 <span class="hint">(如果选择了该策略，您的持仓应应与当前保持一致)</span></div>
+    <div class="titleLitter">
+      当前持仓 <span class="hint">(如果选择了该策略，您的OKX账户持仓应应与当前模拟持仓保持一致)</span>
+    </div>
 
     <n-space class="data-wrapper">
+      <div class="block">
+        <span class="label">杠杆倍数</span>
+        <span class="value"> {{ $lcg(item, 'TradeKdataOpt.MaxTradeLever') }} </span>
+      </div>
+      <div class="block">
+        <span class="label">初始资金</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.InitMoney') }}</span>
+      </div>
+      <div class="block">
+        <span class="label">手续费率</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.ChargeUpl') }}%</span>
+      </div>
       <div class="block">
         <span class="label">持仓币种</span>
         <span class="value"> {{ $lcg(item, 'NowVirtualPosition.InstID') }} </span>
       </div>
       <div class="block">
-        <span class="label">持仓方向</span>
-        <span class="value"> {{ GetDirText($lcg(item, 'NowVirtualPosition.NowDir')) }} </span>
+        <span class="label">当前余额</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.Money') }}</span>
       </div>
       <div class="block">
         <span class="label">开仓时间</span>
@@ -97,8 +111,16 @@ const GetDirText = (dir) => {
         <span class="value"> {{ $lcg(item, 'NowVirtualPosition.OpenAvgPx') }} </span>
       </div>
       <div class="block">
-        <span class="label">当前持仓收益</span>
+        <span class="label">持仓方向</span>
+        <span class="value"> {{ GetDirText($lcg(item, 'NowVirtualPosition.NowDir')) }} </span>
+      </div>
+      <div class="block">
+        <span class="label">当前持仓收益率</span>
         <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowUplRatio') }}% </span>
+      </div>
+      <div class="block">
+        <span class="label">预计本次持仓营收</span>
+        <span class="value"> {{ $lcg(item, 'NowVirtualPosition.MakeMoney') }} </span>
       </div>
     </n-space>
     <hr />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DateFormat } from '@/utils/filters';
+import { DateFormat, CountTimeDiff } from '@/utils/filters';
 import { defineAsyncComponent } from 'vue';
 
 import { ServeIDToParam } from '@/utils/tools';
@@ -43,6 +43,7 @@ const ShowConfig = () => {
   <div class="InfoOk" v-if="props.WssData.DataSource">
     <div class="title">
       系统状态
+      <span class="hint">修改您的系统全局设置</span>
       <n-button type="primary" class="editBtn" @Click="ShowConfig" size="tiny" circle>
         <template #icon>
           <XIcon name="EditOutlined" />
@@ -63,6 +64,18 @@ const ShowConfig = () => {
         <span class="value"> {{ props.WssData.IP }} </span>
       </div>
       <div class="block">
+        <span class="label">系统创建时间</span>
+        <span class="value"> {{ DateFormat(props.WssData.CreateTime) }} </span>
+      </div>
+      <div class="block">
+        <span class="label">最后修改配置时间</span>
+        <span class="value"> {{ DateFormat(props.WssData.UpdateTime) }} </span>
+      </div>
+      <div class="block">
+        <span class="label">已提供服务</span>
+        <span class="value"> {{ CountTimeDiff(props.WssData.SysTime, props.WssData.CreateTime) }} </span>
+      </div>
+      <div class="block">
         <span class="label">系统描述</span>
         <span class="value"> {{ props.WssData.Describe }} </span>
       </div>
@@ -75,7 +88,7 @@ const ShowConfig = () => {
     </n-space>
     <hr />
 
-    <div class="title">榜单状态</div>
+    <div class="title">榜单状态<span class="hint">如果链接失效请及时通知开发者</span></div>
     <n-space class="data-wrapper">
       <div class="block">
         <span class="label">数据时间</span>
@@ -101,11 +114,12 @@ const ShowConfig = () => {
       </div>
     </n-space>
     <hr />
-    <div class="title">正在运行的策略：</div>
+    <div class="title">正在运行的策略<span class="hint"> 多策略并行计算，您的账户可自由选择 </span></div>
     <HunterView :WssData="props.WssData" />
 
     <div class="title" v-if="props.WssData.ApiKeyList">
       APIKey 管理 ({{ props.WssData.ApiKeyList.length }}/{{ props.WssData.MaxApiKeyNum }})
+      <span class="hint"> 添加交易所的 Api Key 开启全自动托管 </span>
       <RouterLink
         :to="`/SatelliteServe/AddKey/${ServeIDToParam(props.WssData.ServeID)}`"
         class="addBtn"
@@ -146,6 +160,14 @@ const ShowConfig = () => {
     </div>
 
     <hr />
+
+    <div class="title" v-if="props.WssData.ApiKeyList">显摆账户<span class="hint">(您的隐私是安全的)</span></div>
+
+    <div>
+      显摆的账户将在这里展示 该功能尚在开发中
+      <br />
+    </div>
+    <hr />
     <div class="MainTradeBtn">
       <OrderBtn :WssData="props.WssData" KeyName="ALL" />
     </div>
@@ -173,6 +195,12 @@ const ShowConfig = () => {
   .addBtn {
     display: block;
     margin-left: 12px;
+  }
+
+  .hint {
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
   }
 }
 .data-wrapper {

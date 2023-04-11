@@ -60,6 +60,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
   });
   HandleKeyStatus = false;
 };
+const ShowMyAccount = (index) => {
+  window.$message.warning(`当前功能尚在开发中${index}`);
+};
 </script>
 
 <template>
@@ -103,6 +106,9 @@ const HandleKeySubmit = async (type: string, name: string) => {
           请选择策略
         </n-button>
 
+        <n-button size="small" v-if="GetHunterData().HunterName" @click="ShowMyAccount(ApiKeyIdx)">
+          显摆/低调
+        </n-button>
         <n-button size="small" v-if="GetHunterData().HunterName" type="primary" @click="ShowDetail(ApiKeyIdx)">
           查看详情
         </n-button>

@@ -85,6 +85,8 @@ const MyIconLoad = () => {
       return defineAsyncComponent(() => import('@vicons/antd/PlusCircleFilled'));
     case 'MinusCircleFilled':
       return defineAsyncComponent(() => import('@vicons/antd/MinusCircleFilled'));
+    case 'FieldTimeOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/FieldTimeOutlined'));
 
     case 'VerifiedOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/VerifiedOutlined'));

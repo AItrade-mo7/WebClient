@@ -174,6 +174,7 @@ onMounted(() => {
         </span>
       </div>
     </div>
+    <br />
     <div class="title">设置账户参数:</div>
     <div class="data-wrapper">
       <n-form ref="CoinAIAccountForm" :model="formValue" size="small" class="myForm">
@@ -197,7 +198,7 @@ onMounted(() => {
         </n-form-item>
       </n-form>
     </div>
-
+    <br />
     <div class="TradeBtnWrapper">
       <OrderBtn :WssData="props.WssData" :KeyName="props.ApiKey.Name" @Success="OrderEnd" />
     </div>
