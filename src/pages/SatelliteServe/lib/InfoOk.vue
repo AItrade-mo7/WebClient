@@ -180,6 +180,25 @@ const ShowConfig = () => {
         <ServeConfig :WssData="props.WssData" />
       </n-drawer-content>
     </n-drawer>
+    <hr />
+
+    <div class="title">卫星服务使用基本步骤</div>
+    <ol>
+      <li>点击【APIKey管理】后面的黄色【小加号】</li>
+      <li>根据提示注册和下载 OKX交易所</li>
+      <li>打开 OKX个人中心去申请 API Key, 勾选【只读】和【交易】</li>
+      <li>在本站填入你的 【API Key】</li>
+      <li>用 OKX 手动成功下单 BTC合约 , 然后返回本系统【查看详情】，是否正常展示你的持仓</li>
+      <li>点击【查看详情】选择一个策略【更新参数】</li>
+      <li>选择一个策略【更新参数】</li>
+      <li>进入详情点击【清除所有仓位】</li>
+      <li>如果可以正常平仓，则表示本系统可以操作你的账户了。</li>
+      <li>再次确认策略选择没问题。</li>
+      <li>将你的USDT 都划转到 【okx交易账户】下。</li>
+      <li>策略会在市场转变时，自动同步你的持仓。</li>
+      <li>躺着等收钱（或者等着亏完[笑]）</li>
+      <li>最好加个群,关于本系统的最新动向将会在群里第一时间发布</li>
+    </ol>
   </div>
 </template>
 

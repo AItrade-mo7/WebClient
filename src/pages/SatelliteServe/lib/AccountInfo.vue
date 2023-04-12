@@ -199,7 +199,7 @@ onMounted(() => {
       </n-form>
     </div>
     <br />
-    <div class="TradeBtnWrapper">
+    <div class="TradeBtnWrapper" v-if="props.ApiKey.Hunter">
       <OrderBtn :WssData="props.WssData" :KeyName="props.ApiKey.Name" @Success="OrderEnd" />
     </div>
   </div>
