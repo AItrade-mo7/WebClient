@@ -199,6 +199,10 @@ const ShowConfig = () => {
       <li>躺着等收钱（或者等着亏完[笑]）</li>
       <li>最好加个群,关于本系统的最新动向将会在群里第一时间发布</li>
     </ol>
+
+    <n-button type="success" size="small" tag="a" href="//file.mo7.cc/disk/AItrade新手使用步骤.docx" target="_blank">
+      查看图文步骤（感谢群友提供的文档）
+    </n-button>
   </div>
 </template>
 
