@@ -51,6 +51,16 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
       </RouterLink>
     </div>
     <br />
+
+    <div class="HomeBtnItem">
+      <a href="//file.mo7.cc/disk/AItrade新手使用步骤.docx" target="_blank">
+        <n-button color="#999"> 查看群友提供的使用说明 </n-button>
+      </a>
+      后面我会专门搭建一个量化专题社区来存放文档资料 暂定域名为
+      <a style="display: inline" href="https://doc.mo7.cc" target="_blank">https://doc.mo7.cc</a>
+    </div>
+
+    <br />
   </div>
 </template>
 
