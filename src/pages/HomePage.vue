@@ -54,7 +54,7 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
     <div class="HomeBtnItem">
       <a href="https://doc.mo7.cc" target="_blank">
-        <n-button color="#999"> 查看小伙伴提供的使用说明 </n-button>
+        <n-button color="#999"> 使用说明【必读】 </n-button>
       </a>
     </div>
 
