@@ -83,7 +83,7 @@ onMounted(() => {
         <span class="label">最低硬件配置：</span> <span class="lineHight"> 2</span> 核芯、
         <span class="lineHight">2GB</span> 内存、<span class="lineHight">30GB</span> 存储。
         <span class="hint">
-          程序采用 Go 语言编写, 会实时爬取交易所数据，并执行超高频复杂计算, 运行峰值内存消耗为 50M~80M 。
+          程序采用 Go 语言编写, 会实时爬取交易所数据，并执行超高频复杂计算, 运行峰值内存消耗为 80M~200M 。
         </span>
         <br />
         <br />

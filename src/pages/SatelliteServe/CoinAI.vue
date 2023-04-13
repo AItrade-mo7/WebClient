@@ -80,7 +80,7 @@ const OpenSet = () => {
 
 <template>
   <PageTitle class="CoinAIPageTitle">
-    {{ $lcg(WssData, 'AppEnv.ServeID') }}
+    {{ $lcg(WssData, 'SysName') }}
     <template #after v-if="WssData.SysVersion">
       <n-badge class="AItradeServer__dotNet" :dot="WssData.SysVersion != WssData.GithubVersion">
         <n-button size="tiny" quaternary @click="OpenSet">

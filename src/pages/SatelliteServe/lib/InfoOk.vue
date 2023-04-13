@@ -60,8 +60,8 @@ const ShowConfig = () => {
         <span class="value"> {{ DateFormat(props.WssData.SysTime, true) }} </span>
       </div>
       <div class="block">
-        <span class="label">系统IP</span>
-        <span class="value"> {{ props.WssData.IP }} </span>
+        <span class="label">ServeID</span>
+        <span class="value"> {{ props.WssData.ServeID }} </span>
       </div>
       <div class="block">
         <span class="label">系统创建时间</span>

@@ -118,11 +118,11 @@ const Reload = () => {
       适合有一定云服务运维经验的朋友。
     </div>
     <div class="ListWrapper">
-      <n-card v-for="(item, index) in ServeList" :key="index" :title="item.ServeID" embedded hoverable size="small">
+      <n-card v-for="(item, index) in ServeList" :key="index" :title="item.SysName" embedded hoverable size="small">
         <div class="Server__item">
-          <span class="Server__label"> Name </span>
+          <span class="Server__label"> ServeID </span>
           <span class="Server__val">
-            {{ item.SysName }}
+            {{ item.ServeID }}
           </span>
         </div>
         <div class="Server__item">
@@ -164,11 +164,11 @@ const Reload = () => {
     <div class="title">公开的卫星服务</div>
     <div class="explain">使用他人公开的卫星服务，简单方便。系统的运行状态和权限归服务器所有者掌控。</div>
     <div class="ListWrapper">
-      <n-card v-for="(item, index) in PublicList" :key="index" :title="item.ServeID" embedded hoverable size="small">
+      <n-card v-for="(item, index) in PublicList" :key="index" :title="item.SysName" embedded hoverable size="small">
         <div class="Server__item">
-          <span class="Server__label"> Name </span>
+          <span class="Server__label"> ServeID </span>
           <span class="Server__val">
-            {{ item.SysName }}
+            {{ item.ServeID }}
           </span>
         </div>
         <div class="Server__item">
