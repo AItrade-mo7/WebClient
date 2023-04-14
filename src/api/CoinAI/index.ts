@@ -26,8 +26,8 @@ export const SetKey = (data: SetKeyParam): Promise<any> => {
   const param = {
     ...data,
     ApiKey: AseEncrypt(data.ApiKey),
-    SecretKey: AseEncrypt(data.ApiKey),
-    Passphrase: AseEncrypt(data.ApiKey),
+    SecretKey: AseEncrypt(data.SecretKey),
+    Passphrase: AseEncrypt(data.Passphrase),
     Password: AseEncrypt(Md5(data.Password)),
   };
 
