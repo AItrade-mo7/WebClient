@@ -73,7 +73,7 @@ export const ChangePassword = (data: ChangePasswordParam) => {
     ...data,
     Code: Md5(data.Code),
     Password: AseEncrypt(Md5(data.Password)),
-    AgainPassword: Md5(data.AgainPassword),
+    AgainPassword: AseEncrypt(Md5(data.AgainPassword)),
   };
 
   return ajax_json({
