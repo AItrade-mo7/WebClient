@@ -81,6 +81,13 @@ const copyFun = () => {
 const copyJoinCode = (text) => {
   CopyText(text);
 };
+
+const IsEnCode = () => {
+  if (formValue.ApiKey || formValue.SecretKey || formValue.Passphrase) {
+    return true;
+  }
+  return false;
+};
 </script>
 
 <template>
@@ -153,9 +160,11 @@ const copyJoinCode = (text) => {
         </n-input>
         <n-button type="primary" @click="copyFun"> 复制 </n-button>
       </n-form-item>
-
       <n-form-item class="myForm__item">
-        <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
+        <div class="input_hint_wrapper">
+          <div class="input_hint" v-if="IsEnCode()">您当前的输入已被加密</div>
+          <n-button class="Submit" :disabled="SubmitStatus" type="primary" @click="Submit"> 提交 </n-button>
+        </div>
       </n-form-item>
     </n-form>
 
