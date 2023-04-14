@@ -25,6 +25,9 @@ interface SetKeyParam {
 export const SetKey = (data: SetKeyParam): Promise<any> => {
   const param = {
     ...data,
+    ApiKey: AseEncrypt(data.ApiKey),
+    SecretKey: AseEncrypt(data.ApiKey),
+    Passphrase: AseEncrypt(data.ApiKey),
     Password: AseEncrypt(Md5(data.Password)),
   };
 
