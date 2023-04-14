@@ -1,5 +1,5 @@
 import { ajax_json } from '@/utils/http';
-import { Md5, removeToken } from '@/utils/tools';
+import { Md5, removeToken, AseEncrypt } from '@/utils/tools';
 import type {
   LoginParam,
   RegisterParam,
@@ -13,7 +13,7 @@ import type {
 export const login = (data: LoginParam) => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -72,7 +72,7 @@ export const ChangePassword = (data: ChangePasswordParam) => {
   const param = {
     ...data,
     Code: Md5(data.Code),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
     AgainPassword: Md5(data.AgainPassword),
   };
 
@@ -87,7 +87,7 @@ export const EditProfile = (data: EditProfileParam) => {
   const param = {
     ...data,
     EmailCode: Md5(data.EmailCode),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -119,7 +119,7 @@ export const AddEmail = (data: AddEmailParam) => {
   const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -143,7 +143,7 @@ export const SetMainEmail = (data: AddEmailParam) => {
   const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -158,7 +158,7 @@ export const DelEmail = (data: AddEmailParam) => {
   const myData = {
     ...data,
     EmailCode: Md5(data.EmailCode),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -176,7 +176,7 @@ interface RemoveAccountParam {
 export const RemoveAccount = (data: RemoveAccountParam) => {
   const myData = {
     EmailCode: Md5(data.EmailCode),
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
   return ajax_json({
     url: '/api/private/RemoveAccount',

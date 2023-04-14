@@ -79,6 +79,10 @@ export const Encrypt = (message: string): string => {
   return window.mo7Encrypt(message);
 };
 
+export const AseEncrypt = (message: string): string => {
+  return window.mo7AseEncrypt(message);
+};
+
 export const UpLoadFileEncrypt = () => {
   const stamp = new Date().getTime();
   const time = stamp / 1000 / 30;

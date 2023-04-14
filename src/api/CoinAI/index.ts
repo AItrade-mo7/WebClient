@@ -1,5 +1,5 @@
 import { ajax_json } from '@/utils/http';
-import { Md5 } from '@/utils/tools';
+import { Md5, AseEncrypt } from '@/utils/tools';
 
 interface AItradeNetParam {
   SatelliteServe: string;
@@ -25,7 +25,7 @@ interface SetKeyParam {
 export const SetKey = (data: SetKeyParam): Promise<any> => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -44,7 +44,7 @@ interface HandleKeyParam {
 export const HandleKey = (data: HandleKeyParam): Promise<any> => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({
@@ -78,7 +78,7 @@ interface OrderParam {
 export const Order = (data: OrderParam) => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
     Code: Md5(data.Code),
   };
 
@@ -101,7 +101,7 @@ interface EditConfigParam {
 export const EditConfig = (data: EditConfigParam) => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
     EmailCode: Md5(data.EmailCode),
   };
 
@@ -123,7 +123,7 @@ interface SetAccountConfigParam {
 export const SetAccountConfig = (data: SetAccountConfigParam) => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
   };
 
   return ajax_json({

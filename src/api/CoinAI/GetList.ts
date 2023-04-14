@@ -1,5 +1,5 @@
 import { ajax_json } from '@/utils/http';
-import { Md5 } from '@/utils/tools';
+import { Md5, AseEncrypt } from '@/utils/tools';
 
 export const GetCoinAILIst = () => {
   return ajax_json({
@@ -26,7 +26,7 @@ interface RemoveCoinAIType {
 export const RemoveCoinAI = (data: RemoveCoinAIType) => {
   const param = {
     ...data,
-    Password: Md5(data.Password),
+    Password: AseEncrypt(Md5(data.Password)),
     EmailCode: Md5(data.EmailCode),
   };
 
