@@ -11,6 +11,17 @@ const MyIconLoad = () => {
   switch (props.name) {
     case 'EyeOutlined':
       return defineAsyncComponent(() => import('@vicons/antd/EyeOutlined'));
+
+    case 'RiseOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/RiseOutlined'));
+    case 'SecurityScanFilled':
+      return defineAsyncComponent(() => import('@vicons/antd/SecurityScanFilled'));
+
+    case 'FallOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/FallOutlined'));
+    case 'ArrowRightOutlined':
+      return defineAsyncComponent(() => import('@vicons/antd/ArrowRightOutlined'));
+
     case 'EyeInvisibleTwotone':
       return defineAsyncComponent(() => import('@vicons/antd/EyeInvisibleTwotone'));
     case 'CaretUpFilled':

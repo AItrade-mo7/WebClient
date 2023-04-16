@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
 import { cloneDeep } from 'lodash';
-import { WholeDirFormat, DateFormat } from '@/utils/filters';
+import { DateFormat } from '@/utils/filters';
 import { $lcg } from '@/utils/tools';
+const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
 const props = defineProps({
   WssData: Object,
@@ -15,6 +17,27 @@ const GetHunterNameArr = () => {
     HunterArr.push(Hunter);
   }
   return HunterArr;
+};
+
+const GetPDdir = (ur: any) => {
+  if (ur - 0 > 0) {
+    return 'RiseOutlined';
+  }
+  if (ur - 0 < 0) {
+    return 'FallOutlined';
+  }
+
+  return 'SecurityScanFilled';
+};
+
+const CountUR = (ur: any) => {
+  if (ur - 0 > 0) {
+    return 'green';
+  }
+  if (ur - 0 < 0) {
+    return 'red';
+  }
+  return '';
 };
 
 const GetDirText = (dir) => {
@@ -45,7 +68,7 @@ const GetDirText = (dir) => {
         </div>
         <div class="block">
           <span class="label">当前价格</span>
-          <span class="value" :class="WholeDirFormat($lcg(item, 'NowKdata.Dir')).class">
+          <span class="value">
             {{ $lcg(item, 'NowKdata.C') }}
           </span>
         </div>
@@ -104,20 +127,29 @@ const GetDirText = (dir) => {
           <span class="value"> {{ $lcg(item, 'NowVirtualPosition.Money') }}</span>
         </div>
         <div class="block">
+          <span class="label">CAP</span>
+          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.CAP_EMA') }} </span>
+        </div>
+        <div class="block">
           <span class="label">开仓时间</span>
-          <span class="value"> {{ DateFormat($lcg(item, 'NowVirtualPosition.OpenTime')) }} </span>
+          <span class="value bolder"> {{ DateFormat($lcg(item, 'NowVirtualPosition.OpenTime')) }} </span>
         </div>
         <div class="block">
           <span class="label">开仓价格</span>
-          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.OpenAvgPx') }} </span>
+          <span class="value bolder"> {{ $lcg(item, 'NowVirtualPosition.OpenAvgPx') }} </span>
         </div>
         <div class="block">
           <span class="label">持仓方向</span>
-          <span class="value"> {{ GetDirText($lcg(item, 'NowVirtualPosition.NowDir')) }} </span>
+          <span class="value bolder">
+            {{ GetDirText($lcg(item, 'NowVirtualPosition.NowDir')) }}
+            <XIcon :name="GetPDdir($lcg(item, 'NowVirtualPosition.NowDir'))" />
+          </span>
         </div>
         <div class="block">
           <span class="label">当前持仓收益率</span>
-          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowUplRatio') }}% </span>
+          <span class="value bolder" :class="CountUR($lcg(item, 'NowVirtualPosition.NowUplRatio'))">
+            {{ $lcg(item, 'NowVirtualPosition.NowUplRatio') }}%
+          </span>
         </div>
         <div class="block">
           <span class="label">预计本次持仓营收</span>
@@ -197,6 +229,9 @@ const GetDirText = (dir) => {
 }
 
 .value {
+  .XIcon {
+    vertical-align: middle;
+  }
   &.green {
     color: $greenColor;
   }
@@ -205,6 +240,9 @@ const GetDirText = (dir) => {
   }
   &.gray {
     color: #999;
+  }
+  &.bolder {
+    font-weight: 900;
   }
 }
 </style>

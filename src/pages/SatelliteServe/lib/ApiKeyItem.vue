@@ -83,6 +83,10 @@ const ShowMyAccount = (index) => {
       <span class="Server__label">Passphrase </span>
       <span class="Server__val"> {{ props.ApiKey.Passphrase }} </span>
     </div>
+    <div class="Server__item">
+      <span class="Server__label Hunter">Hunter </span>
+      <span class="Server__val"> {{ props.ApiKey.Hunter }} {{ props.ApiKey.TradeLever }}x </span>
+    </div>
 
     <template #footer>
       <div class="card_footer" v-if="UserInfoStore.value.UserID == props.ApiKey.UserID">
@@ -132,6 +136,9 @@ const ShowMyAccount = (index) => {
   flex-grow: 0;
   flex-shrink: 0;
   color: #333;
+  &.Hunter {
+    width: 54px;
+  }
   &::after {
     content: ':';
   }
