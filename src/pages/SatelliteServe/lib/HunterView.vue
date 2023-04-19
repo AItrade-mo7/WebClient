@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue';
-import { cloneDeep } from 'lodash';
 import { DateFormat } from '@/utils/filters';
-import { $lcg } from '@/utils/tools';
+import { $lcg, ServeIDToParam, cloneDeep } from '@/utils/tools';
+
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 
 const props = defineProps({
@@ -60,7 +60,17 @@ const GetDirText = (dir) => {
 <template>
   <div>
     <div v-for="(item, key) in GetHunterNameArr()" :key="key">
-      <div class="title">{{ item.HunterName }}</div>
+      <div class="title">
+        {{ item.HunterName }}
+        <RouterLink
+          class="HunterHistoryBtn"
+          :to="`/SatelliteServe/VirtualPositionList/${ServeIDToParam(props.WssData.ServeID)}?HunterName=${
+            item.HunterName
+          }`"
+        >
+          <n-button strong secondary type="info" size="tiny"> 查看持仓历史 </n-button>
+        </RouterLink>
+      </div>
       <n-space class="data-wrapper">
         <div class="block">
           <span class="label">当前K线</span>
@@ -201,6 +211,9 @@ const GetDirText = (dir) => {
   .addBtn {
     display: block;
     margin-left: 12px;
+  }
+  .HunterHistoryBtn {
+    margin-left: 6px;
   }
 }
 

@@ -135,3 +135,26 @@ export const SetAccountConfig = (data: SetAccountConfigParam) => {
     method: 'post',
   });
 };
+
+interface SortType {
+  [key: string]: number;
+}
+interface Query {
+  [key: string]: any;
+}
+
+interface GetVirtualOrderListParam {
+  SatelliteServe: string;
+  Size: number; // 每页多少条
+  Current: number; // 当前页码 0 为第一页
+  Sort: SortType; // 排序 {CreateTime:-1}
+  Query: Query; //查询  {HunterName:"BTC-CoinAI" }
+  CreateTime: Array<number>; // [开始时间戳,结束时间戳]
+}
+export const GetVirtualOrderList = (data: GetVirtualOrderListParam) => {
+  return ajax_json({
+    url: '/CoinAI/GetVirtualOrderList',
+    data,
+    method: 'post',
+  });
+};

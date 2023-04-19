@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
-import { defineAsyncComponent } from 'vue';
+import { onMounted, onUnmounted, defineAsyncComponent } from 'vue';
 import { GetCoinAIConfig } from '@/api/CoinAI/index';
 import { NewSocket } from '@/api/CoinAI/CoinAIWss';
 import { $lcg, GetParamServeID } from '@/utils/tools';

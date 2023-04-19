@@ -8,7 +8,8 @@ import { setToken, removeToken } from '@/utils/tools';
 import { PingDataStore } from '@/store';
 
 import { defineAsyncComponent } from 'vue';
-const LoadingView = defineAsyncComponent(() => import('./LoadingView.vue'));
+
+import LoadingView from './LoadingView.vue';
 const TopBar = defineAsyncComponent(() => import('@/lib/TopBar.vue'));
 
 const fetchPing = async () => {

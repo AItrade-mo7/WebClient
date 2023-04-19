@@ -46,6 +46,12 @@ const routes: any = [
         component: () => import('@/pages/SatelliteServe/CreateCoinServe.vue'),
       },
       {
+        path: 'VirtualPositionList/:id',
+        isLogin: true,
+        description: 'VirtualPositionList',
+        component: () => import('@/pages/SatelliteServe/VirtualPositionList.vue'),
+      },
+      {
         path: 'CoinAI/:id',
         isLogin: true,
         description: 'CoinAI',
