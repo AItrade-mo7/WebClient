@@ -16,6 +16,30 @@ let LeverOpt = $ref([1]);
 let HunterOpt = $ref([]);
 let HunterData = $ref({});
 
+function GetNowKey() {
+  const ApiKeyList = cloneDeep(props.WssData.ApiKeyList);
+  let ApiKey = cloneDeep(props.ApiKey);
+  for (const item of ApiKeyList) {
+    if (item.Name == ApiKey.Name) {
+      ApiKey = item;
+      break;
+    }
+  }
+
+  return ApiKey;
+}
+
+function NowHunter(): any {
+  const ApiKey = GetNowKey();
+  const HunterMap = cloneDeep(props.WssData.HunterData);
+  let Hunter = {};
+  if (ApiKey.Hunter) {
+    Hunter = HunterMap[ApiKey.Hunter];
+  }
+
+  return Hunter;
+}
+
 function SetHunterOpt() {
   const HunterMap = cloneDeep(props.WssData.HunterData);
 
@@ -66,9 +90,9 @@ function GetHunterInfo(val) {
 let SubmitStatus: boolean = $ref(false);
 const formValue = $ref({
   Password: '',
-  Hunter: props.ApiKey.Hunter,
-  Name: props.ApiKey.Name,
-  TradeLever: props.ApiKey.TradeLever,
+  Hunter: GetNowKey().Hunter,
+  Name: GetNowKey().Name,
+  TradeLever: GetNowKey().TradeLever,
 });
 
 const SendForm = async () => {
@@ -100,7 +124,7 @@ let Positions = $ref([]);
 function GetDetail() {
   GetAccountDetail({
     SatelliteServe: props.WssData.ServeID,
-    Name: props.ApiKey.Name,
+    Name: GetNowKey().Name,
   }).then((res) => {
     if (res.Code > 0) {
       Balance = res.Data.Balance;
@@ -131,7 +155,7 @@ onMounted(() => {
   GetDetail();
   GetSliderMarks();
   SetHunterOpt();
-  GetHunterInfo(props.ApiKey.Hunter);
+  GetHunterInfo(GetNowKey().Hunter);
 });
 </script>
 
@@ -156,12 +180,20 @@ onMounted(() => {
         <span class="value"> {{ DateFormat(item.CTime, true) }} </span>
       </div>
       <div class="block">
+        <span class="label"> 开仓均价 </span>
+        <span class="value"> {{ item.AvgPx }} </span>
+      </div>
+      <div class="block">
         <span class="label"> 杠杆倍数 </span>
         <span class="value"> {{ item.Lever }} </span>
       </div>
       <div class="block">
         <span class="label"> 初始保证金 </span>
         <span class="value"> {{ Decimal(item.Imr) }} </span>
+      </div>
+      <div class="block">
+        <span class="label"> 持仓数量 </span>
+        <span class="value"> {{ item.Pos }} </span>
       </div>
       <div class="block">
         <span class="label"> 未实现收益 </span>
@@ -181,7 +213,7 @@ onMounted(() => {
         <n-form-item class="myForm__item" label-placement="left" label="选择策略:">
           <n-select v-model:value="formValue.Hunter" :options="HunterOpt" :on-update:value="handleUpdateValue" />
         </n-form-item>
-        <div class="input_hint_wrapper" v-if="props.ApiKey.Hunter">
+        <div class="input_hint_wrapper" v-if="GetNowKey().Hunter">
           <n-form-item class="myForm__item" label-placement="left" label="杠杆倍数:">
             <n-slider
               v-model:value="formValue.TradeLever"
@@ -199,8 +231,28 @@ onMounted(() => {
       </n-form>
     </div>
     <br />
-    <div class="TradeBtnWrapper" v-if="props.ApiKey.Hunter">
-      <OrderBtn :WssData="props.WssData" :KeyName="props.ApiKey.Name" @Success="OrderEnd" />
+
+    <div class="title">当前策略信息</div>
+    <div class="data-wrapper">
+      <div class="block">
+        <span class="label">策略名称</span>
+        <span class="value"> {{ GetNowKey().Hunter }} </span>
+      </div>
+      <div class="block">
+        <span class="label">选择的杠杆倍数</span>
+        <span class="value"> {{ GetNowKey().TradeLever }}x </span>
+      </div>
+      <div class="block">
+        <span class="label">交易对</span>
+        <span class="value"> {{ NowHunter()?.TradeInstID }} </span>
+      </div>
+      <div class="block">
+        <span class="label">当前现货价格</span>
+        <span class="value"> {{ NowHunter()?.NowKdata?.C }} </span>
+      </div>
+    </div>
+    <div class="TradeBtnWrapper" v-if="GetNowKey().Hunter">
+      <OrderBtn :WssData="props.WssData" :KeyName="GetNowKey().Name" @Success="OrderEnd" />
     </div>
   </div>
 </template>
