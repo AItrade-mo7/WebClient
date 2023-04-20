@@ -58,7 +58,7 @@ const PageChange = (page) => {
 </script>
 
 <template>
-  <PageTitle>虚拟持仓列表</PageTitle>
+  <PageTitle>虚拟持仓历史</PageTitle>
   <div class="PageWrapper VirtualPositionList">
     <div class="tableView" v-for="(item, index) in TableList" :key="index">
       <n-space class="data-wrapper">
