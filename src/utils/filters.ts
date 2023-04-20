@@ -42,6 +42,10 @@ export const TwoDigits = (val: string | number): string => {
 };
 
 export const DateFormat = (val: string | number, isSecond = false, isMill = false, isFullYear = false): string => {
+  if (!val) {
+    return 'Null';
+  }
+
   const time = new Date(Number(val));
   const dayJsVal = dayjs(time);
   const year = dayJsVal.year();
