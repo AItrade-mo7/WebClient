@@ -112,7 +112,7 @@ const GetDirText = (dir) => {
         </div>
       </n-space>
       <div class="titleLitter">
-        当前持仓 <span class="hint">(如果选择了该策略，您的OKX账户持仓应与当前虚拟持仓保持一致)</span>
+        当前持仓 <span class="hint">(如果选择了该策略，您的账户持仓应与当前虚拟持仓保持一致)</span>
       </div>
 
       <n-space class="data-wrapper">
@@ -136,9 +136,14 @@ const GetDirText = (dir) => {
           <span class="label">当前余额</span>
           <span class="value"> {{ $lcg(item, 'NowVirtualPosition.Money') }}</span>
         </div>
+
         <div class="block">
-          <span class="label">CAP</span>
-          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.CAP_EMA') }} </span>
+          <span class="label">K线时间</span>
+          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowTimeStr') }} </span>
+        </div>
+        <div class="block">
+          <span class="label">当前价格</span>
+          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowC') }} </span>
         </div>
         <div class="block">
           <span class="label">开仓时间</span>
@@ -164,6 +169,14 @@ const GetDirText = (dir) => {
         <div class="block">
           <span class="label">预计本次持仓营收</span>
           <span class="value"> {{ $lcg(item, 'NowVirtualPosition.MakeMoney') }} </span>
+        </div>
+        <div class="block">
+          <span class="label">CAP</span>
+          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.CAP_EMA') }} </span>
+        </div>
+        <div class="block">
+          <span class="label">持仓参数</span>
+          <span class="value"> {{ $lcg(item, 'NowVirtualPosition.HunterConfig') }} </span>
         </div>
       </n-space>
       <hr />

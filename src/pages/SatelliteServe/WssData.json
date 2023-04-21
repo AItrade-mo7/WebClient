@@ -1,281 +1,45 @@
 {
-  "SysName": "墨七的卫星服务",
+  "SysName": "4核心的测试服务器",
   "SysType": "CoinAI.net",
-  "Describe": "由开发者本人维护，欢迎使用。",
-  "SysVersion": "0.18.2",
+  "Describe": "测试服务器,请勿使用。",
+  "SysVersion": "0.19.4",
   "UserID": "749a30b2a0824a0eafb81fecb9410f62",
-  "Port": "9012",
+  "Port": "9014",
   "IP": "43.154.90.213",
-  "ServeID": "43.154.90.213:9012",
-  "MaxApiKeyNum": 28,
+  "ServeID": "43.154.90.213:9014",
+  "MaxApiKeyNum": 12,
   "IsPublic": true,
-  "CreateTime": 1679253628306,
-  "UpdateTime": 1681659251983,
-  "ApiKeyList": [
-    {
-      "Name": "sj003",
-      "ApiKey": "043******3",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "c1eb618ba245490eadbeb669624927e2",
-      "TradeLever": 5,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "jm",
-      "ApiKey": "554******b",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "5bea8d6e7af34286bfbc6478eef31fb4",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "L0808",
-      "ApiKey": "fcb******8",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "aaa6952993184b9587bd971a43bb2250",
-      "TradeLever": 4,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "prism5",
-      "ApiKey": "ded******e",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "17c80a0b239949d68d4c6171fe0c870e",
-      "TradeLever": 3,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "ziyangAPIkey",
-      "ApiKey": "9a4******3",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "6a94d62ca7e240b8a91dce4de8e628e6",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "l990218",
-      "ApiKey": "d33******e",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "9614dd38472749928590b5e712ed3e8d",
-      "TradeLever": 3,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "crocodile",
-      "ApiKey": "4d6******a",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "d9d408e33a844971afe3f6f5390bb38b",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "li12345",
-      "ApiKey": "aae******0",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "c08bde68a85144969ffc65ae3ec0a40f",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "lfh2244",
-      "ApiKey": "3d0******f",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "590565a50778484c91f68300e7442c6b",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "yurion12345",
-      "ApiKey": "248******4",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "130bbd7de6db411d885e41269eb5074a",
-      "TradeLever": 5,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "llx666888",
-      "ApiKey": "43d******8",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "c61457515e104ed7819d405e2d6c6013",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "DK04130808",
-      "ApiKey": "ef5******f",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "5c3dcd703d2d49a1a41df7491f698502",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "111",
-      "ApiKey": "fb9******8",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "a3a27bb20daa4c95a882e464214cbabd",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "零零柒",
-      "ApiKey": "5a0******c",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "7fcaf4fda1f2446898457bcbcd6813ab",
-      "TradeLever": 5,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "cbk1208",
-      "ApiKey": "c24******0",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "9614dd38472749928590b5e712ed3e8d",
-      "TradeLever": 2,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "lxb888",
-      "ApiKey": "3fd******f",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "7fcaf4fda1f2446898457bcbcd6813ab",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "qwerty",
-      "ApiKey": "492******7",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "07e029205c354199840f4ebc343329d2",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "Jennifer",
-      "ApiKey": "0fa******9",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "563edc523f844cf8b3d0219b1695a60a",
-      "TradeLever": 3,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "wds8",
-      "ApiKey": "c84******d",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "7de311c192eb4373a960daecbeb12c44",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "pence",
-      "ApiKey": "527******c",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "38269321107341ca9df1eacf2ba06af6",
-      "TradeLever": 5,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "ws",
-      "ApiKey": "ac2******6",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "6677ad92c3c44a4e812d61563fbc2902",
-      "TradeLever": 1,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "tiger891224",
-      "ApiKey": "7ec******4",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "9614dd38472749928590b5e712ed3e8d",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "wyf001",
-      "ApiKey": "086******b",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "bc5866566c45488d9e1783f35b959d0f",
-      "TradeLever": 5,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "主账户的Key",
-      "ApiKey": "0d0******c",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "749a30b2a0824a0eafb81fecb9410f62",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    },
-    {
-      "Name": "OKX",
-      "ApiKey": "231******7",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "f50a251b4a084cb2bbb10c8d502b4859",
-      "TradeLever": 3,
-      "Hunter": "BTC-CoinAI"
-    },
-    {
-      "Name": "kimai",
-      "ApiKey": "932******e",
-      "SecretKey": "******",
-      "Passphrase": "******",
-      "UserID": "bc8fd6a4bc2a4a5daba8e560fb4b59dc",
-      "TradeLever": 5,
-      "Hunter": "ETH-CoinAI"
-    }
-  ],
-  "GithubVersion": "0.18.2",
+  "CreateTime": 1681046557713,
+  "UpdateTime": 1682058577567,
+  "ApiKeyList": [],
+  "GithubVersion": "0.19.4",
   "MainUser": {
     "UserID": "749a30b2a0824a0eafb81fecb9410f62",
     "Email": "670188307@qq.com",
     "Avatar": "//file.mo7.cc/AItrade/749a30b2a0824a0eafb81fecb9410f62/wvkn3.gif",
     "NickName": "墨七的测试账户"
   },
-  "SysTime": 1681659354043,
+  "SysTime": 1682058596032,
   "DataSource": "CoinAI.net",
-  "ApiKeyNum": 26,
+  "ApiKeyNum": 0,
   "NowTicker": {
-    "TimeUnix": 1681659240411,
-    "TimeID": "2023-04-16T23:34",
+    "TimeUnix": 1682058361609,
+    "TimeID": "2023-04-21T14:26",
     "TickerVol": [
       "BTC-USDT",
       "ETH-USDT",
       "DOGE-USDT",
-      "LTC-USDT",
+      "USDC-USDT",
       "XRP-USDT",
-      "SHIB-USDT",
-      "FIL-USDT",
-      "SOL-USDT",
-      "ADA-USDT",
       "CFX-USDT",
-      "ONT-USDT",
+      "SOL-USDT",
+      "LTC-USDT",
       "OP-USDT",
       "LINK-USDT",
-      "DYDX-USDT",
-      "ATOM-USDT"
+      "APT-USDT",
+      "FIL-USDT",
+      "AVAX-USDT",
+      "SHIB-USDT"
     ]
   },
   "HunterData": {
@@ -286,8 +50,8 @@
       "KdataInstID": "BTC-USDT",
       "NowKdata": {
         "InstID": "BTC-USDT",
-        "TimeUnix": 1681657200000,
-        "C": "30342.5",
+        "TimeUnix": 1682056800000,
+        "C": "28165.3",
         "Dir": 1
       },
       "KdataLen": 900,
@@ -296,30 +60,38 @@
         "EMA_Period": 342,
         "CAP_Period": 7,
         "CAP_Max": "2.5",
+        "CAP_Min": "-2.5",
         "MaxTradeLever": 5
       },
       "NowVirtualPosition": {
         "InstID": "BTC-USDT",
         "HunterName": "BTC-CoinAI",
-        "NowTimeStr": "2023-04-16T23:00:00",
-        "NowTime": 1681659253201,
-        "NowC": "30342.5",
-        "CAP_EMA": "2.2",
-        "EMA": "29195",
-        "OpenAvgPx": "30119.6",
-        "OpenTimeStr": "2023-04-11T20:00:00",
-        "OpenTime": 1681216459381,
-        "NowDir": 1,
+        "NowTimeStr": "2023-04-21T14:00:00",
+        "NowTime": 1682058579168,
+        "NowC": "28165.3",
+        "CAP_EMA": "-2.2",
+        "EMA": "29296.1",
+        "HunterConfig": {
+          "EMA_Period": 342,
+          "CAP_Period": 7,
+          "CAP_Max": "2.5",
+          "CAP_Min": "-2.5",
+          "MaxTradeLever": 5
+        },
+        "OpenAvgPx": "",
+        "OpenTimeStr": "",
+        "OpenTime": 0,
+        "NowDir": 0,
         "InitMoney": "1000",
         "ChargeUpl": "0.05",
-        "NowUplRatio": "3.7",
-        "Money": "1036.482",
-        "MakeMoney": "36.982"
+        "NowUplRatio": "0",
+        "Money": "877.871",
+        "MakeMoney": "0"
       }
     },
-    "Auto": {
-      "HunterName": "Auto",
-      "Describe": "根据市场情况为您的账户选择其中一个策略执行交易【目前此功能尚在开发中】",
+    "Market-AI": {
+      "HunterName": "Market-AI",
+      "Describe": "横向分析市场进行最优币种交易【尚在开发中】",
       "TradeInstID": "",
       "KdataInstID": "",
       "NowKdata": {
@@ -334,6 +106,7 @@
         "EMA_Period": 0,
         "CAP_Period": 0,
         "CAP_Max": "",
+        "CAP_Min": "",
         "MaxTradeLever": 0
       },
       "NowVirtualPosition": {
@@ -344,6 +117,13 @@
         "NowC": "",
         "CAP_EMA": "",
         "EMA": "",
+        "HunterConfig": {
+          "EMA_Period": 0,
+          "CAP_Period": 0,
+          "CAP_Max": "",
+          "CAP_Min": "",
+          "MaxTradeLever": 0
+        },
         "OpenAvgPx": "",
         "OpenTimeStr": "",
         "OpenTime": 0,
@@ -362,8 +142,8 @@
       "KdataInstID": "ETH-USDT",
       "NowKdata": {
         "InstID": "ETH-USDT",
-        "TimeUnix": 1681657200000,
-        "C": "2094.35",
+        "TimeUnix": 1682056800000,
+        "C": "1930.02",
         "Dir": 1
       },
       "KdataLen": 900,
@@ -372,25 +152,33 @@
         "EMA_Period": 266,
         "CAP_Period": 5,
         "CAP_Max": "3",
+        "CAP_Min": "-3",
         "MaxTradeLever": 5
       },
       "NowVirtualPosition": {
         "InstID": "ETH-USDT",
         "HunterName": "ETH-CoinAI",
-        "NowTimeStr": "2023-04-16T23:00:00",
-        "NowTime": 1681659253222,
-        "NowC": "2094.35",
-        "CAP_EMA": "5.05",
-        "EMA": "1960.77",
-        "OpenAvgPx": "1916.79",
-        "OpenTimeStr": "2023-04-11T20:00:00",
-        "OpenTime": 1681216459346,
-        "NowDir": 1,
+        "NowTimeStr": "2023-04-21T14:00:00",
+        "NowTime": 1682058579251,
+        "NowC": "1930.02",
+        "CAP_EMA": "-2.26",
+        "EMA": "1994.61",
+        "HunterConfig": {
+          "EMA_Period": 266,
+          "CAP_Period": 5,
+          "CAP_Max": "3",
+          "CAP_Min": "-3",
+          "MaxTradeLever": 5
+        },
+        "OpenAvgPx": "",
+        "OpenTimeStr": "",
+        "OpenTime": 0,
+        "NowDir": 0,
         "InitMoney": "1000",
         "ChargeUpl": "0.05",
-        "NowUplRatio": "46.315",
-        "Money": "1462.418",
-        "MakeMoney": "462.918"
+        "NowUplRatio": "0",
+        "Money": "1169.376",
+        "MakeMoney": "0"
       }
     }
   }

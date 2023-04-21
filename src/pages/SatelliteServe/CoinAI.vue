@@ -90,6 +90,7 @@ const OpenSet = () => {
       </n-badge>
     </template>
   </PageTitle>
+
   <div class="wrapper">
     <n-drawer v-model:show="drawerStatus" placement="top">
       <n-drawer-content class="AItradeServer__drawer-content">
