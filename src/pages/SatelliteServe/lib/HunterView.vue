@@ -142,6 +142,10 @@ const GetDirText = (dir) => {
           <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowTimeStr') }} </span>
         </div>
         <div class="block">
+          <span class="label">数据时间</span>
+          <span class="value bolder"> {{ DateFormat($lcg(item, 'NowVirtualPosition.NowTime')) }} </span>
+        </div>
+        <div class="block">
           <span class="label">当前价格</span>
           <span class="value"> {{ $lcg(item, 'NowVirtualPosition.NowC') }} </span>
         </div>
