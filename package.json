@@ -1,6 +1,6 @@
 {
   "name": "trade-client",
-  "version": "0.18.2",
+  "version": "0.18.4",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -11,6 +11,7 @@
     "deploy": "./_shell/Deploy.sh"
   },
   "dependencies": {
+    "@vitejs/plugin-legacy": "^4.0.3",
     "@vue/eslint-config-typescript": "^11.0.3",
     "axios": "^1.4.0",
     "copy-to-clipboard": "^3.3.3",
