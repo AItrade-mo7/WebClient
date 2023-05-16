@@ -32,6 +32,6 @@ git init &&
   echo "同步完成"
 rm -rf "${OutPutPath}/.git"
 
-echo "${DeployPath}"
+echo "同步完成： ${DeployPath}"
 
 exit 0
