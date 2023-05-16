@@ -6,6 +6,7 @@ source "./_shell/init.sh"
 NowPath=${NowPath}
 OutPutPath=${OutPutPath}
 DeployPath=${DeployPath}
+DeployEndText=${DeployEndText}
 
 ## 判断参数
 desc=$1
@@ -29,9 +30,9 @@ git init &&
   git commit -m "${desc}" &&
   git remote add origin "${DeployPath}" &&
   git push -f --set-upstream origin master:main &&
-  echo "同步完成"
+  echo "同步完成,开始清理目录："
 rm -rf "${OutPutPath}/.git"
 
-echo "同步完成： ${DeployPath}"
+echo "同步结果查看： ${DeployEndText}"
 
 exit 0

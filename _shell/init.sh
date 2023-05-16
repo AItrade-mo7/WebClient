@@ -20,11 +20,18 @@ OutPutPath="${NowPath}/dist"
 # 远程仓库目录地址
 DeployPath="git@github.com:AItrade-mo7/WebClientPackage.git"
 
+# Deploy 完成之后的输出
+DeployEndText="
+https://github.com/AItrade-mo7/WebClientPackage
+https://trade.mo7.cc
+"
+
 echo "
 ===== 初始化变量 =====
 
 当前目录: ${NowPath}
 输出目录: ${OutPutPath}
 远程仓库目录: ${DeployPath}
+完成之后的输出: ${DeployEndText}
 
 "
