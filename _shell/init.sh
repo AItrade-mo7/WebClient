@@ -18,10 +18,7 @@ NowPath=$(pwd)
 OutPutPath="${NowPath}/dist"
 
 # 远程仓库目录地址
-DeployPath="git@github.com:mo7cc/trade.mo7.cc.git"
-
-# 远程仓库的本地目录
-DeployLocalPath="${NowPath}/trade.mo7.cc"
+DeployPath="git@github.com:AItrade-mo7/WebClientPackage.git"
 
 echo "
 ===== 初始化变量 =====
@@ -29,6 +26,5 @@ echo "
 当前目录: ${NowPath}
 输出目录: ${OutPutPath}
 远程仓库目录: ${DeployPath}
-远程仓库本地临时目录: ${DeployLocalPath}
 
 "
