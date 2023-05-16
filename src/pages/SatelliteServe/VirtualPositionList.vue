@@ -48,6 +48,7 @@ onMounted(() => {
   }
 
   PageData.Query.HunterName = HunterName;
+  PageData.Query.ServeID = ServeID;
   GetTableList();
 });
 
