@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 import path from 'path';
 import AppPackage from './package.json';
-import legacy from '@vitejs/plugin-legacy';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 // ========= PWA 配置  =========
