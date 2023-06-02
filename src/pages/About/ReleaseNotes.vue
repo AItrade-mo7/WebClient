@@ -32,7 +32,7 @@ onMounted(() => {
 <template>
   <PageTitle class="CoinAIPageTitle"> 版本说明 </PageTitle>
 
-  <div class="data-wrapper" v-if="ClientInfo.Version">
+  <div class="data-wrapper" v-if="ApiInfo.Version">
     <hr />
     更新日志：<br />
     【待补充】
