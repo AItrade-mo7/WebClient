@@ -2,7 +2,6 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { Ping } from '@/api/Ping';
 import { MarketPing } from '@/api/CoinMarket/index';
-import { MsgPing } from '@/api/Msg/index';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
@@ -12,7 +11,6 @@ let ApiInfo = $ref({});
 let ClientInfo = $ref({});
 let CoinAIInfo = $ref({});
 let MarketInfo = $ref({});
-let MsgInfo = $ref({});
 
 function GetPing() {
   Ping().then((res) => {
@@ -23,10 +21,6 @@ function GetPing() {
 
   MarketPing().then((res) => {
     MarketInfo = res.Data.AppInfo;
-  });
-
-  MsgPing().then((res) => {
-    MsgInfo = res.Data.ApiInfo;
   });
 }
 
@@ -60,7 +54,7 @@ onMounted(() => {
 
     <div class="block">
       <span class="label">Message.net 版本</span>
-      <span class="value"> {{ MsgInfo.Version }} </span>
+      <span class="value"> xxxx </span>
     </div>
 
     <div class="block">
