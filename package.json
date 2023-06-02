@@ -8,7 +8,8 @@
     "vue:build": "vite build",
     "vue:check": "vue-tsc --noEmit",
     "sync": "./_shell/GitSync.sh",
-    "deploy": "./_shell/Deploy.sh"
+    "deploy": "./_shell/Deploy.sh",
+    "deploy-test": "./_shell/Deploy-test.sh"
   },
   "dependencies": {
     "@vitejs/plugin-legacy": "^4.0.3",
