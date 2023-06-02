@@ -11,12 +11,14 @@ let ApiInfo = $ref({});
 let ClientInfo = $ref({});
 let CoinAIInfo = $ref({});
 let MarketInfo = $ref({});
+let MsgInfo = $ref({});
 
 function GetPing() {
   Ping().then((res) => {
     ApiInfo = res.Data.ApiInfo;
     ClientInfo = res.Data.ClientInfo;
     CoinAIInfo = res.Data.CoinAIInfo;
+    MsgInfo = res.Data.MsgInfo;
   });
 
   MarketPing().then((res) => {
@@ -54,7 +56,7 @@ onMounted(() => {
 
     <div class="block">
       <span class="label">Message.net 版本</span>
-      <span class="value"> xxxx </span>
+      <span class="value"> {{ MsgInfo.Version }} </span>
     </div>
 
     <div class="block">
