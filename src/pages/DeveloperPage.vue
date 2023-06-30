@@ -50,8 +50,7 @@ const MsgUrlChange = (val) => {
 
 const ResetFunc = () => {
   mStorage.clearAll();
-
-  UpdateUrlData();
+  window.location.reload();
 };
 
 onMounted(() => {
