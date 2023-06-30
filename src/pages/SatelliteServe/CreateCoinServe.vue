@@ -3,14 +3,15 @@ import { defineAsyncComponent, onMounted } from 'vue';
 import { CopyText } from '@/utils/tools';
 import { UserInfoStore } from '@/store';
 import { RouterLink, useRoute } from 'vue-router';
+import { GetBaseUrl } from '@/config/constant';
 
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 let Port = $ref('');
 
 const GenerateShell = () => {
-  const BaseUrl = window.ViteConst.BaseUrl;
-  const Url = `http:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
+  const BaseUrl = GetBaseUrl().MainUrl;
+  const Url = `https:${BaseUrl}/api/public/InstallCoinAI.sh?Port=${Port}&UserID=${UserInfoStore.value.UserID}`;
   const shPoint = `sudo curl -o- "${Url}" | sudo bash`;
   return shPoint;
 };

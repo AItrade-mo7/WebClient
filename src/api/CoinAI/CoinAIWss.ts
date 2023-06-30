@@ -1,6 +1,7 @@
 import { getToken, Encrypt } from '@/utils/tools';
 
 import type { resDataType } from '@/utils/utils.d';
+import { GetBaseUrl } from '@/config/constant';
 
 interface ReturnType {
   Socket: WebSocket;
@@ -18,7 +19,7 @@ interface WssType {
 
 export function NewSocket(opt: WssType) {
   let protocol = 'wss:';
-  const host = window.ViteConst.BaseUrl;
+  const host = GetBaseUrl().MainUrl;
   let pathname = '/api/wss';
 
   const location = window.location;
