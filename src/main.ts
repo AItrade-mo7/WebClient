@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { registerSW } from 'virtual:pwa-register';
-import { ProduceBaseUrl, TestBaseUrl } from '@/config/constant';
 
 registerSW({
   // 每小时检查一次
@@ -12,6 +11,8 @@ registerSW({
 import App from '@/lib/router/App.vue';
 import { router } from '@/lib/router';
 
+import { MainBaseUrlMap, MsgBaseUrlMap } from '@/config/constant';
+
 import '@/assets/js/AItrade.net';
 import 'normalize.css';
 import '@/assets/css/global.scss';
@@ -21,16 +22,19 @@ import { set_axios_config } from '@/utils/http';
 if (ViteConst) {
   window.ViteConst = {
     ...ViteConst,
-    Author: 'http://mo7.cc',
+    Author: 'https://mo7.cc',
   };
   window.$Event = {};
-  // 如果在正式环境下运行，则强制切换为 ProduceBaseUrl
-  if (window.location.hostname == 'trade.mo7.cc') {
-    window.ViteConst.BaseUrl = ProduceBaseUrl;
+  window.$Const = {
+    MainBaseUrlMap,
+    MsgBaseUrlMap,
+  };
+  const { DevelopBaseUrl } = window.ViteConst;
+  if (DevelopBaseUrl.Main) {
+    window.$Const.MainBaseUrlMap.Develop = DevelopBaseUrl.Main;
   }
-  // 如果在测试环境下运行，则强制切换为 TestBaseUrl
-  if (window.location.hostname == 'test-trade.mo7.cc') {
-    window.ViteConst.BaseUrl = TestBaseUrl;
+  if (DevelopBaseUrl.Msg) {
+    window.$Const.MsgBaseUrlMap.Develop = DevelopBaseUrl.Msg;
   }
 
   set_axios_config();

@@ -41,7 +41,7 @@ export const getToken = (): string => {
 };
 
 export const removeToken = () => {
-  mStorage.clearAll();
+  mStorage.remove('token');
 };
 
 import { getUserInfo } from '@/api/Account';

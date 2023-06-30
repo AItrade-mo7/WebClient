@@ -2,18 +2,20 @@ import axios from 'axios';
 import { res_dispose } from './res_dispose';
 import { getToken, Encrypt, Md5 } from './tools';
 import { LoadingStore } from '@/store';
+import { GetBaseUrl } from '@/config/constant';
+import type { axiosParam, resDataType } from './utils.d';
 
 const service = axios.create();
 
 function set_axios_config() {
-  service.defaults.baseURL = window.ViteConst.BaseUrl; // 默认请求的 baseUrl
+  service.defaults.baseURL = GetBaseUrl().MainUrl; // 默认请求的 baseUrl
   service.defaults.timeout = 30000; // 超时 30 秒
+  console.info('baseURL:', GetBaseUrl());
 
   // 请求拦截
   service.interceptors.request.use(
     (config) => {
       LoadingStore.open(`正在请求: ${config.url}`);
-
       return config;
     },
     (error) => {
@@ -36,8 +38,6 @@ function set_axios_config() {
     },
   );
 }
-
-import type { axiosParam, resDataType } from './utils.d';
 
 const ajax_json = (param: axiosParam): Promise<resDataType> => {
   const config: axiosParam = {

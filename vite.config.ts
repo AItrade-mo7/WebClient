@@ -61,7 +61,10 @@ export default defineConfig({
     ViteConst: JSON.stringify({
       AppVersion: AppPackage.version,
       AppName: AppPackage.name,
-      BaseUrl: ProxyConfig['/api'].target,
+      DevelopBaseUrl: {
+        Main: ProxyConfig['/api'].target,
+        Msg: '//test-msg.mo7.cc',
+      },
     }),
   },
   server: {

@@ -2,6 +2,7 @@
 /// <reference types="vite-plugin-pwa/client" />
 
 import type { MessageApiInjection, NotificationApiInjection, DialogApiInjection } from 'naive-ui';
+import type { UrlMapType } from '@/config/constant';
 
 declare module '*.vue' {
   import { ComponentOptions } from 'vue';
@@ -27,10 +28,17 @@ declare global {
       AppName: string;
       ProxyUrl: string;
       rmAgin: string;
-      BaseUrl: string;
+      DevelopBaseUrl: {
+        Main: string;
+        Msg: string;
+      };
     };
     $Event: {
       [string]: any;
+    };
+    $Const: {
+      MainBaseUrlMap: UrlMapType;
+      MsgBaseUrlMap: UrlMapType;
     };
   }
 }
