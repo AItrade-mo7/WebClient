@@ -5,10 +5,29 @@ import { Logo } from '@/config/constant';
 
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
+
+let GoToDevelopPageCount = $ref(0);
+let Timer: any = null;
+const GoToDevelopPage = () => {
+  GoToDevelopPageCount++;
+
+  clearTimeout(Timer);
+  Timer = setTimeout(() => {
+    GoToDevelopPageCount = 0;
+  }, 1000);
+
+  if (GoToDevelopPageCount > 10) {
+    alert('即将前往开发者选项');
+    window.location.href = '/Developer';
+  }
+};
 </script>
 
 <template>
-  <PageTitle :Back="false">Home</PageTitle>
+  <PageTitle :Back="false">
+    <span class="Touch" @click="GoToDevelopPage"> Home </span>
+    {{ GoToDevelopPageCount > 5 ? GoToDevelopPageCount : '' }}
+  </PageTitle>
   <div class="PageWrapper">
     <img class="logo" :src="Logo" alt="" srcset="" />
     <div class="appName"><span class="aiText">AI</span><span class="fundText">trade</span></div>
@@ -100,5 +119,10 @@ const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
   color: #666;
   font-size: 14px;
   margin-top: 6px;
+}
+
+.Touch {
+  user-select: none;
+  cursor: pointer;
 }
 </style>

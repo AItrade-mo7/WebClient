@@ -13,7 +13,10 @@ const routes: any = [
     path: '/Register',
     component: () => import('@/pages/RegisterPage.vue'),
   },
-
+  {
+    path: '/Developer',
+    component: () => import('@/pages/DeveloperPage.vue'),
+  },
   {
     path: '/CoinTicker',
     component: () => import('@/pages/CoinTicker/IndexPage.vue'),

@@ -31,14 +31,22 @@ export const GetBaseUrl = () => {
     MsgUrl: MsgBaseUrlMap['Production'],
   };
 
-  const MainBaseUrlType = mStorage.get('MainBaseUrlType');
+  let MainBaseUrlType = mStorage.get('MainBaseUrlType');
+  if (!MainBaseUrlType) {
+    MainBaseUrlType = 'Production';
+    mStorage.set('MainBaseUrlType', MainBaseUrlType);
+  }
   const MainUrl = MainBaseUrlMap[MainBaseUrlType];
   if (MainUrl) {
     ReturnObj.MainUrl = MainUrl;
   }
 
-  const MsgBaseUrlType = mStorage.get('MsgBaseUrlType');
-  const MsgUrl = MainBaseUrlMap[MsgBaseUrlType];
+  let MsgBaseUrlType = mStorage.get('MsgBaseUrlType');
+  if (!MsgBaseUrlType) {
+    MsgBaseUrlType = 'Production';
+    mStorage.set('MsgBaseUrlType', MsgBaseUrlType);
+  }
+  const MsgUrl = MsgBaseUrlMap[MsgBaseUrlType];
   if (MsgUrl) {
     ReturnObj.MsgUrl = MsgUrl;
   }
