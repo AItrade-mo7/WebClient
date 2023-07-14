@@ -39,6 +39,19 @@ const GoToDevelopPage = () => {
     <div class="ServeDesc">分布式计算，毫秒级别响应，完善的警报体系，一行命令独立部署。</div>
 
     <br />
+
+    <div class="NewOtterTrade">
+      <a class="OtBtn" href="https://ottertrade.com" target="_blank">
+        重磅更新 ！！ <br />
+        <span class="red"> OtterTrade.com </span> 量化平台 <br />
+        <span class="hint"> 即日起，当前 AItrade 平台将停止维护！</span>
+        <br />
+        更稳定的架构，更快的响应速度，更准确的市场判断，更简单的使用方式，更美观的用户界面！
+        <br />
+        <span class="hint red">点我进入新平台</span>
+      </a>
+    </div>
+
     <div class="HomeBtnItem">
       <RouterLink to="/CoinTicker">
         <n-button type="primary">
@@ -124,5 +137,24 @@ const GoToDevelopPage = () => {
 .Touch {
   user-select: none;
   cursor: pointer;
+}
+
+.NewOtterTrade {
+}
+.OtBtn {
+  display: block;
+  border-radius: 100px;
+  border: 1px solid #000;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  cursor: pointer;
+  .hint {
+    font-weight: bolder;
+  }
+  padding: 20px;
+  font-size: 16px;
+  background-color: aliceblue;
+  text-align: center;
 }
 </style>
