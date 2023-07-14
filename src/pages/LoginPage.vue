@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cloneDeep, setToken } from '@/utils/tools';
+import { cloneDeep, setToken, removeToken } from '@/utils/tools';
 import { useRouter } from 'vue-router';
 import { Logo } from '@/config/constant';
 import { login } from '@/api/Account';
@@ -7,6 +7,27 @@ import { verifyConfig } from '@/utils/verify';
 import { UserInfoStore, TopBarStore } from '@/store';
 
 import { defineAsyncComponent } from 'vue';
+
+import { Ping } from '@/api/Ping';
+import { PingDataStore } from '@/store';
+import { onMounted } from 'vue';
+const fetchPing = async () => {
+  const res = await Ping();
+  if (res.Code > 0) {
+    const Token = res.Data.Token;
+    PingDataStore.update(res.Data);
+    if (Token) {
+      await setToken(Token);
+    }
+  } else {
+    removeToken();
+  }
+};
+
+onMounted(() => {
+  fetchPing();
+});
+
 const XIcon = defineAsyncComponent(() => import('@/lib/XIcon.vue'));
 const PageTitle = defineAsyncComponent(() => import('@/lib/PageTitle.vue'));
 
