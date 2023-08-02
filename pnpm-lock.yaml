@@ -1,9 +1,13 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@vitejs/plugin-legacy':
     specifier: ^4.0.3
-    version: 4.0.3(terser@5.17.4)(vite@4.3.8)
+    version: 4.0.3(terser@5.17.4)(vite@4.3.9)
   '@vue/eslint-config-typescript':
     specifier: ^11.0.3
     version: 11.0.3(eslint-plugin-vue@9.13.0)(eslint@8.41.0)(typescript@5.0.4)
@@ -62,7 +66,7 @@ devDependencies:
     version: 0.1.4(vue@3.3.4)
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
-    version: 4.2.3(vite@4.3.8)(vue@3.3.4)
+    version: 4.2.3(vite@4.3.9)(vue@3.3.4)
   '@vue/tsconfig':
     specifier: ^0.1.3
     version: 0.1.3
@@ -85,11 +89,11 @@ devDependencies:
     specifier: ^0.22.12
     version: 0.22.12(rollup@2.79.1)(vue@3.3.4)
   vite:
-    specifier: ^4.3.8
-    version: 4.3.8(sass@1.62.1)(terser@5.17.4)
+    specifier: ^4.3.9
+    version: 4.3.9(sass@1.62.1)(terser@5.17.4)
   vite-plugin-pwa:
     specifier: ^0.14.7
-    version: 0.14.7(vite@4.3.8)(workbox-build@6.5.4)(workbox-window@6.5.4)
+    version: 0.14.7(vite@4.3.9)(workbox-build@6.5.4)(workbox-window@6.5.4)
   vue-tsc:
     specifier: ^1.6.5
     version: 1.6.5(typescript@5.0.4)
@@ -1782,7 +1786,7 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /@vitejs/plugin-legacy@4.0.3(terser@5.17.4)(vite@4.3.8):
+  /@vitejs/plugin-legacy@4.0.3(terser@5.17.4)(vite@4.3.9):
     resolution: {integrity: sha512-RqDQOSEmFSNL42vITkNp8HE8Ak1yjGgaav4B6BGcZ8/URK0wikzwSyhNRirHDkp+snflEEk7iPZXTXUYA9exbg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -1797,19 +1801,19 @@ packages:
       regenerator-runtime: 0.13.11
       systemjs: 6.14.1
       terser: 5.17.4
-      vite: 4.3.8(sass@1.62.1)(terser@5.17.4)
+      vite: 4.3.9(sass@1.62.1)(terser@5.17.4)
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@vitejs/plugin-vue@4.2.3(vite@4.3.8)(vue@3.3.4):
+  /@vitejs/plugin-vue@4.2.3(vite@4.3.9)(vue@3.3.4):
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.8(sass@1.62.1)(terser@5.17.4)
+      vite: 4.3.9(sass@1.62.1)(terser@5.17.4)
       vue: 3.3.4
     dev: true
 
@@ -4087,7 +4091,7 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /vite-plugin-pwa@0.14.7(vite@4.3.8)(workbox-build@6.5.4)(workbox-window@6.5.4):
+  /vite-plugin-pwa@0.14.7(vite@4.3.9)(workbox-build@6.5.4)(workbox-window@6.5.4):
     resolution: {integrity: sha512-dNJaf0fYOWncmjxv9HiSa2xrSjipjff7IkYE5oIUJ2x5HKu3cXgA8LRgzOwTc5MhwyFYRSU0xyN0Phbx3NsQYw==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
@@ -4099,15 +4103,15 @@ packages:
       fast-glob: 3.2.12
       pretty-bytes: 6.1.0
       rollup: 3.22.0
-      vite: 4.3.8(sass@1.62.1)(terser@5.17.4)
+      vite: 4.3.9(sass@1.62.1)(terser@5.17.4)
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite@4.3.8(sass@1.62.1)(terser@5.17.4):
-    resolution: {integrity: sha512-uYB8PwN7hbMrf4j1xzGDk/lqjsZvCDbt/JC5dyfxc19Pg8kRm14LinK/uq+HSLNswZEoKmweGdtpbnxRtrAXiQ==}
+  /vite@4.3.9(sass@1.62.1)(terser@5.17.4):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
